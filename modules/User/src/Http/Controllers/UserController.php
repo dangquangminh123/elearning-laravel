@@ -18,11 +18,11 @@ class UserController extends Controller {
     public function data() {
         $users = $this->userRepository->getAllUsers();
         return DataTables::of($users)
-            ->addColumns('edit', function($user) {
-                return '<a href="#" class="btn btn-warning">Sửa</a>';
+            ->addColumn('edit', function($user) {
+                return '<a href="'.route('admin.users.edit', $user).'" class="btn btn-warning">Sửa</a>';
             })
-            ->addColumns('delete', function($user) {
-                return '<a href="#" class="btn btn-danger">Xoá</a>';
+            ->addColumn('delete', function($user) {
+                return '<a href="'.route('admin.users.delete', $user).'" class="btn btn-danger delete-action">Xoá</a>';
             })
             ->editColumn('created_at', function ($user) {
                 return Carbon::parse($user->created_at)->format('d/m/Y H:i:s');
@@ -50,6 +50,33 @@ class UserController extends Controller {
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('admin.users.index')->with('msg',__('user::messages.success'));
+        return redirect()->route(route: 'admin.users.index')->with('msg',__('user::messages.create.success'));
+    }
+
+    public function edit($id) {
+        $user = $this->userRepository->find($id);
+        $pageTitle = 'Cập nhập người dùng';
+
+        if(!$user) {
+            abort(404);
+        }
+        return view('user::edit', compact('user', 'pageTitle'));
+    }
+
+    public function update(UserRequest $userRequest, $id) {
+
+        $data = $userRequest->except('_token', ' password');
+
+        if($userRequest->password) {
+            $data['password'] = bcrypt($userRequest->password);
+        }
+        $this->userRepository->update($id, $data);
+
+        return back()->with('msg',__('user::messages.update.success'));
+    }
+
+    public function delete($id) {
+        $this->userRepository->delete($id);
+        return back()->with('msg',__('user::messages.delete.success'));
     }
 }

@@ -29,6 +29,7 @@
 
         </tbody>
     </table>
+    @include('parts.backend.delete')
 @endsection
 
 
