@@ -29,7 +29,6 @@ class UserController extends Controller {
             })
         ->rawColumns(['edit', 'delete'])
         ->toJson();
-
     }
     public function index() {
         $pageTitle = 'Quản lý người dùng';
@@ -65,7 +64,7 @@ class UserController extends Controller {
 
     public function update(UserRequest $userRequest, $id) {
 
-        $data = $userRequest->except('_token', ' password');
+        $data = $userRequest->except('_token', 'password');
 
         if($userRequest->password) {
             $data['password'] = bcrypt($userRequest->password);

@@ -35,7 +35,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script src="https://cdn.datatables.net/v/dt/dt-2.3.2/datatables.min.js"></script>
-
+    <script src="{{asset('backend/js/scripts.js')}}"></script>
     @yield('scripts')
 </body>
 
