@@ -53,7 +53,7 @@ class CategoriesController extends Controller
                 $row['name'] = $char.$row['name'];
                 $row['edit'] = '<a href="'.route('admin.categories.edit', $category['id']).'" class="btn btn-warning">Sửa</a>';
                 $row['delete'] = '<a href="'.route('admin.categories.delete', $category['id']).'" class="btn btn-warning">Xoá</a>';
-                $row['detail'] = '<a target="_blank" href="'.route('admin.categories.detail', $category['id']).'" class="btn btn-warning">Xem</a>';
+                $row['link'] = '<a target="_blank" href="'.route('admin.categories.detail', $category['id']).'" class="btn btn-warning">Xem</a>';
                 $row['created_at'] = Carbon::parse($category['created_at'])->format('d/m/Y H:i:s');
                 unset($row['sub_categories']);
                 unset($row['updated_at']);
