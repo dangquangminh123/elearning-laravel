@@ -38,13 +38,13 @@
                 ajax: "{{route('admin.categories.data')}}",
                 processing: true,
                 serverSide: true,
-                pageLength: 2,
+                pageLength: 10,
                 "columns": [
                     { "data": "name" },
-                    { "data": "link" },
+                    { data: 'link', orderable: false, searchable: false },
                     { "data": "created_at" },
-                    { "data": "edit" },
-                    { "data": "delete" },
+                    { data: 'edit', orderable: false, searchable: false },
+                    { data: 'delete', orderable: false, searchable: false },
                 ]
             })
         })

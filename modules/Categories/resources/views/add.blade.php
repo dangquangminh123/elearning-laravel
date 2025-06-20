@@ -33,7 +33,7 @@
                     <label for="">Danh mục</label>
                     <select name="parent_id" id="" class="form-select {{$errors->has('parent_id') ? 'is-invalid' : ''}}">
                         <option value="0">Cha</option>
-                        {{getCategories($categories, old('parent_id'))}}
+                        {{getSubCategories($categories, old('parent_id'))}}
 
                     </select>
                     @error('parent_id')

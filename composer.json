@@ -32,6 +32,9 @@
         "classmap": [
             "database/seeders",
             "database/migrations"
+        ],
+        "files": [
+            "Modules/Categories/helpers/functions.php"
         ]
     },
     "autoload-dev": {

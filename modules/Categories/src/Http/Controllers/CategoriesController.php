@@ -4,7 +4,6 @@ namespace Modules\Categories\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Modules\Categories\src\Http\Requests\CategoryRequest;
 use Yajra\DataTables\Facades\DataTables;
-use  Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\Categories\src\Repositories\CategoriesRepository;
@@ -18,54 +17,49 @@ class CategoriesController extends Controller
     }
 
     public function index() {
-
         $pageTitle = 'Quản lý danh mục';
         // $categories = $this->categoryRepository->getTreeCategories()->toArray();
         return view('categories::lists', compact('pageTitle'));
     }
-    public function data() {
-        $categories = $this->categoryRepository->getCategories();
-        
-        $categories = DataTables::of($categories)
-        //     ->addColumn('edit', function($category) {
-        //         return '<a href="'.route('admin.categories.edit', $category).'" class="btn btn-warning">Sửa</a>';
-        //     })
-        //     ->addColumn('delete', function($category) {
-        //         return '<a href="'.route('admin.categories.delete', $category).'" class="btn btn-danger delete-action">Xoá</a>';
-        //     })
-        //     ->addColumn('link', function($category) {
-        //         return '<a href="'.route('admin.categories.detail', $category).'" class="btn btn-info delete-action">Xem</a>';
-        //     })
-        //     ->editColumn('created_at', function ($category) {
-        //         return Carbon::parse($category->created_at)->format('d/m/Y H:i:s');
-        //     })
-        // ->rawColumns(['edit', 'delete', 'link'])
-        ->toArray();
+    public function data(Request $request) {
+        $search = $request->input('search.value');
 
-        $categories['data'] = $this->getCategoriesTable($categories['data']);
-        return $categories;
+        $categories = $this->categoryRepository->getCategories(); // bạn đã có sẵn rồi
+        $flattened = [];
+
+        $this->getCategoriesTable($categories, '', $flattened, $search);
+
+        return DataTables::of($flattened)
+            ->rawColumns(['name', 'edit', 'delete', 'link'])
+            ->escapeColumns([])
+            ->make(true);
     }
 
-    public function getCategoriesTable($categories, $char='', &$result=[]) {
-        if(!empty($categories)) {
-            foreach($categories as $key => $category) {
-                $row = $category;
-                $row['name'] = $char.$row['name'];
-                $row['edit'] = '<a href="'.route('admin.categories.edit', $category['id']).'" class="btn btn-warning">Sửa</a>';
-                $row['delete'] = '<a href="'.route('admin.categories.delete', $category['id']).'" class="btn btn-warning">Xoá</a>';
-                $row['link'] = '<a target="_blank" href="'.route('admin.categories.detail', $category['id']).'" class="btn btn-warning">Xem</a>';
-                $row['created_at'] = Carbon::parse($category['created_at'])->format('d/m/Y H:i:s');
-                unset($row['sub_categories']);
-                unset($row['updated_at']);
 
-                $result[] = $row;
-                if(!empty($category['sub_categories'])) {
-                    $this->getCategoriesTable($category['sub_categories'], $char.'|--',$result);
-                }
+    public function getCategoriesTable($categories, $char = '', &$result = [], $search = null)
+    {
+        foreach ($categories as $category) {
+            $nameWithPrefix = $char . $category['name'];
+
+            // Chỉ add nếu không search hoặc tên phù hợp
+            if (!$search || stripos($category['name'], $search) !== false) {
+                $result[] = [
+                    'id' => $category['id'],
+                    'name' => $nameWithPrefix,
+                    'link' => '<a target="_blank" href="' . route('admin.categories.detail', $category['id']) . '" class="btn btn-info">Xem</a>',
+                    'edit' => '<a href="' . route('admin.categories.edit', $category['id']) . '" class="btn btn-warning">Sửa</a>',
+                    'delete' => '<a href="' . route('admin.categories.delete', $category['id']) . '" class="btn btn-danger delete-action">Xoá</a>',
+                    'created_at' => Carbon::parse($category['created_at'])->format('d/m/Y H:i:s'),
+                ];
+            }
+
+            // Đệ quy sub_categories
+            if (!empty($category['sub_categories'])) {
+                $this->getCategoriesTable($category['sub_categories'], $char . '|-- ', $result, $search);
             }
         }
-        return $result;
     }
+
 
     public function store(CategoryRequest $request) {
         $this->categoryRepository->create([
