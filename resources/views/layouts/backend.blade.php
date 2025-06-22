@@ -37,7 +37,10 @@
 <script src="https://cdn.datatables.net/v/dt/dt-2.3.2/datatables.min.js"></script>
     <script src="{{asset('backend/plugins/ckeditor/ckeditor.js')}}"></script>
     <script src="{{asset('backend/js/scripts.js')}}"></script>
-   
+    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
+    <script>
+         $('#lfm').filemanager('image');
+    </script>
     @yield('scripts')
 </body>
 

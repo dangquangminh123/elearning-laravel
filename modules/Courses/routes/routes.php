@@ -17,6 +17,3 @@ Route::group(['namespace' => 'Modules\Courses\src\Http\Controllers', 'middleware
    });
 });
 
- Route::group(['prefix' => 'filemanager', 'middleware' => ['web']], function () {
-     \UniSharp\LaravelFilemanager\Lfm::routes();
- });

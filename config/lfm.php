@@ -16,6 +16,8 @@ return [
      */
 
     'use_package_routes'       => true,
+    'url_prefix' => 'filemanager',
+    'middleware' => ['web'], // thêm nếu thiếu
 
     /*
     |--------------------------------------------------------------------------
@@ -51,8 +53,8 @@ return [
             'startup_view' => 'list',
             'max_size'     => 50000, // size in KB
             'thumb' => true,
-            'thumb_width' => 80,
-            'thumb_height' => 80,
+            'thumb_width' => 500,
+            'thumb_height' => 500,
             'valid_mime'   => [
                 'image/jpeg',
                 'image/pjpeg',
@@ -67,8 +69,8 @@ return [
             'startup_view' => 'grid',
             'max_size'     => 50000, // size in KB
             'thumb' => true,
-            'thumb_width' => 80,
-            'thumb_height' => 80,
+            'thumb_width' => 500,
+            'thumb_height' => 500,
             'valid_mime'   => [
                 'image/jpeg',
                 'image/pjpeg',
@@ -140,9 +142,9 @@ return [
         'image/png',
     ],
 
-    'thumb_img_width'          => 200, // px
+    'thumb_img_width'          => 500, // px
 
-    'thumb_img_height'         => 200, // px
+    'thumb_img_height'         => 500, // px
 
     /*
     |--------------------------------------------------------------------------

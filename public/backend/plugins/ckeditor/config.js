@@ -8,8 +8,7 @@ CKEDITOR.editorConfig = function (config) {
     // config.language = 'fr';
     // config.uiColor = '#AADC6E';
     config.filebrowserImageBrowseUrl = "/filemanager?type=Images";
-    config.filebrowserImageUploadUrl =
-        "/filemanager/upload?type=Images&_token=";
+    config.filebrowserImageUploadUrl ="/filemanager/upload?type=Images&_token=";
     config.filebrowserBrowseUrl = "/filemanager?type=Files";
     config.filebrowserUploadUrl = "/filemanager/upload?type=Files&_token=";
 };

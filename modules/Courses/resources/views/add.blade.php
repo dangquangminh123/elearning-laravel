@@ -141,7 +141,7 @@
                    <div class="row align-items-end">
                         <div class="col-lg-7">
                             <label for="">Ảnh đại diện</label>
-                            <input type="text" name="thumbnail" id=""
+                            <input type="text" name="thumbnail" id="thumbnail"
                             class="form-select {{$errors->has('thumbnail') ? 'is-invalid' : ''}}"
                             placeholder="Ảnh đại diện...">
                             @error('thumbnail')
@@ -151,12 +151,12 @@
                             @enderror
                         </div>
                         <div class="col-lg-2">
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" id="lfm" data-input="thumbnail" data-preview="holder">
                                 Chọn ảnh
                             </button>
                         </div>
                         <div class="col-lg-3">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/800px-Laravel.svg.png" alt="" />
+                           <div id="holder"></div>
                         </div>
                    </div>
                 </div>
@@ -175,7 +175,11 @@
     <style>
         img {
             max-width: 100%;
-            height: auto;
+            height: auto !important;
+        }
+
+        #holder img {
+            width: 100% !important;
         }
     </style>
 @endsection
