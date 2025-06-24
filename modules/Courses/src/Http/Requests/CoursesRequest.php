@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\User\src\Http\Requests;
+namespace Modules\Courses\src\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,46 +21,45 @@ class CoursesRequest extends FormRequest
      */
     public function rules(): array
     {
-        $id =  $this->route()->user;
-        $rules = [
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'group_id' => ['required', 'integer', function($attribute, $value, $fail){
-                if($value == 0) {
-                    $fail(__('user::validation.choose'));
-                }
-            }],
-        ];
+        $id = $this->route()->course;
+        $uniqueRule = 'unique:courses,code';
 
         if($id) {
-            $rules['email'] = 'required|email|unique:users,email,'.$id;
-            if($this->password) {
-                $rules['password'] = 'min:6';
-            }else {
-                unset($rules['password']);
-            }
+            $uniqueRule.=','.$id;
         }
+        $rules = [
+            'name' => 'required|max:255',
+            'slug' => 'required|max:255',
+            'detail' => 'required',
+            'teacher_id' => ['required', 'integer', function($attribute, $value, $fail){
+                if($value == 0) {
+                    $fail(__('courses::validation.choose'));
+                }
+            }],
+            'thumbnail' => 'required|max:255',
+            'code' => 'required|max:255|'.$uniqueRule,
+            'is_document' => 'required|integer',
+            'supports' => 'required',
+            'status' => 'required|integer',
+            'categories' => 'required'
+        ];
+
 
         return $rules;
     }
 
     public function messages() {
         return [
-            'required' => __('user::validation.required'),
-            'email' => __('user::validation.email'),
-            'unique' => __('user::validation.unique'),
-            'min' => __('user::validation.min'),
-            'integer' => __('user::validation.integer'),
+            'required' => __('courses::validation.required'),
+            'email' => __('courses::validation.email'),
+            'unique' => __('courses::validation.unique'),
+            'min' => __('courses::validation.min'),
+            'max' => __('courses::validation.max'),
+            'integer' => __('courses::validation.integer'),
         ];
     }
 
     public function attributes() {
-        return [
-            'name' =>  __('user::validation.attributes.name'),
-            'email' =>  __('user::validation.attributes.email'),
-            'password' =>  __('user::validation.attributes.password'),
-            'group_id' =>  __('user::validation.attributes.group_id'),
-        ];
+        return __(key: 'courses::validation.attributes');
     }
 }

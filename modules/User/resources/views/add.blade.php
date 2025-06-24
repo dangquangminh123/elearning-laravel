@@ -1,5 +1,6 @@
 @extends('layouts.backend')
 @section('content')
+
     <form action="" method="POST">
         <div class="row">
             <div class="col-6">

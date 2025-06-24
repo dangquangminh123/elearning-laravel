@@ -1,16 +1,16 @@
 @extends('layouts.backend')
 @section('content')
-    <p><a href="{{route('admin.courses.create')}}" class="btn btn-primary">Thêm mới</a></p>
+    <p><a href="{{route('admin.teacher.create')}}" class="btn btn-primary">Thêm mới</a></p>
     @if(session('msg'))
         <div class="alert alert-success">{{session('msg')}}</div>
     @endif
     <table id="datatables" class="table table-bordered">
         <thead>
             <tr>
+                <th>Ảnh</th>
                 <th>Tên</th>
-                <th>Giá</th>
-                <th>Mã khoá</th>
-                <th>Trạng thái</th>
+                <th>Điện thoại/zalo</th>
+                <th>Kinh nghệm</th>
                 <th>Thời gian</th>
                 <th style="width: 5%;">Sửa</th>
                 <th style="width: 5%;">Xoá</th>
@@ -18,10 +18,10 @@
         </thead>
         <tfoot>
             <tr>
+                <th>Ảnh</th>
                 <th>Tên</th>
-                <th>Giá</th>
-                <th>Mã khoá</th>
-                <th>Trạng thái</th>
+                <th>Điện thoại/zalo</th>
+                <th>Kinh nghệm</th>
                 <th>Thời gian</th>
                 <th>Sửa</th>
                 <th>Xoá</th>
@@ -39,14 +39,14 @@
     <script>
         $(document).ready(function () {
             $('#datatables').DataTable({
-                ajax: "{{route('admin.courses.data')}}",
+                ajax: "{{route('admin.teacher.data')}}",
                 processing: true,
                 serverSide: true,
                 "columns": [
+                    { "data": "image" },
                     { "data": "name" },
-                    { "data": "price" },
-                    { "data": "code" },
-                    { "data": "status" },
+                    { "data": "phone_zalo" },
+                    { "data": "exp" },
                     { "data": "created_at" },
                     { "data": "edit" },
                     { "data": "delete" },
