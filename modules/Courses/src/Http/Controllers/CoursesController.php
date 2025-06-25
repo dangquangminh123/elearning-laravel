@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Modules\Categories\src\Repositories\CategoriesRepository;
 use Modules\Courses\src\Http\Requests\CoursesRequest;
 use Modules\Courses\src\Repositories\CoursesRepository;
+use Modules\Teacher\src\Repositories\TeacherRepository;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 
@@ -13,10 +14,15 @@ class CoursesController extends Controller
 {
    protected $coursesRepository;
    protected $categoriesRepository;
+   protected $teacherRepository;
 
-    public function __construct(CoursesRepository $coursesRepository, CategoriesRepository $categoriesRepository) {
+    public function __construct(CoursesRepository $coursesRepository, 
+    CategoriesRepository $categoriesRepository,
+    TeacherRepository $teacherRepository) 
+    {
         $this->coursesRepository = $coursesRepository;
         $this->categoriesRepository = $categoriesRepository;
+        $this->teacherRepository = $teacherRepository;
     }
 
     public function data() {
@@ -60,9 +66,9 @@ class CoursesController extends Controller
 
     public function create() {
         $pageTitle = 'Thêm mới khoá học';
-
+        $teacher = $this->teacherRepository->getAllTeacher()->get();
         $categories = $this->categoriesRepository->getAllCategories();
-        return view('courses::add', compact('pageTitle', 'categories'));
+        return view('courses::add', compact('pageTitle', 'categories', 'teacher'));
     }
 
     public function store(CoursesRequest $request) {
@@ -87,13 +93,14 @@ class CoursesController extends Controller
         $course = $this->coursesRepository->find($id);
         $categoryIds = $this->coursesRepository->getRelatedCategories($course);
         $categories = $this->categoriesRepository->getAllCategories();
+        $teacher = $this->teacherRepository->getAllTeacher()->get();
 
         $pageTitle = 'Cập nhập khoá học';
 
         if(!$course) {
             abort(404);
         }
-        return view('courses::edit', compact('course', 'pageTitle', 'categories', 'categoryIds'));
+        return view('courses::edit', compact('course', 'pageTitle', 'categories', 'categoryIds', 'teacher'));
     }
 
     public function update(CoursesRequest $coursesRequest, $id) {
@@ -118,8 +125,11 @@ class CoursesController extends Controller
 
     public function delete($id) {
         $course = $this->coursesRepository->find($id);
-        $this->coursesRepository->deleteCourseCategories($course);
-        $this->coursesRepository->delete($id);
+        // $this->coursesRepository->deleteCourseCategories($course);
+        $status = $this->coursesRepository->delete($id);
+        if($status) {
+            deleteFileStorage($course->thumbnail);
+        }
         return back()->with('msg',__('courses::messages.delete.success'));
     }
 

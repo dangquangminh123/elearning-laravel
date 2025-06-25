@@ -72,7 +72,13 @@ class TeacherController extends Controller {
     }
 
     public function delete($id) {
-        $this->teacherRepository->delete($id);
+        $teacher = $this->teacherRepository->find($id);
+        $status = $this->teacherRepository->delete($id);
+       
+        if($status) {
+            $image = $teacher->image;
+           deleteFileStorage($image);
+        }
         return back()->with('msg',__('teacher::messages.delete.success'));
     }
 }
