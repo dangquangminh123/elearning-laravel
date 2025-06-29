@@ -4,8 +4,12 @@ namespace Modules\Courses\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Modules\Categories\src\Repositories\CategoriesRepository;
+use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
 use Modules\Courses\src\Http\Requests\CoursesRequest;
 use Modules\Courses\src\Repositories\CoursesRepository;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
+use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
+
 use Modules\Teacher\src\Repositories\TeacherRepository;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
@@ -16,9 +20,9 @@ class CoursesController extends Controller
    protected $categoriesRepository;
    protected $teacherRepository;
 
-    public function __construct(CoursesRepository $coursesRepository, 
-    CategoriesRepository $categoriesRepository,
-    TeacherRepository $teacherRepository) 
+    public function __construct(CoursesRepositoryInterface $coursesRepository, 
+    CategoriesRepositoryInterface $categoriesRepository,
+    TeacherRepositoryInterface $teacherRepository) 
     {
         $this->coursesRepository = $coursesRepository;
         $this->categoriesRepository = $categoriesRepository;
@@ -28,6 +32,9 @@ class CoursesController extends Controller
     public function data() {
         $courses = $this->coursesRepository->getAllCourses();
         return DataTables::of($courses)
+            ->addColumn('lessons', function($course) {
+                return '<a href="'.route('admin.lessons.index', $course).'" class="btn btn-primary">Bài giảng</a>';
+            })
             ->addColumn('edit', function($course) {
                 return '<a href="'.route('admin.courses.edit', $course).'" class="btn btn-warning">Sửa</a>';
             })
@@ -55,11 +62,11 @@ class CoursesController extends Controller
                 }
                 return $price;
             })
-        ->rawColumns(['edit', 'delete', 'code', 'status'])
+        ->rawColumns(['edit', 'delete', 'code', 'status', 'lessons'])
         ->toJson();
     }
     public function index() {
-        $pageTitle = 'Quản lý người dùng';
+        $pageTitle = 'Quản lý khoá học';
         $users = $this->coursesRepository->getAllCourses();
         return view('courses::lists', compact('pageTitle'));
     }

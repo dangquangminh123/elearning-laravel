@@ -12,6 +12,7 @@
                 <th>Mã khoá</th>
                 <th>Trạng thái</th>
                 <th>Thời gian</th>
+                <th>Bài giảng</th>
                 <th style="width: 5%;">Sửa</th>
                 <th style="width: 5%;">Xoá</th>
             </tr>
@@ -23,6 +24,7 @@
                 <th>Mã khoá</th>
                 <th>Trạng thái</th>
                 <th>Thời gian</th>
+                <th>Bài giảng</th>
                 <th>Sửa</th>
                 <th>Xoá</th>
             </tr>
@@ -48,6 +50,7 @@
                     { "data": "code" },
                     { "data": "status" },
                     { "data": "created_at" },
+                    { "data": "lessons" },
                     { "data": "edit" },
                     { "data": "delete" },
                 ]

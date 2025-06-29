@@ -7,12 +7,12 @@ use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Modules\Categories\src\Repositories\CategoriesRepository;
-
+use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
 class CategoriesController extends Controller
 {
     protected $categoryRepository;
 
-    public function __construct(CategoriesRepository $categoriesRepository) {
+    public function __construct(CategoriesRepositoryInterface $categoriesRepository) {
         $this->categoryRepository = $categoriesRepository;
     }
 

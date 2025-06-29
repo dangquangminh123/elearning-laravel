@@ -7,7 +7,20 @@ use Illuminate\Support\ServiceProvider;
 use Modules\User\src\Commands\TestCommand;
 use Modules\User\src\Http\Middlewares\DemoMiddleware;
 use Modules\User\src\Repositories\UserRepository;
-
+use Modules\User\src\Repositories\MongoUserRepository;
+use Modules\User\src\Repositories\UserRepositoryInterface;
+use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
+use Modules\Categories\src\Repositories\CategoriesRepository;
+use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
+use Modules\Teacher\src\Repositories\TeacherRepository;
+use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
+use Modules\Courses\src\Repositories\CoursesRepository;
+use Modules\Video\src\Repositories\VideoRepository;
+use Modules\Video\src\Repositories\VideoRepositoryInterface;
+use Modules\Document\src\Repositories\DocumentRepository;
+use Modules\Document\src\Repositories\DocumentRepositoryInterface;
+use Modules\Lessons\src\Repositories\LessonsRepository;
+use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
 // use File;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -28,6 +41,49 @@ class ModuleServiceProvider extends ServiceProvider
             }
         }
     }
+    public function bindingRepository() {
+        // User repository
+        $this->app->singleton(
+            UserRepositoryInterface::class,
+            UserRepository::class,
+        );
+
+        // Categories Respository
+        $this->app->singleton(
+            CategoriesRepositoryInterface::class,
+            CategoriesRepository::class,
+        );
+
+        // Teacher Respository
+        $this->app->singleton(
+            TeacherRepositoryInterface::class,
+            TeacherRepository::class,
+        );
+
+        //Courses Respository
+        $this->app->singleton(
+            CoursesRepositoryInterface::class,
+            CoursesRepository::class,
+        );
+
+        //Video Respository
+        $this->app->singleton(
+            VideoRepositoryInterface::class,
+            VideoRepository::class,
+        );
+
+        //Document Respository
+        $this->app->singleton(
+            DocumentRepositoryInterface::class,
+            DocumentRepository::class,
+        );
+
+        //Document Respository
+        $this->app->singleton(
+            LessonsRepositoryInterface::class,
+            LessonsRepository::class,
+        );
+    }
 
     public function register() {
         $directories = array_map('basename', File::directories(__DIR__));
@@ -42,7 +98,10 @@ class ModuleServiceProvider extends ServiceProvider
         // Khai báo commands
         $this->commands($this->commands);
 
-        // $this->app->singleton();
+       
+
+        $this->bindingRepository();
+        
     }
 
     private function getModules() {
@@ -54,9 +113,17 @@ class ModuleServiceProvider extends ServiceProvider
     private function registerModule($module) {
         $modulePath = __DIR__."/{$module}";
 
-        if (File::exists($modulePath . '/routes/routes.php')) {
-            $this->loadRoutesFrom($modulePath . '/routes/routes.php');
-        }
+        Route::group(['namespace' => "Modules\\{$module}\src\Http\Controllers", 'middleware' => 'web'],function () use($modulePath) {
+            if (File::exists($modulePath . '/routes/web.php')) {
+                $this->loadRoutesFrom($modulePath . '/routes/web.php');
+            }
+        });
+
+        Route::group(['namespace' => "Modules\\{$module}\src\Http\Controllers", 'middleware' => 'api', 'prefix' => 'api'],function () use($modulePath) {
+            if (File::exists($modulePath . '/routes/api.php')) {
+                $this->loadRoutesFrom($modulePath . '/routes/api.php');
+            }
+        });
 
          //Khai báo migrations
         if (File::exists($modulePath . '/migrations')) {

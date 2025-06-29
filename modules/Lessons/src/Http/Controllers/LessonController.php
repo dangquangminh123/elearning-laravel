@@ -1,0 +1,92 @@
+<?php
+
+namespace Modules\Lessons\src\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
+use Modules\Video\src\Repositories\VideoRepositoryInterface;
+use Modules\Lessons\src\Http\Requests\LessonRequest;
+use Modules\Document\src\Repositories\DocumentRepository;
+use Modules\Document\src\Repositories\DocumentRepositoryInterface;
+use Modules\Lessons\src\Repositories\LessonsRepository;
+use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
+class LessonController extends Controller
+{
+    protected $coursesRepository;
+    protected $videoRepository;
+    protected $documentRepository;
+    protected $lessonRepository;
+
+    public function __construct(CoursesRepositoryInterface $coursesRepository,
+    VideoRepositoryInterface $videoRepository, DocumentRepositoryInterface $documentRepository, LessonsRepositoryInterface $lessonRepository)
+    {
+        $this->coursesRepository = $coursesRepository;
+        $this->videoRepository = $videoRepository;
+        $this->documentRepository = $documentRepository;
+        $this->lessonRepository = $lessonRepository;
+    }
+
+    public function index($courseId) {
+        $course = $this->coursesRepository->find($courseId);
+
+        $pageTitle = 'Bài giảng: ' . $course->name;
+        return view('lessons::lists', compact('pageTitle', 'course'));
+    }
+
+    public function create(Request $request, $courseId) {
+        $pageTitle = 'Thêm mới bài giảng';
+        $position = $this->lessonRepository->getPosition($courseId);
+        $lessons = $this->lessonRepository->getAllLessons();
+        return view('lessons::add', compact('pageTitle', 'courseId', 'position', 'lessons'));
+    }
+
+    public function store($courseId, LessonRequest $request) {
+
+        $name = $request->name;
+        $slug = $request->slug;
+        $video = $request->video;
+        $document = $request->document;
+        $parentId = $request->parent_id == 0 ? null : $request->parent_id;
+        $isTrail = $request->is_trial;
+        $position = $request->position;
+        $description = $request->description;
+
+        $videoId = null;
+        $documentId = null;
+        if($document) {
+            $documentInfo = getFileInfo($document);
+            $document = $this->documentRepository->createDocument([
+                'name' => $documentInfo['name'], 
+                'url' => $document, 
+                'size' => $documentInfo['size']
+            ], $document);
+            $documentId = $document ? $document->id : null;
+        }
+
+        if($video) {
+            $videoInfo = getVideoInfo($video);
+            $video = $this->videoRepository->createVideo([
+                'url' => $video, 
+                'name' => $videoInfo['filename'], 
+                'size' => $videoInfo['playtime_seconds']
+            ], $video);
+            $videoId = $video ? $video->id : null;
+        }
+
+      
+        $this->lessonRepository->create([
+            'name' => $name,
+            'slug' => $slug,
+            'video_id' => $videoId,
+            'course_id' => $courseId,
+            'document_id' => $documentId,
+            'parent_id' => $parentId,
+            'is_trial' => $isTrail,
+            'position' => $position,
+            'durations' => $videoInfo['playtime_seconds'] ?? 0,
+            'description' => $description,
+        ]);
+        return redirect()->route('admin.lessons.create', $courseId)->with('msg',__('lessons::messages.create.success'));
+    }
+}

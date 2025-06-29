@@ -15,7 +15,8 @@
 
                 @include('parts.backend.menu_item', [
                     'title' => 'Khoá học',
-                    'name' => 'courses'
+                    'name' => 'courses',
+                    'includes' => ['admin/lessons/*'],
                 ])
 
                 @include('parts.backend.menu_item', [
@@ -77,8 +78,8 @@
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-            Start Bootstrap
+            <div class="small">Đăng nhập:</div>
+            {{Auth::user()->name}}
         </div>
     </nav>
 </div>
