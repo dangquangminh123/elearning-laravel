@@ -16,4 +16,8 @@ class Document extends Model
     protected $attributes = [
         'size' => 0
     ];
+
+    public function documents() {
+        return $this->hasMany(Document::class, 'document_id', 'id');
+    }
 }

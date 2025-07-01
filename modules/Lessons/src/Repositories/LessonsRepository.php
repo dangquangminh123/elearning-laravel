@@ -18,6 +18,16 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
         return $result + 1;
     }
 
+    public function getLessons($courseId)
+    {
+        return $this->model
+            ->with('subLessons')
+            ->whereCourseId($courseId)
+            ->whereNull('parent_id')
+            ->select(['id', 'name', 'slug', 'is_trial', 'parent_id', 'view', 'durations', 'course_id'])
+            ->orderBy('position', 'asc'); // Bắt buộc phải toArray để xử lý phân cấp
+    }
+
      public function getAllLessons() {
         return $this->getAll();
     }
