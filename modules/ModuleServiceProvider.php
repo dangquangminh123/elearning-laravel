@@ -21,6 +21,8 @@ use Modules\Document\src\Repositories\DocumentRepository;
 use Modules\Document\src\Repositories\DocumentRepositoryInterface;
 use Modules\Lessons\src\Repositories\LessonsRepository;
 use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
+use Modules\Students\src\Repositories\StudentsRepository;
+use Modules\Students\src\Repositories\StudentsRepositoryInterface;
 // use File;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -83,6 +85,13 @@ class ModuleServiceProvider extends ServiceProvider
             LessonsRepositoryInterface::class,
             LessonsRepository::class,
         );
+
+        // Students Respository
+        $this->app->singleton(
+            StudentsRepositoryInterface::class,
+            StudentsRepository::class,
+        );
+        
     }
 
     public function register() {

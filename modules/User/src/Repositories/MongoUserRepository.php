@@ -1,6 +1,7 @@
 <?php 
 namespace Modules\User\src\Repositories;
 use App\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Hash;
 use Modules\User\src\Models\User;
 use Modules\User\src\Repositories\UserRepositoryInterface;
 
