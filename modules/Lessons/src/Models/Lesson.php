@@ -4,6 +4,8 @@ namespace Modules\Lessons\src\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Courses\src\Models\Course;
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Video\src\Models\Video;
 use Modules\Document\src\Models\Document;
 class Lesson extends Model
@@ -40,5 +42,23 @@ class Lesson extends Model
 
     public function document() {
         return $this->belongsTo(Document::class, 'document_id', 'id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(
+            Course::class,
+            'course_id',
+            'id'
+        );
+    }
+
+    public function scopeActive(Builder $query): void
+    {
+        queryActive($query);
+    }
+
+    public function scopePosition(Builder $query): void {
+        queryPosition($query);
     }
 }

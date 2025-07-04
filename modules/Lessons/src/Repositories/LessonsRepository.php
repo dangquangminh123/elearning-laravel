@@ -28,7 +28,43 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
             ->orderBy('position', 'asc'); // Bắt buộc phải toArray để xử lý phân cấp
     }
 
-     public function getAllLessons() {
-        return $this->getAll();
+    public function getAllLessions($courseId)
+    {
+        return $this->model->where('course_id', $courseId)->get();
+    }
+
+    public function getLessonCount($course)
+    {
+        return (object) [
+            'module' => $course->lessons()->whereNull('parent_id')->count(),
+            'lessons' => $course->lessons()->whereNotNull('parent_id')->count(),
+        ];
+    }
+
+     public function getModuleByPosition($course)
+    {
+        // return $course->lessons()->active()->whereNull('parent_id')->position()->get();
+        return $course->lessons()->whereNull('parent_id')->orderBy('position')->get();
+    }
+
+    public function getLessonsByPosition($course, $moduleId = null, $isDocument = false)
+    {
+        // $query = $course->lessons()->active();
+        // if ($moduleId) {
+        //     $query->where('parent_id', $moduleId);
+        // } else {
+        //     $query->whereNotNull('parent_id');
+        // }
+        // if ($isDocument) {
+        //     $query->whereNotNull('document_id');
+        // }
+        // return $query->position()->get();
+
+        return $course->lessons()->where('parent_id', $moduleId)->orderBy('position')->get();
+    }
+
+    public function getLesssonActive($slug)
+    {
+        return $this->model->whereSlug($slug)->active()->first();
     }
 }

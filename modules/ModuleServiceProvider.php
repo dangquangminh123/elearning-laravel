@@ -23,6 +23,8 @@ use Modules\Lessons\src\Repositories\LessonsRepository;
 use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
 use Modules\Students\src\Repositories\StudentsRepository;
 use Modules\Students\src\Repositories\StudentsRepositoryInterface;
+use Modules\Home\src\Repositories\HomeRepository;
+use Modules\Home\src\Repositories\HomeRepositoryInterface;
 // use File;
 
 class ModuleServiceProvider extends ServiceProvider
@@ -42,6 +44,8 @@ class ModuleServiceProvider extends ServiceProvider
                 $this->registerModule($module);
             }
         }
+        Paginator::useBootstrapFive();
+
     }
     public function bindingRepository() {
         // User repository
@@ -90,6 +94,12 @@ class ModuleServiceProvider extends ServiceProvider
         $this->app->singleton(
             StudentsRepositoryInterface::class,
             StudentsRepository::class,
+        );
+
+        // Home Repository
+         $this->app->singleton(
+            HomeRepositoryInterface::class,
+            HomeRepository::class,
         );
         
     }

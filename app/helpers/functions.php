@@ -27,4 +27,37 @@ use Illuminate\Support\Facades\File;
     function activeMenu($name) {
         return  request()->is(trim(route($name, [], false), '/'));
     }
+
+    function money($number, $currency = 'đ', $freeText = "Miễn phí")
+{
+    return !empty($number) ? number_format($number) . ' ' . $currency : $freeText;
+}
+
+function getHour($seconds)
+{
+    $value = round($seconds / 60, 1);
+    return $value . 'h';
+}
+
+function getSize($size, $type = 'KB')
+{
+
+    if ($type == 'KB') {
+        $result = round($size / 1024, 2);
+    } else if ($type == 'MB') {
+        $result = round($size / 1024 / 1024, 2);
+    }
+    return $result;
+}
+
+function queryActive($query)
+{
+    $tableName = $query->getModel()->getTable();
+    return $query->where($tableName . '.status', 1);
+}
+
+function queryPosition($query)
+{
+    $query->orderBy('position');
+}
 ?>

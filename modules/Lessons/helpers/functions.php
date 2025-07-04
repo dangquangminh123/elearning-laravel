@@ -1,4 +1,5 @@
 <?php 
+use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
       function getLessions($lessions, $old='', $parentId=0, $char='') {
         $id =request()->route()->lessonId;
         if($lessions) {
@@ -23,5 +24,23 @@
         $mins = $mins < 10 ? '0' . $mins : $mins;
         $seconds = $seconds < 10 ? '0' . $seconds : $seconds;
         return "$mins:$seconds";
+    }
+
+    function getLessonCount($course)
+    {
+        $lessonRepository = app(LessonsRepositoryInterface::class);
+        return $lessonRepository->getLessonCount($course);
+    }
+
+    function getModuleByPosition($course)
+    {
+        $lessonRepository = app(LessonsRepositoryInterface::class);
+        return $lessonRepository->getModuleByPosition($course);
+    }
+
+    function getLessonsByPosition($course, $moduleId = null, $isDocument = false)
+    {
+        $lessonRepository = app(LessonsRepositoryInterface::class);
+        return $lessonRepository->getLessonsByPosition($course, $moduleId, $isDocument);
     }
 ?>

@@ -7,4 +7,15 @@ use App\Repositories\RepositoryInterface;
 interface CoursesRepositoryInterface extends RepositoryInterface
 {
     public function getAllCourses();
+    public function createCourseCategories($course, $data = []);
+    public function updateCourseCategories($course, $data = []);
+    public function deleteCourseCategories($course);
+    public function getRelatedCategories($course);
+
+    public function getCourses($limit);
+    public function getCourse($id);
+
+    public function deleteCourse($id);
+    public function updateCourse($id, $data = []);
+    public function getCourseActive($slug);
 }

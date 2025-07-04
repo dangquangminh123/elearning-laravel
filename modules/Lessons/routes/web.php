@@ -16,3 +16,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
       Route::post('/{courseId}/sort', "LessonController@handleSort");
    });
 });
+
+Route::group(['as' => 'lesson.', 'middleware' => ['auth:students', 'verified', 'user.block']], function () {
+    Route::get('/bai-hoc/{slug}', "Clients\LessonController@index")->name('index');
+});

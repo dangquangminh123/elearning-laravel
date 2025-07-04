@@ -97,7 +97,7 @@ class CoursesController extends Controller
     }
 
     public function edit($id) {
-        $course = $this->coursesRepository->find($id);
+        $course = $this->coursesRepository->getCourse($id);
         $categoryIds = $this->coursesRepository->getRelatedCategories($course);
         $categories = $this->categoriesRepository->getAllCategories();
         $teacher = $this->teacherRepository->getAllTeacher()->get();
@@ -120,20 +120,20 @@ class CoursesController extends Controller
             $courses['price'] = 0;
         }
         
-        $this->coursesRepository->update($id, $courses);
+        $this->coursesRepository->updateCourse($id, $courses);
 
         $categories = $this->getHandleCategories($courses);
 
-        $course = $this->coursesRepository->find($id);
+        $course = $this->coursesRepository->getCourse($id);
         $this->coursesRepository->updateCourseCategories($course, $categories);
 
         return back()->with('msg',__('courses::messages.update.success'));
     }
 
     public function delete($id) {
-        $course = $this->coursesRepository->find($id);
+        $course = $this->coursesRepository->getCourse($id);
         // $this->coursesRepository->deleteCourseCategories($course);
-        $status = $this->coursesRepository->delete($id);
+        $status = $this->coursesRepository->deleteCourse($id);
         if($status) {
             deleteFileStorage($course->thumbnail);
         }
