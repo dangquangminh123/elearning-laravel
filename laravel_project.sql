@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 20, 2025 at 04:05 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jul 07, 2025 at 10:58 AM
+-- Server version: 8.0.42
+-- PHP Version: 8.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categories` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(200) DEFAULT NULL,
-  `slug` varchar(200) DEFAULT NULL,
-  `parent_id` int(11) NOT NULL DEFAULT 0,
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -41,10 +41,73 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `parent_id`, `created_at`, `updated_at`) VALUES
-(2, 'tiếng anh mới bắt đầu', 'tieng-anh-moi-bat-dau', 0, '2025-06-13 22:36:43', '2025-06-13 22:36:43'),
-(4, 'Tiếng anh cơ bản', 'tieng-anh-co-ban', 0, '2025-06-14 04:36:03', '2025-06-14 04:36:03'),
-(5, 'Tiếng anh nâng cao', 'tieng-anh-nang-cao', 0, '2025-06-14 04:36:15', '2025-06-14 04:36:15'),
-(6, 'Tiếng anh giao tiếp', 'tieng-anh-giao-tiep', 4, '2025-06-14 04:36:22', '2025-06-14 04:36:45');
+(1, 'Lập trình backend', 'lap-trinh-backend', 0, '2025-06-30 22:10:41', '2025-06-30 22:10:41'),
+(2, 'Lập trình php', 'lap-trinh-php', 1, '2025-06-30 22:10:49', '2025-06-30 22:10:49'),
+(3, 'Lập trình laravel', 'lap-trinh-laravel', 1, '2025-06-30 22:10:56', '2025-06-30 22:10:56'),
+(4, 'Lập trình server', 'lap-trinh-server', 1, '2025-06-30 22:11:12', '2025-06-30 22:11:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories_courses`
+--
+
+CREATE TABLE `categories_courses` (
+  `id` bigint UNSIGNED NOT NULL,
+  `category_id` int UNSIGNED NOT NULL,
+  `course_id` int UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `detail` text COLLATE utf8mb4_unicode_ci,
+  `teacher_id` int UNSIGNED NOT NULL,
+  `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` double(11,2) NOT NULL DEFAULT '0.00',
+  `sale_price` double(11,2) NOT NULL DEFAULT '0.00',
+  `code` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `durations` double(8,2) NOT NULL DEFAULT '0.00',
+  `is_document` tinyint(1) NOT NULL DEFAULT '0',
+  `supports` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `view` int NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` double(8,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `name`, `url`, `size`, `created_at`, `updated_at`) VALUES
+(1, 'Dang-Quang-Minh-TopCV.vn-021224.173451.pdf', '/storage/documents/1/Dang-Quang-Minh-TopCV.vn-021224.173451.pdf', 185046.00, '2025-06-30 22:15:10', '2025-06-30 22:15:10'),
+(2, 'CV minh DANG QUANG - php_ENGLISH-TopCV.vn.pdf.pdf', '/storage/documents/1/CV minh DANG QUANG - php_ENGLISH-TopCV.vn.pdf.pdf', 174963.00, '2025-06-30 22:15:48', '2025-06-30 22:15:48'),
+(3, 'Dang-Quang-Minh-TopCV.vn-021224.173424.pdf', '/storage/documents/1/Dang-Quang-Minh-TopCV.vn-021224.173424.pdf', 377856.00, '2025-07-01 01:09:26', '2025-07-01 01:09:26');
 
 -- --------------------------------------------------------
 
@@ -53,13 +116,53 @@ INSERT INTO `categories` (`id`, `name`, `slug`, `parent_id`, `created_at`, `upda
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lessons`
+--
+
+CREATE TABLE `lessons` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `video_id` int UNSIGNED DEFAULT NULL,
+  `course_id` int UNSIGNED DEFAULT NULL,
+  `document_id` int UNSIGNED DEFAULT NULL,
+  `parent_id` int UNSIGNED DEFAULT NULL,
+  `is_trial` tinyint(1) NOT NULL DEFAULT '0',
+  `view` int NOT NULL DEFAULT '0',
+  `position` int NOT NULL DEFAULT '0',
+  `durations` double(8,2) NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -69,9 +172,9 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -79,12 +182,39 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2025_06_08_123650_create_products_table', 1),
-(6, '2025_06_13_203916_categories', 2);
+(15, '2014_10_12_000000_create_users_table', 1),
+(16, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(17, '2014_10_12_100000_create_password_resets_table', 1),
+(18, '2019_08_19_000000_create_failed_jobs_table', 1),
+(19, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(20, '2025_06_08_123650_create_products_table', 1),
+(21, '2025_06_13_203916_categories', 1),
+(22, '2025_06_21_122632_create_courses_table', 1),
+(23, '2025_06_23_055749_create_categories_courses_table', 1),
+(24, '2025_06_24_140507_create_teacher_table', 1),
+(25, '2025_06_24_172441_add_foreign_courses', 1),
+(26, '2025_06_27_170204_create_video_table', 1),
+(27, '2025_06_27_224932_create_documents_table', 1),
+(29, '2025_07_01_081603_create_students_table', 2),
+(30, '2025_07_02_082000_add_view_column_courses_table', 3),
+(31, '2025_06_27_225858_create_lessons_table', 4),
+(32, '2025_07_04_222201_add_status_column_lessions_table', 4),
+(33, '2025_07_05_002316_add_remember_token_column_students_table', 5),
+(34, '2025_07_06_025000_add_email_verified_at_column_users_table', 6),
+(35, '2025_07_06_052217_create_jobs_table', 7),
+(36, '2025_07_06_063326_create_password_resets_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -93,8 +223,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -105,12 +235,12 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -124,10 +254,10 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `products` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `price` int(11) NOT NULL,
-  `content` mediumtext NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` int NOT NULL,
+  `content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `active` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -136,17 +266,75 @@ CREATE TABLE `products` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_password_resets`
+--
+
+CREATE TABLE `student_password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_zalo` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `exp` int DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`id`, `name`, `slug`, `phone_zalo`, `description`, `exp`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Hoàng An', 'hoang-an', '9824105032', '<p>Thầy ho&agrave;ng an dạy chuy&ecirc;n php laravel</p>', 3, '/storage/photos/1/image1.jpeg', '2025-06-30 22:11:53', '2025-06-30 22:11:53'),
+(2, 'Tú nhi', 'tu-nhi', '0982849156', '<p>C&ocirc; nhi dạy tiếng anh</p>', 1, '/storage/photos/1/hinh1.png', '2025-06-30 22:12:25', '2025-06-30 22:12:25');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `group_id` int(11) NOT NULL,
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_id` int NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -156,39 +344,30 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `group_id`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Hoàng An', 'hoangan.web@gmail.com', 1, NULL, '$2y$12$gMeAvwGyCf7QU6plKoxE/u83BpWYgNBq4upQ4Phs/7utnfkLu0vNW', NULL, '2025-06-11 10:09:46', '2025-06-11 10:09:46'),
-(2, 'người dùng php', 'php@gmail.com', 1, NULL, '$2y$12$/5HgqLAnvZKtzt/OmafPReqrX1IVrE65LkCL1EI4jZZbHRnz2iIWG', NULL, '2025-06-12 05:05:56', '2025-06-12 05:05:56'),
-(3, 'người dùng laravel', 'laravel@gmail.com', 1, NULL, '$2y$12$Kxf0PC0m6XSvb8zw51BmxOHCda.x.KzAfwwQ7AmRcDaR4jfmRCyAG', NULL, '2025-06-12 05:09:39', '2025-06-12 05:09:39'),
-(4, 'người dùng nodejs', 'nodejs@gmail.com', 1, NULL, '$2y$12$bON0s6Ml5I/h7BjUjDie..Yssgn6RMMUtuEvFr/TgxWCbBJkhLjOO', NULL, '2025-06-12 05:22:39', '2025-06-12 05:22:39'),
-(5, 'Prof. Margret Runolfsson', 'ibrown@hotmail.com', 1, NULL, '$2y$12$UNuqz6GetJcDokY6GDXVOeul0VTwcF1aKzOMqaazXBSMzwZG7DJAW', NULL, '2025-06-12 06:25:58', '2025-06-12 06:25:58'),
-(6, 'Dr. Rhea Rau II', 'twunsch@ankunding.com', 1, NULL, '$2y$12$qlu0lTW3ffUadAn0gf2nc.XsKECEKv3REXzYjIsce/gL2RLa3Ybuq', NULL, '2025-06-12 06:25:58', '2025-06-12 06:25:58'),
-(7, 'Norbert Beahan', 'alexanne.spinka@yahoo.com', 1, NULL, '$2y$12$H9OjlSxalawrXZ6gArCPse.YPOIrklTEyPFFrFocuE8WEFTIsmmSO', NULL, '2025-06-12 06:25:58', '2025-06-12 06:25:58'),
-(8, 'Yadira Beer', 'cmraz@balistreri.com', 1, NULL, '$2y$12$aNkgf2k7y2oWjmxt7U/dpeGRc5u5NZJ6qq8mescvNAX/wOZUZV7H6', NULL, '2025-06-12 06:25:58', '2025-06-12 06:25:58'),
-(9, 'Karl Rath', 'ellie34@yahoo.com', 1, NULL, '$2y$12$jcyHgoFXIfcbuQAo3Hs3Wu8viEdam8RFKHYb97vf1BZRZsoqsNilq', NULL, '2025-06-12 06:25:59', '2025-06-12 06:25:59'),
-(10, 'Lelah Tillman II', 'mruecker@gmail.com', 1, NULL, '$2y$12$R9Kim7cIvTAwmwFNGpzi.OBK8LztMF.ttAKwEHitusuUu5DtDzAA.', NULL, '2025-06-12 06:25:59', '2025-06-12 06:25:59'),
-(11, 'Dr. Geo Keebler', 'jensen95@dickinson.biz', 1, NULL, '$2y$12$U/./q4WI.kdoWdx.Idw9.ezmU8VlcowsEdMOIRXulT.OvJigKWy/m', NULL, '2025-06-12 06:25:59', '2025-06-12 06:25:59'),
-(12, 'Mrs. Kira Donnelly', 'zwuckert@gmail.com', 1, NULL, '$2y$12$HjGA8DCBxKc7wz0Pxl9tMOIn5Bq7HdLkQrX.llQXSwDp6h6e4CtVa', NULL, '2025-06-12 06:25:59', '2025-06-12 06:25:59'),
-(13, 'Trey Schmidt II', 'kiehn.briana@shields.com', 1, NULL, '$2y$12$wQuECRvsxd6T9e21GO9preGe561H14gEi1a6E746HHTFYYwu6bFGS', NULL, '2025-06-12 06:26:00', '2025-06-12 06:26:00'),
-(15, 'Colt Hahn', 'johanna.wehner@stanton.com', 1, NULL, '$2y$12$i79X/9DQUe0ttmdODzrmMe2fnh7m1DvpEmhJSR.GeiG7zxTx/kOH2', NULL, '2025-06-12 06:26:00', '2025-06-12 06:26:00'),
-(16, 'Derrick Hermann IV', 'klocko.fernando@kilback.com', 1, NULL, '$2y$12$LxCIjIzURRd8Qlf8JLbFfOuL3GZBuBahRaRSYA6/4XEb2uIeu9cTS', NULL, '2025-06-12 06:26:00', '2025-06-12 06:26:00'),
-(17, 'Kathlyn Brown I', 'vallie.armstrong@gmail.com', 1, NULL, '$2y$12$rwfrIkWV1iaJccVQ9jAIjOoqS1BsADIyElW0zPw5gUe0Lc.xZELkK', NULL, '2025-06-12 06:26:00', '2025-06-12 06:26:00'),
-(18, 'Mr. Akeem Ebert DVM', 'emerson.tillman@larson.com', 1, NULL, '$2y$12$tOLETeQ4gjiGsnWEgv.k8Om2RUfjUrKS/96/TMyiIXV5U0siq703.', NULL, '2025-06-12 06:26:01', '2025-06-12 06:26:01'),
-(19, 'Raphael Zulauf', 'norval.hamill@gmail.com', 1, NULL, '$2y$12$F2WmzfT3Q9W5FeFVMZ6YOOf1vxC1znpDoS9cgzBk/outG1ra29SlW', NULL, '2025-06-12 06:26:01', '2025-06-12 06:26:01'),
-(20, 'Joey Schuppe', 'mozelle38@volkman.biz', 1, NULL, '$2y$12$nencxJl5Et1KJXaaCgqEKeyiAyw.VZIOxLc2hxKIafQVCPQqj7uAK', NULL, '2025-06-12 06:26:01', '2025-06-12 06:26:01'),
-(21, 'Miss Clotilde Weber DDS', 'tressa.okeefe@kuhn.org', 1, NULL, '$2y$12$QgST79x5ZPt2K7Qskfn5ued5QeAxNerZhFA6UiihW8LDKGT5phoaK', NULL, '2025-06-12 06:26:01', '2025-06-12 06:26:01'),
-(22, 'Mrs. Kaycee Swift', 'davis.magdalena@hotmail.com', 1, NULL, '$2y$12$USzF1P9KUGFvtwjQjyXTL.VPCV4akYkNa8JJ/Y3tKxW/rJf/ED0MG', NULL, '2025-06-12 06:26:01', '2025-06-12 06:26:01'),
-(23, 'Aurore Lind', 'hroob@hotmail.com', 1, NULL, '$2y$12$vZN6l6cv3ajH3SIag8LgB.2hRzCmHgBxXOvMyU/Ic4YL9HC/uJOgO', NULL, '2025-06-12 06:26:02', '2025-06-12 06:26:02'),
-(24, 'Dr. Tanner Lebsack MD', 'kelley.reichert@yahoo.com', 1, NULL, '$2y$12$TRhURMJQqgqUtflLz1LhQ.NGQIxGOfxhEO24.crJrzmD2C6aZTDEK', NULL, '2025-06-12 06:26:02', '2025-06-12 06:26:02'),
-(25, 'Mrs. Celestine Bauch MD', 'zparker@jast.net', 1, NULL, '$2y$12$tmB1/Ejytx.N.qw08/mPf.F9wbzYxOxsC6lg2POOLCVDk9gASB0Ma', NULL, '2025-06-12 06:26:02', '2025-06-12 06:26:02'),
-(26, 'Norris Cole', 'mertz.lolita@hotmail.com', 1, NULL, '$2y$12$ou9Sj7FbgmWsTJQLFIyexOOzNyaaVyIG7BqOwDd8MMFEOpkQbltEa', NULL, '2025-06-12 06:26:02', '2025-06-12 06:26:02'),
-(27, 'Josefa Fadel', 'clarabelle72@hotmail.com', 1, NULL, '$2y$12$SmDejrnBrnhUyffnbkebfeDkXxS7pzijbivREhRhEgaurL.r5M29C', NULL, '2025-06-12 06:26:02', '2025-06-12 06:26:02'),
-(28, 'Eula Mueller DVM', 'mollie.zulauf@hotmail.com', 1, NULL, '$2y$12$KnnV8bbtAIFwEbdPsSDyquPZ/zxu.j7a3CNpg9n7BOtrO1OP2g7uS', NULL, '2025-06-12 06:26:03', '2025-06-12 06:26:03'),
-(29, 'Eulalia Grady III', 'legros.juanita@gmail.com', 1, NULL, '$2y$12$AGNDg1E.5CgXuYOwDX870ecVsqKxEdMSHHKytzy8T1Vg2nRV9Ac02', NULL, '2025-06-12 06:26:03', '2025-06-12 06:26:03'),
-(30, 'Corine Hammes', 'hilda.lakin@hotmail.com', 1, NULL, '$2y$12$loLbZYQfqWpnZFS2eYUjMum0p8pXuPYChvLoXjDx1kI6hTQUinYM6', NULL, '2025-06-12 06:26:03', '2025-06-12 06:26:03'),
-(31, 'Mrs. Antonetta Nicolas', 'chelsey81@yahoo.com', 1, NULL, '$2y$12$e7ftnQhiKC3hltU7U.maKOrqDcOJ4UDOWyNHmC4vgRIfqbgcWhGCK', NULL, '2025-06-12 06:26:03', '2025-06-12 06:26:03'),
-(32, 'Vernie Crist', 'gilbert.corwin@gmail.com', 1, NULL, '$2y$12$8BRBio.5E62uLSWJDBgIEOkPKx38eAt6rd5MgRiAn6KQGXgUpRtz6', NULL, '2025-06-12 06:26:03', '2025-06-12 06:26:03'),
-(33, 'Dr. Jaleel King', 'crona.baylee@predovic.com', 1, NULL, '$2y$12$KbhO01.2xZ4yJK4k.e9UHuSCPvWvmhUT4hlAus4kdl.nX/ZafmauC', NULL, '2025-06-12 06:26:03', '2025-06-12 06:26:03'),
-(34, 'Dr. Astrid Nader', 'jast.ava@wehner.biz', 1, NULL, '$2y$12$5TDVwqx.pGnvckhH/JpV1.sIg35JinuMiSam/jGRK64BGbasDPWCO', NULL, '2025-06-12 06:26:04', '2025-06-12 06:26:04');
+(1, 'Hoàng An', 'hoangan@gmail.com', 1, NULL, '$2y$10$wPVls4vZKuW8/HVLQAC9feyBTjdZIM3qpSVr.mXEA7hXU/sKrDnb6', NULL, '2025-07-01 00:40:11', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `videos`
+--
+
+CREATE TABLE `videos` (
+  `id` int UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `size` double(8,2) NOT NULL DEFAULT '0.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `videos`
+--
+
+INSERT INTO `videos` (`id`, `name`, `url`, `size`, `created_at`, `updated_at`) VALUES
+(1, 'ami1.mp4', '/storage/videos/1/ami1.mp4', 21.21, '2025-06-30 22:15:10', '2025-06-30 22:15:10'),
+(2, 'video1.mp4', '/storage/videos/1/video1.mp4', 60.48, '2025-07-01 01:07:55', '2025-07-01 01:07:55');
 
 --
 -- Indexes for dumped tables
@@ -201,6 +380,27 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `categories_courses`
+--
+ALTER TABLE `categories_courses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categories_courses_category_id_foreign` (`category_id`),
+  ADD KEY `categories_courses_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `courses`
+--
+ALTER TABLE `courses`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `courses_teacher_id_foreign` (`teacher_id`);
+
+--
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -208,10 +408,33 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indexes for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lessons_video_id_foreign` (`video_id`),
+  ADD KEY `lessons_document_id_foreign` (`document_id`),
+  ADD KEY `lessons_parent_id_foreign` (`parent_id`),
+  ADD KEY `lessons_course_id_foreign` (`course_id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `password_reset_tokens`
@@ -234,11 +457,36 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `students_email_unique` (`email`);
+
+--
+-- Indexes for table `student_password_resets`
+--
+ALTER TABLE `student_password_resets`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- Indexes for table `videos`
+--
+ALTER TABLE `videos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -248,37 +496,111 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `categories_courses`
+--
+ALTER TABLE `categories_courses`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `courses`
+--
+ALTER TABLE `courses`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `lessons`
+--
+ALTER TABLE `lessons`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `videos`
+--
+ALTER TABLE `videos`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `categories_courses`
+--
+ALTER TABLE `categories_courses`
+  ADD CONSTRAINT `categories_courses_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `categories_courses_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `courses`
+--
+ALTER TABLE `courses`
+  ADD CONSTRAINT `courses_teacher_id_foreign` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `lessons`
+--
+ALTER TABLE `lessons`
+  ADD CONSTRAINT `lessons_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `lessons_document_id_foreign` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`) ON DELETE SET NULL,
+  ADD CONSTRAINT `lessons_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `lessons` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `lessons_video_id_foreign` FOREIGN KEY (`video_id`) REFERENCES `videos` (`id`) ON DELETE SET NULL;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
