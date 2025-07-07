@@ -101,6 +101,7 @@ class LessonController extends Controller
         $isTrail = $request->is_trial;
         $position = $request->position;
         $description = $request->description;
+        $status = $request->status ?? 0;
 
         $videoId = null;
         $documentId = null;
@@ -135,6 +136,7 @@ class LessonController extends Controller
             'position' => $position,
             'durations' => $videoInfo['playtime_seconds'] ?? 0,
             'description' => $description,
+            'status' => $status,
         ]);
         $this->updateDurations($courseId);
         return redirect()->route('admin.lessons.create', $courseId)->with('msg',__('lessons::messages.create.success'));

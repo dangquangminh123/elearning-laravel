@@ -25,7 +25,7 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
             ->whereCourseId($courseId)
             ->whereNull('parent_id')
             ->select(['id', 'name', 'slug', 'is_trial', 'parent_id', 'view', 'durations', 'course_id'])
-            ->orderBy('position', 'asc'); // Bắt buộc phải toArray để xử lý phân cấp
+           ->position();
     }
 
     public function getAllLessions($courseId)
@@ -43,24 +43,22 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
 
      public function getModuleByPosition($course)
     {
-        // return $course->lessons()->active()->whereNull('parent_id')->position()->get();
-        return $course->lessons()->whereNull('parent_id')->orderBy('position')->get();
+        return $course->lessons()->active()->whereNull('parent_id')->position()->get();
     }
 
     public function getLessonsByPosition($course, $moduleId = null, $isDocument = false)
     {
-        // $query = $course->lessons()->active();
-        // if ($moduleId) {
-        //     $query->where('parent_id', $moduleId);
-        // } else {
-        //     $query->whereNotNull('parent_id');
-        // }
-        // if ($isDocument) {
-        //     $query->whereNotNull('document_id');
-        // }
-        // return $query->position()->get();
+        $query = $course->lessons()->active();
+        if ($moduleId) {
+            $query->where('parent_id', $moduleId);
+        } else {
+            $query->whereNotNull('parent_id');
+        }
+        if ($isDocument) {
+            $query->whereNotNull('document_id');
+        }
+        return $query->position()->get();
 
-        return $course->lessons()->where('parent_id', $moduleId)->orderBy('position')->get();
     }
 
     public function getLesssonActive($slug)

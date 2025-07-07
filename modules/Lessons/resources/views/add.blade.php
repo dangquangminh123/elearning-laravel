@@ -122,6 +122,20 @@
             </div>
 
             <div class="col-12">
+                <div class="mb-3">
+                    <label>Trạng thái</label>
+                    <label class="d-block">
+                        <input type="checkbox" name="status" value="1" {{old('status') ? 'checked': ''}}> Kích hoạt
+                    </label>
+                    @error('status')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-12">
                 <button type="submit" class="btn btn-primary">Lưu lại</button>
                 <a href="{{route('admin.lessons.index', $courseId)}}" class="btn btn-danger">Huỷ</a>
             </div>

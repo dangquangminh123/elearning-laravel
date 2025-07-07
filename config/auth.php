@@ -1,5 +1,6 @@
 <?php
 
+use Modules\Students\src\Models\Student;
 use Modules\User\src\Models\User;
 
 return [
@@ -66,6 +67,10 @@ return [
             'driver' => 'eloquent',
             'model' => User::class,
         ],
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => Student::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -96,6 +101,12 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'students' => [
+            'provider' => 'students',
+            'table' => 'student_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

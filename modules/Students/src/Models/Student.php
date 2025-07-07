@@ -25,15 +25,15 @@ class Student extends Authenticatable implements MustVerifyEmail, CanResetPasswo
         'phone'
     ];
 
-    // public function sendEmailVerificationNotification()
-    // {
-    //     $this->notify(new EmailVerifyQueued);
-    // }
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerifyQueued);
+    }
 
-    // public function sendPasswordResetNotification($token)
-    // {
-    //     $this->notify(new ResetPasswordQueued($token));
-    // }
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordQueued($token));
+    }
 
     public function courses()
     {

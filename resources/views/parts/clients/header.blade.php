@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="social">
-                        {{-- @if (auth('students')->check())
+                        @if (auth('students')->check())
                         <ul class="d-flex gap-2">
                             <li>Chào bạn, {{auth('students')->user()->name}}</li>
                             <li><a href="{{route('students.account.index')}}">Tài khoản</a></li>
@@ -35,7 +35,7 @@
                         <a href="{{route('clients.login')}}" class="btn btn-primary text-white">
                             <i class="fas fa-key"></i> Đăng nhập
                         </a>
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -101,6 +101,6 @@
         </div>
     </nav>
 </header>
-{{-- <form name="form-logout" method="post" action="{{route('clients.logout')}}">
+<form name="form-logout" method="post" action="{{route('clients.logout')}}">
     @csrf
-</form> --}}
+</form>

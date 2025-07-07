@@ -12,18 +12,21 @@ class Authenticate extends Middleware
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      */
-    protected function redirectTo(Request $request): ?string
+    protected function redirectTo($request, $isAdmin = true)
     {
-        return $request->expectsJson() ? null : route('login');
+
+        if (!$request->expectsJson()) {
+            if (!$isAdmin) {
+                return route('clients.login');
+            }
+            return route('login');
+        }
     }
 
-        protected function unauthenticated($request, array $guards)
-        {
-            if($request->is('admin') || $request->is('admin/*')) {
-
-                throw new AuthenticationException(
-                    'Unauthenticated.', $guards, $this->redirectTo($request)
-                );
-            }
-        }
+    protected function unauthenticated($request, array $guards)
+    {
+            throw new AuthenticationException(
+                'Unauthenticated.', $guards, $this->redirectTo($request)
+            );
+    }
 }

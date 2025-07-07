@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use App\Repositories\Product\ProductRepository;
-use App\Repositories\Product\ProductRepositoryInterface;
-use App\Repositories\User\UserRepository;
-use App\Repositories\User\UserRepositoryImplement;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,10 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(
-            ProductRepository::class,
-            UserRepository::class
-        );
+       
     }
 
     /**
@@ -26,6 +22,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        VerifyEmail::toMailUsing(function (object $notifiable, string $url) {
+            return (new MailMessage)
+                ->subject('[Unicode Academy] Vui lòng kích hoạt tài khoản')
+                ->line('Hãy click vào nút bên dưới để kích hoạt tài khoản của bạn')
+                ->action('Kích hoạt tài khoản', $url)
+                ->line('Nếu bạn chưa tài khoản thì hãy quay lại đăng ký tài khoản ngay');
+        });
+        ResetPassword::toMailUsing(function (object $notifiable, string $token) {
+            $url = url(route('password.reset', [
+                'token' => $token,
+                'email' => $notifiable->getEmailForPasswordReset(),
+            ], false));
+            return (new MailMessage)
+                ->subject('[Unicode Academy] Yêu cầu đặt lại mật khẩu')
+                ->line('Hãy click vào nút bên dưới để đặt lại mật khẩu tài khoản của bạn')
+                ->line('Chúng tôi nhận được yêu cầu đặt lại mật khẩu của bạn')
+                ->action('Đặt lại mật khẩu', $url)
+                ->line('Nếu bạn không gửi yêu cầu thì không cần làm gì cả');
+        });
     }
 }

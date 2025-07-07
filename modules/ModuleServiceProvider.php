@@ -25,12 +25,13 @@ use Modules\Students\src\Repositories\StudentsRepository;
 use Modules\Students\src\Repositories\StudentsRepositoryInterface;
 use Modules\Home\src\Repositories\HomeRepository;
 use Modules\Home\src\Repositories\HomeRepositoryInterface;
+use Modules\Auth\src\Http\Middlewares\BlockUserMiddleware;
 // use File;
 
 class ModuleServiceProvider extends ServiceProvider
 {
     private $middlewares = [
-       
+       'user.block' => BlockUserMiddleware::class,
     ];
 
     private $commands = [
@@ -45,7 +46,11 @@ class ModuleServiceProvider extends ServiceProvider
             }
         }
         Paginator::useBootstrapFive();
-
+        
+        $request = request();
+        if ($request->is('admin') || $request->is('admin/*')) {
+            $this->app['router']->pushMiddlewareToGroup('web', 'auth');
+        }
     }
     public function bindingRepository() {
         // User repository
