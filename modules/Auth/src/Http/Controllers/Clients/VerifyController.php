@@ -14,6 +14,7 @@ class VerifyController extends Controller
         if ($user->hasVerifiedEmail()) {
             return redirect()->route('home');
         }
+
         $pageTitle = 'Kích hoạt tài khoản';
         return view('auth::clients.verify', compact('pageTitle'));
     }

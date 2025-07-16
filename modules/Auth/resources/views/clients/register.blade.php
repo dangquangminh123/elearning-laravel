@@ -10,7 +10,7 @@
         </a>
     </div>
     <div class="sign-up">
-        <h3>Đăng kí</h3>
+        <h3>Đăng ký</h3>
         @if (session('msg'))
         <div class="alert alert-danger">{{session('msg')}}</div>
         @endif

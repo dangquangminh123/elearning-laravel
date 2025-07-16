@@ -34,6 +34,8 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
 
+        // dd($request);
+
         $status = Auth::guard('students')->attempt($dataLogin, $request->remember == 1 ? true : false);
 
         if ($status) {

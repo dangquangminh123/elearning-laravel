@@ -9,3 +9,4 @@ import "./tab.js";
 import "./video.js";
 import "./account.js";
 import "./checkout.js";
+import "./ab_datepicker.js";

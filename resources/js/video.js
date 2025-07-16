@@ -3,6 +3,8 @@ import videojs from "video.js";
 window.addEventListener("DOMContentLoaded", () => {
     const modalEl = document.querySelector("#modal");
     const trialBtnList = document.querySelectorAll(".trial-btn");
+        if (!modalEl) return; // tránh lỗi nếu modal không tồn tại
+
     if (trialBtnList.length) {
         trialBtnList.forEach((trialBtn) => {
             trialBtn.addEventListener("click", (e) => {
@@ -60,7 +62,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    modalEl.addEventListener("hidden.bs.modal", (e) => {
+     modalEl.addEventListener("hidden.bs.modal", (e) => {
         modalEl.querySelector(".modal-title").innerText = "";
         modalEl.querySelector(".modal-body").innerText = "";
     });

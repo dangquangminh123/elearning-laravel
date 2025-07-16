@@ -9,4 +9,5 @@ interface TeacherRepositoryInterface extends RepositoryInterface
     // public function getUsers($limit);
 
    public function getAllTeacher();
+   public function getTeachers();
 }

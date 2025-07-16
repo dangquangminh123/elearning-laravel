@@ -23,8 +23,15 @@ use Modules\Lessons\src\Repositories\LessonsRepository;
 use Modules\Lessons\src\Repositories\LessonsRepositoryInterface;
 use Modules\Students\src\Repositories\StudentsRepository;
 use Modules\Students\src\Repositories\StudentsRepositoryInterface;
+use Modules\Coupons\src\Repositories\CouponsRepository;
+use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
 use Modules\Home\src\Repositories\HomeRepository;
 use Modules\Home\src\Repositories\HomeRepositoryInterface;
+use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
+use Modules\Orders\src\Repositories\OrdersRepository;
+
+use Modules\Orders\src\Repositories\OrdersStatusRepository;
+use Modules\Orders\src\Repositories\OrdersStatusRepositoryInterface;
 use Modules\Auth\src\Http\Middlewares\BlockUserMiddleware;
 // use File;
 
@@ -105,6 +112,24 @@ class ModuleServiceProvider extends ServiceProvider
          $this->app->singleton(
             HomeRepositoryInterface::class,
             HomeRepository::class,
+        );
+
+        //Orders Repository
+        $this->app->singleton(
+            OrdersRepositoryInterface::class,
+            OrdersRepository::class
+        );
+
+        //Orders Status Repository
+        $this->app->singleton(
+            OrdersStatusRepositoryInterface::class,
+            OrdersStatusRepository::class
+        );
+
+        //Coupon Repository
+        $this->app->singleton(
+            CouponsRepositoryInterface::class,
+            CouponsRepository::class
         );
         
     }

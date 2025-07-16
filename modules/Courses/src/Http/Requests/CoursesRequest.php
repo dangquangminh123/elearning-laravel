@@ -60,6 +60,6 @@ class CoursesRequest extends FormRequest
     }
 
     public function attributes() {
-        return __(key: 'courses::validation.attributes');
+        return __( 'courses::validation.attributes');
     }
 }

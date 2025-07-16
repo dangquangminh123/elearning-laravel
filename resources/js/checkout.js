@@ -62,6 +62,7 @@ if (checkoutPageEl) {
     const totalValueList = checkoutPageEl.querySelectorAll(`.total-value`);
     const qrImgEl = checkoutPageEl.querySelector(".qr-img");
     let qrUrl = qrImgEl.src;
+    let controller = new AbortController();
     if (couponForm && couponUsage) {
         couponForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -105,8 +106,7 @@ if (checkoutPageEl) {
                     couponUsage.querySelector(".coupon-value").innerText =
                         coupon;
 
-                    discountValueEl.innerText =
-                        data.discount.toLocaleString() + " đ";
+                    discountValueEl.innerText = data.discount.toLocaleString() + " đ";
                     totalValueList.forEach((el) => {
                         el.innerText =
                             data.total_after_discount.toLocaleString() + " đ";
@@ -125,6 +125,54 @@ if (checkoutPageEl) {
                 }
             };
             verifyCoupon();
+
+            const pollingCoupon = async () => {
+                try {
+                    const response = await fetch(`/tai-khoan/coupon/polling`, {
+                        method: "POST",
+                        headers: {
+                            "X-Csrf-Token": csrfToken,
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                        },
+                        body: JSON.stringify({
+                            coupon,
+                            orderId,
+                        }),
+                        signal: controller.signal,
+                    });
+                    if (!response.ok) {
+                        throw new Error("Server Error");
+                    }
+                    const data = await response.json();
+
+                    if (data.errors_server) {
+                        throw new Error("Server Error");
+                    }
+
+                    if (data && !data.success) {
+                        couponUsage.classList.add("d-none");
+                        couponForm.classList.remove("d-none");
+                        showMessage("Xóa mã giảm giá thành công");
+
+                        //Cập nhật giao diện
+                        discountValueEl.innerText = "0";
+                        totalValueList.forEach((el) => {
+                            el.innerText = data.total.toLocaleString() + " đ";
+                        });
+                        qrUrl = qrUrl.replace(
+                            /amount=(\d+)/,
+                            "amount=" + data.total
+                        );
+                        qrImgEl.src = qrUrl;
+                        // isPolling = false;
+                    }
+                } catch (error) {
+                    if (error.message == "Server Error") {
+                        pollingCoupon();
+                    }
+                }
+            };
         });
         const removeCouponEl = couponUsage.querySelector(".js-remove-coupon");
         removeCouponEl.addEventListener("click", () => {
@@ -158,5 +206,33 @@ if (checkoutPageEl) {
             };
             removeCoupon();
         });
+    }
+
+    //Xử lý cập nhật trạng thái đơn hàng
+    const orderStatusEl = checkoutPageEl.querySelector(".js-status");
+    if (orderStatusEl) {
+        const requestOrderStatus = async () => {
+            const response = await fetch(
+                `/api/students/check-payment/${orderId}`
+            );
+            if (!response.ok) {
+                throw new Error("Server Error");
+            }
+            const { success, data } = await response.json();
+            if (success) {
+                const initBg = orderStatusEl.classList[2];
+                const newBg = `bg-${data.color}`;
+                if (orderStatusEl.innerText !== data.name) {
+                    orderStatusEl.classList.replace(initBg, newBg);
+                    orderStatusEl.innerText = data.name;
+                }
+                setTimeout(() => {
+                    if (data.is_success) {
+                        window.location.href = `/tai-khoan/don-hang/${orderId}`;
+                    }
+                }, 1000);
+            }
+        };
+        setInterval(requestOrderStatus, 5000);
     }
 }

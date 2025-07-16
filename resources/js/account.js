@@ -6,6 +6,7 @@ import jsPDF from "jspdf";
 select2();
 import { showMessage } from "./message";
 const profileBtn = document.querySelector(".js-profile-btn");
+
 if (profileBtn) {
     let status = "table";
     const renderButton = () => {
@@ -87,8 +88,7 @@ if (profileForm) {
     profileForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const formData = Object.fromEntries(new FormData(e.target));
-        const csrfToken =
-            document.head.querySelector(`[name="csrf_token"]`).content;
+        const csrfToken = document.head.querySelector(`[name="csrf_token"]`).content;
         updateProfile(formData, csrfToken);
     });
 }

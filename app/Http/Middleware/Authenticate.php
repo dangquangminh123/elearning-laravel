@@ -9,6 +9,17 @@ use Illuminate\Auth\AuthenticationException;
 
 class Authenticate extends Middleware
 {
+
+    protected function unauthenticated($request, array $guards)
+    {
+
+        throw new AuthenticationException(
+            'Unauthenticated.',
+            $guards,
+            $this->redirectTo($request, !in_array('students', $guards))
+        );
+
+    }
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      */
@@ -21,12 +32,5 @@ class Authenticate extends Middleware
             }
             return route('login');
         }
-    }
-
-    protected function unauthenticated($request, array $guards)
-    {
-            throw new AuthenticationException(
-                'Unauthenticated.', $guards, $this->redirectTo($request)
-            );
     }
 }

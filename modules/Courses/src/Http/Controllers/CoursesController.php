@@ -3,10 +3,8 @@
 namespace Modules\Courses\src\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-use Modules\Categories\src\Repositories\CategoriesRepository;
 use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
 use Modules\Courses\src\Http\Requests\CoursesRequest;
-use Modules\Courses\src\Repositories\CoursesRepository;
 use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 
@@ -93,7 +91,7 @@ class CoursesController extends Controller
 
         $this->coursesRepository->createCourseCategories($course, $categories);
 
-        return redirect()->route(route: 'admin.courses.index')->with('msg',__('user::messages.create.success'));
+        return redirect()->route(route: 'admin.courses.index')->with('msg',__('courses::messages.create.success'));
     }
 
     public function edit($id) {

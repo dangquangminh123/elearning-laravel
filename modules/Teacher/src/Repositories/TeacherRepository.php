@@ -18,5 +18,10 @@ class TeacherRepository extends BaseRepository implements TeacherRepositoryInter
         return $this->model->select(['id', 'name', 'exp', 'phone_zalo', 'image', 'created_at'])->latest();
     }
 
+    public function getTeachers()
+    {
+        return $this->getAll();
+    }
+
    
 }
