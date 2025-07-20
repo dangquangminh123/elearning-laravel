@@ -17,6 +17,26 @@ class CouponsRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $startDate = $this->start_date;
+        $endDate = $this->end_date;
+
+       try {
+            $startDate = Carbon::createFromFormat('m/d/Y', $startDate)->format('Y-m-d');
+            $endDate = Carbon::createFromFormat('m/d/Y', $endDate)->format('Y-m-d');
+        
+            // dd($startDate, $endDate); // check giá trị đúng chưa
+
+            $this->merge([
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+            ]);
+        } catch (\Exception $e) {
+            return $e;
+        }
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -37,10 +57,10 @@ class CouponsRequest extends FormRequest
             'discount_value' => 'required|numeric|min:0',
             'total_condition' => 'required|numeric|min:0',
             'count' => 'required|integer|min:1',
-            'start_date' => 'required|date|before_or_equal:end_date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
         ];
-
+        
         return $rules;
     }
 
@@ -52,14 +72,14 @@ class CouponsRequest extends FormRequest
             $totalCondition = (int) $this->input('total_condition');
             $startDate = $this->input('start_date');
             $endDate = $this->input('end_date');
-
-            if ($startDate && $endDate) {
-                $start = Carbon::parse($startDate);
-                $end = Carbon::parse($endDate);
-                if ($end->diffInDays($start, false) < 2) {
-                    $validator->errors()->add('end_date', __('coupons::messages.end_date_too_close'));
-                }
+            $start = Carbon::parse($startDate);
+            $end = Carbon::parse($endDate);
+          
+            if ($end->diffInDays($start, false) >= 2) {
+                $validator->errors()->add('start_date', __('coupons::messages.start_date_too_close'));
+                $validator->errors()->add('end_date', __('coupons::messages.end_date_too_close'));
             }
+            
 
             if ($discountType === 'percent') {
                 if ($discountValue < 0 || $discountValue > 30) {
@@ -94,13 +114,23 @@ class CouponsRequest extends FormRequest
                     $validator->errors()->add('total_condition', __('coupons::messages.value_799_invalid'));
                 }
             }
+
+            // dd([
+            //     'start' => $start->toDateString(),
+            //     'end' => $end->toDateString(),
+            //     'diff' => $end->diffInDays($start),
+            //     'errors' => $validator->errors()->all(),
+            // ]);
         });
+
+      
     }
    public function messages(): array
     {
         return [
             'code.unique' => __('coupons::validation.unique', ['attribute' => __('coupons::validation.attributes.code')]),
             'discount_value.required' => __('coupons::validation.required', ['attribute' => __('coupons::validation.attributes.discount_value')]),
+            'count.required' => __('coupons::validation.required', ['attribute' => __('coupons::validation.attributes.count')]),
             'total_condition.required' => __('coupons::validation.required', ['attribute' => __('coupons::validation.attributes.total_condition')]),
             'start_date.required' => __('coupons::validation.required', ['attribute' => __('coupons::validation.attributes.start_date')]),
             'end_date.required' => __('coupons::validation.required', ['attribute' => __('coupons::validation.attributes.end_date')]),

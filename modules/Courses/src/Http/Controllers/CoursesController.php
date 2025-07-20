@@ -65,7 +65,7 @@ class CoursesController extends Controller
     }
     public function index() {
         $pageTitle = 'Quản lý khoá học';
-        $users = $this->coursesRepository->getAllCourses();
+        // $users = $this->coursesRepository->getAllCourses();
         return view('courses::lists', compact('pageTitle'));
     }
 

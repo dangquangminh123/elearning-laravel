@@ -57,4 +57,24 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
             'coupon' => $coupon
         ]);
     }
+
+    public function deleteOrdersByCouponCode($couponCode) 
+    {
+        $orders = $this->model->where('coupon', $couponCode)->with('status', 'detail')->get();
+
+        // Nếu có đơn hàng đã hoàn tất => không cho xoá
+        foreach ($orders as $order) {
+            if ($order->status && $order->status->is_success) {
+                return false;
+            }
+        }
+
+        // Xoá chi tiết đơn hàng
+        foreach ($orders as $order) {
+            $order->detail()->delete(); // Xoá qua quan hệ
+            $order->delete();           // Xoá đơn hàng
+        }
+
+        return true;
+    }
 }

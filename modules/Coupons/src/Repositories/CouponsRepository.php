@@ -9,7 +9,7 @@ use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
 
 class CouponsRepository extends BaseRepository implements CouponsRepositoryInterface
 {
-      public function getModel()
+    public function getModel()
     {
         return Coupon::class;
     }
@@ -17,11 +17,56 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
     public function createCouponStudents($coupon, $data = []) {
         return $coupon->students()->attach($data);
     }
-
     public function createCouponCourse($coupon, $data = []) {
         return $coupon->courses()->attach($data);
     }
 
+    public function getCoupon($couponId)
+    {
+        return $this->model->find($couponId);
+    }
+
+    public function getStudentsCoupon($coupon) {
+        $studentIds = $coupon->students()->allRelatedIds()->toArray();
+        return $studentIds;
+    }
+
+
+    public function getCourseCoupon($coupon) {
+        $courseIds = $coupon->courses()->allRelatedIds()->toArray();
+        return $courseIds;
+    }
+
+    public function updateCouponStudents($coupon, $data = []) {
+        return $coupon->students()->sync($data);
+    }
+
+    public function updateCouponCourse($coupon, $data = []) {
+        return $coupon->courses()->sync($data);
+    }
+
+    public function updateCoupon($id, $data = [])
+    {
+        $result = $this->getCoupon($id);
+        if ($result) {
+            return $result->update($data);
+        }
+        return false;
+    }
+   
+
+   public function deleteCouponRelations($coupon)
+    {
+        try {
+            $coupon->students()->detach();
+            $coupon->courses()->detach();
+            $coupon->usages()->detach();
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
 
     public function verifyCoupon($code, $orderId)
     {
@@ -30,6 +75,7 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
         if (!$coupon) {
             return false;
         }
+        
         //Kiểm tra số lần sử dụng
         // - Kiểm tra xem coupon đó có giới hạn số lần sử dụng không?
         // - Nếu không --> bỏ qua
@@ -76,4 +122,9 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
         })->get();
         return $courses;
     }
+
+    public function getAllCoupons() {
+        return $this->model->select(['id', 'code', 'discount_type', 'discount_value', 'total_condition', 'count', 'start_date', 'end_date'])->latest();
+    }
+
 }

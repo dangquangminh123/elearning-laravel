@@ -8,8 +8,14 @@
 //
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    $('.select2').select2();
+    // $('.select2').select2();
+    $('.select2').select2({
+        placeholder: $(this).data('placeholder'),
+        allowClear: true
+    });
+    $('.select2-multiple').select2();
 
+    $( ".datepicker" ).datepicker();
     // Toggle the side navigation
     const sidebarToggle = document.body.querySelector("#sidebarToggle");
     if (sidebarToggle) {
@@ -125,3 +131,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
 // $(document).ready(function () {
 //     $("#datatables").DataTable({});
 // });
+
+import "./jquery-ui.js";

@@ -71,6 +71,7 @@
                     <a href="{{ route('courses.index') }}" class="btn btn-primary btn-sm">Mua thêm khóa học</a>
                 </div>
                 <div class="col-6">
+                    {{-- Coupon --}}
                     @include('students::clients.partials.coupon')
                     <div class="row">
                         <div class="col-6">

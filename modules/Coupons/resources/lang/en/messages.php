@@ -7,7 +7,8 @@ return [
     'update.failure' => 'Cập nhật mã giảm giá không thành công',
     'delete.success' => 'Xóa mã giảm giá thành công',
     'delete.failure' => 'Xóa mã giảm giá không thành công',
-    
+    'orders.success' => 'Không thể xoá vì mã đã được dùng trong đơn hàng hoàn tất.',
+    'start_date_too_close' => 'Thời gian bắt đầu phải nhỏ hơn thời gian kết thúc ít nhất 2 ngày.',
     'end_date_too_close' => 'Thời gian kết thúc phải lớn hơn thời gian bắt đầu ít nhất 2 ngày.',
     'percent_range_invalid' => 'Phần trăm giảm giá phải từ 0 đến 30%.',
     'percent_0_5_invalid' => 'Với phần trăm 0-5%, hóa đơn phải dưới 200.000đ.',
