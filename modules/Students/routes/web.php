@@ -26,11 +26,5 @@ Route::group(['as' => 'students.'], function () {
         Route::post('/doi-mat-khau', 'Clients\AccountController@updatePassword');
 
         Route::get('/thanh-toan/{id}', 'Clients\CheckoutController@index')->name('checkout');
-
-        // Route::prefix('/coupon')->group(function () {
-        //     Route::post('/verify', 'Clients\CouponController@verify');
-        //     Route::post('/remove', 'Clients\CouponController@remove');
-        //     Route::post('/polling', 'Clients\CouponController@pollingCoupon');
-        // });
     });
 });

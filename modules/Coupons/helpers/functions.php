@@ -11,7 +11,7 @@ function generateCoupon()
 }
 
 
-function format_discount_type($type)
+function formatDiscountType($type)
 {
     if ($type === 'percent') {
         return '<span class="badge bg-success">Phần trăm</span>';
@@ -20,7 +20,7 @@ function format_discount_type($type)
     }
 }
 
-function format_discount_value($type, $value)
+function formatDiscountValue($type, $value)
 {
     if ($type === 'percent') {
         return '<span class="badge bg-success">' . $value . '%</span>';
@@ -29,16 +29,17 @@ function format_discount_value($type, $value)
     }
 }
 
-function format_coupon_count($count)
-    {
-        if ($count > 0) {
-            return '<span class="badge bg-success-subtle text-success fs-6">' . $count . ' lượt</span>';
-        } else {
-            return '<span class="badge bg-secondary text-danger">Không giới hạn</span>';
-        }
+function formatCouponCount($count)
+{
+    if ($count > 0) {
+        return '<span class="badge bg-success-subtle text-success fs-6">' . $count . ' lượt</span>';
+    } else {
+        return '<span class="badge bg-secondary text-danger">Không giới hạn</span>';
     }
+}
 
-function format_coupon_start_date($date)
+
+function formatCouponStartDate($date)
 {
     if ($date) {
         return '<span class="badge bg-primary">' . \Carbon\Carbon::parse($date)->format('d/m/Y H:i:s') . '</span>';
@@ -46,8 +47,7 @@ function format_coupon_start_date($date)
         return '<span class="badge bg-secondary">Không xác định</span>';
     }
 }
-
-function format_coupon_end_date($date)
+function formatCouponEndDate($date)
 {
     if ($date) {
         return '<span class="badge bg-danger">' . \Carbon\Carbon::parse($date)->format('d/m/Y H:i:s') . '</span>';
@@ -55,4 +55,3 @@ function format_coupon_end_date($date)
         return '<span class="badge bg-secondary">Không xác định</span>';
     }
 }
-

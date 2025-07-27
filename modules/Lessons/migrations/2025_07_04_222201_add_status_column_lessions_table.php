@@ -13,7 +13,7 @@ return new class () extends Migration {
     public function up()
     {
         Schema::table('lessons', function(Blueprint $table) {
-            $table->boolean('status')->default(0)->after('description');
+            $table->boolean('status')->default(1)->after('description');
         });
     }
 

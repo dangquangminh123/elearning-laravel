@@ -39,6 +39,7 @@ class CoursesController extends Controller {
         $pageTitle = $course->name;
         $pageName = $course->name;
         $index = 0;
+        // dd($course);
         return view('courses::clients.detail', compact('pageTitle', 'pageName', 'course', 'index'));
     }
 

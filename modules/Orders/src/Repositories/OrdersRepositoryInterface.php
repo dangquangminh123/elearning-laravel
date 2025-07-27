@@ -10,6 +10,10 @@ interface OrdersRepositoryInterface extends RepositoryInterface
     public function getOrder($orderId);
     public function updatePaymentDate($orderId);
     public function updateDiscount($orderId, $discount, $coupon);
+
+    public function updatePaymentCompleteDate($orderId);
+
+    public function updateStatus($orderId, $status);
     public function deleteOrdersByCouponCode($couponCode);
 
 }

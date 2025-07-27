@@ -61,6 +61,7 @@ if (checkoutPageEl) {
     const discountValueEl = checkoutPageEl.querySelector(".discount-value");
     const totalValueList = checkoutPageEl.querySelectorAll(`.total-value`);
     const qrImgEl = checkoutPageEl.querySelector(".qr-img");
+
     let qrUrl = qrImgEl.src;
     let controller = new AbortController();
     if (couponForm && couponUsage) {
@@ -118,6 +119,7 @@ if (checkoutPageEl) {
                         "amount=" + data.total_after_discount
                     );
                     qrImgEl.src = qrUrl;
+                    pollingCoupon();
                 } catch (errors) {
                     error.innerText = errors.message;
                 } finally {
@@ -177,6 +179,8 @@ if (checkoutPageEl) {
         const removeCouponEl = couponUsage.querySelector(".js-remove-coupon");
         removeCouponEl.addEventListener("click", () => {
             const removeCoupon = async () => {
+                controller.abort(); //bỏ request polling
+                controller = new AbortController();
                 const response = await fetch(`/tai-khoan/coupon/remove`, {
                     method: "POST",
                     headers: {
@@ -213,7 +217,7 @@ if (checkoutPageEl) {
     if (orderStatusEl) {
         const requestOrderStatus = async () => {
             const response = await fetch(
-                `/api/students/check-payment/${orderId}`
+                `http://127.0.0.1:8002/api/students/check-payment/${orderId}`
             );
             if (!response.ok) {
                 throw new Error("Server Error");
@@ -228,6 +232,7 @@ if (checkoutPageEl) {
                 }
                 setTimeout(() => {
                     if (data.is_success) {
+                        controller.abort();
                         window.location.href = `/tai-khoan/don-hang/${orderId}`;
                     }
                 }, 1000);

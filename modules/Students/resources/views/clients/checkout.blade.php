@@ -32,7 +32,7 @@
                         </tr>
                         <tr>
                             <th>Trạng thái</th>
-                            <td><span class="badge bg-{{ $order->status->color }}">
+                            <td><span class="js-status badge bg-{{ $order->status->color }}">
                                     {{ $order->status->name }}
                                 </span>
                             </td>
@@ -79,10 +79,10 @@
                             <p>Quý khách vui lòng chuyển khoản tới số tài khoản bên dưới hoặc quét mã QR để thực hiện thanh
                                 toán. Vui lòng nhập đúng số tiền và nội dung chuyển khoản</p>
                             <hr>
-                            <p>- Ngân hàng Vietcombank - Chi nhánh Thăng Long</p>
-                            <p>- Số tài khoản: <span>049100035576</span> <i class="bank-copy fa-regular fa-copy"></i>
+                            <p>- Ngân hàng Oricombank - Chi nhánh Tân Phú</p>
+                            <p>- Số tài khoản: <span>46201</span> <i class="bank-copy fa-regular fa-copy"></i>
                             </p>
-                            <p>- Chủ tài khoản: Tạ Hoàng An</p>
+                            <p>- Chủ tài khoản: Đặng Quang Minh</p>
                             <p>- Số tiền: <span class="total-value">{{ money($order->total - $order->discount) }}</span>
                             </p>
                             <p>- Nội dung: <span>thanh toán {{ $id }}</span> <i
@@ -92,7 +92,7 @@
                         <div class="col-6">
                             <div class="text-center">
                                 <img class="qr-img" style="width: 230px"
-                                    src="https://img.vietqr.io/image/techcombank-19039119170014-compact2.jpg?amount={{ $order->total - $order->discount }}&addInfo=thanh+toan+{{ $id }}"
+                                	src="https://qr.sepay.vn/img?acc=SEPDQM66741&bank=OCB&amount={{ $order->total - $order->discount }}&des=chuyen+tien+hoc+phi+khoa+hoc+{{ $id }}&template=compact"
                                     alt="">
                                 <button class="btn btn-success btn-sm download-qr">Tải QR Code</button>
                             </div>

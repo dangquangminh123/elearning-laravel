@@ -16,7 +16,7 @@ class OrderStatusSeeder extends Seeder
         $data = [
             [
                 'name' => 'Chờ thanh toán',
-                'color' => 'danger',
+                'color' => 'warning',
                 'is_success' => false
             ],
             [
@@ -31,7 +31,7 @@ class OrderStatusSeeder extends Seeder
             ],
             [
                 'name' => 'Hủy thanh toán',
-                'color' => 'danger',
+                'color' => 'secondary',
                 'is_success' => false
             ]
         ];

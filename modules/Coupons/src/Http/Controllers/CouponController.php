@@ -76,22 +76,22 @@ class CouponController extends Controller
                 return '<span class="badge bg-danger">'.$coupon->code.'</span>';
             })
            ->editColumn('discount_type', function ($coupon) {
-                return format_discount_type($coupon->discount_type);
+                return formatDiscountType($coupon->discount_type);
             })
             ->editColumn('discount_value', function ($coupon) {
-                return format_discount_value($coupon->discount_type, $coupon->discount_value);
+                return formatDiscountValue($coupon->discount_type, $coupon->discount_value);
             })
             ->editColumn('total_condition', function ($coupon) {
                 return number_format($coupon->discount_value).'đ' ;
             })
             ->editColumn('count', function ($coupon) {
-                return format_coupon_count($coupon->count);
+                return formatCouponCount($coupon->count);
             })
             ->editColumn('start_date', function ($coupon) {
-                return format_coupon_start_date($coupon->start_date);
+                return formatCouponStartDate($coupon->start_date);
             })
             ->editColumn('end_date', function ($coupon) {
-                return format_coupon_end_date($coupon->end_date);
+                return formatCouponEndDate($coupon->end_date);
             })
         ->rawColumns(['edit', 'delete', 'code', 'discount_type', 'discount_value', 'total_condition', 'count', 'start_date', 'end_date'])
         ->toJson();
@@ -118,7 +118,6 @@ class CouponController extends Controller
     }
 
     public function update(CouponsRequest $coursesRequest, $id) {
-        // dd($coursesRequest->all());
         $coupon = $this->couponsRepository->getCoupon($id);
         if (!$coupon) {
             return back()->with('error', 'Không tìm thấy mã giảm giá!');

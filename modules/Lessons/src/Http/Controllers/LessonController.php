@@ -101,7 +101,7 @@ class LessonController extends Controller
         $isTrail = $request->is_trial;
         $position = $request->position;
         $description = $request->description;
-        $status = $request->status ?? 0;
+        $status = $request->status ?? 1;
 
         $videoId = null;
         $documentId = null;
@@ -157,9 +157,9 @@ class LessonController extends Controller
         return view('lessons::edit', compact('pageTitle', 'courseId', 'position', 'lessons', 'lesson'));
     }
 
-    public function update(Request $request, $lessonId) {
+    public function update(LessonRequest $request, $lessonId) {
         $lesson = $this->lessonRepository->find($lessonId);
-        $lesson->video = $lesson->video->url;
+        $lesson->video = $lesson->video?->url;
         $lesson->document = $lesson->document?->url;
 
         $name = $request->name;
@@ -170,7 +170,7 @@ class LessonController extends Controller
         $isTrail = $request->is_trial;
         $position = $request->position;
         $description = $request->description;
-        $status = $request->status ?? 0;
+        $status = $request->status ?? 1;
         $videoId = null;
         $documentId = null;
         if($document) {

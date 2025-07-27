@@ -7,4 +7,6 @@ use App\Repositories\RepositoryInterface;
 interface OrdersStatusRepositoryInterface extends RepositoryInterface
 {
     public function getOrdersStatus();
+
+    public function getOrderStatus($value, $field = 'id');
 }

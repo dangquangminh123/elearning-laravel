@@ -42,8 +42,9 @@ discount_value có giá trị 500 000 đến 699000 thì total_condition nhỏ h
 discount_value có giá trị 799 000  thì total_condition lớn hơn 3 000 000
  ngoài ra validate rằng giá trị start_date phải nhỏ hơn giá trị end_date ít nhất là 2 ngày
 
-Bây giờ tôi đang thực hiện tính năng là xoá huỷ bỏ 1 coupon
-đầu tiên phải kiểm tra rằng là coupon đang muốn xoá có tồn tại trong các bảng order hay không ?nếu coupon này đã có ở trong vài bảng  orders thì buộc phải
-kiểm tra tiếp các order_id đó có status_id true không ? nếu order_id kia có status_id là true rồi thì không được xoá coupon này, trả về thông báo rằng
-"coupon này đã được sử dụng cho đơn hàng đã hoàn thành, không xoá được" ! còn khi status_id của các order_id đang là false thì lúc này bắt đầu xoá ở 
-bảng orders_detail chứa các order_id đó trước ! Xoá xong bảng orders_detail thì tiếp tục xoá hết các order_id đang chứa coupon cần xoá kia trong bảng orders. Sau khi xong ở các bảng orders_detail và orders thì tiếp tục mới bắt đầu tiếp ở CouponsRepository rằng kiểm tra coupon đang cần xoá đã có ở trong bảng coupons_usage, coupons_students, coupons_courses hay không ? Nếu có thì bắt đầu xoá hết  coupon_id đó tại 3 bảng coupons_usage, coupons_students, coupons_courses này rồi sau đó cuối cùng thì xoá ở bảng coupon này bạn nha ! xong xuôi thì trả về thông báo là Xóa mã giảm giá thành công! Lưu ý việc kiểm tra coupon đang cần xoá và xoá ở các bảng order và orders_detail thì nên thực hiện tạo 1 hàm trong OrdersRepository bạn nha !
+Lấy apikey
+openssl rand -hex 32
+
+ngrok http http://localhost:8080
+ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
+awaited-reindeer-strictly.ngrok-free.app
