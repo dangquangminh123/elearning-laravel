@@ -66,3 +66,128 @@
 .navbar .navbar-nav .nav-item {
 	padding: 0 10px;
 }
+
+// Cart
+.cart {
+	position: relative;
+    cursor: pointer;
+}
+
+.cart .link-cart i.fas.fa-shopping-cart {
+    color: #000; /* Màu đen mặc định */
+}
+
+.cart .cart-count{
+	text-align: center;
+    height: auto;
+    position: absolute;
+    width: 1.5em;
+    left: 58%;
+    bottom: 57%;
+    font-size: 0.8em;
+    background-color: rgb(220, 53, 69);
+    font-weight: 400;
+    color: #fff;
+    border-radius: 2em;
+}
+
+.cart:hover i.fas.fa-shopping-cart {
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+
+/* Cart popup */
+.cart-popup {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    width: 250px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: none;
+}
+
+.cart-popup ul.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.cart-popup ul.cart-items li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+/* Tên khoá học */
+.cart-popup ul.cart-items li span:first-child {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Giá tiền */
+.cart-popup ul.cart-items li span:last-child {
+    color: #d9534f; /* Màu đỏ nổi bật */
+    font-weight: bold;
+}
+
+.cart-popup-footer {
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* Nút xem giỏ hàng */
+.view-cart-btn {
+    display: inline-block;
+    background-color: #343a40; /* Nền xám đậm */
+    color: #fff; /* Chữ trắng */
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-cart-btn:hover {
+    background-color: #23272b;
+    transform: translateY(-1px);
+    text-decoration: none;
+    color: #fff; /* <-- Sửa lại thành trắng */
+}
+
+
+@keyframes sparkle {
+    0% {
+        color: #FFA500;
+        text-shadow: 0 0 5px #FFA500;
+    }
+    25% {
+        color: #FF7B3A;
+        text-shadow: 0 0 10px #FF7B3A;
+    }
+    50% {
+        color: #FFC107;
+        text-shadow: 0 0 15px #FFC107;
+    }
+    75% {
+        color: #FF9800;
+        text-shadow: 0 0 10px #FF9800;
+    }
+    100% {
+        color: #FFA500;
+        text-shadow: 0 0 5px #FFA500;
+    }
+}
+
+.sparkle {
+    animation: sparkle 3s ease-in-out;
+}
+
+
+.sparkle-hover:hover {
+    animation: sparkle 2.5s ease-in-out;
+}

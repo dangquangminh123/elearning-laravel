@@ -95,9 +95,31 @@
                     </li>
                 </ul>
             </div>
-            <p class="cart">
-                <i class="fas fa-shopping-cart"></i>
-            </p>
+            <div class="cart">
+                <a href="{{ route('cart.list') }}" class="link-cart">
+                    <i class="fas fa-shopping-cart sparkle-hover"></i>
+                </a>
+                <span class="cart-count {{ count(session('cart', [])) ? '' : 'd-none' }}">
+                    {{ count(session('cart', [])) }}
+                </span>
+                <div class="cart-popup">
+                    <ul class="cart-items">
+                        @forelse(session('cart', []) as $item)
+                            <li>
+                                <span title="{{ $item['name'] }}">
+                                    {{ Str::limit($item['name'], 25) }}
+                                </span>
+                                <span>{{ number_format($item['sale_price']) }}₫</span>
+                            </li>
+                        @empty
+                            <li>Giỏ hàng trống</li>
+                        @endforelse
+                    </ul>
+                    <div class="cart-popup-footer">
+                        <a href="{{ route('cart.list') }}" class="view-cart-btn">Xem giỏ hàng</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </nav>
 </header>

@@ -12,6 +12,36 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         return Order::class;
     }
 
+    public function createOrderWithDetails($studentId, array $cart)
+    {
+        // Tính tổng tiền cart trước
+        $total = 0;
+        foreach ($cart as $item) {
+            $price = isset($item['sale_price']) && $item['sale_price'] !== null ? $item['sale_price'] : $item['price'];
+            $total += $price;
+        }
+
+        // Tạo đơn hàng với tổng tiền
+        $order = $this->model->create([
+            'student_id' => $studentId,
+            'status_id' => 1,
+            'discount' => 0,
+            'coupon' => null,
+            'total' => $total,
+        ]);
+
+        // Lưu chi tiết từng khóa học
+        foreach ($cart as $item) {
+            $price = isset($item['sale_price']) && $item['sale_price'] !== null ? $item['sale_price'] : $item['price'];
+            $order->detail()->create([
+                'course_id' => $item['id'],
+                'price' => $price,
+            ]);
+        }
+
+        return $order;
+    }
+
     public function getOrdersByStudent($studentId, $filters = [], $limit)
     {
 

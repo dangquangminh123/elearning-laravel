@@ -67,7 +67,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a href="/gio-hang" class="btn btn-primary btn-sm">Quay lại giỏ hàng</a>
+                    <a href="{{ route('cart.list') }}" class="btn btn-primary btn-sm">Quay lại giỏ hàng</a>
                     <a href="{{ route('courses.index') }}" class="btn btn-primary btn-sm">Mua thêm khóa học</a>
                 </div>
                 <div class="col-6">

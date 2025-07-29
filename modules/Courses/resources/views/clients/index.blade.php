@@ -30,11 +30,19 @@
                         <p class="descreption-price">
                             @if ($course->sale_price)
                             <span class="sale">{{money($course->price)}}</span>
-                            <span>{{money($course->sale_price)}}</span>
+                            <span class="new-price">{{money($course->sale_price)}}</span>
                             @else
-                            <span>{{money($course->price)}}</span>
+                            <span class="new-price">{{money($course->price)}}</span>
                             @endif
                         </p>
+                        <div class="descreption-actions">
+                            <a href="" class="btn btn-buy">Mua khoá học</a>
+                            <form method="POST">
+                                @csrf
+                                <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

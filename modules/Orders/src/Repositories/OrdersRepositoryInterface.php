@@ -7,6 +7,7 @@ use App\Repositories\RepositoryInterface;
 interface OrdersRepositoryInterface extends RepositoryInterface
 {
     public function getOrdersByStudent($studentId, $filters = [], $limit);
+     public function createOrderWithDetails($studentId, array $cart);
     public function getOrder($orderId);
     public function updatePaymentDate($orderId);
     public function updateDiscount($orderId, $discount, $coupon);

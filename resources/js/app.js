@@ -8,5 +8,6 @@ import "./accordion.js";
 import "./tab.js";
 import "./video.js";
 import "./account.js";
+import "./cart.js"
 import "./checkout.js";
 

@@ -11,6 +11,7 @@ class OrderDetail extends Model
     use HasFactory;
     protected $table = 'orders_detail';
     protected $with = ['order'];
+    protected $fillable = ['order_id', 'course_id', 'price'];
 
     public function course()
     {

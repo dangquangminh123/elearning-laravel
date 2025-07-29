@@ -9,11 +9,12 @@ use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
 use Modules\Students\src\Repositories\StudentsRepositoryInterface;
+use Modules\Coupons\src\Services\CouponService;
 use Modules\Coupons\src\Http\Requests\CouponsRequest;
 use Yajra\DataTables\Facades\DataTables;
 class CouponController extends Controller
 {
-
+    protected $couponService;
     protected $couponsRepository;
     protected $ordersRepository;
     protected $coursesRepository;
@@ -21,12 +22,13 @@ class CouponController extends Controller
 
     public function __construct(CoursesRepositoryInterface $coursesRepository, 
     CouponsRepositoryInterface $couponsRepository, OrdersRepositoryInterface $ordersRepository, 
-    StudentsRepositoryInterface $studentsRepository)
+    StudentsRepositoryInterface $studentsRepository, CouponService $couponService)
     {
         $this->coursesRepository = $coursesRepository;
         $this->couponsRepository = $couponsRepository;
         $this->ordersRepository = $ordersRepository;
         $this->studentsRepository = $studentsRepository;
+        $this->couponService = $couponService;
     }
 
    
@@ -147,33 +149,14 @@ class CouponController extends Controller
 
 
     public function delete($id) {
-        DB::beginTransaction();
-        $coupon = $this->couponsRepository->getCoupon($id);
+        
+        $result = $this->couponService->deleteCouponWithRelations($id);
 
-        try {
-            // B1: Kiểm tra và xoá đơn hàng nếu được
-            $couponOrder = $this->ordersRepository->deleteOrdersByCouponCode($coupon->code);
-            if (!$couponOrder) {
-                DB::rollBack();
-                return redirect()->back()->with('msg', __('coupons::messages.orders.success'));
-            }
-
-            // B2: Xoá các liên kết quan hệ
-            $deleteCoupon = $this->couponsRepository->deleteCouponRelations($coupon);
-            if (!$deleteCoupon) {
-                DB::rollBack();
-                return redirect()->back()->with('msg', __('coupons::messages.delete.failure'));
-            }
-
-            // B3: Xoá mã giảm giá
-            $coupon->delete();
-
-            DB::commit();
+        if ($result === true) {
             return redirect()->route('admin.coupons.index')->with('msg', __('coupons::messages.delete.success'));
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('msg',__('coupons::messages.delete.failure'));
         }
+
+        return redirect()->back()->with('msg', $result);
     }
 
     

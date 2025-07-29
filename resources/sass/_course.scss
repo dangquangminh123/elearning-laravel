@@ -73,7 +73,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 10px; 
 }
 .all-course .descreption-price {
     font-size: 1rem;
@@ -85,4 +85,54 @@
 }
 .all-course .descreption-price .sale {
     text-decoration: line-through;
+    color: #999; /* Màu xám nhạt cho giá gốc */
+    font-weight: 400;
+    margin-right: 0.5rem;
+}
+
+/* Giá đã sale */
+.all-course .descreption-price .new-price {
+    color: #FF5722;
+    font-weight: 600;
+}
+
+.all-course .descreption-actions {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 0.95rem;
+}
+
+.all-course .descreption-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: 0.2rem solid;
+    border-radius: 6em;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background 0.4s ease, color 0.4s ease;
+    font-weight: 500;
+}
+
+/* Nút Mua khoá học */
+.all-course .btn-buy {
+    border-color: #81ecec;
+    color: #81ecec;
+    background-color: transparent;
+}
+
+.all-course .btn-buy:hover {
+    background: linear-gradient(to right, #81ecec, #00cec9);
+    color: #fff;
+}
+
+/* Nút Thêm vào giỏ hàng */
+.all-course .btn-add-to-cart {
+    border-color: #fdcb6e;
+    color: #fdcb6e;
+    background-color: transparent;
+}
+
+.all-course .btn-add-to-cart:hover {
+    background: linear-gradient(to right, #fdcb6e, #e17055);
+    color: #fff;
 }
