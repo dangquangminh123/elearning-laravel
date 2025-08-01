@@ -65,4 +65,40 @@ class LessonsRepository extends BaseRepository implements LessonsRepositoryInter
     {
         return $this->model->whereSlug($slug)->active()->first();
     }
+
+
+    public function getLessonsGroup($courseId)
+    {
+        $lessons = $this->model
+            ->with(['video']) // eager load video
+            ->where('course_id', $courseId)
+            ->active()
+            ->position()
+            ->get();
+
+        $sections = $lessons->whereNull('parent_id');
+        $grouped = [];
+
+        foreach ($sections as $section) {
+            $children = $lessons->where('parent_id', $section->id)->map(function ($lesson) {
+                // Format duration thành phút:giây (mm:ss)
+                $lesson->formatted_duration = gmdate("H:i:s", $lesson->durations ?: 0);
+                return $lesson;
+            });
+
+            $grouped[] = [
+                'section' => $section,
+                'lessons' => $children->values(),
+            ];
+        }
+
+        return collect($grouped);
+    }
+
+
+
+    public function findLessonWithVideo($lessonId)
+    {
+        return $this->model->with('video')->active()->find($lessonId);
+    }
 }

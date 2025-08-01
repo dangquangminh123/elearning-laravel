@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['as' => 'courses.'], function () {
-    Route::get('/khoa-hoc', 'Clients\CoursesController@index')->name('index');
-    Route::get('/khoa-hoc/{slug}', 'Clients\CoursesController@detail')->name('detail');
-    Route::prefix('data')->name('data.')->group(function () {
+   Route::get('/khoa-hoc', 'Clients\CoursesController@index')->name('index');
+   Route::get('/khoa-hoc/{slug}', 'Clients\CoursesController@detail')->name('detail');
+   Route::get('/khoa-hoc/{slug}/learn', 'Clients\CoursesController@learn')->name('learn')->middleware(['auth:students', 'student.owns.course']);
+   Route::get('/video/stream', 'Clients\CoursesController@lessonVideo')->name('stream');
+   Route::prefix('data')->name('data.')->group(function () {
         Route::get('/trial/{lessonId?}', 'Clients\CoursesController@getTrialVideo')->name('trial');
-        Route::get('/video', 'Clients\CoursesController@test');
         Route::get('/stream', 'Clients\CoursesController@streamVideo')->name('stream');
-
-    });
+   });
 });

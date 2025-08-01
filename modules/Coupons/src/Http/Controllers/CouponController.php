@@ -84,7 +84,7 @@ class CouponController extends Controller
                 return formatDiscountValue($coupon->discount_type, $coupon->discount_value);
             })
             ->editColumn('total_condition', function ($coupon) {
-                return number_format($coupon->discount_value).'đ' ;
+                return formatCouponConditionAmount($coupon->total_condition);
             })
             ->editColumn('count', function ($coupon) {
                 return formatCouponCount($coupon->count);
@@ -126,7 +126,12 @@ class CouponController extends Controller
         }
 
         $data = $coursesRequest->except('_token', '_method');        
-        
+        if (!empty($data['start_date'])) {
+            $data['start_date'] = Carbon::parse($data['start_date'])->format('Y-m-d');
+        }
+        if (!empty($data['end_date'])) {
+            $data['end_date'] = Carbon::parse($data['end_date'])->format('Y-m-d');
+        }
         $this->couponsRepository->updateCoupon($id, $data);
 
         // Lấy danh sách học viên và khoá học từ form

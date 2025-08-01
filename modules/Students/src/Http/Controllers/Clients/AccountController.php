@@ -106,7 +106,7 @@ class AccountController extends Controller
     {
         $pageTitle = 'Chi tiết đơn hàng';
         $pageName = 'Chi tiết đơn hàng';
-        $order = $this->orderRepository->getOrder($orderId);
+        $order = $this->orderRepository->getOrderWithDetail($orderId);
         $now = strtotime(date('Y-m-d H:i:s'));
         $paymentDate = strtotime($order->payment_date);
         $diff = $now - $paymentDate;

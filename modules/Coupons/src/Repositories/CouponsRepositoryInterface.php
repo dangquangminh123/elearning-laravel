@@ -17,7 +17,7 @@ interface CouponsRepositoryInterface extends RepositoryInterface
 
     public function getStudentsCoupon($coupon);
     public function getCourseCoupon($coupon);
-
+    public function couponUsage($couponCode, $orderId);
     public function updateCouponStudents($coupon, $data = []);
     public function updateCouponCourse($coupon, $data = []);
     public function updateCoupon($id, $data = []);

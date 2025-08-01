@@ -68,6 +68,23 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
         }
     }
 
+    public function couponUsage($couponCode, $orderId)
+    {
+        $coupon = $this->model->where('code', $couponCode)->first();
+
+        if (!$coupon) {
+            return false;
+        }
+
+        // Nếu đã ghi nhận rồi thì không ghi lại
+        if ($coupon->usages()->where('order_id', $orderId)->exists()) {
+            return false;
+        }
+
+        $coupon->usages()->attach($orderId);
+        return true;
+    }
+
     public function verifyCoupon($code, $orderId)
     {
         $now = Carbon::now()->format('Y-m-d H:i:s');
@@ -100,10 +117,12 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
         }
         $startStatus = true;
         $endStatus = true;
+        // Chưa bắt đầu
         if ($coupon->start_date && $now < $coupon->start_date) {
             $startStatus = false;
         }
 
+        // Đã quá hạn
         if ($coupon->end_date && $now > $coupon->end_date) {
             $endStatus = false;
         }

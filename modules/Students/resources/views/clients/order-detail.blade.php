@@ -21,6 +21,14 @@
                                 <td>{{ money($order->total) }}</td>
                             </tr>
                             <tr>
+                                <th>Mã giảm giá</th>
+                                <td>{{ $order->coupon ?? 'Không có' }}</td>
+                            </tr>
+                            <tr>
+                                <th>Số tiền đã thanh toán</th>
+                                <td class="text-success fw-bold">{{ money($order->total - ($order->discount ?? 0)) }}</td>
+                            </tr>
+                            <tr>
                                 <th>Thời gian đặt</th>
                                 <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d/m/Y H:i:s') }}</td>
                             </tr>
@@ -46,7 +54,9 @@
                                 <tr>
                                     <th width="5%">STT</th>
                                     <th>Tên khóa học</th>
-                                    <th>Giá</th>
+                                    <th>Giá khoá học</th>
+                                    <th>Mã giảm giá</th>
+                                    <th>Số tiền đã thanh toán</th>
                                     <th>Giảng viên</th>
                                     <th>Trạng thái</th>
                                 </tr>
@@ -57,6 +67,8 @@
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item?->course?->name }}</td>
                                         <td>{{ money($item->price) }}</td>
+                                        <td>{{ $order->coupon ?? 'Không có' }}</td>
+                                        <td>{{ money($order->total - $order->discount) }}</td>
                                         <td>{{ $item?->course?->teacher?->name }}</td>
                                         <td><span
                                                 class="badge bg-{{ $item->course?->status ? 'success' : 'danger' }}">{{ $item->course?->status ? 'Đang hoạt động' : 'Dừng hoạt động' }}</span>

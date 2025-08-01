@@ -13,5 +13,7 @@ if (!function_exists('getCategoriesCheckbox')) {
                 }
             }
         }
+    }
 }
-}
+
+

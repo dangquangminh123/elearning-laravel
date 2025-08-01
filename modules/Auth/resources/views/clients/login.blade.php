@@ -11,8 +11,9 @@
     </div>
     <div class="sign-in">
         <h3>Đăng nhập</h3>
+    
         @if (session('msg'))
-        <div class="alert alert-danger">{{session('msg')}}</div>
+         <div class="alert alert-danger">{{session('msg')}}</div>
         @endif
         <form action="" method="post">
             <input type="text" name="email" placeholder="Email/Username" />

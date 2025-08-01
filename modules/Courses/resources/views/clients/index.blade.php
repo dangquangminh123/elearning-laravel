@@ -3,6 +3,11 @@
 @include('parts.clients.page_title')
 <section class="all-course">
     <div class="container">
+        @if (session('msg'))
+            <div class="alert alert-danger">
+                {{ session('msg') }}
+            </div>
+        @endif
         @if ($courses)
         <div class="row">
             @foreach ($courses as $course)
@@ -36,12 +41,54 @@
                             @endif
                         </p>
                         <div class="descreption-actions">
-                            <a href="" class="btn btn-buy">Mua khoá học</a>
-                            <form method="POST">
-                                @csrf
-                                <input type="hidden" name="course_id" value="{{ $course->id }}">
-                                <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
-                            </form>
+                            {{-- @auth('students')
+                                @if ($hasAccess)
+                                    <a href="{{ route('courses.learn', ['slug' => $course->slug]) }}" class="btn btn-start-learning">
+                                        Học ngay
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-buy">Mua khoá học</a>
+                                    <form method="POST">
+                                        @csrf
+                                        <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                        <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                                    </form>
+                                @endif
+                            @else
+                                <a href="#" class="btn btn-buy">Mua khoá học</a>
+                                <form method="POST">
+                                    @csrf
+                                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                    <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                                </form>
+                            @endauth --}}
+
+                            @auth('students')
+                                @php
+                                    $hasAccess = $hasAccessList[$course->id] ?? false;
+                                @endphp
+
+                                @if ($hasAccess)
+                                    <a href="{{ route('courses.learn', ['slug' => $course->slug]) }}" class="btn btn-start-learning">
+                                        Học ngay
+                                    </a>
+                                @else
+                                    <a href="#" class="btn btn-buy">Mua khoá học</a>
+                                    <form method="POST">
+                                        @csrf
+                                        <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                        <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                                    </form>
+                                @endif
+                            @else
+                                {{-- Người chưa đăng nhập --}}
+                                <a href="#" class="btn btn-buy">Mua khoá học</a>
+                                <form method="POST">
+                                    @csrf
+                                    <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                    <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                                </form>
+                            @endauth
                         </div>
                     </div>
                 </div>

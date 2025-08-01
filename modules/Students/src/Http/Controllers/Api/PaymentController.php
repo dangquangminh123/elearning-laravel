@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
 use Modules\Orders\src\Repositories\OrdersStatusRepositoryInterface;
-
+use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
 class PaymentController extends Controller
 {
 
     private $orderRepository;
+    private $couponRepository;
     private $orderStatusRepository;
-    public function __construct(OrdersRepositoryInterface $orderRepository, OrdersStatusRepositoryInterface $orderStatusRepository)
+    public function __construct(OrdersRepositoryInterface $orderRepository, OrdersStatusRepositoryInterface $orderStatusRepository,
+    CouponsRepositoryInterface $couponRepository)
     {
         $this->orderRepository = $orderRepository;
         $this->orderStatusRepository = $orderStatusRepository;
+        $this->couponRepository = $couponRepository;
     }
 
     public function autoPay(Request $request)
@@ -90,6 +93,9 @@ class PaymentController extends Controller
 
             // Cập nhật thời gian hoàn thành thanh toán
             $status = $this->orderRepository->updatePaymentCompleteDate($orderId);
+            if ($order->coupon) {
+                $this->couponRepository->couponUsage($order->coupon, $orderId);
+            }
             return [
                 'success' => true,
             ];

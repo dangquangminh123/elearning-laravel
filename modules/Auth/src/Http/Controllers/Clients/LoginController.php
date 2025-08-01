@@ -23,7 +23,8 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $pageTitle = 'Đăng nhập';
-        return view('auth::clients.login', compact('pageTitle'));
+        $msg = session('msg'); // lấy lỗi từ session
+        return view('auth::clients.login', compact('pageTitle', 'msg'));
 
     }
 

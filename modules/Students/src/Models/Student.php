@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Courses\src\Models\Course;
+use Modules\Orders\src\Models\Order;
 
 class Student extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
@@ -38,5 +39,10 @@ class Student extends Authenticatable implements MustVerifyEmail, CanResetPasswo
     public function courses()
     {
         return $this->belongsToMany(Course::class, 'students_courses')->withPivot('status');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'student_id', 'id');
     }
 }

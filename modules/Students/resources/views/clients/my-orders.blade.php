@@ -39,10 +39,12 @@
                     <thead>
                         <tr>
                             <th width="5%">STT</th>
-                            <th width="15%">Mã đơn hàng</th>
-                            <th>Tổng tiền</th>
-                            <th width="20%">Trạng thái</th>
-                            <th width="20%">Thời gian</th>
+                            <th width="10%">Mã đơn hàng</th>
+                            <th width="15%">Tổng tiền</th>
+                            <th width="15%">Mã giảm giá</th>
+                            <th width="15%">Số tiền thanh toán</th>
+                            <th width="15%">Trạng thái</th>
+                            <th width="15%">Thời gian</th>
                             <th width="10%">Hành động</th>
                         </tr>
                     </thead>
@@ -52,6 +54,12 @@
                             <td>{{$key + 1}}</td>
                             <td><a href="{{route('students.account.order-detail', $order->id)}}">#{{$order->id}}</a></td>
                             <td>{{money($order->total)}}</td>
+                            <td>
+                                {{ $order->coupon ?? 'Không có' }}
+                            </td>
+                            <td class="text-danger fw-bold">
+                                {{ money($order->total - ($order->discount ?? 0)) }}
+                            </td>
                             <td>
                                 <span class="badge bg-{{$order->status->color}}">
                                     {{$order->status->name}}

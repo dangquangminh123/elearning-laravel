@@ -136,3 +136,22 @@
     background: linear-gradient(to right, #fdcb6e, #e17055);
     color: #fff;
 }
+
+/* Nút Học ngay */
+.btn-start-learning {
+    background-color: transparent;
+    border: 2px solid #55efc4;
+    color: #55efc4;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-start-learning:hover {
+    background: linear-gradient(135deg, #55efc4, #00cec9);
+    color: #ffffff; /* đổi màu chữ khi hover */
+    border-color: #00cec9;
+}

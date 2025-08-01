@@ -68,6 +68,13 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         return $this->model->with('detail')->find($orderId);
     }
 
+    public function getOrderWithDetail($orderId)
+    {
+        return $this->model
+            ->with(['detail.course.teacher', 'status'])
+            ->find($orderId);
+    }
+
     public function updatePaymentDate($orderId)
     {
         $order = $this->getOrder($orderId);

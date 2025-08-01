@@ -8,10 +8,10 @@
                     Tổng quan
                 </a>
 
-               @include('parts.backend.menu_item', [
-                'title' => 'Chuyên mục',
-                'name' => 'categories'
-               ])
+                @include('parts.backend.menu_item', [
+                    'title' => 'Chuyên mục',
+                    'name' => 'categories'
+                ])
 
                 @include('parts.backend.menu_item', [
                     'title' => 'Khoá học',
@@ -25,9 +25,19 @@
                 ])
 
                 @include('parts.backend.menu_item', [
+                    'title' => 'Mã giảm giá',
+                    'name' => 'coupons'
+                ])
+
+                @include('parts.backend.menu_item', [
                     'title' => 'Người dùng',
                     'name' => 'users'
                 ])
+
+                {{-- @include('parts.backend.menu_item', [
+                    'title' => 'Đơn hàng',
+                    'name' => 'Orders'
+                ]) --}}
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
                     aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>

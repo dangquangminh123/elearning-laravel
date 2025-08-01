@@ -42,7 +42,7 @@
     </div>
 
     <div class="mt-3 text-end">
-        <a href="#" class="btn btn-primary">Tiến hành thanh toán</a>
+        <a href="{{ route('students.account.checkout', ['id' => $order->id]) }}" class="btn btn-primary">Tiến hành thanh toán</a>
     </div>
 </div>
 @endsection

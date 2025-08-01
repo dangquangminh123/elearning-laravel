@@ -29,6 +29,15 @@ function formatDiscountValue($type, $value)
     }
 }
 
+function formatCouponConditionAmount($amount)
+{
+    if ($amount > 0) {
+        return '<span class="badge bg-info text-dark">Từ ' . number_format($amount) . ' đ trở lên</span>';
+    } else {
+        return '<span class="badge bg-success-subtle text-success">Không yêu cầu giá trị đơn hàng tối thiểu</span>';
+    }
+}
+
 function formatCouponCount($count)
 {
     if ($count > 0) {
