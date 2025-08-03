@@ -1,4 +1,6 @@
 @extends('layouts.client')
+@section('title', $pageTitle)
+
 @section('content')
 @include('parts.clients.page_title')
 <section class="all-course py-2">

@@ -1,4 +1,6 @@
 @extends('layouts.client')
+@section('title', $pageTitle)
+
 @section('content')
 <div class="container my-5">
     <h2 class="mb-4">Thông tin đơn hàng của  <span class="fw-bold text-warning fs-3 text-decoration-underline">

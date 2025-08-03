@@ -1,4 +1,6 @@
 @extends('layouts.client')
+@section('title', $pageTitle)
+
 @section('content')
 <section class="banner">
     <div class="container padding">

@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf_token" content="{{ csrf_token() }}" />
-    <title>{{ $pageTitle }} - Unicode Academy</title>
+    {{-- <title>{{ $pageTitle }} - Unicode Academy</title> --}}
+    <title>@yield('title', 'Unicode Academy')</title>
+
     <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     @vite(['resources/sass/app.scss'])
     @yield('stylesheets')

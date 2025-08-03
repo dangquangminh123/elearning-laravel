@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+@section('title', $pageTitle)
+
 @section('content')
     @if(session('msg'))
         <div class="alert alert-success">{{session('msg')}}</div>

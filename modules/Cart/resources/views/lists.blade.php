@@ -1,4 +1,6 @@
 @extends('layouts.client')
+@section('title', $pageTitle)
+
 @section('content')
 <div class="container my-4">
     <h2 class="mb-4">Giỏ Hàng Của Bạn</h2>

@@ -14,11 +14,14 @@ use App\Services\StudentCourseAccessService;
 class CoursesController extends Controller {
     protected $coursesRepository;
     protected $lessonRepository;
+    protected $accessService;
 
-    public function __construct(CoursesRepositoryInterface $coursesRepository, LessonsRepositoryInterface $lessonRepository) 
+    public function __construct(CoursesRepositoryInterface $coursesRepository, LessonsRepositoryInterface $lessonRepository, 
+    StudentCourseAccessService $accessService) 
     {
         $this->coursesRepository = $coursesRepository;
         $this->lessonRepository = $lessonRepository;
+        $this->accessService = $accessService;
     }
     
     public function index(StudentCourseAccessService $accessService) {
@@ -29,34 +32,40 @@ class CoursesController extends Controller {
 
         if (auth('students')->check()) {
             $student = auth('students')->user();
-
             foreach ($courses as $course) {
-                $hasAccessList[$course->id] = $accessService->studentHasAccessToCourse($student, $course);
+                $hasAccessList[$course->id] = $accessService->studentHasAccessToCourse($student, $course->slug); // truyền slug
             }
         }
         return view('courses::clients.index', compact('pageTitle', 'pageName', 'courses', 'hasAccessList'));
-
-        // return view('courses::clients.index', compact('pageTitle', 'pageName', 'courses'));
     }
 
     public function detail($slug)
     {
         $course = $this->coursesRepository->getCourseActive($slug);
         if (!$course) {
-            abort(404);
+            return view('errors.404', [
+                'message' => 'Khoá học bạn học có thể đã bị xóa hoặc không tồn tại.',
+                'pageTitle' => 'Không tìm thấy',
+            ]);
         }
         $pageTitle = $course->name;
         $pageName = $course->name;
         $index = 0;
+        $student = auth('students')->user();
+        $courseStatus = $this->accessService->getStudentCourseStatus($student, $slug);
+
         // dd($course);
-        return view('courses::clients.detail', compact('pageTitle', 'pageName', 'course', 'index'));
+        return view('courses::clients.detail', compact('pageTitle', 'pageName', 'course', 'index', 'courseStatus'));
     }
 
     public function learn($slug)
     {
         $course = $this->coursesRepository->getCourseActive($slug);
         if (!$course) {
-            abort(404);
+            return view('errors.404', [
+                'message' => 'Khoá học bạn yêu cầu có thể đã bị xóa hoặc không tồn tại.',
+                'pageTitle' => 'Không tìm thấy',
+            ]);
         }
 
         $lessonGroups = $this->lessonRepository->getLessonsGroup($course->id);

@@ -16,5 +16,6 @@ interface OrdersRepositoryInterface extends RepositoryInterface
 
     public function updateStatus($orderId, $status);
     public function deleteOrdersByCouponCode($couponCode);
+     public function studentPurchasedCourse($studentId, $courseId);
 
 }

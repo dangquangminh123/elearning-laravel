@@ -1,4 +1,6 @@
 @extends('layouts.backend')
+@section('title', $pageTitle)
+
 @section('content')
     <form action="" method="POST">
         <div class="row">

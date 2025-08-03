@@ -5,6 +5,7 @@ import "./slick.min.js";
 import "./slider-home.js";
 import "./home.js";
 import "./lesson.js";
+import "./course-detail.js"
 import "./accordion.js";
 import "./tab.js";
 import "./video.js";

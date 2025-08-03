@@ -3,8 +3,7 @@
 namespace Modules\Courses\src\Repositories;
 use App\Scopes\ActiveScope;
 use App\Repositories\BaseRepository;
-use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\DB;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 use Modules\Courses\src\Models\Course;
 
@@ -60,6 +59,14 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
             return $result->update($data);
         }
         return false;
+    }
+
+    public function studentOwnsCourse(int $studentId, int $courseId): bool
+    {
+        return DB::table('students_courses')
+            ->where('student_id', $studentId)
+            ->where('course_id', $courseId)
+            ->exists();
     }
 
     public function getCourseActive($slug)

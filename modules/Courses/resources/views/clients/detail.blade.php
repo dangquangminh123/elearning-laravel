@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('title', $pageTitle)
 @section('content')
 @include('parts.clients.page_title')
 <section class="course-detal">
@@ -115,7 +116,23 @@
                             <i class="fa-brands fa-hire-a-helper"></i>
                             Tài liệu đính kèm: {{$course->is_document ? 'Có': 'Không'}}
                         </p>
-                        <button class="payment">đặt mua khóa học</button>
+                        @php
+                            $buttonText = 'Đặt mua khoá học';
+                            $buttonClass = 'payment';
+
+                            if ($courseStatus === 'owned') {
+                                $buttonText = 'Vào học ngay';
+                                $buttonClass = 'go-learn';
+                            } elseif ($courseStatus === 'not_owned') {
+                                $buttonText = 'Kích hoạt khoá học này';
+                                $buttonClass = 'activate-course';
+                            }
+                        @endphp
+                        <button class="{{ $buttonClass }}"
+                                data-course-id="{{ $course->id }}"
+                                data-course-slug="{{ $course->slug }}">
+                            {{ $buttonText }}
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 @extends('layouts.client')
-
+@section('title', $pageTitle)
 @section('content')
 <div class="container py-4">
     <h2 class="mb-4">{{ $course->name }}</h2>
@@ -19,17 +19,21 @@
                 @endif
             </div>
 
-            @if ($firstLesson && $firstLesson->document)
+            @if ($firstLesson && $firstLesson->document && file_exists(public_path($firstLesson->document->url)))
                 <div class="mt-3">
                     <a href="{{ asset($firstLesson->document->url) }}" target="_blank" class="doc-button">
                         <i class="fas fa-file-alt"></i> {{ $firstLesson->document->name }}
                     </a>
                 </div>
+            @elseif($firstLesson && $firstLesson->document)
+                <div class="text-danger mt-3">
+                    <i class="fas fa-exclamation-triangle"></i> Bài học không có tài liệu
+                </div>
             @endif
         </div>
 
         <!-- Danh sách bài học bên phải -->
-       <div class="col-md-4">
+        <div class="col-md-4">
             <h5 class="mb-3 fw-bold">Danh sách bài học</h5>
 
             @foreach ($lessonGroups as $index => $group)
@@ -40,7 +44,7 @@
                     <ul class="list-group list-group-flush">
                         @foreach ($group['lessons'] as $lesson)
                             @if ($lesson->video)
-                                <li class="list-group-item lesson-item play-video"
+                                <li class="list-group-item lesson-item play-video {{ $lesson->id === $firstLesson->id ? 'active-lesson' : '' }}"
                                     data-video-url="{{ route('courses.stream', ['lesson_id' => $lesson->id]) }}"
                                     data-doc-url="{{ $lesson->document?->url }}"
                                     data-doc-name="{{ $lesson->document?->name }}"

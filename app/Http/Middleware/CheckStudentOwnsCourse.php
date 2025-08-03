@@ -32,13 +32,9 @@ class CheckStudentOwnsCourse
         }
         $slug = $request->route('slug');
 
-        $course = Course::where('slug', $slug)->first();
+        $hasAccess = $this->accessService->studentHasAccessToCourse($student, $slug);
 
-        if (!$course) {
-            return redirect()->route('courses.index')->with('msg', 'Khoá học không tồn tại.');
-        }
-
-        if (!$this->accessService->studentHasAccessToCourse($student, $course)) {
+        if (!$hasAccess) {
             return redirect()->route('courses.index')->with('msg', 'Bạn chưa sở hữu khoá học này.');
         }
 

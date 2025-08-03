@@ -128,4 +128,12 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
 
         return true;
     }
+
+    public function studentPurchasedCourse($studentId, $courseId): bool
+    {
+        return $this->model->where('student_id', $studentId)
+            ->whereHas('detail', function ($query) use ($courseId) {
+                $query->where('course_id', $courseId);
+            })->exists();
+    }
 }
