@@ -68,11 +68,14 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         return $this->model->with('detail')->find($orderId);
     }
 
-    public function getOrderWithDetail($orderId)
+    public function getOrderWithRelationsById($id)
     {
-        return $this->model
-            ->with(['detail.course.teacher', 'status'])
-            ->find($orderId);
+        return Order::with([
+            'student',
+            'status',
+            'detail.course',
+            'couponOrder',
+        ])->findOrFail($id);
     }
 
     public function updatePaymentDate($orderId)
@@ -135,5 +138,25 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
             ->whereHas('detail', function ($query) use ($courseId) {
                 $query->where('course_id', $courseId);
             })->exists();
+    }
+
+    public function getAllOrdersWithRelations()
+    {
+        return $this->model
+            ->with(['student', 'status', 'detail.course'])
+            ->latest()
+            ->get();
+    }
+
+    public function getCouponOrder($id)
+    {
+        return $this->model->with(['couponOrder'])->findOrFail($id);
+    }
+
+    public function getStatusBadge($order)
+    {
+        $name = $order->status?->name ?? '(Không rõ)';
+        $color = $order->status?->color ?? '#6c757d'; // mặc định màu xám
+        return '<span class="badge bg-' . $color . '">' . $name . '</span>';
     }
 }

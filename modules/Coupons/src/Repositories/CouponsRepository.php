@@ -37,6 +37,23 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
         return $courseIds;
     }
 
+    public function getCouponByCode($code)
+    {
+        return $this->model->where('code', $code)->first();
+    }
+
+     public function getCourses($coupon, $orderId)
+    {
+        $courses = $coupon->courses()->whereHas('orderDetail', function ($query) use ($orderId) {
+            $query->where('order_id', $orderId);
+        })->get();
+        return $courses;
+    }
+
+    public function getAllCoupons() {
+        return $this->model->select(['id', 'code', 'discount_type', 'discount_value', 'total_condition', 'count', 'start_date', 'end_date'])->latest();
+    }
+
     public function updateCouponStudents($coupon, $data = []) {
         return $coupon->students()->sync($data);
     }
@@ -134,16 +151,6 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
     {
         return $coupon->courses()->count() > 0;
     }
-    public function getCourses($coupon, $orderId)
-    {
-        $courses = $coupon->courses()->whereHas('orderDetail', function ($query) use ($orderId) {
-            $query->where('order_id', $orderId);
-        })->get();
-        return $courses;
-    }
-
-    public function getAllCoupons() {
-        return $this->model->select(['id', 'code', 'discount_type', 'discount_value', 'total_condition', 'count', 'start_date', 'end_date'])->latest();
-    }
+   
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Orders\src\Models\OrderDetail;
 use Modules\Students\src\Models\Student;
+use Modules\Coupons\src\Models\Coupon;
 class Order extends Model
 {
     use HasFactory;
@@ -15,6 +16,11 @@ class Order extends Model
     public function status()
     {
         return $this->belongsTo(OrderStatus::class, 'status_id', 'id');
+    }
+
+    public function couponOrder()
+    {
+        return $this->belongsTo(Coupon::class, 'coupon', 'code');
     }
 
     public function student()

@@ -36,6 +36,52 @@ discount_value có giá trị 370000 đến 500000 thì total_condition từ 149
 discount_value có giá trị 500 000 đến 699000 thì total_condition nhỏ hơn 2000000 tới 2 999 000
 discount_value có giá trị 799 000  thì total_condition lớn hơn 3 000 000
 
+chỉnh. sửa
+1/ khi đơn hàng đã thanh toán hoàn tất thì admin có quyền chỉnh sửa lại trạng thái là 
+hoàn trả hoàn tiền
+huỷ bỏ đơn hàng
+2/Khi đơn hàng đang trong quá trình chờ thanh toán thì có quyền chỉnh sửa lại là
+thanh toán hoàn tất
+huỷ bỏ đơn hàng (admin), hoặc là quá hạn thời gian không chịu thanh toán
+3/đơn hàng trạng thái là thanh toán thất bại thì admin có quyền chỉnh sửa lại là
+hoàn tất thanh toán
+huỷ bỏ đơn hàng (nếu quá thời gian cho phép thanh toán lại)
+
+project-root/
+├── client/                        # React app
+│   ├── public/
+│   ├── src/
+│   │   ├── components/           # UI components
+│   │   ├── modules/              # Modular Feature-based folders
+│   │   │   ├── Coupons/          # Coupons module in frontend
+│   │   │   │   ├── pages/
+│   │   │   │   ├── components/
+│   │   │   │   ├── services/
+│   │   │   │   └── hooks/
+│   │   ├── routes/
+│   │   ├── store/                # Redux / Zustand / Context
+│   │   └── App.jsx
+│
+├── server/                       # Express.js backend
+│   ├── config/                   # DB, environment, constants
+│   ├── core/                     # Middlewares, response utils, error handling
+│   ├── modules/                 # Modular features like Laravel Modules
+│   │   ├── coupons/
+│   │   │   ├── controllers/
+│   │   │   ├── routes/
+│   │   │   ├── services/        # Business logic (SOLID: single responsibility)
+│   │   │   ├── models/
+│   │   │   ├── validators/      # Joi/Zod, similar to Laravel Requests
+│   │   │   └── repository/      # Data access abstraction
+│   │   └── users/
+│   ├── database/
+│   │   ├── mongoose.js
+│   └── index.js                 # App entry point
+│
+├── .env
+├── package.json
+└── README.md
+
 Modular (theo kiểu Laravel Modules)
 Modules/
 ├── Coupons/
@@ -58,3 +104,4 @@ openssl rand -hex 32
 ngrok http http://localhost:8080
 ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
 awaited-reindeer-strictly.ngrok-free.app
+
