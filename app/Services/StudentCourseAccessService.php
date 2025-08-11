@@ -16,6 +16,8 @@ class StudentCourseAccessService
         $this->ordersRepository = $ordersRepository;
         $this->coursesRepository = $coursesRepository;
     }
+
+    
     public function studentHasAccessToCourse(Student $student, string $slug): bool
     {
         $course = $this->coursesRepository->getCourseActive($slug);

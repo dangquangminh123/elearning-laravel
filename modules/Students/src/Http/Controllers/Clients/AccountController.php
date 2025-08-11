@@ -21,14 +21,62 @@ class AccountController extends Controller
     private $orderStatusRepository;
 
     public function __construct(StudentsRepositoryInterface $studentRepository, TeacherRepositoryInterface $teacherRepository,
-     OrdersRepository $orderRepository, OrdersStatusRepositoryInterface $orderStatusRepository
-     )
+     OrdersRepository $orderRepository, OrdersStatusRepositoryInterface $orderStatusRepository)
     {
         $this->studentRepository = $studentRepository;
         $this->teacherRepository = $teacherRepository;
         $this->orderRepository = $orderRepository;
         $this->orderStatusRepository = $orderStatusRepository;
     }
+
+    public function orderDetail($orderId)
+    {
+        $pageTitle = 'Chi tiết đơn hàng';
+        $pageName = 'Chi tiết đơn hàng';
+        $order = $this->orderRepository->getOrderWithRelationsById($orderId);
+
+         // Xác định trạng thái
+        $statusCode = $order->status->code ?? null;
+
+        // Mặc định
+        $isExpired = false;
+        $showPayButton = false;
+        $showPayAgainButton = false;
+        $showRefundButton = false;
+        if (in_array($statusCode, ['pending_payment', 'failed_payment'])) {
+            $now = strtotime(date('Y-m-d H:i:s'));
+            $paymentDate = strtotime($order->payment_date);
+            $diff = $now - $paymentDate;
+
+            if (config('checkout.checkout_countdown') > 0) {
+                $checkoutCountdown = config('checkout.checkout_countdown') * 60;
+                if ($diff > $checkoutCountdown) {
+                    // $order->expired = true;
+                    $isExpired = true;
+                }
+            }
+        }
+
+        // Xác định nút hiển thị
+        if ($statusCode === 'pending_payment' && !$isExpired) {
+            $showPayButton = true;
+        }
+
+        if ($statusCode === 'failed_payment' && !$isExpired) {
+            $showPayAgainButton = true;
+        }
+
+        if ($statusCode === 'paid') {
+            $showRefundButton = true;
+        }
+        
+        return view('students::clients.order-detail', compact('pageTitle', 
+        'pageName', 'order',  'isExpired',
+        'showPayButton',
+        'showPayAgainButton',
+        'showRefundButton'));
+    }
+
     public function index()
     {
         $pageTitle = 'Tài khoản';
@@ -36,6 +84,8 @@ class AccountController extends Controller
 
         return view('students::clients.account', compact('pageTitle', 'pageName'));
     }
+
+
 
     public function profile()
     {
@@ -102,23 +152,7 @@ class AccountController extends Controller
 
         return view('students::clients.my-orders', compact('pageTitle', 'pageName', 'orders', 'ordersStatus'));
     }
-    public function orderDetail($orderId)
-    {
-        $pageTitle = 'Chi tiết đơn hàng';
-        $pageName = 'Chi tiết đơn hàng';
-        $order = $this->orderRepository->getOrderWithDetail($orderId);
-        $now = strtotime(date('Y-m-d H:i:s'));
-        $paymentDate = strtotime($order->payment_date);
-        $diff = $now - $paymentDate;
-
-        if (config('checkout.checkout_countdown') > 0) {
-            $checkoutCountdown = config('checkout.checkout_countdown') * 60;
-            if ($diff > $checkoutCountdown) {
-                $order->expired = true;
-            }
-        }
-        return view('students::clients.order-detail', compact('pageTitle', 'pageName', 'order'));
-    }
+   
     public function changePassword()
     {
         $pageTitle = 'Đổi mật khẩu';

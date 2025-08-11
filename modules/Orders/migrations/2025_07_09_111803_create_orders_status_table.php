@@ -16,6 +16,7 @@ return new class () extends Migration {
             $table->increments('id');
             $table->string('name', 200);
             $table->string('color', 100)->nullable();
+            $table->string('code', 100)->nullable();
             $table->boolean('is_success')->default(false);
             $table->timestamps();           
         });

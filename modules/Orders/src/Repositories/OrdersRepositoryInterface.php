@@ -13,12 +13,15 @@ interface OrdersRepositoryInterface extends RepositoryInterface
     public function updateDiscount($orderId, $discount, $coupon);
     public function getOrderWithRelationsById($id);
     public function updatePaymentCompleteDate($orderId);
-
+    public function setPendingIfFailed($orderId);
     public function updateStatus($orderId, $status);
     public function deleteOrdersByCouponCode($couponCode);
     public function studentPurchasedCourse($studentId, $courseId);
-    public function getAllOrdersWithRelations();
+    public function getAllOrdersWithRelations($search = null);
     public function getCouponOrder($orderId);
     public function getStatusBadge($order);
+
+    public function getAvailableTransitions($order);
+    public function changeStatus($orderId, $statusId);
 
 }

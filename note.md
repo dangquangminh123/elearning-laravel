@@ -39,14 +39,15 @@ discount_value có giá trị 799 000  thì total_condition lớn hơn 3 000 000
 chỉnh. sửa
 1/ khi đơn hàng đã thanh toán hoàn tất thì admin có quyền chỉnh sửa lại trạng thái là 
 hoàn trả hoàn tiền
-huỷ bỏ đơn hàng
-2/Khi đơn hàng đang trong quá trình chờ thanh toán thì có quyền chỉnh sửa lại là
-thanh toán hoàn tất
-huỷ bỏ đơn hàng (admin), hoặc là quá hạn thời gian không chịu thanh toán
-3/đơn hàng trạng thái là thanh toán thất bại thì admin có quyền chỉnh sửa lại là
-hoàn tất thanh toán
-huỷ bỏ đơn hàng (nếu quá thời gian cho phép thanh toán lại)
 
+2/Khi đơn hàng đang trong quá trình chờ thanh toán thì có quyền chỉnh sửa lại là
+thanh toán hoàn tất hoặc là  huỷ bỏ đơn hàng , hoặc là khi quá hạn thời gian cho phép và người dùng cũng không chịu thanh toán thì sẽ tự động huỷ
+
+3/đơn hàng trạng thái là thanh toán thất bại thì admin có quyền chỉnh sửa lại là admin có quyền
+huỷ bỏ đơn hàng. Hoặc là cho thời hạn để người dùng có thể thanh toán lại nhưng khi quá hạn người dùng không thanh toán thì cũng tự cập nhập đơn hàng là
+bị huỷ bỏ
+
+MERN  structure 2025
 project-root/
 ├── client/                        # React app
 │   ├── public/

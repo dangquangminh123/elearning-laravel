@@ -8,6 +8,8 @@ use App\Listeners\ResetPasswordChangedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Event;
+use Modules\Orders\src\Events\OrderStatusChanged;
+use Modules\Courses\src\Listeners\RevokeStudentCourseAccess;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         PasswordReset::class => [
             ResetPasswordChangedListener::class,
+        ],
+
+        OrderStatusChanged::class => [
+            RevokeStudentCourseAccess::class,
         ],
     ];
 

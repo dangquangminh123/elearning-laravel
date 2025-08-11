@@ -2,9 +2,11 @@
 
 namespace Modules\Orders\src\Repositories;
 use Modules\Orders\src\Models\Order;
+use Modules\Orders\src\Models\OrderStatus;
 use App\Repositories\BaseRepository;
 use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
-
+use Modules\Orders\src\Jobs\AutoCancelOrderJob;
+use Modules\Orders\src\Events\OrderStatusChanged;
 class OrdersRepository extends BaseRepository implements OrdersRepositoryInterface
 {
     public function getModel()
@@ -38,6 +40,7 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
                 'price' => $price,
             ]);
         }
+        AutoCancelOrderJob::dispatch($order->id)->delay(now()->addHours(24));
 
         return $order;
     }
@@ -105,11 +108,35 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         ]);
     }
 
+    public function setPendingIfFailed($orderId)
+    {
+        $order = $this->getOrderWithRelationsById($orderId);
+
+        if ($order->status && $order->status->code === 'failed_payment') {
+            $pendingStatusId = OrderStatus::where('code', 'pending_payment')->value('id');
+            if ($pendingStatusId) {
+                $this->updateStatus($orderId, $pendingStatusId);
+                $order->status_id = $pendingStatusId;
+            }
+        }
+
+        return $order;
+    }
+
     public function updateStatus($orderId, $status)
     {
         return $this->update($orderId, [
             'status_id' => $status
         ]);
+    }
+
+    // Update trạng thái và bắn event
+    public function updateStatusAndFireEvent($order, $newStatusCode)
+    {
+        $oldCode = $order->status->code;
+        $this->updateStatus($order, $newStatusCode);
+
+        event(new OrderStatusChanged($order->fresh('detail'), $oldCode, $newStatusCode));
     }
 
     public function deleteOrdersByCouponCode($couponCode) 
@@ -132,20 +159,47 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         return true;
     }
 
+    protected function getStatusIdByCode($code)
+    {
+        static $cache = [];
+        if (array_key_exists($code, $cache)) {
+            return $cache[$code];
+        }
+
+        $id = OrderStatus::where('code', $code)->value('id');
+        $cache[$code] = $id ? (int)$id : null;
+        return $cache[$code];
+    }
     public function studentPurchasedCourse($studentId, $courseId): bool
     {
-        return $this->model->where('student_id', $studentId)
+        // Phải thanh toán thành công đơn hàng
+        $paidStatusId = $this->getStatusIdByCode('paid');
+        if (!$paidStatusId) {
+            //
+            return false;
+        }
+
+        return $this->model
+            ->where('student_id', $studentId)
+            ->where('status_id', $paidStatusId)
             ->whereHas('detail', function ($query) use ($courseId) {
                 $query->where('course_id', $courseId);
             })->exists();
     }
 
-    public function getAllOrdersWithRelations()
+    public function getAllOrdersWithRelations($search = null)
     {
-        return $this->model
+        $query = $this->model
             ->with(['student', 'status', 'detail.course'])
-            ->latest()
-            ->get();
+            ->latest();
+        
+        // Nếu có search thì lọc theo tên học viên
+        if (!empty($search)) {
+            $query->whereHas('student', function ($name) use ($search) {
+                $name->where('name', 'like', '%' . $search . '%');
+            });
+        }
+        return $query->get();
     }
 
     public function getCouponOrder($id)
@@ -158,5 +212,62 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         $name = $order->status?->name ?? '(Không rõ)';
         $color = $order->status?->color ?? '#6c757d'; // mặc định màu xám
         return '<span class="badge bg-' . $color . '">' . $name . '</span>';
+    }
+
+    public function getAvailableTransitions($order)
+    {
+        // Lấy map code → id
+        $statusMap = OrderStatus::pluck('id', 'code')->toArray();
+
+        $rules = [
+            'pending_payment' => ['paid', 'cancelled_payment'],
+            'paid'            => ['refunded'],
+            'failed_payment'  => ['pending_payment', 'cancelled_payment'],
+            'cancelled_payment' => [],
+            'refunded'          => [],
+        ];
+
+        $currentCode = OrderStatus::find($order->status_id)->code;
+        $allowedCodes = $rules[$currentCode] ?? [];
+
+        $allowedIds = array_map(fn($code) => $statusMap[$code], $allowedCodes);
+
+        return OrderStatus::whereIn('id', $allowedIds)
+            ->pluck('name', 'id')
+            ->toArray();
+    }
+
+    public function changeStatus($orderId, $statusId)
+    {
+        $order = $this->model->find($orderId);
+        if (!$order) return false;
+
+        $status = OrderStatus::find($statusId);
+        if (!$status) return false;
+
+        $currentStatusCode = $order->status->code ?? null;
+        $newStatusCode = $status->code;
+
+        // Cập nhật status_id
+        $order->status_id = $statusId;
+        switch ($newStatusCode) {
+            case 'paid':
+                // Nếu chuyển sang đã thanh toán
+                if (!$order->payment_complete_date) {
+                    $order->payment_complete_date = now();
+                }
+                break;
+
+            case 'pending_payment':
+            case 'refunded':
+            case 'cancelled_payment':
+                // Các trạng thái này thì xóa thời gian thanh toán hoàn tất
+                $order->payment_complete_date = null;
+                break;
+        }
+        $order->save();
+
+        // trả về order mới kèm relation
+        return $this->getOrderWithRelationsById($orderId);
     }
 }

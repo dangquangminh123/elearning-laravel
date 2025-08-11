@@ -13,7 +13,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
       Route::delete('delete/{student}', 'StudentController@delete')->name('delete');
    });
 });
-
 Route::group(['as' => 'students.'], function () {
     Route::group(['prefix' => 'tai-khoan', 'as' => 'account.', 'middleware' => ['auth:students', 'verified', 'user.block']], function () {
         Route::get('/', 'Clients\AccountController@index')->name('index');
@@ -24,7 +23,7 @@ Route::group(['as' => 'students.'], function () {
         Route::get('/don-hang/{id}', 'Clients\AccountController@orderDetail')->name('order-detail');
         Route::get('/doi-mat-khau', 'Clients\AccountController@changePassword')->name('password');
         Route::post('/doi-mat-khau', 'Clients\AccountController@updatePassword');
-
+        Route::get('/thanh-toan/{id}', 'Clients\CheckoutController@refund')->name('refund');
         Route::get('/thanh-toan/{id}', 'Clients\CheckoutController@index')->name('checkout');
     });
 });

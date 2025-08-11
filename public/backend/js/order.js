@@ -73,3 +73,75 @@ $(document).on('click', '.btn-view', function(e) {
 $('#orderDetailModal').on('hidden.bs.modal', function () {
     $('#order-detail-content').html(''); // Clear nội dung modal
 });
+
+function updateOrderStatus(orderId, statusId) {
+    const csrfToken = document.head.querySelector(`[name="csrf_token"]`).content;
+
+    Swal.fire({
+        title: 'Bạn có chắc?',
+        text: "Cập nhật trạng thái đơn hàng này?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Có, cập nhật!',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: `/admin/orders/${orderId}/update-status`,
+                method: 'POST',
+                data: {
+                    status_id: statusId,
+                    _token: csrfToken,
+                },
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Thành công',
+                            text: response.message
+                        });
+
+                        // Lấy table instance
+                        let table = $('#datatables').DataTable();
+
+                        // Tìm row chứa orderId
+                        let rowIndex = table.rows().eq(0).filter(function(idx) {
+                            return table.cell(idx, 0).data() == orderId; // cột 0 là 'id'
+                        });
+
+                        if (rowIndex.length) {
+                            let rowData = table.row(rowIndex[0]).data();
+
+                            // Gán giá trị mới (key phải trùng với cột trong DataTables config)
+                            rowData.status = response.statusOrder;
+                            rowData.payment_complete_date = response.payment_complete_date || '';
+
+                            table.row(rowIndex[0]).data(rowData).draw(false);
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Thất bại',
+                            text: response.message
+                        });
+                    }
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Có lỗi xảy ra khi cập nhật!'
+                    });
+                }
+            });
+        }
+    });
+}
+
+// Gắn sự kiện click
+$(document).on('click', '.update-status', function (e) {
+    e.preventDefault();
+    const orderId = $(this).data('order-id');
+    const statusId = $(this).data('status-id');
+    updateOrderStatus(orderId, statusId);
+});

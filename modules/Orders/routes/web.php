@@ -7,6 +7,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('data', 'OrderController@data')->name('data');
         Route::get('{id}/edit', 'OrderController@edit')->name('edit');
         Route::get('{id}', 'OrderController@show')->name('show');
+        Route::post('{id}/update-status', 'OrderController@updateStatus')->name('update-status');
     });
 });
 

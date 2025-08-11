@@ -36,17 +36,39 @@
                             </tr>
                             <tr>
                                 <th>Trạng thái</th>
-                                <td><span class="badge bg-{{ $order->status->color }}">
+                                <td>
+                                    <span class="badge bg-{{ $order->status->color }}">
                                         {{ $order->status->name }}
                                     </span>
-                                    @if ($order->status->is_success == 0)
+                                    {{-- @if ($order->status->is_success == 0)
                                         @if ($order->expired)
                                             <span class="badge bg-danger">Hết hạn thanh toán</span>
                                         @else
                                             <a href="{{ route('students.account.checkout', $order->id) }}"
                                                 class="btn btn-success btn-sm">Thanh toán</a>
                                         @endif
+                                    @endif --}}
+
+                                    @if ($isExpired)
+                                        <span class="badge bg-danger">Hết hạn thanh toán</span>
                                     @endif
+
+                                    @if ($showPayButton)
+                                        <a href="{{ route('students.account.checkout', $order->id) }}"
+                                        class="btn btn-success btn-sm">Thanh toán</a>
+                                    @endif
+
+                                    @if ($showPayAgainButton)
+                                        <a href="{{ route('students.account.checkout', $order->id) }}"
+                                        class="btn btn-info btn-sm">Thanh toán lại</a>
+                                    @endif
+
+                                    @if ($showRefundButton)
+                                        <a href="{{ route('students.account.refund', $order->id) }}"
+                                            class="btn btn-warning btn-sm">Hoàn trả/ hoàn tiền
+                                        </a>
+                                    @endif
+
                                 </td>
                             </tr>
                         </table>

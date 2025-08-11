@@ -21,26 +21,32 @@ class OrderController extends Controller
 
     public function data()
     {
-        $orders = $this->ordersRepository->getAllOrdersWithRelations();
+        $search = request()->get('search')['value'] ?? null;
+        $orders = $this->ordersRepository->getAllOrdersWithRelations($search);
 
         return DataTables::of($orders)
             ->addColumn('action', function ($order) {
                 $viewBtn = '<div class="mb-1"><a href="' . route('admin.orders.show', $order->id) . '" class="btn-view"><i class="fas fa-eye"></i> Xem</a></div>';
 
-                // Các trạng thái được phép chỉnh sửa
-                $editableStatuses = ['Chờ thanh toán', 'Thanh toán bất bại'];
-                if (in_array($order->status->name ?? '', $editableStatuses)) {
-                    $editBtn = '<div><a href="' . route('admin.orders.edit', $order->id) . '" class="btn-edit"><i class="fas fa-edit"></i> Chỉnh sửa</a></div>';
-                    return $viewBtn . $editBtn;
+                $transitions = $this->ordersRepository->getAvailableTransitions($order);
+
+                if (!empty($transitions)) {
+                    $dropdown = '<div class="dropdown">';
+                    $dropdown .= '<button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Cập nhật đơn hàng</button>';
+                    $dropdown .= '<div class="dropdown-menu">';
+                    foreach ($transitions as $statusId => $statusName) {
+                        $dropdown .= '<a href="#" class="dropdown-item update-status" data-order-id="' . $order->id . '" data-status-id="' . $statusId . '">' . $statusName . '</a>';
+                    }
+                    $dropdown .= '</div></div>';
+
+                    return $viewBtn . $dropdown;
                 }
                 return $viewBtn;
             })
             ->addColumn('id', fn($order) => $order->id)
             ->addColumn('student_name', fn($order) => $order->student->name ?? '(Không có)')
-            ->addColumn('coupon_discount', function ($order) {
-                $info = get_coupon_discount_info($order->id);
-                return $info['formatted'];
-            })
+            ->addColumn('coupon_discount', fn($order) => get_coupon_discount_info($order->id)['formatted'])
+
             ->addColumn('total', fn($order) => format_currency($order->total))
             ->addColumn('final_amount', function ($order) {
                 $info = get_coupon_discount_info($order->id);
@@ -57,6 +63,29 @@ class OrderController extends Controller
         $pageTitle = 'Quản lý đơn hàng';
         // $users = $this->coursesRepository->getAllCourses();
         return view('orders::index', compact('pageTitle'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $statusId = $request->input('status_id');
+
+        $order = $this->ordersRepository->changeStatus($id, $statusId);
+
+        if (!$order) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Chỉnh sửa trạng thái thất bại (đơn hàng không tồn tại).'
+            ], 422);
+        }
+        $statusOrder = $this->ordersRepository->getStatusBadge($order);
+        $paymentCompleted = optional($order->payment_complete_date)->format('d/m/Y H:i');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Chỉnh sửa trạng thái thành công',
+            'statusOrder' => $statusOrder,
+            'payment_complete_date' => $paymentCompleted,
+        ]);
     }
 
     public function show($id)
@@ -99,6 +128,4 @@ class OrderController extends Controller
         }
         return redirect()->route('admin.orders.index');
     }
-
-
 }

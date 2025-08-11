@@ -80,8 +80,8 @@ class CoursesController extends Controller {
             'course' => $course,
             'lessonGroups' => $lessonGroups,
             'firstLesson' => $firstLesson,
-            'pageTitle' => 'Học - ' . $course->name,
-            'pageName' => $course->name,
+            'pageTitle' =>  $pageTitle,
+            'pageName' => $pageName,
         ]);
     }
 

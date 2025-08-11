@@ -5,7 +5,7 @@
 
 @extends('layouts.client')
 
-@section('title', isset($pageTitle) ? $pageTitle : 'Không tìm thấy')
+@section('title', $pageTitle ? $pageTitle : 'Không tìm thấy')
 
 @section('content')
 <div class="container text-center mt-5">
