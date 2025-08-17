@@ -36,16 +36,7 @@ discount_value có giá trị 370000 đến 500000 thì total_condition từ 149
 discount_value có giá trị 500 000 đến 699000 thì total_condition nhỏ hơn 2000000 tới 2 999 000
 discount_value có giá trị 799 000  thì total_condition lớn hơn 3 000 000
 
-chỉnh. sửa
-1/ khi đơn hàng đã thanh toán hoàn tất thì admin có quyền chỉnh sửa lại trạng thái là 
-hoàn trả hoàn tiền
-
-2/Khi đơn hàng đang trong quá trình chờ thanh toán thì có quyền chỉnh sửa lại là
-thanh toán hoàn tất hoặc là  huỷ bỏ đơn hàng , hoặc là khi quá hạn thời gian cho phép và người dùng cũng không chịu thanh toán thì sẽ tự động huỷ
-
-3/đơn hàng trạng thái là thanh toán thất bại thì admin có quyền chỉnh sửa lại là admin có quyền
-huỷ bỏ đơn hàng. Hoặc là cho thời hạn để người dùng có thể thanh toán lại nhưng khi quá hạn người dùng không thanh toán thì cũng tự cập nhập đơn hàng là
-bị huỷ bỏ
+//Sau khi xử lý chỉnh chu luồng hoàn trả hoàn tiền! Tiếp tục sửa tiếp thêm phần cập nhập lại số lượng usage coupon đó lên lại
 
 MERN  structure 2025
 project-root/

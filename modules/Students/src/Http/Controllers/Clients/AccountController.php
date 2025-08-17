@@ -124,6 +124,7 @@ class AccountController extends Controller
         }
         $studentId = Auth::guard('students')->user()->id;
         $courses = $this->studentRepository->getCourses($studentId, $filters, config('paginate.account_limit'));
+        // dd($courses);
         $teacher = $this->teacherRepository->getTeachers();
 
         return view('students::clients.my-courses', compact('pageTitle', 'pageName', 'courses', 'teacher'));

@@ -159,7 +159,7 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         return true;
     }
 
-    protected function getStatusIdByCode($code)
+    public function getStatusIdByCode($code)
     {
         static $cache = [];
         if (array_key_exists($code, $cache)) {
@@ -269,5 +269,33 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
 
         // trả về order mới kèm relation
         return $this->getOrderWithRelationsById($orderId);
+    }
+
+    public function refundOrder(int $orderId): bool
+    {
+        $refundedStatusId = $this->getStatusIdByCode('refunded');
+        if (!$refundedStatusId) {
+            return false;
+        }
+
+        $order = $this->getOrderWithRelationsById($orderId);
+        if (!$order || $order->status_id !== $this->getStatusIdByCode('paid')) {
+            return false; // Chỉ hoàn tiền đơn đã thanh toán
+        }
+
+        // Cập nhật trạng thái
+        $order->update([
+            'status_id' => $refundedStatusId,
+            'refunded_at' => now(),
+        ]);
+
+        // Đánh dấu các detail đã hoàn
+        foreach ($order->detail as $d) {
+            $d->update([
+                'is_refunded' => true,
+                'refunded_at' => now(),
+            ]);
+        }
+        return true;
     }
 }

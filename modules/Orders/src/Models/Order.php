@@ -12,7 +12,7 @@ class Order extends Model
     use HasFactory;
     protected $table = 'orders';
 
-    protected $fillable = ['student_id', 'total', 'payment_date', 'discount', 'coupon', 'status_id', 'payment_complete_date'];
+    protected $fillable = ['student_id', 'total', 'payment_date', 'discount', 'coupon', 'status_id', 'payment_complete_date', 'refunded_at'];
     public function status()
     {
         return $this->belongsTo(OrderStatus::class, 'status_id', 'id');

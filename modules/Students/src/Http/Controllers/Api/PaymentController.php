@@ -7,18 +7,23 @@ use App\Http\Controllers\Controller;
 use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
 use Modules\Orders\src\Repositories\OrdersStatusRepositoryInterface;
 use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
+use Modules\Students\src\Services\StudentCourseService;
+use Modules\Orders\src\Events\OrderPaid;
 class PaymentController extends Controller
 {
 
     private $orderRepository;
     private $couponRepository;
     private $orderStatusRepository;
+    protected $studentCourseService;
+
     public function __construct(OrdersRepositoryInterface $orderRepository, OrdersStatusRepositoryInterface $orderStatusRepository,
-    CouponsRepositoryInterface $couponRepository)
+    CouponsRepositoryInterface $couponRepository, StudentCourseService $studentCourseService)
     {
         $this->orderRepository = $orderRepository;
         $this->orderStatusRepository = $orderStatusRepository;
         $this->couponRepository = $couponRepository;
+        $this->studentCourseService = $studentCourseService;
     }
 
     public function autoPay(Request $request)
@@ -46,9 +51,13 @@ class PaymentController extends Controller
             $order = $this->orderRepository->getOrder($orderId);
             // return $order;
             if (!$order) {
-                return response()->json([
-                    'success' => false,
-                ], 401);
+                // return response()->json([
+                //     'success' => false,
+                // ], 401);
+                return view('errors.401', [
+                    'message' => 'Không tìm thấy đơn này! vui lòng thử tạo lại đơn hàng mới',
+                    'pageTitle' => 'Thanh toán thất bại',
+                ]);
             }
             // //Kiểm tra thời gian của đơn hàng
             if (config('checkout.checkout_countdown') > 0) {
@@ -57,38 +66,58 @@ class PaymentController extends Controller
                 $diff = $now - $paymentDate;
                 $checkoutCountdown = config('checkout.checkout_countdown') * 60;
                 if ($diff > $checkoutCountdown) {
-                    return response()->json([
-                        'success' => false,
-                    ], 401);
+                    // return response()->json([
+                    //     'success' => false,
+                    // ], 401);
+                    return view('errors.401', [
+                        'message' => 'Đơn hàng này đã quá hạn thanh toán! Vui lòng thanh toán lại',
+                        'pageTitle' => 'Thanh toán thất bại',
+                    ]);
                 }
             }
 
             $total = $order->total - $order->discount;
             if ($total != $transferAmount) {
-                return response()->json([
-                    'success' => false,
-                ], 401);
+                // return response()->json([
+                //     'success' => false,
+                // ], 401);
+                return view('errors.401', [
+                    'message' => 'Số tiền thanh toán bị sai hoặc bạn trả tiền chưa đúng',
+                    'pageTitle' => 'Thanh toán thất bại',
+                ]);
             }
 
             // // Xử lý cập nhật trạng thái đơn hàng
             $orderStatus = $this->orderStatusRepository->getOrderStatus(1, 'is_success');
             if (!$orderStatus) {
-                return response()->json([
-                    'success' => false,
-                ], 401);
+                // return response()->json([
+                //     'success' => false,
+                // ], 401);
+                return view('errors.401', [
+                    'message' => 'Đơn hàng này đã được thanh toán hoặc không thể thanh toán!',
+                    'pageTitle' => 'Thanh toán thất bại',
+                ]);
             }
 
             $statusId = $orderStatus->id;
             if ($order->status_id == $statusId) {
-                return response()->json([
-                    'success' => false,
-                ], 401);
+                // return response()->json([
+                //     'success' => false,
+                // ], 401);
+                return view('errors.401', [
+                    'message' => 'Trạng thái đơn hàng đang bị lỗi hoặc đơn hàng đã bị sai !',
+                    'pageTitle' => 'Thanh toán thất bại',
+                ]);
             }
             $data = $this->orderRepository->updateStatus($orderId, $statusId);
             if (!$data) {
-                return response()->json([
-                    'success' => false,
-                ], 401);
+                // return response()->json([
+                //     'success' => false,
+                // ], 401);
+                return view('errors.401', [
+                    'message' => 'Thông tin đơn hàng bị sai hoặc đơn hàng này đã bị lỗi!',
+                    'pageTitle' => 'Thanh toán thất bại',
+                ]);
             }
 
             // Cập nhật thời gian hoàn thành thanh toán
@@ -96,13 +125,20 @@ class PaymentController extends Controller
             if ($order->coupon) {
                 $this->couponRepository->couponUsage($order->coupon, $orderId);
             }
+
+            $this->studentCourseService->attachCoursesToStudent($orderId);
+            event(new OrderPaid($order));
             return [
                 'success' => true,
             ];
         }
-        return response()->json([
-            'success' => false,
-        ], 401);
+        // return response()->json([
+        //     'success' => false,
+        // ], 401);
+        return view('errors.401', [
+                'message' => 'Đã có lỗi xảy ra ở trạng thái, số tiền thanh toán, thời hạn thanh toán! Vui lòng thử lại đơn hàng khác',
+                'pageTitle' => 'Thanh toán thất bại',
+            ]);
     }
 
     public function checkPayment($orderId)

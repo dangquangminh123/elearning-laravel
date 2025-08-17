@@ -10,6 +10,17 @@
                     @include('students::clients.menu')
                 </div>
                 <div class="col-9">
+                    @if (session('success'))
+                        <div class="alert alert-success mt-2">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="alert alert-danger mt-2">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                     <div class="order-detail">
                         <h2 class="py-2">Đơn hàng</h2>
                         <h4 class="mb-3">Thông tin cơ bản</h4>
@@ -40,15 +51,6 @@
                                     <span class="badge bg-{{ $order->status->color }}">
                                         {{ $order->status->name }}
                                     </span>
-                                    {{-- @if ($order->status->is_success == 0)
-                                        @if ($order->expired)
-                                            <span class="badge bg-danger">Hết hạn thanh toán</span>
-                                        @else
-                                            <a href="{{ route('students.account.checkout', $order->id) }}"
-                                                class="btn btn-success btn-sm">Thanh toán</a>
-                                        @endif
-                                    @endif --}}
-
                                     @if ($isExpired)
                                         <span class="badge bg-danger">Hết hạn thanh toán</span>
                                     @endif

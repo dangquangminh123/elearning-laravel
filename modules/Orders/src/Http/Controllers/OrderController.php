@@ -54,7 +54,8 @@ class OrderController extends Controller
             })
             ->addColumn('status', fn($order) => $this->ordersRepository->getStatusBadge($order))
             ->addColumn('payment_date', fn($order) => $order->payment_date ? Carbon::parse($order->payment_date)->format('d/m/Y H:i') : '-')
-            ->addColumn('payment_complete_date', fn($order) => $order->payment_complete_date ? Carbon::parse($order->payment_complete_date)->format('d/m/Y H:i') : '-')
+            ->addColumn('payment_complete_date',  fn($order) => $order->payment_complete_date ? Carbon::parse($order->payment_complete_date)->format('d/m/Y H:i') : 'chưa thanh toán')
+            ->addColumn('refunded_at',  fn($order) => $order->refunded_at ? Carbon::parse($order->refunded_at)->format('d/m/Y H:i') : 'không')
             ->rawColumns(['status', 'action'])
             ->make(true);
     }
@@ -116,6 +117,8 @@ class OrderController extends Controller
                     'payment_date' => Carbon::parse($order->payment_date)->format('d/m/Y H:i'),
                     'payment_complete_date' => $isPaid && $order->payment_complete_date ? Carbon::parse($order->payment_complete_date)->format('d/m/Y H:i')
                     : 'Không thanh toán',
+                    'refunded_at' => $order->refunded_at ? 
+                    Carbon::parse($order->refunded_at)->format('d/m/Y H:i') : 'Không',
                     'note' => $order->note,
                     'courses' => $order->detail->map(function ($detailCourse) {
                         return [

@@ -10,7 +10,10 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Event;
 use Modules\Orders\src\Events\OrderStatusChanged;
 use Modules\Courses\src\Listeners\RevokeStudentCourseAccess;
-
+use Modules\Orders\src\Events\OrderRefunded;
+use Modules\Orders\src\Listeners\SendOrderRefundedNotification;
+use Modules\Orders\src\Events\OrderPaid;
+use Modules\Orders\src\Listeners\SendOrderPaidNotification;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -28,6 +31,12 @@ class EventServiceProvider extends ServiceProvider
 
         OrderStatusChanged::class => [
             RevokeStudentCourseAccess::class,
+        ],
+        OrderPaid::class => [
+            SendOrderPaidNotification::class,
+        ],
+        OrderRefunded::class => [
+            SendOrderRefundedNotification::class,
         ],
     ];
 

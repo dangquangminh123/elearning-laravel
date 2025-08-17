@@ -15,6 +15,7 @@
                 <th>Trạng thái đơn hàng</th>
                 <th>Thời gian bắt đầu</th>
                 <th>Thanh toán vào</th>
+                <th>Hoàn trả</th>
                 <th>Hành động</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <th>Trạng thái đơn hàng</th>
                 <th>Thời gian bắt đầu</th>
                 <th>Thanh toán vào</th>
+                <th>Hoàn trả</th>
                 <th>Hành động</th>
             </tr>
         </tfoot>
@@ -69,6 +71,7 @@
                     { data: 'status' },
                     { data: 'payment_date' },
                     { data: 'payment_complete_date' },
+                    { data: 'refunded_at' },
                     { data: 'action', orderable: false, searchable: false },
 
                 ]

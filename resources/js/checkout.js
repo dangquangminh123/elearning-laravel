@@ -144,12 +144,12 @@ if (checkoutPageEl) {
                         signal: controller.signal,
                     });
                     if (!response.ok) {
-                        throw new Error("Server Error");
+                        showMessage("Áp dụng mã giảm giá thất bại");
                     }
                     const data = await response.json();
 
                     if (data.errors_server) {
-                        throw new Error("Server Error");
+                        showMessage("Xảy ra lỗi hệ thống");
                     }
 
                     if (data && !data.success) {
@@ -220,7 +220,7 @@ if (checkoutPageEl) {
                 `http://127.0.0.1:8002/api/students/check-payment/${orderId}`
             );
             if (!response.ok) {
-                throw new Error("Server Error");
+                showMessage("Thanh toán thất bại! thử lại sau");
             }
             const { success, data } = await response.json();
             if (success) {

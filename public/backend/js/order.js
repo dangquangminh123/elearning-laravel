@@ -17,7 +17,12 @@ $(document).on('click', '.btn-view', function(e) {
                 let statusClass = '';
                 let paymentAmount = '0đ';
                 let paymentCompleteDate = 'Không có';
-
+                let refundInfo = '';
+                if (o.refunded_at) {
+                    refundInfo = o.refunded_at;
+                } else {
+                    refundInfo = `Chưa`;
+                }
                 switch (statusName.toLowerCase()) {
                     case 'chờ thanh toán':
                         statusClass = 'status-pending';
@@ -47,6 +52,7 @@ $(document).on('click', '.btn-view', function(e) {
                         <p><strong>Số tiền đã thanh toán:</strong> <span class="paid-amount">${o.payment_amount}</span></p>
                         <p><strong>Ngày đặt:</strong> <span>${o.payment_date}</span></p>
                         <p><strong>Ngày hoàn tất thanh toán:</strong> <span>${o.payment_complete_date}</span></p>
+                        <p><strong>Đã hoàn trả:</strong> <span class="text-info">${refundInfo}</span></p>
                         <p><strong>Ghi chú:</strong> <span>${o.note ?? 'Không có'}</span></p>
                     </div>
                     <hr>

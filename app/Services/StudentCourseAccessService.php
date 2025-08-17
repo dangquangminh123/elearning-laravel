@@ -24,7 +24,7 @@ class StudentCourseAccessService
 
         if (!$course) return false;
 
-        $hasDirectAccess = $this->coursesRepository->studentOwnsCourse($student->id, $course->id);
+        $hasDirectAccess = $this->coursesRepository->studentOwnsCourse($student->id, $course->id, 1);
 
         $hasPurchased = $this->ordersRepository->studentPurchasedCourse($student->id, $course->id);
 

@@ -10,7 +10,13 @@
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link {{activeMenu('admin.'.$name.'.index') ? 'active' : ''}}" 
                         href="{{route('admin.'.$name.'.index')}}">Danh sách</a>
-                        <a class="nav-link {{activeMenu('admin.'.$name.'.create') ? 'active' : ''}}" 
-                        href="{{route('admin.'.$name.'.create')}}">Thêm mới</a>
+                       
+                        @if (Route::has('admin.'.$name.'.create'))
+                            <a class="nav-link {{ activeMenu('admin.'.$name.'.create') ? 'active' : '' }}" 
+                            href="{{ route('admin.'.$name.'.create') }}">
+                            Thêm mới
+                            </a>
+                        @endif
+                            
                     </nav>
                 </div>
