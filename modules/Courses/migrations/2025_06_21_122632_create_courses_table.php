@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('detail')->nullable();
             $table->integer('teacher_id');
+            $table->unsignedInteger('type_id');
             $table->string('thumbnail')->nullable();
             $table->float('price', 11)->default(0);
             $table->float('sale_price', 11)->default(0);

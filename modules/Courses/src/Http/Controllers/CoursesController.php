@@ -7,8 +7,6 @@ use Modules\Categories\src\Repositories\CategoriesRepositoryInterface;
 use Modules\Courses\src\Http\Requests\CoursesRequest;
 use Modules\Teacher\src\Repositories\TeacherRepositoryInterface;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
-
-use Modules\Teacher\src\Repositories\TeacherRepository;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 
@@ -48,6 +46,9 @@ class CoursesController extends Controller
             ->editColumn('status', function ($course) {
                 return $course->status == 1 ? '<span class="btn btn-success">Đã diễn ra</span>' : '<span class="btn btn-warning">Chưa diễn ra</span>';
             })
+            ->addColumn('type_name', function($course) {
+                return format_course_type($course->type->name ?? 'Không có loại');
+            })
             ->editColumn('price', function ($course) {
                 if($course->price) {
                     if($course->sale_price) {
@@ -60,20 +61,20 @@ class CoursesController extends Controller
                 }
                 return $price;
             })
-        ->rawColumns(['edit', 'delete', 'code', 'status', 'lessons'])
+        ->rawColumns(['edit', 'delete', 'code', 'status', 'type_name', 'lessons'])
         ->toJson();
     }
     public function index() {
         $pageTitle = 'Quản lý khoá học';
-        // $users = $this->coursesRepository->getAllCourses();
         return view('courses::lists', compact('pageTitle'));
     }
 
     public function create() {
         $pageTitle = 'Thêm mới khoá học';
         $teacher = $this->teacherRepository->getAllTeacher()->get();
+        $types = $this->coursesRepository->getAllTypeCourses();
         $categories = $this->categoriesRepository->getAllCategories();
-        return view('courses::add', compact('pageTitle', 'categories', 'teacher'));
+        return view('courses::add', compact('pageTitle', 'categories', 'teacher', 'types'));
     }
 
     public function store(CoursesRequest $request) {
@@ -98,6 +99,7 @@ class CoursesController extends Controller
         $course = $this->coursesRepository->getCourse($id);
         $categoryIds = $this->coursesRepository->getRelatedCategories($course);
         $categories = $this->categoriesRepository->getAllCategories();
+        $types = $this->coursesRepository->getAllTypeCourses();
         $teacher = $this->teacherRepository->getAllTeacher()->get();
 
         $pageTitle = 'Cập nhập khoá học';
@@ -105,7 +107,7 @@ class CoursesController extends Controller
         if(!$course) {
             abort(404);
         }
-        return view('courses::edit', compact('course', 'pageTitle', 'categories', 'categoryIds', 'teacher'));
+        return view('courses::edit', compact('course', 'pageTitle', 'categories', 'categoryIds', 'teacher', 'types'));
     }
 
     public function update(CoursesRequest $coursesRequest, $id) {

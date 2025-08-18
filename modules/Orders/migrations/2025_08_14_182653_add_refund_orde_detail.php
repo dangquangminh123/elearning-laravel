@@ -10,23 +10,23 @@ return new class () extends Migration {
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('orders_detail', function(Blueprint $table) {
-            $table->boolean('is_refunded')->default(false)->after('price');
-            $table->timestamp('refunded_at')->nullable()->after('is_refunded');
-        });
-    }
+    // public function up()
+    // {
+        // Schema::table('orders_detail', function(Blueprint $table) {
+        //     $table->boolean('is_refunded')->default(false)->after('price');
+        //     $table->timestamp('refunded_at')->nullable()->after('is_refunded');
+        // });
+    // }
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::table('orders_detail', function (Blueprint $table) {
-            $table->dropColumn(['is_refunded', 'refunded_at']);
-        });
-    }
+    // public function down()
+    // {
+        // Schema::table('orders_detail', function (Blueprint $table) {
+        //     $table->dropColumn(['is_refunded', 'refunded_at']);
+        // });
+    // }
 };

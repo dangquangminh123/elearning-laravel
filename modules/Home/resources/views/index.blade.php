@@ -69,7 +69,8 @@
         </div>
     </div>
 </section>
-<section class="foundation-course">
+
+{{-- <section class="foundation-course">
     <div class="container padding">
         <h3>khóa học nền tảng</h3>
         <div class="row">
@@ -264,595 +265,79 @@
             </div>
         </div>
     </div>
-</section>
-<section class="intensive-course">
+</section> --}}
+@foreach($courseTypes as $type)
+<section class="{{ course_section_class_by_name($type->name ?? null) }}">
     <div class="container padding">
-        <h3>khóa học chuyên sâu</h3>
+        <x-course-type-badge :type="$type->name ?? null" />
+
         <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
+            @forelse($coursesByType[$type->id] ?? [] as $course)
+                <div class="col-12 col-lg-6">
+                    <div class="d-flex course">
+                        <div class="banner-course">
+                            <img src="{{ $course->thumbnail ?? '/clients/assets/banner-course.png' }}" alt="{{ $course->name }}" />
                         </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
+                        <div class="descreption-course">
+                            <div class="descreption-top">
+                                <p><i class="fa-solid fa-clock"></i>{{ $course->durations ?? 'N/A' }}</p>
+                                <p><i class="fa-solid fa-video"></i>{{ $course->lessons->count() }} bài</p>
+                                <p><i class="fa-solid fa-eye"></i>{{ $course->orderDetail->count() }}</p>
+                            </div>
+                            <h5 class="descreption-title">
+                                <a href="{{ route('courses.detail', ['slug' => $course->slug]) }}">
+                                    {{ $course->name }}
+                                </a>
+                            </h5>
+                            <div class="descreption-teacher">
+                                <img src="{{ $course->teacher->image ?? '/clients/assets/course-teacher.png' }}" alt="{{ $course->teacher->name }}" />
+                                <span>{{ $course->teacher->name }}</span>
+                            </div>
+                            <p class="descreption-price">
+                                @if($course->sale_price)
+                                    <span class="sale">{{ number_format($course->price, 0, ',', '.') }}đ</span>
+                                    <span>{{ number_format($course->sale_price, 0, ',', '.') }}đ</span>
+                                @else
+                                    <span>{{ number_format($course->price, 0, ',', '.') }}đ</span>
+                                @endif
+                            </p>
                         </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
+            @empty
+                 <div class="col-12 col-lg-6">
+                    <div class="d-flex course">
+                        <div class="banner-course">
+                            <img src="/clients/assets/banner-course.png" alt="" />
                         </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
+                        <div class="descreption-course">
+                            <div class="descreption-top">
+                                <p><i class="fa-solid fa-clock"></i>1,5h học</p>
+                                <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
+                                <p><i class="fa-solid fa-eye"></i>1000</p>
+                            </div>
+                            <h5 class="descreption-title">
+                                <a href="#">
+                                    Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
+                                </a>
+                            </h5>
+                            <div class="descreption-teacher">
+                                <img src="/clients/assets/course-teacher.png" alt="" />
+                                <span>Nguyễn Chí Ngọc</span>
+                            </div>
+                            <p class="descreption-price">
+                                <span class="sale">400.000đ</span>
+                                <span>200.000đ</span>
+                            </p>
                         </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
     </div>
 </section>
-<section class="featured-course">
-    <div class="container padding">
-        <h3>khóa học nổi bật</h3>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="skill-extention">
-    <div class="container padding">
-        <h3>khóa học mở rộng kĩ năng</h3>
-        <div class="row">
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6">
-                <div class="d-flex course">
-                    <div class="banner-course">
-                        <img src="/clients/assets/banner-course.png" alt="" />
-                    </div>
-                    <div class="descreption-course">
-                        <div class="descreption-top">
-                            <p><i class="fa-solid fa-clock"></i>1,5h học</p>
-                            <p><i class="fa-solid fa-video"></i>4 phần/18 bài</p>
-                            <p><i class="fa-solid fa-eye"></i>1000</p>
-                        </div>
-                        <h5 class="descreption-title">
-                            <a href="#">
-                                Kiểm soát mô hình 3D ngay trên Điện thoại - Máy tính
-                            </a>
-                        </h5>
-                        <div class="descreption-teacher">
-                            <img src="/clients/assets/course-teacher.png" alt="" />
-                            <span>Nguyễn Chí Ngọc</span>
-                        </div>
-                        <p class="descreption-price">
-                            <span class="sale">400.000đ</span>
-                            <span>200.000đ</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@endforeach
+
 <section class="question">
     <div class="container padding">
         <h3>vì sao nên học tại dscons</h3>

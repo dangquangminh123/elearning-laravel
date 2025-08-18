@@ -10,22 +10,22 @@ return new class () extends Migration {
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('orders', function(Blueprint $table) {
-            $table->timestamp('refunded_at')->nullable()->after('payment_complete_date');
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::table('orders', function(Blueprint $table) {
+    //         $table->timestamp('refunded_at')->nullable()->after('payment_complete_date');
+    //     });
+    // }
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('refunded_at');
-        });
-    }
+    // public function down()
+    // {
+    //     Schema::table('orders', function (Blueprint $table) {
+    //         $table->dropColumn('refunded_at');
+    //     });
+    // }
 };

@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-6">
                 <div class="mb-3">
                     <label for="">Chuyên mục</label>
                     <div class="list-categories">
@@ -145,6 +145,24 @@
                         </div>
                     @enderror
                     
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="">Loại khoá học</label>
+                     <select name="type_id" id="type_id" class="form-control" class="form-select {{$errors->has('type_id') ? 'is-invalid' : ''}}">
+                        @foreach($types as $type)
+                            <option value="{{ $type->id }}" {{ $type->id == 1 ? 'selected' : '' }}>
+                                {{ $type->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('type_id')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
                 </div>
             </div>
             

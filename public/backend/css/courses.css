@@ -1,0 +1,35 @@
+.badge-course {
+    font-size: 0.875rem; /* tương đương 14px */
+    font-weight: 600;
+    padding: 0.25rem 0.5rem; /* tương đương 4px 8px */
+    border-radius: 0.25rem;
+    display: inline-block;
+}
+
+/* Dùng màu từ American Palette - Flat UI Colors */
+.badge-course-foundation { 
+    background: #D63031; /* Pomegranate */
+    color: #FAD390; /* Bright Yarrow – vàng nhạt cho chữ nổi bật */
+}
+.badge-course-free { 
+    background: #00B894; /* Mint Leaf */
+    color: #DFF9FB; /* Anti-Flash White – xanh rất nhạt */
+}
+.badge-course-hot { 
+    background: #FDCB6E; /* Bright Yarrow */
+    color: #2D3436; /* Deep grey – chữ tối nổi bật trên nền vàng */
+}
+.badge-course-advanced { 
+    background: #0984E3; /* Electron Blue */
+    color: #DFF9FB; /* Xanh nhạt cho chữ nổi bật */
+}
+.badge-course-skill { 
+    background: #6C5CE7; /* Exodu Purple */
+    color: #FDCB6E; /* Vàng nhạt tạo điểm nhấn */
+}
+.badge-course-default { 
+    background: #B2BEC3; /* Soothing Breeze */
+    color: #2D3436; /* Deep grey nổi bật */
+}
+
+

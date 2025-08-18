@@ -36,6 +36,11 @@ class CoursesRequest extends FormRequest
                     $fail(__('courses::validation.choose'));
                 }
             }],
+            'type_id' => ['required', 'integer', function($attribute, $value, $fail){
+                if($value == 0) {
+                    $fail(__('courses::validation.choose'));
+                }
+            }],
             'thumbnail' => 'required|max:255',
             'code' => 'required|max:255|'.$uniqueRule,
             'is_document' => 'required|integer',
@@ -61,5 +66,18 @@ class CoursesRequest extends FormRequest
 
     public function attributes() {
         return __( 'courses::validation.attributes');
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $typeId = $this->input('type_id');
+            $price  = $this->input('price');
+
+            // Giả sử ID = 2 là "Khóa học miễn phí"
+            if ($typeId == 2 && $price > 0) {
+                $validator->errors()->add('price', __('courses::validation.free_course_price'));
+            }
+        });
     }
 }

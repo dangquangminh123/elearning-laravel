@@ -12,6 +12,7 @@
                 <th>Giá</th>
                 <th>Mã khoá</th>
                 <th>Trạng thái</th>
+                <th>Loại</th>
                 <th>Thời gian</th>
                 <th>Bài giảng</th>
                 <th style="width: 5%;">Sửa</th>
@@ -24,6 +25,7 @@
                 <th>Giá</th>
                 <th>Mã khoá</th>
                 <th>Trạng thái</th>
+                 <th>Loại</th>
                 <th>Thời gian</th>
                 <th>Bài giảng</th>
                 <th>Sửa</th>
@@ -50,6 +52,7 @@
                     { "data": "price" },
                     { "data": "code" },
                     { "data": "status" },
+                    { "data": "type_name" },
                     { "data": "created_at" },
                     { "data": "lessons" },
                     { "data": "edit" },

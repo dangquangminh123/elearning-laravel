@@ -74,14 +74,27 @@
 .foundation-course h3,
 .intensive-course h3,
 .featured-course h3,
-.skill-extention h3 {
+.skill-extention h3,
+.free-course h3 {
 	text-align: center;
 	padding: 20px 0;
 	font-size: 1.7rem;
 	text-transform: uppercase;
 }
 .banner-course {
-	width: 100%;
+    width: 25em;
+    height: 13em;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    flex-shrink: 0; /* nếu đặt trong flex container, tránh co lại */
+}
+
+.banner-course img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: fill;
+    object-position: center; /* căn giữa ảnh */
 }
 .descreption-course {
 	padding: 20px;
@@ -125,20 +138,30 @@
 }
 /* foundation-course */
 .foundation-course h3 {
-	background-color: #98c6ef;
+	 background: #D63031; /* Pomegranate */
+    color: #FAD390; /* Bright Yarrow – vàng nhạt cho chữ nổi bật */
 }
+
+.free-course h3 {
+	background: #00B894; /* Mint Leaf */
+    color: #DFF9FB; /* Anti-Flash White – xanh rất nhạt */
+}
+
 /* intensive-course */
 .intensive-course h3 {
-	background-color: #66ecec;
+	background: #0984E3; /* Electron Blue */
+    color: #DFF9FB; /* Xanh nhạt cho chữ nổi bật */
 }
 /* featured-course */
 
 .featured-course h3 {
-	background-color: #62da43;
+	background: #FDCB6E; /* Bright Yarrow */
+    color: #2D3436; /* Deep grey – chữ tối nổi bật trên nền vàng */
 }
 /* skill-extention */
 .skill-extention h3 {
-	background-color: #f8a6a6;
+	 background: #6C5CE7; /* Exodu Purple */
+    color: #FDCB6E; /* Vàng nhạt tạo điểm nhấn */
 }
 /* question */
 .question h3 {

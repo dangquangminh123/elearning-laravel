@@ -7,10 +7,12 @@
         'max' => ':attribute tối đa từ :max ký tự',
         'integer' => ':attribute phải là số',
         'choose' => ':attribute bắt buộc phải chọn',
+        'free_course_price' => 'Khoá học miễn phí không được có giá lớn hơn 0. Vui lòng chọn loại khác hoặc sửa giá về 0.',
         'attributes' => [
             'name' => 'Tên',
             'slug' => 'Slug',
             'teacher_id' => 'Giảng viên',
+            'type_id' => 'Loại khoá học',
             'code' => 'Mã khoá học',
             'thumbnail' => 'Ảnh đại diện khoá học',
             'is_document' => 'Tài liệu đính kèm',

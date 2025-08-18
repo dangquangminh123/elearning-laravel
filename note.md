@@ -36,7 +36,6 @@ discount_value có giá trị 370000 đến 500000 thì total_condition từ 149
 discount_value có giá trị 500 000 đến 699000 thì total_condition nhỏ hơn 2000000 tới 2 999 000
 discount_value có giá trị 799 000  thì total_condition lớn hơn 3 000 000
 
-//Sau khi xử lý chỉnh chu luồng hoàn trả hoàn tiền! Tiếp tục sửa tiếp thêm phần cập nhập lại số lượng usage coupon đó lên lại
 
 MERN  structure 2025
 project-root/

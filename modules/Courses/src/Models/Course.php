@@ -8,6 +8,7 @@ use Modules\Categories\src\Models\Category;
 use Modules\Teacher\src\Models\Teacher;
 use Modules\Lessons\src\Models\Lesson;
 use Modules\Orders\src\Models\OrderDetail;
+use Modules\Courses\src\Models\CourseType;
 
 class Course extends Model
 {
@@ -22,6 +23,7 @@ class Course extends Model
         'slug',
         'detail',
         'teacher_id',
+        'type_id',
         'thumbnail',
         'price',
         'sale_price',
@@ -49,6 +51,11 @@ class Course extends Model
     public function lessons()
     {
         return $this->hasMany(Lesson::class, 'course_id', 'id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(CourseType::class, 'type_id');
     }
 
     public function orderDetail()
