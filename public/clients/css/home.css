@@ -138,30 +138,29 @@
 }
 /* foundation-course */
 .foundation-course h3 {
-	 background: #D63031; /* Pomegranate */
-    color: #FAD390; /* Bright Yarrow – vàng nhạt cho chữ nổi bật */
+	background: #D63031;
+    color: #FAD390;
 }
 
 .free-course h3 {
-	background: #00B894; /* Mint Leaf */
-    color: #DFF9FB; /* Anti-Flash White – xanh rất nhạt */
+	background: #00B894; 
+    color: #DFF9FB; 
 }
 
 /* intensive-course */
 .intensive-course h3 {
-	background: #0984E3; /* Electron Blue */
-    color: #DFF9FB; /* Xanh nhạt cho chữ nổi bật */
+	background: #0984E3;
+    color: #DFF9FB;
 }
-/* featured-course */
 
 .featured-course h3 {
-	background: #FDCB6E; /* Bright Yarrow */
-    color: #2D3436; /* Deep grey – chữ tối nổi bật trên nền vàng */
+	background: #FDCB6E; 
+    color: #2D3436; 
 }
 /* skill-extention */
 .skill-extention h3 {
-	 background: #6C5CE7; /* Exodu Purple */
-    color: #FDCB6E; /* Vàng nhạt tạo điểm nhấn */
+	 background: #6C5CE7; 
+    color: #FDCB6E;
 }
 /* question */
 .question h3 {

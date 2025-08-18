@@ -17,9 +17,28 @@
 }
 .banner .banner-left .course-group p {
 	font-size: 1.1rem;
-	color: #0095eb;
+	// color: #0095eb;
+	font-weight: bold;
 	text-transform: uppercase;
 }
+
+/* Màu cho từng loại */
+.course-group p.course-type-nen-tang {
+    color: #D63031;
+}
+.course-group p.course-type-mien-phi {
+    color: #00B894;
+}
+.course-group p.course-type-noi-bat {
+    color: #FDCB6E;
+}
+.course-group p.course-type-chuyen-sau {
+    color: #0984E3;
+}
+.course-group p.course-type-mo-rong {
+    color: #6C5CE7;
+}
+
 .banner .banner-left .course-group ul {
 	list-style-type: disc;
 	margin-left: 20px;
@@ -66,7 +85,7 @@
 	background-color: #fff;
 	border: 1px solid #d7e0e0;
 	border-radius: 0.5em;
-	height: 14em;
+	height: 13em;
 }
 .course:hover {
 	transform: translateY(-1%);
@@ -164,52 +183,83 @@
     color: #FDCB6E;
 }
 /* question */
+
+.question {
+    background: #f9fbff;
+    padding: 60px 0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
 .question h3 {
-	margin-top: 30px;
-	padding: 20px 0;
-	text-align: center;
-	font-size: 1.7rem;
-	text-transform: uppercase;
+    text-align: center;
+    font-size: 2rem;
+    text-transform: uppercase;
+    color: #1978dc;
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
 }
+
 .question .group {
-	display: flex;
-	align-items: center;
-	margin: 10px 0;
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 1rem;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.question .group .group-icon {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	border: 2px solid #1978dc;
-	margin-right: 20px;
+.question .group:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
-.question .group .group-icon:hover {
-	background-color: #1978dc;
-	transition: all 0.4s linear;
+
+.question .group-icon {
+    flex: 0 0 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #fff;
+    margin-right: 20px;
+    transition: background 0.4s ease;
 }
-.question .group .group-icon:hover i {
-	color: #fff;
-	transition: all 0.4s linear;
+
+.question .group-icon i {
+    font-size: 2rem;       /* chỉnh kích thước icon */
+    color: #fff;           /* icon trắng trên nền gradient */
+    line-height: 1;        /* tránh bị lệch */
 }
-.question .group .group-icon i {
-	color: #1978dc;
-	font-size: 2rem;
+
+.icon-blue { background: linear-gradient(135deg, #1978dc, #0e4c9a); }
+.icon-orange { background: linear-gradient(135deg, #ff7c3d, #e85d04); }
+.icon-green { background: linear-gradient(135deg, #3bb273, #138047); }
+.icon-purple { background: linear-gradient(135deg, #7b5fff, #4c2ae0); }
+
+.question .group-title p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: #333;
 }
-.question .group .group-title p {
-	font-size: 1.2rem;
-	text-transform: uppercase;
+.question .group-title ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
 }
-.question .group .group-title ul {
-	list-style-type: disc;
-	margin-left: 40px;
-	font-size: 0.8rem;
+.question .group-title ul li {
+    padding: 4px 0;
+    line-height: 1.5;
 }
-.question .group .group-title ul li {
-	padding: 5px 0;
-}
+
+
+
 /* partner */
 .partner h3 {
 	margin-top: 40px;
@@ -234,4 +284,189 @@
 	padding: 10px 20px;
 	display: block;
 	text-align: center;
+}
+
+
+
+/* Features */
+:root{
+  --grad: linear-gradient(135deg,#5b8cff,#9b63ff);
+  --grad-2: linear-gradient(135deg,#6a5af9,#8f6fff);
+  --bg: #f3f6fb;
+  --ink: #1b1f2a;
+  --muted: #5b6070;
+}
+
+.features-hero{
+  background: var(--bg);
+  padding: 4rem 0;
+  font-family: system-ui, Segoe UI, Roboto, sans-serif;
+}
+.features-hero .wrap{
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  display:flex;
+  align-items: stretch;
+  gap: 4rem;
+}
+
+/* LEFT: ring area */
+.hex-left{
+  flex: 0 0 auto;
+}
+.hex-ring{
+   width: 30rem;
+  height: 30rem;
+  position: relative;
+  margin-inline: auto;
+}
+
+/* HEX BASE */
+.hex{
+	clip-path: polygon(25% 6.7%,75% 6.7%,100% 50%,75% 93.3%,25% 93.3%,0% 50%);
+    background: #ffffff;
+    border: 0.08rem solid rgba(0,0,0,0.06);
+    box-shadow: 0 0.5rem 2rem rgba(21,27,38,0.06);
+    color: var(--muted);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0.75rem;
+    transition: transform .35s ease, box-shadow .35s ease, background .35s ease, color .35s ease;
+}
+
+
+/* icon + label căn giữa tuyệt đối theo cả chiều dọc lẫn ngang */
+.hex i{
+  font-size: 1.6rem;
+  margin-bottom: .4rem;
+}
+.hex span{
+  font-size: .95rem;
+  line-height: 1.3;
+}
+
+.hex-center {
+   	width: 15rem;
+    height: 14.8rem;
+    left: 43%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 0.8rem 2.2rem rgba(21, 27, 38, 0.12);
+}
+
+.hex-center img{
+  width: 100%; height: 100%; object-fit: cover; display:block;
+}
+/* Items */
+.hex-item{
+	cursor: pointer;
+    width: 11rem;
+    height: 10.55rem;
+    background: #ffffff;
+    border: 0.08rem solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 0.5rem 2rem rgba(21, 27, 38, 0.06);
+    color: var(--muted);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem 0.75rem;
+    transition: transform .35s ease, box-shadow .35s ease, background .35s ease, color .35s ease;
+}
+
+.hex-item:hover {
+  transform: translateZ(0) scale(1.05);
+  box-shadow: 0 1rem 2.4rem rgba(21, 27, 38, .12);
+}
+
+.hex-item.active {
+  background: var(--grad);
+  color: #fff;
+  transform: translateZ(0) scale(1.1);
+  box-shadow: 0 1.2rem 2.6rem rgba(104, 84, 255, .35);
+}
+/* Căn chỉnh khoảng cách đều nhau cho tất cả Hex Items */
+.hex-item:nth-child(2) {
+    left: 25%; top: 38%;
+    transform: rotate(270deg) translate(14rem) rotate(-270deg);
+}
+.hex-item:nth-child(3) {
+    left: 25%; top: 38%;
+    transform: rotate(330deg) translate(14rem) rotate(-330deg);
+}
+.hex-item:nth-child(4) {
+    left: 25%; top: 38%;
+    transform: rotate(30deg) translate(14rem) rotate(-30deg);
+}
+.hex-item:nth-child(5) {
+    left: 25%; top: 38%;
+    transform: rotate(90deg) translate(14rem) rotate(-90deg);
+}
+.hex-item:nth-child(6) {
+    left: 25%; top: 38%;
+    transform: rotate(150deg) translate(14rem) rotate(-150deg);
+}
+.hex-item:nth-child(7) {
+    left: 25%; top: 38%;
+    transform: rotate(210deg) translate(14rem) rotate(-210deg);
+}
+
+.feat-right{
+  flex: 1 1 auto;
+  min-height: 34rem;            
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;           
+}
+.feat-content{
+  max-width: 34rem;
+  text-align: left;
+  margin-left: auto;            
+}
+.feat-content h2{
+  font-size: 2rem;
+  margin: 0 0 .75rem;
+  color: var(--ink);
+}
+.feat-content p{
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* BIG NAV BUTTONS pinned to bottom */
+.feat-nav{
+  margin-top: auto;               /* đẩy xuống đáy */
+  display:flex; gap: 1.2rem;
+}
+.nav-btn{
+  padding: .95rem 2.8rem;
+  font-size: 1.1rem;
+  border-radius: 999rem;
+  border: none;
+  color: #fff;
+  background: var(--grad-2);
+  box-shadow: 0 .6rem 1.2rem rgba(104,84,255,.25);
+  cursor: pointer;
+  transition: transform .2s ease, filter .2s ease;
+}
+.nav-btn i{ font-size: 1.15rem; }
+.nav-btn:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+.nav-btn:active{ transform: translateY(0); }
+
+/* Responsive */
+@media (max-width: 62rem){
+  .features-hero .wrap{ flex-direction: column; align-items:center; }
+  .feat-right{ align-items: center; min-height: auto; }
+  .feat-content{ text-align:center; margin-left: 0; }
+  .feat-nav{ justify-content:center; }
 }

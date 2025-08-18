@@ -8,6 +8,8 @@ interface CoursesRepositoryInterface extends RepositoryInterface
 {
     public function getAllCourses();
     public function getAllTypeCourses();
+
+    public function getAllCoursesByType();
     public function createCourseCategories($course, $data = []);
     public function updateCourseCategories($course, $data = []);
     public function deleteCourseCategories($course);
@@ -20,4 +22,5 @@ interface CoursesRepositoryInterface extends RepositoryInterface
     public function updateCourse($id, $data = []);
     public function getCourseActive($slug);
      public function studentOwnsCourse(int $studentId, int $courseId);
+    public function getCoursesGroupedByType($limit);
 }

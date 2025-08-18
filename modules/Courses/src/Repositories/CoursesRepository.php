@@ -23,6 +23,12 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
         return  CourseType::all();
     }
 
+    public function getAllCoursesByType()
+    {
+        return $this->getAllCourses()
+            ->get()
+            ->groupBy('type_id'); // Collection keyed by type_id
+    }
     public function createCourseCategories($course, $data = []) {
         return $course->categories()->attach($data);
     }
@@ -51,6 +57,31 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
         return $this->model->withoutGlobalScope(ActiveScope::class)->find($id);
     }
 
+    public function getCoursesGroupedByType($limit = 4)
+    {
+        $types =  $this->getAllTypeCourses();
+       
+        $data = [];
+        foreach ($types as $type) {
+            $courses = $this->model
+                ->withoutGlobalScope(ActiveScope::class)
+                ->with(['type', 'teacher'])
+                ->where('type_id', $type->id)
+                ->latest()
+                ->limit($limit)
+                ->get();
+
+            if ($courses->isNotEmpty()) {
+                $data[] = [
+                    'type'    => $type,
+                    'courses' => $courses,
+                    'class'   => course_type_class($type->name), // Gắn class màu tiêu đề tại đây luôn
+                ];
+            }
+        }
+
+        return $data;
+    }
 
     public function deleteCourse($id)
     {

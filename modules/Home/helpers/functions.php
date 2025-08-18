@@ -35,3 +35,18 @@ if (!function_exists('course_section_class_by_name')) {
         return $map[$key] ?? 'default-course';
     }
 }
+
+if (!function_exists('course_type_class')) {
+    function course_type_class($typeName)
+    {
+        $map = [
+            'Khóa học nền tảng'       => 'course-type-nen-tang',
+            'Khóa học miễn phí'       => 'course-type-mien-phi',
+            'Khóa học nổi bật'        => 'course-type-noi-bat',
+            'Khóa học chuyên sâu'     => 'course-type-chuyen-sau',
+            'Khóa học mở rộng kỹ năng'=> 'course-type-mo-rong',
+        ];
+
+        return $map[$typeName] ?? '';
+    }
+}

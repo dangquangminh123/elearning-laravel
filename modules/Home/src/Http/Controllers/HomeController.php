@@ -18,18 +18,17 @@ class HomeController extends Controller
         $this->teacherRepository = $teacherRepository;
     }
     public function index() {
-       $pageTitle = 'Trang chủ';
+        $pageTitle = 'Trang chủ';
+
 
         // Lấy tất cả loại khóa học
         $courseTypes = $this->coursesRepository->getAllTypeCourses();
 
-        // Lấy tất cả khóa học (bao gồm type + teacher)
-        $courses = $this->coursesRepository->getAllCourses()->get();
+        // Lấy tất cả khóa học đã group theo type_id
+        $coursesByType = $this->coursesRepository->getAllCoursesByType();
 
-        // Group các khóa học theo type_id
-        $coursesByType = $courses->groupBy('type_id');
 
-        // dd($courses);
-        return view('home::index', compact('pageTitle', 'courseTypes', 'coursesByType'));
+        $courseGroups = $this->coursesRepository->getCoursesGroupedByType(4);
+        return view('home::index', compact('pageTitle', 'courseTypes', 'coursesByType', 'courseGroups'));
     }
 }
