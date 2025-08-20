@@ -71,6 +71,90 @@
     </div>
 </section>
 
+<div class="container py-5">
+    <header class="text-center mb-5">
+            <p class="service-subtitle">CHÚNG TÔI LÀM GÌ?</p>
+            <h1 class="service-title-main">DỊCH VỤ TỐT NHẤT MÀ CHÚNG TÔI CUNG CẤP</h1>
+            <p class="service-description-main">
+                Với nhiều năm kinh nghiệm trong lĩnh vực giáo dục trực tuyến, chúng tôi tự tin mang đến các giải pháp học tập toàn diện, từ phát triển nội dung, hệ thống quản lý học tập (LMS), đến ứng dụng công nghệ để nâng cao trải nghiệm người học.
+            </p>
+    </header>
+
+    <section class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-desktop fa-2xl"></i>
+                    </div>
+                    <h3 class="service-card-title">Khóa Học Trực Tuyến</h3>
+                    <p class="service-card-description">
+                        Phát triển và cung cấp các khóa học đa dạng cho nhiều lĩnh vực, từ công nghệ thông tin, kinh doanh đến kỹ năng mềm, phù hợp với mọi đối tượng.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-book-open fa-2xl"></i>
+                    </div>
+                    <h3 class="service-card-title">Hệ Thống LMS</h3>
+                    <p class="service-card-description">
+                        Xây dựng và tùy chỉnh hệ thống quản lý học tập (LMS) mạnh mẽ, giúp theo dõi tiến độ, đánh giá và tương tác hiệu quả.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-mobile-screen-button fa-2xl"></i>
+                    </div>
+                    <h3 class="service-card-title">Ứng Dụng Học Tập</h3>
+                    <p class="service-card-description">
+                        Phát triển ứng dụng học tập trên nền tảng di động (iOS/Android) và web, cho phép học viên học mọi lúc, mọi nơi.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-users fa-2xl"></i>
+                    </div>
+                    <h3 class="service-card-title">Hệ Thống Tương Tác</h3>
+                    <p class="service-card-description">
+                        Cung cấp các giải pháp công nghệ để nâng cao tương tác giữa học viên và giảng viên, bao gồm phòng học ảo, diễn đàn và trò chuyện.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-robot fa-2xl"></i>
+                    </div>
+                    <h3 class="service-card-title">Tích Hợp AI & VR/AR</h3>
+                    <p class="service-card-description">
+                        Áp dụng công nghệ trí tuệ nhân tạo (AI) và thực tế ảo/tăng cường (VR/AR) vào các bài giảng, mang lại trải nghiệm học tập sinh động và trực quan.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="service-item">
+                    <div class="icon">
+                        <i class="fa-solid fa-chart-line fa-2xl"></i>
+                    </div>
+                    <h3 class="service-card-title">Tư Vấn & Triển Khai</h3>
+                    <p class="service-card-description">
+                        Cung cấp dịch vụ tư vấn chiến lược và hỗ trợ triển khai các giải pháp giáo dục trực tuyến, đảm bảo hiệu quả tối ưu cho tổ chức.
+                    </p>
+                </div>
+            </div>
+    </section>
+</div>
+
 <section class="features-hero">
   <div class="wrap">
     <!-- LEFT: HEX RING -->
@@ -344,6 +428,7 @@
         </div>
     </div>
 </section>
+
 <section class="about-us">
     <div class="container">
         <div class="row">
