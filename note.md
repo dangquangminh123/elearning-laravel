@@ -96,3 +96,4 @@ ngrok http http://localhost:8080
 ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
 awaited-reindeer-strictly.ngrok-free.app
 
+

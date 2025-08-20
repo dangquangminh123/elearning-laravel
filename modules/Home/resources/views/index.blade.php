@@ -155,50 +155,61 @@
     </section>
 </div>
 
+
 <section class="features-hero">
   <div class="wrap">
-    <!-- LEFT: HEX RING -->
     <div class="hex-left">
       <div class="hex-ring" id="hexRing">
-        <!-- Hex trung tâm (ảnh) -->
-        <div class="hex hex-center">
-          <img src="/clients/assets/slider-2.jpeg" alt="center" />
+        <div class="hex-wrap hex-center-wrap">
+          <div class="hex hex-center">
+            <img src="/clients/assets/slider-2.jpeg" alt="center" />
+          </div>
         </div>
 
-        <!-- 6 hex xếp vòng tròn, data-angle (độ) để định vị -->
-        <button class="hex hex-item active" data-index="0" data-angle="270" aria-label="Theo dõi học tập">
-          <i class="fa-solid fa-bell"></i>
-          <span>Theo dõi học tập</span>
-        </button>
+        <div class="hex-wrap active-wrap">
+          <button class="hex hex-item active" data-index="0" data-angle="270" aria-label="Theo dõi học tập">
+            <i class="fa-solid fa-bell"></i>
+            <span>Theo dõi học tập</span>
+          </button>
+        </div>
 
-        <button class="hex hex-item" data-index="1" data-angle="330" aria-label="E-learning">
-          <i class="fa-solid fa-display"></i>
-          <span>Hệ thống E-Learning</span>
-        </button>
+        <div class="hex-wrap">
+          <button class="hex hex-item" data-index="1" data-angle="330" aria-label="E-learning">
+            <i class="fa-solid fa-display"></i>
+            <span>Hệ thống E-Learning</span>
+          </button>
+        </div>
 
-        <button class="hex hex-item" data-index="2" data-angle="30" aria-label="Hỗ trợ học tập">
-          <i class="fa-solid fa-user-graduate"></i>
-          <span>Hỗ trợ học tập</span>
-        </button>
+        <div class="hex-wrap">
+          <button class="hex hex-item" data-index="2" data-angle="30" aria-label="Hỗ trợ học tập">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>Hỗ trợ học tập</span>
+          </button>
+        </div>
 
-        <button class="hex hex-item" data-index="3" data-angle="90" aria-label="Dự án thực tế">
-          <i class="fa-solid fa-file-code"></i>
-          <span>Dự án thực tế</span>
-        </button>
+        <div class="hex-wrap">
+          <button class="hex hex-item" data-index="3" data-angle="90" aria-label="Dự án thực tế">
+            <i class="fa-solid fa-file-code"></i>
+            <span>Dự án thực tế</span>
+          </button>
+        </div>
 
-        <button class="hex hex-item" data-index="4" data-angle="150" aria-label="Kết nối việc làm">
-          <i class="fa-solid fa-handshake"></i>
-          <span>Kết nối việc làm</span>
-        </button>
+        <div class="hex-wrap">
+          <button class="hex hex-item" data-index="4" data-angle="150" aria-label="Kết nối việc làm">
+            <i class="fa-solid fa-handshake"></i>
+            <span>Kết nối việc làm</span>
+          </button>
+        </div>
 
-        <button class="hex hex-item" data-index="5" data-angle="210" aria-label="Thảo luận ngoài giờ">
-          <i class="fa-solid fa-comments"></i>
-          <span>Thảo luận ngoài giờ</span>
-        </button>
+        <div class="hex-wrap">
+          <button class="hex hex-item" data-index="5" data-angle="210" aria-label="Thảo luận ngoài giờ">
+            <i class="fa-solid fa-comments"></i>
+            <span>Thảo luận ngoài giờ</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- RIGHT: CONTENT + NAV -->
     <div class="feat-right">
       <div class="feat-content">
         <h2 id="featTitle">Dự án - bài tập thực tế</h2>

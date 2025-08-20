@@ -82,6 +82,7 @@ const ring = document.getElementById('hexRing');
 // Check if the hexRing element exists before proceeding.
 if (ring) {
   const items = ring.querySelectorAll('.hex-item');
+  const wraps = ring.querySelectorAll('.hex-wrap');
   const title = document.getElementById('featTitle');
   const text = document.getElementById('featText');
   const prev = document.getElementById('prevBtn');
@@ -91,7 +92,11 @@ if (ring) {
 
   function setActive(index) {
     items.forEach(i => i.classList.remove('active'));
+    wraps.forEach(w => w.classList.remove('active-wrap'));
+
     items[index].classList.add('active');
+    items[index].parentElement.classList.add('active-wrap');
+    
     activeIndex = index;
 
     const d = featureData[index];
@@ -119,6 +124,8 @@ if (ring) {
     setActive(activeIndex);
   });
 }
+
+
 const circleData = [
   {
     title: 'Cá nhân hóa',
