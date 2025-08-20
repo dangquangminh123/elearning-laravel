@@ -287,21 +287,24 @@
           </p>
         </div>
         
-        <button class="circle circle-item active" data-index="0">
-          <i class="fa-solid fa-fire"></i>
-        </button>
-        <button class="circle circle-item" data-index="1">
-          <i class="fa-solid fa-people-group"></i>
-        </button>
-        <button class="circle circle-item" data-index="2">
-          <i class="fa-solid fa-briefcase"></i>
-        </button>
-        <button class="circle circle-item" data-index="3">
-          <i class="fa-solid fa-chart-line"></i>
-        </button>
-        <button class="circle circle-item" data-index="4">
-          <i class="fa-solid fa-chalkboard-user"></i>
-        </button>
+        <div class="circle-item-container" id="circleItemContainer">
+          <button class="circle circle-item active" data-index="0">
+            <i class="fa-solid fa-fire"></i>
+          </button>
+          <button class="circle circle-item" data-index="1">
+            <i class="fa-solid fa-people-group"></i>
+          </button>
+          <button class="circle circle-item" data-index="2">
+            <i class="fa-solid fa-briefcase"></i>
+          </button>
+          <button class="circle circle-item" data-index="3">
+            <i class="fa-solid fa-chart-line"></i>
+          </button>
+          <button class="circle circle-item" data-index="4">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </button>
+        </div>
+        
       </div>
     </div>
 

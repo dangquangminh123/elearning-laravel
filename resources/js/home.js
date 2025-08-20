@@ -119,7 +119,6 @@ if (ring) {
     setActive(activeIndex);
   });
 }
-
 const circleData = [
   {
     title: 'Cá nhân hóa',
@@ -147,40 +146,108 @@ const circleRing = document.getElementById('circleRing');
 
 if (circleRing) {
   const circleItems = circleRing.querySelectorAll('.circle-item');
+  const circleItemContainer = document.getElementById('circleItemContainer');
   const featTitle = document.getElementById('featTitle');
   const featText = document.getElementById('featText');
   const centerText = document.getElementById('centerText');
+  const icons = circleItemContainer.querySelectorAll('.circle-item i'); // Lấy tất cả icons một lần
 
   let activeCircleIndex = 0;
   let autoRotateInterval;
+  const degreesPerItem = 72;
+  const radius = 13; // 13rem cho màn hình lớn
+  const responsiveRadius = 9; // 9rem cho màn hình nhỏ
+  
+  let currentRotation = 0;
+  let isMobile = window.matchMedia("(max-width: 62rem)").matches;
 
+  // Hàm tính toán và đặt vị trí ban đầu của các item
+  function setInitialPositions() {
+    const r = isMobile ? responsiveRadius : radius;
+    circleItems.forEach((item, index) => {
+      const angle = (90 + index * degreesPerItem);
+      const radians = (angle * Math.PI) / 180;
+      const x = r * Math.cos(radians);
+      const y = r * Math.sin(radians);
+      item.style.top = `calc(50% - ${y}rem)`;
+      item.style.left = `calc(50% + ${x}rem)`;
+      // Đảm bảo item luôn ở giữa
+      item.style.transform = `translate(-50%, -50%)`;
+      
+      const icon = item.querySelector('i');
+      if(icon) {
+        icon.style.transform = `rotate(${-currentRotation}deg)`;
+      }
+    });
+  }
+
+  // Hàm cập nhật trạng thái active và nội dung
   function setCircleActive(index) {
     circleItems.forEach(i => i.classList.remove('active'));
-    circleItems[index].classList.add('active');
+    circleItems[(index % circleItems.length + circleItems.length) % circleItems.length].classList.add('active');
     activeCircleIndex = index;
 
-    const d = circleData[index];
+    const d = circleData[(index % circleData.length + circleData.length) % circleData.length];
     featTitle.textContent = d.title;
     featText.textContent = d.text;
     centerText.textContent = d.text;
   }
 
+  // Hàm xoay tự động
   function autoRotate() {
     autoRotateInterval = setInterval(() => {
-      activeCircleIndex = (activeCircleIndex + 1) % circleItems.length;
-      setCircleActive(activeCircleIndex);
-    }, 3000); // Tự động xoay sau 3 giây
+      const nextIndex = (activeCircleIndex + 1) % circleItems.length;
+
+      // Xoay theo chiều kim đồng hồ
+      currentRotation += degreesPerItem;
+      circleItemContainer.style.transform = `rotate(${currentRotation}deg)`;
+      
+      // Xoay ngược lại icons để chúng luôn thẳng đứng
+      icons.forEach(icon => {
+        icon.style.transform = `rotate(${-currentRotation}deg)`;
+      });
+
+      setCircleActive(nextIndex);
+    }, 3000);
   }
 
-  circleItems.forEach(btn => {
+  circleItems.forEach((btn, index) => {
     btn.addEventListener('click', () => {
-      clearInterval(autoRotateInterval); // Dừng xoay tự động khi người dùng nhấp vào
-      setCircleActive(+btn.dataset.index);
+      clearInterval(autoRotateInterval);
+      const newIndex = +btn.dataset.index;
+      
+      // Tính toán sự khác biệt về chỉ số
+      let indexDifference = newIndex - activeCircleIndex;
+      
+      // Nếu di chuyển từ item cuối cùng về item đầu tiên,
+      // chúng ta phải đi thêm một vòng
+      if (indexDifference < 0) {
+        indexDifference += circleItems.length;
+      }
+      
+      // Tính toán góc xoay dựa trên sự khác biệt chỉ số
+      const rotationDifference = indexDifference * degreesPerItem;
+      currentRotation += rotationDifference;
+      
+      circleItemContainer.style.transform = `rotate(${currentRotation}deg)`;
+      
+      // Xoay ngược lại icons để chúng luôn thẳng đứng
+      icons.forEach(icon => {
+        icon.style.transform = `rotate(${-currentRotation}deg)`;
+      });
+
+      setCircleActive(newIndex);
     });
   });
 
   window.addEventListener('load', () => {
+    setInitialPositions();
     setCircleActive(activeCircleIndex);
-    autoRotate(); // Bắt đầu xoay tự động sau khi trang đã tải xong
+    autoRotate();
+  });
+
+  window.addEventListener('resize', () => {
+    isMobile = window.matchMedia("(max-width: 62rem)").matches;
+    setInitialPositions();
   });
 }

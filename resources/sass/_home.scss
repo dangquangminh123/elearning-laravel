@@ -470,17 +470,16 @@
   .feat-content{ text-align:center; margin-left: 0; }
   .feat-nav{ justify-content:center; }
 }
-
-/* Features Circle */ 
+/* Features Circle */
 :root {
   --blue: #5b8cff;
   --purple: #9b63ff;
   --orange: #ff9900;
-  --dark-orange: #ff8500; /* Màu cam đậm hơn cho border */
+  --dark-orange: #ff8500;
   --dark-blue: #1b1f2a;
   --muted: #5b6070;
   --bg: #f3f6fb;
-  --light-yellow: #f8e1a8; /* Màu vàng nhạt cho border khi chưa active */
+  --light-yellow: #f8e1a8;
 }
 
 .features-circle {
@@ -514,15 +513,23 @@
   align-items: center;
 }
 
+/* Container cho các circle-item để xoay */
+.circle-item-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 /* Inner Solid Blue Ring (Connecting line) */
 .circle-ring-inner {
-   position: absolute;
-    width: 28rem;
-    height: 26em;
-    border: 0.4rem solid var(--blue);
-    border-radius: 50%;
-    opacity: 0.7;
-    z-index: 0;
+  position: absolute;
+  width: 28rem;
+  height: 26em;
+  border: 0.4rem solid var(--blue);
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: 0;
 }
 
 /* Base Circle Styling */
@@ -568,7 +575,7 @@
   justify-content: center;
   transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease;
   background: #ffffff;
-  border: 0.3rem solid var(--light-yellow); /* Border khi chưa active */
+  border: 0.3rem solid var(--light-yellow);
   box-shadow: 0 0.5rem 2rem rgba(21, 27, 38, 0.06);
   z-index: 1;
 }
@@ -576,7 +583,12 @@
 .circle-item i {
   font-size: 2rem;
   color: var(--muted);
-  transition: color 0.35s ease;
+  transition: color 0.35s ease, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Lớp này sẽ được thêm vào icons để xoay ngược lại */
+.circle-item i.rotate-back {
+  transform: rotate(var(--rotate-degree));
 }
 
 .circle-item.active {
@@ -584,47 +596,30 @@
   color: #fff;
   transform: scale(1.1);
   box-shadow: 0 0.5rem 2rem rgba(255, 153, 0, 0.4);
-  border-color: #ffffff; /* Border khi active, màu trắng */
+  border-color: #ffffff;
 }
 .circle-item.active i {
   color: #fff;
 }
 
-/* Position outer circles equally around the center */
+/* Positioning outer circles equally around the center */
 /* 5 items, so 360 / 5 = 72 degrees between each item. 
    Start at 90 degrees and add 72 degrees for each subsequent item.
 */
 .circle-item:nth-of-type(1) {
-  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(13rem) rotate(-90deg);
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(13rem);
 }
 .circle-item:nth-of-type(2) {
-  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(162deg) translate(13rem) rotate(-162deg);
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(162deg) translate(13rem);
 }
 .circle-item:nth-of-type(3) {
-  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(234deg) translate(13rem) rotate(-234deg);
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(234deg) translate(13rem);
 }
 .circle-item:nth-of-type(4) {
-  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(306deg) translate(13rem) rotate(-306deg);
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(306deg) translate(13rem);
 }
 .circle-item:nth-of-type(5) {
-  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(18deg) translate(13rem) rotate(-18deg);
-}
-
-/* RIGHT: Content Area */
-.circle-right {
-  flex: 1 1 auto;
-}
-
-.circle-right h2 {
-  font-size: 2.5rem;
-  margin-top: 0;
-  font-weight: bold;
-}
-
-.circle-right p {
-  line-height: 1.7;
-  color: var(--muted);
-  max-width: 38rem;
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(18deg) translate(13rem);
 }
 
 /* Responsive adjustments */
@@ -653,18 +648,18 @@
     height: 4rem;
   }
   .circle-item:nth-of-type(1) {
-    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(9rem) rotate(-90deg);
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(9rem);
   }
   .circle-item:nth-of-type(2) {
-    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(162deg) translate(9rem) rotate(-162deg);
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(162deg) translate(9rem);
   }
   .circle-item:nth-of-type(3) {
-    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(234deg) translate(9rem) rotate(-234deg);
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(234deg) translate(9rem);
   }
   .circle-item:nth-of-type(4) {
-    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(306deg) translate(9rem) rotate(-306deg);
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(306deg) translate(9rem);
   }
   .circle-item:nth-of-type(5) {
-    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(18deg) translate(9rem) rotate(-18deg);
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(18deg) translate(9rem);
   }
 }
