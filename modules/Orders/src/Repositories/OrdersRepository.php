@@ -175,7 +175,6 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         // Phải thanh toán thành công đơn hàng
         $paidStatusId = $this->getStatusIdByCode('paid');
         if (!$paidStatusId) {
-            //
             return false;
         }
 

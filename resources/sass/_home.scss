@@ -85,7 +85,7 @@
 	background-color: #fff;
 	border: 1px solid #d7e0e0;
 	border-radius: 0.5em;
-	height: 13em;
+	min-height: 16em;
 }
 .course:hover {
 	transform: translateY(-1%);
@@ -103,7 +103,7 @@
 	text-transform: uppercase;
 }
 .banner-course {
-    width: 22em;
+    width: 20em;
     height: auto;
     overflow: hidden;
     border-radius: 0.5rem;
@@ -469,4 +469,202 @@
   .feat-right{ align-items: center; min-height: auto; }
   .feat-content{ text-align:center; margin-left: 0; }
   .feat-nav{ justify-content:center; }
+}
+
+/* Features Circle */ 
+:root {
+  --blue: #5b8cff;
+  --purple: #9b63ff;
+  --orange: #ff9900;
+  --dark-orange: #ff8500; /* Màu cam đậm hơn cho border */
+  --dark-blue: #1b1f2a;
+  --muted: #5b6070;
+  --bg: #f3f6fb;
+  --light-yellow: #f8e1a8; /* Màu vàng nhạt cho border khi chưa active */
+}
+
+.features-circle {
+  background: var(--bg);
+  padding: 4rem 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--dark-blue);
+}
+
+.features-circle .wrap {
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* LEFT: Circle Ring Area */
+.circle-left {
+  flex: 0 0 auto;
+}
+
+.circle-ring {
+  width: 30rem;
+  height: 30rem;
+  position: relative;
+  margin-inline: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Inner Solid Blue Ring (Connecting line) */
+.circle-ring-inner {
+   position: absolute;
+    width: 28rem;
+    height: 26em;
+    border: 0.4rem solid var(--blue);
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+/* Base Circle Styling */
+.circle {
+  background: #ffffff;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+/* Center Circle */
+.circle-center {
+  width: 15rem;
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 1rem 3rem rgba(21, 27, 38, 0.12);
+  border: 0.2rem solid transparent;
+}
+.circle-center p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--muted);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+/* Outer Circles - General Style */
+.circle-item {
+  cursor: pointer;
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+  background: #ffffff;
+  border: 0.3rem solid var(--light-yellow); /* Border khi chưa active */
+  box-shadow: 0 0.5rem 2rem rgba(21, 27, 38, 0.06);
+  z-index: 1;
+}
+
+.circle-item i {
+  font-size: 2rem;
+  color: var(--muted);
+  transition: color 0.35s ease;
+}
+
+.circle-item.active {
+  background: var(--orange);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0.5rem 2rem rgba(255, 153, 0, 0.4);
+  border-color: #ffffff; /* Border khi active, màu trắng */
+}
+.circle-item.active i {
+  color: #fff;
+}
+
+/* Position outer circles equally around the center */
+/* 5 items, so 360 / 5 = 72 degrees between each item. 
+   Start at 90 degrees and add 72 degrees for each subsequent item.
+*/
+.circle-item:nth-of-type(1) {
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(13rem) rotate(-90deg);
+}
+.circle-item:nth-of-type(2) {
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(162deg) translate(13rem) rotate(-162deg);
+}
+.circle-item:nth-of-type(3) {
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(234deg) translate(13rem) rotate(-234deg);
+}
+.circle-item:nth-of-type(4) {
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(306deg) translate(13rem) rotate(-306deg);
+}
+.circle-item:nth-of-type(5) {
+  top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(18deg) translate(13rem) rotate(-18deg);
+}
+
+/* RIGHT: Content Area */
+.circle-right {
+  flex: 1 1 auto;
+}
+
+.circle-right h2 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  font-weight: bold;
+}
+
+.circle-right p {
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 38rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 62rem) {
+  .features-circle .wrap {
+    flex-direction: column;
+    text-align: center;
+  }
+  .circle-ring {
+    width: 20rem;
+    height: 20rem;
+  }
+  .circle-ring-inner {
+    width: 100%;
+    height: 100%;
+  }
+  .circle-center {
+    width: 10rem;
+    height: 10rem;
+  }
+  .circle-center p {
+    font-size: 0.8rem;
+  }
+  .circle-item {
+    width: 4rem;
+    height: 4rem;
+  }
+  .circle-item:nth-of-type(1) {
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(90deg) translate(9rem) rotate(-90deg);
+  }
+  .circle-item:nth-of-type(2) {
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(162deg) translate(9rem) rotate(-162deg);
+  }
+  .circle-item:nth-of-type(3) {
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(234deg) translate(9rem) rotate(-234deg);
+  }
+  .circle-item:nth-of-type(4) {
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(306deg) translate(9rem) rotate(-306deg);
+  }
+  .circle-item:nth-of-type(5) {
+    top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(18deg) translate(9rem) rotate(-18deg);
+  }
 }
