@@ -440,6 +440,59 @@
     </div>
 </section>
 
+<section class="progress-section">
+    <div class="wrap">
+        <div class="stat-item" data-percent="20" data-color="blue">
+            <h4 class="progress-year">Tỷ Lệ Học Viên Có Việc</h4>
+            <div class="half-doughnut-chart">
+                <svg viewBox="0 0 200 100" class="chart-svg"></svg>
+            </div>
+            <div class="chart-content">
+                <span class="percent">20%</span>
+            </div>
+            <p class="description">
+                Hơn 98% học viên của chúng tôi đạt được việc làm ngay sau khi tốt nghiệp.
+            </p>
+        </div>
+        <div class="stat-item" data-percent="40" data-color="green">
+            <h4 class="progress-year">Học Viên Đã Tốt Nghiệp</h4>
+            <div class="half-doughnut-chart">
+                <svg viewBox="0 0 200 100" class="chart-svg"></svg>
+            </div>
+            <div class="chart-content">
+                <span class="percent">40%</span>
+            </div>
+            <p class="description">
+                Chúng tôi đã đào tạo thành công hơn 1500 học viên, giúp họ thành công trong sự nghiệp.
+            </p>
+        </div>
+        <div class="stat-item" data-percent="60" data-color="orange">
+            <h4 class="progress-year">Đối Tác Doanh Nghiệp</h4>
+            <div class="half-doughnut-chart">
+                <svg viewBox="0 0 200 100" class="chart-svg"></svg>
+            </div>
+            <div class="chart-content">
+                <span class="percent">60%</span>
+            </div>
+            <p class="description">
+                Liên kết với hơn 30 đối tác doanh nghiệp uy tín, cung cấp cơ hội việc làm tốt nhất.
+            </p>
+        </div>
+        <div class="stat-item" data-percent="80" data-color="red">
+            <h4 class="progress-year">Năm Thành Lập</h4>
+            <div class="half-doughnut-chart">
+                <svg viewBox="0 0 200 100" class="chart-svg"></svg>
+            </div>
+            <div class="chart-content">
+                <span class="percent">80%</span>
+            </div>
+            <p class="description">
+                Thành lập từ năm 2012, chúng tôi tự hào với hơn một thập kỷ kinh nghiệm trong ngành.
+            </p>
+        </div>
+    </div>
+</section>
+
 <section class="about-us">
     <div class="container">
         <div class="row">

@@ -5,6 +5,14 @@
   --bg: #f3f6fb;
   --ink: #1b1f2a;
   --muted: #5b6070;
+  --blue: #5b8cff;
+  --purple: #9b63ff;
+  --orange: #ff9900;
+  --dark-orange: #ff8500;
+  --dark-blue: #1b1f2a;
+  --muted: #5b6070;
+  --bg: #f3f6fb;
+  --light-yellow: #f8e1a8;
 }
 
 .features-hero {
@@ -224,18 +232,6 @@
   }
 }
 
-
-/* Features Circle */
-:root {
-  --blue: #5b8cff;
-  --purple: #9b63ff;
-  --orange: #ff9900;
-  --dark-orange: #ff8500;
-  --dark-blue: #1b1f2a;
-  --muted: #5b6070;
-  --bg: #f3f6fb;
-  --light-yellow: #f8e1a8;
-}
 
 .features-circle {
   background: var(--bg);

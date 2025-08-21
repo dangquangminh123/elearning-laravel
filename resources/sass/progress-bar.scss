@@ -1,0 +1,97 @@
+/* keyword speedometer, half doughnut chart, padAngle*/
+
+/* Custom Properties */
+:root {
+    --blue: #3B82F6;
+    --green: #10B981;
+    --orange: #F59E0B;
+    --red: #EF4444;
+    --grey: #E5E7EB;
+    --bg-color: #f7f7f7;
+    --text-color: #333;
+}
+
+/* Base Styles */
+.progress-section {
+    font-family: Arial, sans-serif;
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+.progress-section .wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+.stat-item {
+    flex: 1;
+    max-width: 250px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stat-item .progress-year {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px; /* Sửa đổi: Giảm khoảng cách từ 20px xuống 10px */
+    color: var(--text-color);
+}
+.stat-item .description {
+      color: #666;
+    line-height: 1.5;
+    margin-top: 7rem;
+}
+
+/* SVG Chart Styles */
+.half-doughnut-chart {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+}
+.chart-svg {
+    // width: 200px;
+    // height: 200px;
+    overflow: visible;
+}
+.chart-segment {
+    transition: fill 0.5s ease-in-out;
+}
+.outer-dashed-circle {
+    stroke: #d8d8d8;
+    stroke-width: 3;
+    fill: none;
+    stroke-dasharray: 6, 7;
+}
+.chart-content {
+   position: absolute;
+    top: 43%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+}
+.percent {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Đồng bộ màu sắc */
+.stat-item[data-color='blue'] .percent,
+.stat-item[data-color='blue'] .progress-year {
+    color: var(--blue);
+}
+.stat-item[data-color='green'] .percent,
+.stat-item[data-color='green'] .progress-year {
+    color: var(--green);
+}
+.stat-item[data-color='orange'] .percent,
+.stat-item[data-color='orange'] .progress-year {
+    color: var(--orange);
+}
+.stat-item[data-color='red'] .percent,
+.stat-item[data-color='red'] .progress-year {
+    color: var(--red);
+}

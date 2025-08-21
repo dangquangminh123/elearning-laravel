@@ -39,6 +39,7 @@
     var trialUrl = `{{ route('courses.data.trial') }}`;
 </script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js"></script>
 <script>
     //Datepicker
