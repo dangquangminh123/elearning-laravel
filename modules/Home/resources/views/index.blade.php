@@ -156,6 +156,58 @@
 </div>
 
 
+<div class="row g-0">
+            <div class="col-12 col-lg-5 p-0 d-flex justify-content-center">
+                <div class="promo-card">
+                    <img src="{{ asset('/clients/assets/intro_course.png') }}" alt="Khuyến mãi khóa học" class="img-fluid promo-img">
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-7 p-0">
+                <div class="content-wrapper">
+                    <div class="main-title-group">
+                        <p class="small-heading">KHÓA HỌC NỔI BẬT</p>
+                        <h2 class="large-heading">CÔNG NGHỆ CHUYÊN SÂU</h2>
+                    </div>
+
+                    <div class="course-list">
+                        <div class="course-item">
+                            <div class="course-icon-container">
+                                <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon Laravel" class="course-thumb">
+                            </div>
+                            <div class="course-details">
+                                <h3 class="course-title">Lập Trình Web với Laravel</h3>
+                                <p class="course-description">Nắm vững framework PHP phổ biến nhất để xây dựng các ứng dụng web mạnh mẽ, hiệu quả và an toàn.</p>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-icon-container">
+                                <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon React" class="course-thumb">
+                            </div>
+                            <div class="course-details">
+                                <h3 class="course-title">Phát Triển Ứng Dụng với React</h3>
+                                <p class="course-description">Học cách tạo giao diện người dùng tương tác, hiệu suất cao bằng thư viện JavaScript hàng đầu hiện nay.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="course-item">
+                            <div class="course-icon-container">
+                                <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon Node.js" class="course-thumb">
+                            </div>
+                            <div class="course-details">
+                                <h3 class="course-title">Phát Triển Backend với Node.js</h3>
+                                <p class="course-description">Xây dựng các API mạnh mẽ và server-side applications với JavaScript, sử dụng framework Express.js.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="/khoa-hoc" class="btn view-all-btn">
+                        XEM TOÀN BỘ KHOÁ HỌC <i class="fas fa-arrow-right icon-arrow"></i>
+                    </a>
+                </div>
+            </div>
+</div>
 <section class="features-hero">
   <div class="wrap">
     <div class="hex-left">

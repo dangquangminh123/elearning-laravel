@@ -1,0 +1,137 @@
+/* Sử dụng màu sắc từ Flat UI Colors */
+:root {
+    --sun-flower: #f1c40f;
+    --orange: #f39c12;
+    --concrete: #95a5a6;
+    --wet-asphalt: #34495e;
+    --alizarin: #e74c3c;
+    --asbestos: #7f8c8d;
+    --clouds: #ecf0f1;
+    --white: #ffffff;
+    --soft-orange: #f8e7d2; /* Màu nền cam nhạt */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.bg-body-custom {
+    background-color: var(--soft-orange);
+}
+
+.main-content-box {
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+/* Phần bên trái - Khối chứa hình ảnh */
+.promo-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.15);
+    margin: 30px; /* Khoảng cách so với rìa */
+}
+
+.promo-img {
+    border-radius: 15px;
+}
+
+/* Phần bên phải - Nội dung */
+.content-wrapper {
+    padding: 30px;
+}
+
+.small-heading {
+    color: var(--asbestos);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.large-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--orange); /* Đường viền dưới đậm */
+    padding-bottom: 5px;
+    margin-bottom: 2rem;
+}
+
+/* Danh sách khóa học */
+.course-list {
+    margin-bottom: 2rem;
+}
+
+.course-item {
+    display: flex;
+    align-items: flex-start; /* Sắp xếp các item thẳng hàng trên cùng */
+    margin-bottom: 1.5rem;
+}
+
+.course-icon-container {
+    flex-shrink: 0; /* Ngăn icon bị co lại */
+    margin-right: 1rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.course-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-details {
+    flex-grow: 1;
+}
+
+.course-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--wet-asphalt);
+    margin-bottom: 0.25rem;
+}
+
+.course-description {
+    font-size: 0.9rem;
+    color: var(--asbestos);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Nút "Xem toàn bộ" */
+.view-all-btn {
+    padding: 12px 24px;
+    background-image: linear-gradient(to right, var(--sun-flower), var(--orange));
+    color: var(--white);
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.view-all-btn:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.icon-arrow {
+    margin-left: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .promo-card {
+        margin: 20px;
+    }
+    .content-wrapper {
+        padding: 20px;
+    }
+}
