@@ -71,6 +71,20 @@
     </div>
 </section>
 
+<section class="image-section">
+    <div class="image-wrapper">
+        <img src="/clients/assets/saleoff1.png" alt="Melty Cake">
+        <div class="hover-overlay-1"></div>
+        <div class="hover-overlay-2"></div>
+    </div>
+
+    <div class="image-wrapper">
+        <img src="/clients/assets/saleoff1.png" alt="Juicy Cup">
+        <div class="hover-overlay-1"></div>
+        <div class="hover-overlay-2"></div>
+    </div>
+</section>
+
 <div class="container py-5">
     <header class="text-center mb-5">
             <p class="service-subtitle">CHÚNG TÔI LÀM GÌ?</p>
@@ -155,7 +169,6 @@
     </section>
 </div>
 
-
 <div class="row g-0">
             <div class="col-12 col-lg-5 p-0 d-flex justify-content-center">
                 <div class="promo-card">
@@ -208,6 +221,7 @@
                 </div>
             </div>
 </div>
+
 <section class="features-hero">
   <div class="wrap">
     <div class="hex-left">

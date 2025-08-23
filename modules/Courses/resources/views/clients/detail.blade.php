@@ -96,10 +96,6 @@
                             <i class="fa-solid fa-bookmark"></i>
                             Mã Khóa Học: {{$course->code}}
                         </p>
-                        <!-- <p class="chart">
-                            <i class="fa-solid fa-chart-simple"></i>
-                            Cấp độ: Thực chiến
-                        </p> -->
                         <p class="techer">
                             <i class="fa-solid fa-user"></i>
                             Giảng viên: {{$course->teacher->name.' - '.$course->teacher->exp}} năm kinh nghiệm

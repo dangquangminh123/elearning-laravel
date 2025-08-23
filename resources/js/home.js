@@ -49,3 +49,16 @@ function closeMenu() {
 		$("div.x, div.z").removeClass("collapse");
 	}, 70);
 }
+
+// course nổi bật
+$(document).ready(function() {
+    const viewAllBtn = $('.view-all-btn');
+
+    // Thêm class để bắt đầu animation lặp lại
+    viewAllBtn.addClass('animate-tada');
+
+    // Sau 20 giây, xóa class để dừng animation
+    setTimeout(function() {
+        viewAllBtn.removeClass('animate-tada');
+    }, 20000); // 20000 milliseconds = 20 giây
+});

@@ -28,14 +28,14 @@ class CheckStudentOwnsCourse
 
         //B1 kiểm tra students đăng nhập chưa
         if (!auth('students')->check()) {
-            return redirect()->route('clients.login')->with('msg', 'Vui lòng đăng nhập để tiếp tục.');
+            return redirect()->route('clients.login');
         }
         $slug = $request->route('slug');
 
         $hasAccess = $this->accessService->studentHasAccessToCourse($student, $slug);
 
         if (!$hasAccess) {
-            return redirect()->route('courses.index')->with('msg', 'Bạn chưa sở hữu khoá học này.');
+            return redirect()->route('courses.index');
         }
 
         return $next($request);

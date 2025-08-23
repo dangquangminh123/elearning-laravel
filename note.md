@@ -96,14 +96,6 @@ ngrok http http://localhost:8080
 ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
 awaited-reindeer-strictly.ngrok-free.app
 
-yêu cầu là sao hả !
-bên trái là chỉ gồm cái hình ảnh đó và css cho có drop shadow và border các thứ vào
-bên phải 
-đầu tiên là món ăn bán chạy thì thay bằng tên khác cho website học trực tuyến giùm tao
-thứ 2 là heading ĐẶC SẢN NHÀ LÀM thì cũng thay hết cho tao heading cho website học trực tuyến nhưng css cho có border và màu sắc đậm nét vào
-và đồng thời là ghi hoa
-tiếp tục ở dưới là danh sách các khoá học trời ơi 1 hàng là gồm 1 item khoá học (bên trong là có cái hình ảnh khoá học nhưng ở dạng hình tròn, bên phải là 
-có tên khoá học được css đậm nét hơn và to hơn, bên dưới là tên khoá là phần mô tả ! cứ 1 item là có hình ảnh bo tròn bên gốc trái và bên phải tên và phần mô tả 
-nằm chung 1 hàng dọc trời ơi ! )
-và  cuối cùng của phần bên phải là nút xem toàn bộ khoá học đó trời ơi là trời kèm icons > vào nhưng css cho nó có background linear và chữ phải nổi lên trời ơi
-sửa hết toàn bộ lại css và cấu trúc html cho tao mau lên
+1/ tình huống mới khi học viên đó đã được sở hữu khoá học đó rồi nhưng lúc chưa đăng nhập học viên lại thêm lại giỏ hàng đó vào trong giỏ hàng và tiến tới bước thanh toán thì bắt đăng nhập ! Và sau khi lại đăng nhập thành công  xong thì coi xem học viên đó đã 
+sỡ hữu khoá học (đang chuẩn bị tạo đơn hàng hay chưa)? khoá đó đã được sỡ hữu thì nên đá học viên đó về lại phần route    Route::get('/khoa-hoc', 'Clients\CoursesController@index')->name('index'); này và bắn ra thông báo rằng khoá học "lập trình frontend bla bla..." bạn đã sỡ hữu, và hãy bắt đầu học hoặc kích hoạt khoá mới! đồng thời huỷ bỏ hết session cart chứa khoá đó !  Còn nếu chưa thì mới bắt đầu tiếp         return redirect()->route('orders.confirm');
+ ha

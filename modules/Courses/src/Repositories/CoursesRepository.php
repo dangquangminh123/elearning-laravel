@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 use Modules\Courses\src\Models\Course;
 use Modules\Courses\src\Models\CourseType;
+use Modules\Students\src\Models\Student;
+
 class CoursesRepository extends BaseRepository implements CoursesRepositoryInterface
 {
     public function getModel()
@@ -99,10 +101,9 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
 
     public function studentOwnsCourse(int $studentId, int $courseId): bool
     {
-        return DB::table('students_courses')
-            ->where('student_id', $studentId)
-            ->where('course_id', $courseId)
-            ->exists();
+       return Student::find($studentId)?->courses()
+            ->where('courses.id', $courseId)
+            ->exists() ?? false;
     }
 
     public function getCourseActive($slug)

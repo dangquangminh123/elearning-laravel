@@ -1,0 +1,350 @@
+/* Container chung cho 2 hình ảnh */
+.image-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Wrapper cho mỗi hình ảnh và hiệu ứng */
+.image-wrapper {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    /* Kích thước bề rộng và chiều cao ít lại */
+    width: 45vw;
+    height: 20vw;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+/* Hình ảnh chính */
+.image-wrapper img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo hình ảnh lấp đầy container mà không bị biến dạng */
+    transition: transform 0.4s ease;
+}
+
+/* Hiệu ứng lớp phủ khi hover */
+.hover-overlay-1,
+.hover-overlay-2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+    opacity: 0;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* Lớp phủ thứ nhất: Xuất hiện từ góc trên cùng bên trái */
+.hover-overlay-1 {
+    top: 0;
+    left: 0;
+    transform: scale(0);
+    z-index: 2;
+    transform-origin: top left;
+}
+
+/* Lớp phủ thứ hai: Xuất hiện từ góc dưới cùng bên phải */
+.hover-overlay-2 {
+    bottom: 0;
+    right: 0;
+    transform: scale(0);
+    z-index: 3;
+    transition-delay: 0.1s;
+    transform-origin: bottom right;
+}
+
+/* Hiệu ứng khi hover vào wrapper */
+.image-wrapper:hover .hover-overlay-1 {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.image-wrapper:hover .hover-overlay-2 {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Hiệu ứng phóng to hình ảnh */
+.image-wrapper:hover img {
+    transform: scale(1.05);
+}
+/*============*/
+
+
+/* Services */
+.service-subtitle {
+    color: #ff6348; /* Màu cam tươi (Tangerine) */
+    font-weight: bold;
+    letter-spacing: 0.0625em;
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.service-title-main {
+    color: #F79F1F; 
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0.625rem 0;
+}
+
+.service-description-main {
+    max-width: 50rem;
+    margin: 0 auto;
+    color: #666; /* Màu xám đậm (Dark Gray) */
+    font-size: 1rem;
+}
+
+/* Service Items */
+.service-item {
+    background-color: #f8f9fa; /* Màu trắng xám (Light Gray) */
+    border: 0.3rem solid #dfe4ea; /* Màu xám rất nhạt, nhẹ nhàng hơn (Oasis) */
+    border-radius: 0.625rem;
+    padding: 1.875rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    /* Thêm drop shadow nhẹ ban đầu */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+/* Hover effect */
+.service-item:hover {
+    transform: translateY(-0.3125rem);
+    /* Tạo hiệu ứng viền đậm bằng box-shadow */
+    box-shadow: 0 0 0 0.5rem #a4b0be, 0 0.625rem 1.5625rem rgba(0, 0, 0, 0.1); /* Màu xám xanh (Chain Gang Gray) */
+}
+
+.service-item .icon {
+    margin-bottom: 1.25rem;
+    color: #ff6348; /* Màu cam tươi */
+}
+
+.service-item .icon .fa-2xl {
+    font-size: 3.75rem;
+}
+
+.service-card-title {
+    color: #ff6348; /* Màu cam tươi */
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0.625rem 0;
+}
+
+.service-card-description {
+    color: #6c757d; /* Màu xám */
+    font-size: 0.875rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .service-title-main {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-title-main {
+        font-size: 1.75rem;
+    }
+    .service-card-title {
+        font-size: 1.125rem;
+    }
+}
+
+/* Promotion Course */
+:root {
+    --sun-flower: #f1c40f;
+    --orange: #f39c12;
+    --concrete: #95a5a6;
+    --wet-asphalt: #34495e;
+    --alizarin: #e74c3c;
+    --asbestos: #7f8c8d;
+    --clouds: #ecf0f1;
+    --white: #ffffff;
+    --soft-orange: #f8e7d2; /* Màu nền cam nhạt */
+    --pomegranate: #c0392b;
+    --belize-hole: #2980b9;
+}
+
+.bg-body-custom {
+    background-color: var(--soft-orange);
+}
+
+.main-content-box {
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+/* Phần bên trái - Khối chứa hình ảnh */
+.promo-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.15);
+    margin: 30px; /* Khoảng cách so với rìa */
+    animation: flyIn 2s ease-out forwards;
+}
+
+.promo-img {
+    border-radius: 15px;
+}
+
+/* Phần bên phải - Nội dung */
+.content-wrapper {
+    padding: 30px;
+}
+
+.small-heading {
+    color: var(--asbestos);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.large-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    border-bottom: 3px solid var(--orange); /* Đường viền dưới đậm */
+    padding-bottom: 5px;
+    margin-bottom: 2rem;
+}
+
+/* Danh sách khóa học */
+.course-list {
+    margin-bottom: 2rem;
+}
+
+.course-item {
+    display: flex;
+    align-items: flex-start; /* Sắp xếp các item thẳng hàng trên cùng */
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    animation: flyInItems 1s ease-out forwards; /* Hiệu ứng bay vào, chạy 1 lần */
+}
+
+.course-item:hover {
+    transform: scale(1.02);
+}
+
+.course-icon-container {
+    flex-shrink: 0;
+    margin-right: 1.5rem; /* Tăng khoảng cách */
+    width: 80px; /* Tăng kích thước */
+    height: 80px; /* Tăng kích thước */
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.course-details {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.course-title {
+    font-size: 1.3rem; /* Tăng kích thước */
+    font-weight: bold;
+    color: var(--wet-asphalt); /* Đổi màu */
+    margin-bottom: 0.25rem;
+}
+
+.course-description {
+    font-size: 0.9rem;
+    color: var(--asbestos);
+    line-height: 1.5;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; /* Thêm dấu ... cho text dài */
+}
+
+/* Nút "Xem toàn bộ" */
+.view-all-btn {
+    padding: 12px 24px;
+    background-image: linear-gradient(to right, var(--sun-flower), var(--orange));
+    color: var(--white);
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.view-all-btn.animate-tada {
+    animation: tada 1s ease-in-out infinite;
+}
+
+.view-all-btn:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.icon-arrow {
+    margin-left: 10px;
+}
+
+/* Keyframes cho hiệu ứng động */
+@keyframes flyIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes flyInItems {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes tada {
+    0% { transform: scale(1); }
+    10% { transform: scale(0.9) rotate(-3deg); }
+    20% { transform: scale(0.9) rotate(-3deg); }
+    30% { transform: scale(1.1) rotate(3deg); }
+    40% { transform: scale(1.1) rotate(-3deg); }
+    50% { transform: scale(1.1) rotate(3deg); }
+    60% { transform: scale(1.1) rotate(-3deg); }
+    70% { transform: scale(1.1) rotate(3deg); }
+    80% { transform: scale(1.1) rotate(-3deg); }
+    90% { transform: scale(1.1) rotate(3deg); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .promo-card {
+        margin: 20px;
+    }
+    .content-wrapper {
+        padding: 20px;
+    }
+}
+

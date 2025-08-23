@@ -3,7 +3,9 @@
 @section('content')
 <div class="container py-4">
     <h2 class="mb-4">{{ $course->name }}</h2>
-
+    @if (session('msg'))
+        <div class="alert alert-success">{{ session('msg') }}</div>
+    @endif
     <div class="row">
         <!-- Video chính bên trái -->
         <div class="col-md-8">

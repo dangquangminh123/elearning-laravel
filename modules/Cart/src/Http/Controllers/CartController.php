@@ -5,6 +5,7 @@ use Modules\Courses\src\Repositories\CoursesRepositoryInterface;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 class CartController extends Controller
 {
     protected $coursesRepository;
@@ -31,6 +32,7 @@ class CartController extends Controller
        
         $cart[$courseId] = [
             'id' => $course->id,
+            'slug' => $course->slug,
             'name' => $course->name,
             'sale_price' => $finalPrice,
             'thumbnail' => $course->thumbnail,
@@ -51,7 +53,7 @@ class CartController extends Controller
 
         $items = collect($cart)->map(function ($item) {
             return [
-                'name' => \Illuminate\Support\Str::limit($item['name'], 25),
+                'name' => Str::limit($item['name'], 25),
                 'price' => number_format($item['sale_price']),
             ];
         })->values();

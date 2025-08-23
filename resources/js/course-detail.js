@@ -1,5 +1,4 @@
 import { showMessage } from "./utils";
-import Swal from 'sweetalert2';
 // Xử lý nút "Vào học ngay"
 const csrfToken = document.head.querySelector('[name="csrf_token"]').content;
     function handleGoLearn() {
@@ -41,7 +40,5 @@ const csrfToken = document.head.querySelector('[name="csrf_token"]').content;
             });
         });
     }
-
-    // Gọi các hàm khởi tạo listener
     handleGoLearn();
     handleAddToCartAndRedirect();
