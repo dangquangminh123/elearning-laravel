@@ -436,6 +436,7 @@
     </div>
 </section>
 
+
 <div class="main-container">
         <h1 class="main-title">LỘ TRÌNH ĐÀO TẠO TẠI DSMART</h1>
         <!-- Sử dụng thẻ img cho background để đảm bảo hiển thị -->
@@ -451,10 +452,16 @@
                         <div class="label-line"></div>
                         <span class="label-text">HTML / CSS</span>
                     </div>
+                    <div class="step-description">
+                        Nền tảng của phát triển web, tạo cấu trúc và kiểu dáng.
+                    </div>
                 </div>
 
                 <!-- Component 2: JavaScript/Bootstrap -->
                 <div class="component-group step-2">
+                    <div class="step-description">
+                        Thêm tính tương tác và thiết kế web responsive.
+                    </div>
                     <div class="step-label">
                         <div class="label-line"></div>
                         <span class="label-text">JS / Bootstrap</span>
@@ -473,10 +480,16 @@
                         <div class="label-line"></div>
                         <span class="label-text">jQuery / AJAX</span>
                     </div>
+                    <div class="step-description">
+                        Đơn giản hóa việc xử lý kịch bản client-side và tải dữ liệu bất đồng bộ.
+                    </div>
                 </div>
 
                 <!-- Component 4: PHP/Node.js -->
                 <div class="component-group step-4">
+                    <div class="step-description">
+                        Phát triển logic phía máy chủ và back-end của ứng dụng web.
+                    </div>
                     <div class="step-label">
                         <div class="label-line"></div>
                         <span class="label-text">PHP / Node.js</span>
@@ -495,10 +508,16 @@
                         <div class="label-line"></div>
                         <span class="label-text">Laravel / Nest.js</span>
                     </div>
+                    <div class="step-description">
+                        Sử dụng các framework để xây dựng ứng dụng web mạnh mẽ, hiệu quả.
+                    </div>
                 </div>
 
                 <!-- Component 6: Linux/DevOps -->
                 <div class="component-group step-6">
+                    <div class="step-description">
+                        Triển khai và quản lý ứng dụng trên máy chủ, đảm bảo hoạt động trơn tru.
+                    </div>
                     <div class="step-label">
                         <div class="label-line"></div>
                         <span class="label-text">Linux / DevOps</span>
@@ -509,8 +528,7 @@
                 </div>
             </div>
         </div>
-</div>
-
+    </div>
 
 <section class="features-circle">
   <div class="wrap">

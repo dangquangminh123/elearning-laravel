@@ -96,7 +96,9 @@
     color: var(--red);
 }
 
-  :root {
+ @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+        :root {
             --color-gray: #5d5d5d;
             --color-teal: #219d7d;
             --color-orange: #e59100;
@@ -111,7 +113,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: auto;
+            min-height: 50vh;
             position: relative;
             overflow: hidden; /* Ngăn background tràn ra ngoài */
         }
@@ -125,17 +127,18 @@
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); 
             margin-bottom: 50px;
             text-transform: uppercase;
+            z-index: 2; /* Đảm bảo tiêu đề luôn ở trên cùng */
         }
 
         /* Lớp cho hình ảnh background */
         .background-image {
             position: absolute;
-            top: 70%;
+            top: 50%; /* Điều chỉnh vị trí hình nền để cân bằng hơn */
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -41%);
             width: 80%;
             height: auto;
-            z-index: 0;
+            z-index: 0; /* Đặt lớp dưới cho hình nền */
             opacity: 0.9;
         }
 
@@ -151,7 +154,6 @@
         .roadmap-components-wrapper {
             display: flex;
             justify-content: space-around;
-            align-items: center;
             flex-wrap: wrap;
             gap: 40px;
         }
@@ -165,16 +167,16 @@
             width: 150px;
         }
         
-        /* Tạo khoảng cách trên cho các bước lẻ */
+        /* Tạo khoảng cách trên cho các bước lẻ bằng padding */
         .component-group:nth-child(odd) {
-            margin-top: 87px; 
-            margin-bottom: 0;
+           padding-top: 9rem;
+            padding-bottom: 0;
         }
         
-        /* Tạo khoảng cách dưới cho các bước chẵn */
+        /* Tạo khoảng cách dưới cho các bước chẵn bằng padding */
         .component-group:nth-child(even) {
-            margin-bottom: 40px;
-            margin-top: 0;
+            padding-top: 0;
+            padding-bottom: 8rem;
         }
 
         .step-circle {
@@ -199,6 +201,13 @@
             color: #fff;
             position: relative;
             z-index: 1;
+        }
+        
+        .step-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 15px;
+            font-weight: bold;
         }
 
         /* Kiểu dáng cho đường nối */
@@ -234,18 +243,26 @@
             margin-top: 40px;
             margin-bottom: 0;
         }
+        
+        .step-1 .step-description, .step-3 .step-description, .step-5 .step-description {
+            order: 3;
+        }
+
 
         /* Vị trí các bước chẵn */
         .step-2 .step-circle, .step-4 .step-circle, .step-6 .step-circle {
-            order: 2;
+            order: 3;
         }
 
         .step-2 .step-label, .step-4 .step-label, .step-6 .step-label {
-            order: 1;
+            order: 2;
             margin-top: 0;
             margin-bottom: 40px;
         }
-
+        
+        .step-2 .step-description, .step-4 .step-description, .step-6 .step-description {
+            order: 1;
+        }
         .step-2 .label-line, .step-4 .label-line, .step-6 .label-line {
             top: auto;
             bottom: -40px;
