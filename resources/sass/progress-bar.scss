@@ -96,7 +96,7 @@
     color: var(--red);
 }
 
-:root {
+  :root {
             --color-gray: #5d5d5d;
             --color-teal: #219d7d;
             --color-orange: #e59100;
@@ -108,20 +108,32 @@
         /* Container chính để canh giữa và chứa mọi thứ */
         .main-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: auto;
             position: relative;
             overflow: hidden; /* Ngăn background tràn ra ngoài */
         }
+        
+        /* Tiêu đề lớn */
+        .main-title {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #b71c1c; 
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); 
+            margin-bottom: 50px;
+            text-transform: uppercase;
+        }
 
         /* Lớp cho hình ảnh background */
         .background-image {
             position: absolute;
-            top: 55%;
+            top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%; /* Điều chỉnh kích thước hình ảnh */
+            width: 80%;
             height: auto;
             z-index: 0;
             opacity: 0.9;
@@ -132,7 +144,7 @@
             max-width: 1200px;
             text-align: center;
             padding: 50px 20px;
-            position: relative; /* Quan trọng để các component nằm trên background */
+            position: relative;
             z-index: 1;
         }
 
@@ -161,7 +173,7 @@
         
         /* Tạo khoảng cách dưới cho các bước chẵn */
         .component-group:nth-child(even) {
-            margin-bottom: 87px;
+            margin-bottom: 40px;
             margin-top: 0;
         }
 

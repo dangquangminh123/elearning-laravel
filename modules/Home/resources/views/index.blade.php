@@ -434,76 +434,77 @@
             </div>
         </div>
     </div>
-</section>ui/roadmap
+</section>
 
 <div class="main-container">
+        <h1 class="main-title">LỘ TRÌNH ĐÀO TẠO TẠI DSMART</h1>
         <!-- Sử dụng thẻ img cho background để đảm bảo hiển thị -->
-        <img class="background-image" src="https://googleusercontent.com/file_content/7" alt="Background Line">
+        <img class="background-image" src="/clients/assets/line_wavy.jpg" alt="Background Line">
         <div class="roadmap-container">
             <div class="roadmap-components-wrapper">
-                <!-- Component 1 -->
+                <!-- Component 1: HTML/CSS -->
                 <div class="component-group step-1">
                     <div class="step-circle">
-                        <i class="fas fa-user-tie"></i>
+                        <i class="fab fa-html5"></i>
                     </div>
                     <div class="step-label">
                         <div class="label-line"></div>
-                        <span class="label-text">Step 1</span>
+                        <span class="label-text">HTML / CSS</span>
                     </div>
                 </div>
 
-                <!-- Component 2 -->
+                <!-- Component 2: JavaScript/Bootstrap -->
                 <div class="component-group step-2">
                     <div class="step-label">
                         <div class="label-line"></div>
-                        <span class="label-text">Step 2</span>
+                        <span class="label-text">JS / Bootstrap</span>
                     </div>
                     <div class="step-circle">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fab fa-js"></i>
                     </div>
                 </div>
 
-                <!-- Component 3 -->
+                <!-- Component 3: jQuery/AJAX -->
                 <div class="component-group step-3">
                     <div class="step-circle">
-                        <i class="fas fa-chart-bar"></i>
+                        <i class="fas fa-network-wired"></i>
                     </div>
                     <div class="step-label">
                         <div class="label-line"></div>
-                        <span class="label-text">Step 3</span>
+                        <span class="label-text">jQuery / AJAX</span>
                     </div>
                 </div>
 
-                <!-- Component 4 -->
+                <!-- Component 4: PHP/Node.js -->
                 <div class="component-group step-4">
                     <div class="step-label">
                         <div class="label-line"></div>
-                        <span class="label-text">Step 4</span>
+                        <span class="label-text">PHP / Node.js</span>
                     </div>
                     <div class="step-circle">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fab fa-node-js"></i>
                     </div>
                 </div>
 
-                <!-- Component 5 -->
+                <!-- Component 5: Laravel/Nest.js -->
                 <div class="component-group step-5">
                     <div class="step-circle">
-                        <i class="fas fa-gears"></i>
+                        <i class="fab fa-laravel"></i>
                     </div>
                     <div class="step-label">
                         <div class="label-line"></div>
-                        <span class="label-text">Step 5</span>
+                        <span class="label-text">Laravel / Nest.js</span>
                     </div>
                 </div>
 
-                <!-- Component 6 -->
+                <!-- Component 6: Linux/DevOps -->
                 <div class="component-group step-6">
                     <div class="step-label">
                         <div class="label-line"></div>
-                        <span class="label-text">Step 6</span>
+                        <span class="label-text">Linux / DevOps</span>
                     </div>
                     <div class="step-circle">
-                        <i class="fas fa-building"></i>
+                        <i class="fas fa-server"></i>
                     </div>
                 </div>
             </div>
