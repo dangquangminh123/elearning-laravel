@@ -141,3 +141,18 @@ $(function() {
         $(window).trigger('scroll');
     }
 });
+
+$(document).ready(function(){
+    $('.step').hover(
+        function() {
+            // Khi di chuột vào
+            $(this).find('.circle').css('transform', 'scale(1.1)');
+            $(this).find('.description-box').css('transform', 'scale(1.05)');
+        },
+        function() {
+            // Khi di chuột ra
+            $(this).find('.circle').css('transform', 'scale(1)');
+            $(this).find('.description-box').css('transform', 'scale(1)');
+        }
+    );
+});

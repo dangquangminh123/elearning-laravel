@@ -434,7 +434,82 @@
             </div>
         </div>
     </div>
-</section>
+</section>ui/roadmap
+
+<div class="main-container">
+        <!-- Sử dụng thẻ img cho background để đảm bảo hiển thị -->
+        <img class="background-image" src="https://googleusercontent.com/file_content/7" alt="Background Line">
+        <div class="roadmap-container">
+            <div class="roadmap-components-wrapper">
+                <!-- Component 1 -->
+                <div class="component-group step-1">
+                    <div class="step-circle">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="step-label">
+                        <div class="label-line"></div>
+                        <span class="label-text">Step 1</span>
+                    </div>
+                </div>
+
+                <!-- Component 2 -->
+                <div class="component-group step-2">
+                    <div class="step-label">
+                        <div class="label-line"></div>
+                        <span class="label-text">Step 2</span>
+                    </div>
+                    <div class="step-circle">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+
+                <!-- Component 3 -->
+                <div class="component-group step-3">
+                    <div class="step-circle">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="step-label">
+                        <div class="label-line"></div>
+                        <span class="label-text">Step 3</span>
+                    </div>
+                </div>
+
+                <!-- Component 4 -->
+                <div class="component-group step-4">
+                    <div class="step-label">
+                        <div class="label-line"></div>
+                        <span class="label-text">Step 4</span>
+                    </div>
+                    <div class="step-circle">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                </div>
+
+                <!-- Component 5 -->
+                <div class="component-group step-5">
+                    <div class="step-circle">
+                        <i class="fas fa-gears"></i>
+                    </div>
+                    <div class="step-label">
+                        <div class="label-line"></div>
+                        <span class="label-text">Step 5</span>
+                    </div>
+                </div>
+
+                <!-- Component 6 -->
+                <div class="component-group step-6">
+                    <div class="step-label">
+                        <div class="label-line"></div>
+                        <span class="label-text">Step 6</span>
+                    </div>
+                    <div class="step-circle">
+                        <i class="fas fa-building"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
 
 <section class="features-circle">
   <div class="wrap">

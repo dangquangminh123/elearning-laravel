@@ -95,3 +95,184 @@
 .stat-item[data-color='red'] .progress-year {
     color: var(--red);
 }
+
+:root {
+            --color-gray: #5d5d5d;
+            --color-teal: #219d7d;
+            --color-orange: #e59100;
+            --color-dark-orange: #eb7c22;
+            --color-reddish: #dd6146;
+            --color-red: #e33b5a;
+        }
+
+        /* Container chính để canh giữa và chứa mọi thứ */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: auto;
+            position: relative;
+            overflow: hidden; /* Ngăn background tràn ra ngoài */
+        }
+
+        /* Lớp cho hình ảnh background */
+        .background-image {
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%; /* Điều chỉnh kích thước hình ảnh */
+            height: auto;
+            z-index: 0;
+            opacity: 0.9;
+        }
+
+        .roadmap-container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+            padding: 50px 20px;
+            position: relative; /* Quan trọng để các component nằm trên background */
+            z-index: 1;
+        }
+
+        .roadmap-components-wrapper {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .component-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            width: 150px;
+        }
+        
+        /* Tạo khoảng cách trên cho các bước lẻ */
+        .component-group:nth-child(odd) {
+            margin-top: 87px; 
+            margin-bottom: 0;
+        }
+        
+        /* Tạo khoảng cách dưới cho các bước chẵn */
+        .component-group:nth-child(even) {
+            margin-bottom: 87px;
+            margin-top: 0;
+        }
+
+        .step-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .step-label {
+            padding: 10px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Kiểu dáng cho đường nối */
+        .label-line {
+            width: 4px;
+            height: 40px;
+            background-color: var(--line-color);
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .label-line::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: -4px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--line-color);
+            transform: rotate(45deg);
+        }
+
+        /* Vị trí các bước lẻ */
+        .step-1 .step-circle, .step-3 .step-circle, .step-5 .step-circle {
+            order: 1;
+        }
+
+        .step-1 .step-label, .step-3 .step-label, .step-5 .step-label {
+            order: 2;
+            margin-top: 40px;
+            margin-bottom: 0;
+        }
+
+        /* Vị trí các bước chẵn */
+        .step-2 .step-circle, .step-4 .step-circle, .step-6 .step-circle {
+            order: 2;
+        }
+
+        .step-2 .step-label, .step-4 .step-label, .step-6 .step-label {
+            order: 1;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        .step-2 .label-line, .step-4 .label-line, .step-6 .label-line {
+            top: auto;
+            bottom: -40px;
+        }
+
+        .step-2 .label-line::after, .step-4 .label-line::after, .step-6 .label-line::after {
+            bottom: auto;
+            top: -6px;
+            transform: rotate(45deg);
+        }
+
+        /* Màu sắc cho các thành phần */
+        .step-1 .step-circle, .step-1 .step-label, .step-1 .label-line, .step-1 .label-line::after {
+            background-color: var(--color-gray);
+            border-color: var(--color-gray);
+            --line-color: var(--color-gray);
+        }
+        .step-2 .step-circle, .step-2 .step-label, .step-2 .label-line, .step-2 .label-line::after {
+            background-color: var(--color-teal);
+            border-color: var(--color-teal);
+            --line-color: var(--color-teal);
+        }
+        .step-3 .step-circle, .step-3 .step-label, .step-3 .label-line, .step-3 .label-line::after {
+            background-color: var(--color-orange);
+            border-color: var(--color-orange);
+            --line-color: var(--color-orange);
+        }
+        .step-4 .step-circle, .step-4 .step-label, .step-4 .label-line, .step-4 .label-line::after {
+            background-color: var(--color-dark-orange);
+            border-color: var(--color-dark-orange);
+            --line-color: var(--color-dark-orange);
+        }
+        .step-5 .step-circle, .step-5 .step-label, .step-5 .label-line, .step-5 .label-line::after {
+            background-color: var(--color-reddish);
+            border-color: var(--color-reddish);
+            --line-color: var(--color-reddish);
+        }
+        .step-6 .step-circle, .step-6 .step-label, .step-6 .label-line, .step-6 .label-line::after {
+            background-color: var(--color-red);
+            border-color: var(--color-red);
+            --line-color: var(--color-red);
+        }
