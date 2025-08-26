@@ -4,6 +4,7 @@ import "./jquery-migrate-1.2.1.min.js";
 import "./turn.js";
 import "./jquery-canvas-sparkles.js";
 import "./sparkling_stars.js";
+import "./flashMe.js";
 import "./slick.min.js";
 import "./slider-home.js";
 import "./home.js";

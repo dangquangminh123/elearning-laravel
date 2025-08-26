@@ -162,6 +162,7 @@
 	background: #00B894; 
     color: #DFF9FB; 
 }
+
 /* foundation-course */
 .foundation-course h3 {
 	background: #D63031; 
@@ -182,6 +183,30 @@
 .skill-extention h3 {
 	background: #6C5CE7;
     color: #FDCB6E;
+}
+.badge-course-foundation.badge-course {
+    background-color: #D63031;
+    color: #FAD390;
+}
+
+.badge-course-advanced.badge-course {
+    background-color: #0984E3;
+    color: #DFF9FB;
+}
+
+.badge-course-hot.badge-course {
+    background-color: #FDCB6E;
+    color: #2D3436;
+}
+
+.badge-course-skill.badge-course {
+    background-color: #6C5CE7;
+    color: #FDCB6E;
+}
+
+.badge-course-free.badge-course {
+    background-color: #2ecc71;
+    color: #ffffff;
 }
 /* question */
 

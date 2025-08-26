@@ -60,7 +60,7 @@ $(document).ready(function() {
         viewAllBtn.removeClass('animate-tada');
     }, 20000);
 
-	 // Hiệu ứng lấp lánh cho hình ảnh lớn khi di chuột vào promo-card
+	// Hiệu ứng lấp lánh cho hình ảnh lớn khi di chuột vào promo-card
     $('.promo-card').hover(
         function() {
             $(this).sparkle({
