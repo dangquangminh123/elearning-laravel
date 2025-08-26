@@ -9,6 +9,12 @@
     --grey: #E5E7EB;
     --bg-color: #f7f7f7;
     --text-color: #333;
+    --color-gray: #5d5d5d;
+    --color-teal: #219d7d;
+    --color-orange: #e59100;
+    --color-dark-orange: #eb7c22;
+    --color-reddish: #dd6146;
+    --color-red: #e33b5a;
 }
 
 /* Base Styles */
@@ -96,18 +102,7 @@
     color: var(--red);
 }
 
- @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
-
-        :root {
-            --color-gray: #5d5d5d;
-            --color-teal: #219d7d;
-            --color-orange: #e59100;
-            --color-dark-orange: #eb7c22;
-            --color-reddish: #dd6146;
-            --color-red: #e33b5a;
-        }
-
-        /* Container chính để canh giữa và chứa mọi thứ */
+ /* Container chính để canh giữa và chứa mọi thứ */
         .main-container {
             display: flex;
             flex-direction: column;
@@ -115,7 +110,7 @@
             align-items: center;
             min-height: 50vh;
             position: relative;
-            overflow: hidden; /* Ngăn background tràn ra ngoài */
+            overflow: hidden;
         }
         
         /* Tiêu đề lớn */
@@ -124,29 +119,29 @@
             font-size: 3rem;
             font-weight: 700;
             color: #b71c1c; 
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); 
-            margin-bottom: 50px;
+            text-shadow: 0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.4); 
+            margin-bottom: 3rem;
             text-transform: uppercase;
-            z-index: 2; /* Đảm bảo tiêu đề luôn ở trên cùng */
+            z-index: 2;
         }
 
         /* Lớp cho hình ảnh background */
         .background-image {
             position: absolute;
-            top: 50%; /* Điều chỉnh vị trí hình nền để cân bằng hơn */
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -41%);
             width: 80%;
             height: auto;
-            z-index: 0; /* Đặt lớp dưới cho hình nền */
+            z-index: 0;
             opacity: 0.9;
         }
 
         .roadmap-container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 75rem;
             text-align: center;
-            padding: 50px 20px;
+            padding: 3rem 1.25rem;
             position: relative;
             z-index: 1;
         }
@@ -155,7 +150,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            gap: 40px;
+            gap: 2.5rem;
         }
 
         .component-group {
@@ -164,59 +159,69 @@
             align-items: center;
             text-align: center;
             position: relative;
-            width: 150px;
+            width: 9.4rem;
         }
         
-        /* Tạo khoảng cách trên cho các bước lẻ bằng padding */
+        /* Loại bỏ padding và margin không cần thiết */
         .component-group:nth-child(odd) {
-           padding-top: 9rem;
-            padding-bottom: 0;
+           padding-top: 0;
+           padding-bottom: 0;
+           /* Điều chỉnh vị trí của toàn bộ nhóm để tạo hình sóng */
+           margin-top: 8rem;
         }
         
-        /* Tạo khoảng cách dưới cho các bước chẵn bằng padding */
         .component-group:nth-child(even) {
             padding-top: 0;
-            padding-bottom: 8rem;
+            padding-bottom: 0;
         }
 
         .step-circle {
-            width: 80px;
-            height: 80px;
+            width: 5rem;
+            height: 5rem;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            font-size: 30px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 5px solid rgba(0, 0, 0, 0.1);
-            z-index: 2;
+            font-size: 1.9rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+            border: 0.3rem solid rgba(0, 0, 0, 0.1);
+            z-index: 2; /* Vòng tròn */
         }
 
         .step-label {
-            padding: 10px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
             font-weight: bold;
             color: #fff;
             position: relative;
-            z-index: 1;
+            z-index: 3; /* Nhãn phải cao hơn vòng tròn */
         }
         
+        /* Sửa lỗi bằng cách thêm thuộc tính xử lý tràn nội dung */
         .step-description {
+            width: 100%;
             font-size: 0.9rem;
             color: #666;
-            margin-top: 15px;
             font-weight: bold;
+            z-index: 4; /* Mô tả phải cao hơn tất cả các thành phần khác */
+            /* Thiết lập để chỉ hiển thị 3 dòng và thêm dấu ba chấm nếu tràn */
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Giới hạn 3 dòng */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Hỗ trợ cho các trình duyệt không có -webkit-line-clamp */
+            word-break: break-word; /* Ngắt từ để tránh tràn lề */
         }
 
         /* Kiểu dáng cho đường nối */
         .label-line {
-            width: 4px;
-            height: 40px;
+            width: 0.25rem;
+            height: 2.5rem;
             background-color: var(--line-color);
             position: absolute;
-            top: -40px;
+            top: -2.5rem;
             left: 50%;
             transform: translateX(-50%);
             z-index: 0;
@@ -225,10 +230,10 @@
         .label-line::after {
             content: '';
             position: absolute;
-            bottom: -6px;
-            left: -4px;
-            width: 12px;
-            height: 12px;
+            bottom: -0.4rem; 
+            left: -0.25rem; 
+            width: 0.75rem;
+            height: 0.75rem;
             background-color: var(--line-color);
             transform: rotate(45deg);
         }
@@ -237,40 +242,40 @@
         .step-1 .step-circle, .step-3 .step-circle, .step-5 .step-circle {
             order: 1;
         }
-
         .step-1 .step-label, .step-3 .step-label, .step-5 .step-label {
             order: 2;
-            margin-top: 40px;
+            margin-top: 2.5rem; 
             margin-bottom: 0;
         }
-        
         .step-1 .step-description, .step-3 .step-description, .step-5 .step-description {
             order: 3;
+            margin-top: 0.9rem;
         }
-
+        
+        .step-1 .label-line, .step-3 .label-line, .step-5 .label-line {
+            top: -2.5rem;
+        }
 
         /* Vị trí các bước chẵn */
         .step-2 .step-circle, .step-4 .step-circle, .step-6 .step-circle {
             order: 3;
         }
-
         .step-2 .step-label, .step-4 .step-label, .step-6 .step-label {
             order: 2;
             margin-top: 0;
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
         }
-        
         .step-2 .step-description, .step-4 .step-description, .step-6 .step-description {
             order: 1;
+            margin-bottom: 0.9rem;
         }
         .step-2 .label-line, .step-4 .label-line, .step-6 .label-line {
             top: auto;
-            bottom: -40px;
+            bottom: -2.5rem;
         }
-
         .step-2 .label-line::after, .step-4 .label-line::after, .step-6 .label-line::after {
             bottom: auto;
-            top: -6px;
+            top: -0.4rem;
             transform: rotate(45deg);
         }
 

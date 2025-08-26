@@ -71,6 +71,52 @@
     </div>
 </section>
 
+<section class="ft-services-section">
+  <div class="ft-services-container">
+
+    <div class="ft-service-item">
+      <div class="ft-service-icon ft-icon-quality">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="ft-service-content">
+        <h3 class="ft-title ft-title-quality">Khoá học chất lượng</h3>
+        <p class="ft-description">Tất cả các khoá học được đánh giá và cập nhật thường xuyên.</p>
+      </div>
+    </div>
+
+    <div class="ft-service-item">
+      <div class="ft-service-icon ft-icon-support">
+        <i class="fas fa-headset"></i>
+      </div>
+      <div class="ft-service-content">
+        <h3 class="ft-title ft-title-support">Hỗ trợ 24/7</h3>
+        <p class="ft-description">Đội ngũ hỗ trợ luôn sẵn sàng giải đáp thắc mắc của bạn.</p>
+      </div>
+    </div>
+
+    <div class="ft-service-item">
+      <div class="ft-service-icon ft-icon-anytime">
+        <i class="fas fa-mobile-alt"></i>
+      </div>
+      <div class="ft-service-content">
+        <h3 class="ft-title ft-title-anytime">Học mọi lúc, mọi nơi</h3>
+        <p class="ft-description">Truy cập bài giảng trên mọi thiết bị, không giới hạn thời gian.</p>
+      </div>
+    </div>
+
+    <div class="ft-service-item">
+      <div class="ft-service-icon ft-icon-moneyback">
+        <i class="fas fa-undo"></i>
+      </div>
+      <div class="ft-service-content">
+        <h3 class="ft-title ft-title-moneyback">Hoàn tiền 7 ngày</h3>
+        <p class="ft-description">Đảm bảo hài lòng với chính sách hoàn tiền trong 7 ngày.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <section class="image-section">
     <div class="image-wrapper">
         <img src="/clients/assets/saleoff1.png" alt="Melty Cake">
@@ -189,7 +235,7 @@
                                 <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon Laravel" class="course-thumb">
                             </div>
                             <div class="course-details">
-                                <h3 class="course-title">Lập Trình Web với Laravel</h3>
+                                <h3 class="course-title sparkling">Lập Trình Web với Laravel</h3>
                                 <p class="course-description">Nắm vững framework PHP phổ biến nhất để xây dựng các ứng dụng web mạnh mẽ, hiệu quả và an toàn.</p>
                             </div>
                         </div>
@@ -199,7 +245,7 @@
                                 <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon React" class="course-thumb">
                             </div>
                             <div class="course-details">
-                                <h3 class="course-title">Phát Triển Ứng Dụng với React</h3>
+                                <h3 class="course-title sparkling">Phát Triển Ứng Dụng với React</h3>
                                 <p class="course-description">Học cách tạo giao diện người dùng tương tác, hiệu suất cao bằng thư viện JavaScript hàng đầu hiện nay.</p>
                             </div>
                         </div>
@@ -209,7 +255,7 @@
                                 <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon Node.js" class="course-thumb">
                             </div>
                             <div class="course-details">
-                                <h3 class="course-title">Phát Triển Backend với Node.js</h3>
+                                <h3 class="course-title sparkling">Phát Triển Backend với Node.js</h3>
                                 <p class="course-description">Xây dựng các API mạnh mẽ và server-side applications với JavaScript, sử dụng framework Express.js.</p>
                             </div>
                         </div>
@@ -436,10 +482,8 @@
     </div>
 </section>
 
-
 <div class="main-container">
         <h1 class="main-title">LỘ TRÌNH ĐÀO TẠO TẠI DSMART</h1>
-        <!-- Sử dụng thẻ img cho background để đảm bảo hiển thị -->
         <img class="background-image" src="/clients/assets/line_wavy.jpg" alt="Background Line">
         <div class="roadmap-container">
             <div class="roadmap-components-wrapper">
@@ -488,14 +532,16 @@
                 <!-- Component 4: PHP/Node.js -->
                 <div class="component-group step-4">
                     <div class="step-description">
+                        Phát triển logic phía máy chủ và back-end của ứng dụng web. Phát triển logic phía máy chủ và back-end của ứng dụng web.
                         Phát triển logic phía máy chủ và back-end của ứng dụng web.
+
                     </div>
                     <div class="step-label">
                         <div class="label-line"></div>
                         <span class="label-text">PHP / Node.js</span>
                     </div>
                     <div class="step-circle">
-                        <i class="fab fa-node-js"></i>
+                        <i class="fab fa-php"></i>
                     </div>
                 </div>
 
@@ -528,7 +574,19 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
+
+
+<div class="turnjs-container">
+  <div id="flipbook">
+    <div class="hard"><img src="clients/assets/hoangan.jpg"></div>
+    <div><img src="clients/assets/paper1.jpg"><span class="page-number">1</span></div>
+    <div><img src="clients/assets/paper1.jpg"><span class="page-number">2</span></div>
+    <div><img src="clients/assets/paper1.jpg"><span class="page-number">3</span></div>
+    <div><img src="clients/assets/paper1.jpg"><span class="page-number">4</span></div>
+    <div class="hard"><img src="clients/assets/paper_last.jpg"></div>
+  </div>
+</div>
 
 <section class="features-circle">
   <div class="wrap">

@@ -1,90 +1,122 @@
-$(document).ready(function () {
-	$(".banner-slider").slick({
-		slidesToShow: 1,
-		slidesToScroll: 1,
-		autoplay: true,
-		autoplaySpeed: 2000,
-		arrows: false,
-	});
+ $(document).ready(function () {
+        $(".banner-slider").slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            arrows: false,
+        });
+
 });
 
-
-/* Slide Feature*/
-const featureData = [
-  {
-    title: 'Theo dõi học tập toàn diện',
-    text: 'Hệ thống giúp bạn theo dõi toàn bộ hành trình học tập một cách chi tiết và trực quan. Từ tiến trình học, số buổi điểm danh, tổng thời lượng xem video bài giảng cho đến mức độ hoàn thành các bài tập và quiz. Tất cả dữ liệu được cập nhật theo thời gian thực, giúp bạn luôn nắm bắt được hiệu suất của mình để có lộ trình học tập hiệu quả nhất.'
-  },
-  {
-    title: 'Nền tảng E-Learning thế hệ mới',
-    text: 'Nền tảng học trực tuyến được thiết kế hiện đại, tối ưu hóa cho mọi thiết bị từ máy tính, tablet đến điện thoại. Bạn có thể dễ dàng truy cập kho bài giảng video chất lượng cao, tham gia các bài kiểm tra ngắn (quiz), thảo luận trực tiếp với giảng viên và các bạn học khác, đồng thời ghi chú ngay trên bài giảng để xem lại bất cứ lúc nào.'
-  },
-  {
-    title: 'Hỗ trợ học tập 1-1 từ Mentor',
-    text: 'Bạn sẽ không bao giờ cảm thấy bơ vơ. Đội ngũ Mentor luôn sẵn sàng trả lời mọi thắc mắc của bạn một cách nhanh chóng. Họ sẽ review code, đưa ra những gợi ý tài liệu học tập chuyên sâu và định hướng lộ trình phát triển nghề nghiệp phù hợp với năng lực và mục tiêu của bạn.'
-  },
-  {
-    title: 'Thực chiến với dự án thực tế',
-    text: 'Kiến thức được củng cố ngay lập tức thông qua các bài tập và dự án thực tế. Các dự án được xây dựng dựa trên quy trình làm việc chuẩn trong các doanh nghiệp. Ngay sau mỗi buổi học, bạn sẽ có thể áp dụng kiến thức để code các phần của dự án, sau đó triển khai (deploy) và kiểm thử (test) để thấy ngay kết quả của mình.'
-  },
-  {
-    title: 'Cầu nối vững chắc với việc làm',
-    text: 'Chúng tôi không chỉ đào tạo mà còn đồng hành cùng bạn trên con đường sự nghiệp. Chương trình bao gồm việc liên kết trực tiếp với các doanh nghiệp, training kỹ năng phỏng vấn, hỗ trợ xây dựng CV và portfolio chuyên nghiệp, và giới thiệu các vị trí thực tập hoặc Fresher phù hợp với năng lực của bạn.'
-  },
-  {
-    title: 'Cộng đồng học viên năng động',
-    text: 'Tham gia vào cộng đồng học viên sôi nổi, nơi bạn có thể hỏi đáp các vấn đề gặp phải 24/7, chia sẻ kinh nghiệm học tập và làm việc. Đặc biệt, bạn có thể tham gia các buổi pair-programming để cùng nhau giải quyết những bài toán phức tạp và học hỏi lẫn nhau.'
-  }
-];
-const ring = document.getElementById('hexRing');
-
-// Check if the hexRing element exists before proceeding.
-if (ring) {
-  const items = ring.querySelectorAll('.hex-item');
-  const wraps = ring.querySelectorAll('.hex-wrap');
-  const title = document.getElementById('featTitle');
-  const text = document.getElementById('featText');
-  const prev = document.getElementById('prevBtn');
-  const next = document.getElementById('nextBtn');
-
-  let activeIndex = 0;
-
-  function setActive(index) {
-    items.forEach(i => i.classList.remove('active'));
-    wraps.forEach(w => w.classList.remove('active-wrap'));
-
-    items[index].classList.add('active');
-    items[index].parentElement.classList.add('active-wrap');
-    
-    activeIndex = index;
-
-    const d = featureData[index];
-    title.textContent = d.title;
-    text.textContent = d.text;
-  }
-
-  items.forEach(btn => {
-    btn.addEventListener('click', () => setActive(+btn.dataset.index));
+  $("#flipbook").turn({
+    width: 922,
+    height: 600,
+    autoCenter: true
   });
 
-  prev.addEventListener('click', () => {
-    setActive((activeIndex - 1 + items.length) % items.length);
-  });
-  next.addEventListener('click', () => {
-    setActive((activeIndex + 1) % items.length);
-  });
+    /* Slide Feature*/
+    const featureData = [
+        {
+            title: 'Theo dõi học tập toàn diện',
+            text: 'Hệ thống giúp bạn theo dõi toàn bộ hành trình học tập một cách chi tiết và trực quan. Từ tiến trình học, số buổi điểm danh, tổng thời lượng xem video bài giảng cho đến mức độ hoàn thành các bài tập và quiz. Tất cả dữ liệu được cập nhật theo thời gian thực, giúp bạn luôn nắm bắt được hiệu suất của mình để có lộ trình học tập hiệu quả nhất.'
+        },
+        {
+            title: 'Nền tảng E-Learning thế hệ mới',
+            text: 'Nền tảng học trực tuyến được thiết kế hiện đại, tối ưu hóa cho mọi thiết bị từ máy tính, tablet đến điện thoại. Bạn có thể dễ dàng truy cập kho bài giảng video chất lượng cao, tham gia các bài kiểm tra ngắn (quiz), thảo luận trực tiếp với giảng viên và các bạn học khác, đồng thời ghi chú ngay trên bài giảng để xem lại bất cứ lúc nào.'
+        },
+        {
+            title: 'Hỗ trợ học tập 1-1 từ Mentor',
+            text: 'Bạn sẽ không bao giờ cảm thấy bơ vơ. Đội ngũ Mentor luôn sẵn sàng trả lời mọi thắc mắc của bạn một cách nhanh chóng. Họ sẽ review code, đưa ra những gợi ý tài liệu học tập chuyên sâu và định hướng lộ trình phát triển nghề nghiệp phù hợp với năng lực và mục tiêu của bạn.'
+        },
+        {
+            title: 'Thực chiến với dự án thực tế',
+            text: 'Kiến thức được củng cố ngay lập tức thông qua các bài tập và dự án thực tế. Các dự án được xây dựng dựa trên quy trình làm việc chuẩn trong các doanh nghiệp. Ngay sau mỗi buổi học, bạn sẽ có thể áp dụng kiến thức để code các phần của dự án, sau đó triển khai (deploy) và kiểm thử (test) để thấy ngay kết quả của mình.'
+        },
+        {
+            title: 'Cầu nối vững chắc với việc làm',
+            text: 'Chúng tôi không chỉ đào tạo mà còn đồng hành cùng bạn trên con đường sự nghiệp. Chương trình bao gồm việc liên kết trực tiếp với các doanh nghiệp, training kỹ năng phỏng vấn, hỗ trợ xây dựng CV và portfolio chuyên nghiệp, và giới thiệu các vị trí thực tập hoặc Fresher phù hợp với năng lực của bạn.'
+        },
+        {
+            title: 'Cộng đồng học viên năng động',
+            text: 'Tham gia vào cộng đồng học viên sôi nổi, nơi bạn có thể hỏi đáp các vấn đề gặp phải 24/7, chia sẻ kinh nghiệm học tập và làm việc. Đặc biệt, bạn có thể tham gia các buổi pair-programming để cùng nhau giải quyết những bài toán phức tạp và học hỏi lẫn nhau.'
+        }
+    ];
+    const ring = document.getElementById('hexRing');
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') prev.click();
-    if (e.key === 'ArrowRight') next.click();
-  });
+    // Check if the hexRing element exists before proceeding.
+    if (ring) {
+        const items = ring.querySelectorAll('.hex-item');
+        const wraps = ring.querySelectorAll('.hex-wrap');
+        const title = document.getElementById('featTitle');
+        const text = document.getElementById('featText');
+        const prev = document.getElementById('prevBtn');
+        const next = document.getElementById('nextBtn');
 
-  window.addEventListener('load', () => {
-    setActive(activeIndex);
-  });
-}
+        let activeIndex = 0;
+        let intervalId;
 
+        // Hàm để cập nhật UI dựa trên index
+        function setActive(index) {
+            items.forEach(i => i.classList.remove('active'));
+            wraps.forEach(w => w.classList.remove('active-wrap'));
 
+            items[index].classList.add('active');
+            items[index].parentElement.classList.add('active-wrap');
+            
+            activeIndex = index;
+
+            const d = featureData[index];
+            title.textContent = d.title;
+            text.textContent = d.text;
+        }
+
+        // Hàm để bắt đầu tính năng tự động chuyển slide
+        function startAutoplay() {
+            intervalId = setInterval(() => {
+                const nextIndex = (activeIndex + 1) % items.length;
+                setActive(nextIndex);
+            }, 3000); // 3000ms = 3 giây
+        }
+
+        // Hàm để đặt lại bộ đếm tự động khi có tương tác từ người dùng
+        function resetAutoplay() {
+            clearInterval(intervalId);
+            startAutoplay();
+        }
+
+        // Gán sự kiện cho các nút điều khiển và item để reset bộ đếm
+        items.forEach(btn => {
+            btn.addEventListener('click', () => {
+                setActive(+btn.dataset.index);
+                resetAutoplay();
+            });
+        });
+
+        prev.addEventListener('click', () => {
+            setActive((activeIndex - 1 + items.length) % items.length);
+            resetAutoplay();
+        });
+
+        next.addEventListener('click', () => {
+            setActive((activeIndex + 1) % items.length);
+            resetAutoplay();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prev.click();
+            }
+            if (e.key === 'ArrowRight') {
+                next.click();
+            }
+        });
+
+        window.addEventListener('load', () => {
+            setActive(activeIndex);
+            startAutoplay(); // Bắt đầu tự động chuyển slide khi trang load xong
+        });
+    }
 const circleData = [
   {
     title: 'Cá nhân hóa',
@@ -217,3 +249,4 @@ if (circleRing) {
     setInitialPositions();
   });
 }
+

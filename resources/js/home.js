@@ -53,12 +53,57 @@ function closeMenu() {
 // course nổi bật
 $(document).ready(function() {
     const viewAllBtn = $('.view-all-btn');
-
-    // Thêm class để bắt đầu animation lặp lại
     viewAllBtn.addClass('animate-tada');
 
     // Sau 20 giây, xóa class để dừng animation
     setTimeout(function() {
         viewAllBtn.removeClass('animate-tada');
-    }, 20000); // 20000 milliseconds = 20 giây
+    }, 20000);
+
+	 // Hiệu ứng lấp lánh cho hình ảnh lớn khi di chuột vào promo-card
+    $('.promo-card').hover(
+        function() {
+            $(this).sparkle({
+                count: 50,
+                color: ["#12CBC4","#EE5A24", "#FFC312", "#EA2027", "#D980FA", "#0652DD"],
+                overlap: 50,
+				minSize: 10,
+				maxSize: 20,
+				direction: "both",
+            });
+        },
+        function() {
+            // Loại bỏ sparkles khi di chuột ra
+            $(this).sparkle('destroy');
+        }
+    );
+
+	 $('.small-heading').hover(
+        function() {
+            $(this).sparkle({
+                count: 50,
+                color: ["#12CBC4","#EE5A24", "#FFC312", "#EA2027", "#D980FA", "#0652DD"],
+                overlap: 50,
+				minSize: 5,
+				direction: "both",
+            });
+        },
+        function() {
+            $(this).sparkle('destroy');
+        }
+    );
+
+    $('.course-item').hover(
+        function() {
+            $(this).find('.course-icon-container, .course-title').sparkle({
+                count: 20,
+                color: '#EE5A24',
+                overlap: 20,
+				minSize: 5,
+            });
+        },
+        function() {
+            $(this).find('.course-icon-container, .course-title').sparkle('destroy');
+        }
+    );
 });

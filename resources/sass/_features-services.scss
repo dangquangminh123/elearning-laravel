@@ -1,3 +1,65 @@
+/* Styling tổng thể cho section */
+.ft-services-section {
+  padding: 3.125rem 1.25rem; /* ~50px 20px */
+}
+
+.ft-services-container {
+  display: flex;
+  justify-content: center;
+  gap: 5.6rem;
+  flex-wrap: wrap;
+}
+
+/* Kiểu dáng cho từng mục dịch vụ, đã bỏ background và border */
+.ft-service-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem; /* ~15px */
+  flex: 1 1 12.5rem; /* ~200px */
+  max-width: 15.625rem; /* ~250px */
+}
+
+/* Kiểu dáng cho icon với màu Flat UI */
+.ft-service-icon {
+  font-size: 2.5rem;
+}
+.ft-icon-quality {
+    color: #3498db; /* Peter River */
+}
+.ft-icon-support {
+    color: #27ae60; /* Nephritis */
+}
+.ft-icon-anytime {
+    color: #f1c40f; /* Sunflower */
+}
+.ft-icon-moneyback {
+    color: #e74c3c; /* Alizarin */
+}
+
+/* Kiểu dáng cho tiêu đề với màu Flat UI */
+.ft-title {
+    font-size: 1.25rem;
+    margin: 0 0 0.3125rem 0;
+}
+.ft-title-quality {
+    color: #3498db;
+}
+.ft-title-support {
+    color: #27ae60;
+}
+.ft-title-anytime {
+    color: #f1c40f;
+}
+.ft-title-moneyback {
+    color: #e74c3c;
+}
+
+/* Kiểu dáng cho phần mô tả */
+.ft-description {
+  font-size: 0.875rem; /* ~14px */
+  margin: 0;
+  color: #666;
+}
 
 
 /* features-hero */
@@ -233,6 +295,7 @@
     justify-content: center;
   }
 }
+
 
 
 .features-circle {
