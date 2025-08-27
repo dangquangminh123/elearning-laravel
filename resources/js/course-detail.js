@@ -58,7 +58,6 @@ $(document).ready(function() {
         if ($(selector).length > 0) {
             const colors = courseColors[selector];
             $(selector).flashMe({
-                // ĐÃ SỬA: Thêm một màu thứ hai vào mảng
                 'backgroundColors': [colors.bg, '#681414'], 
                 'colors': [colors.text, '#D7CCB6'],
                 'interval': 3000, 

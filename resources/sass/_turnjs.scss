@@ -1,8 +1,43 @@
+
+#flipbook {
+    width: 57.625rem;
+    height: 37.5rem;
+    margin: 0 auto; /* auto center */
+    overflow: hidden; /* tránh tràn */
+}
+
+/* Div tổng: căn giữa cả tiêu đề và flipbook */
+.flipbook-wrapper {
+  display: flex;
+  flex-direction: column;   /* xếp dọc: tiêu đề trên, flipbook dưới */
+  align-items: center;      /* căn giữa ngang */
+  justify-content: center;  /* căn giữa dọc nếu muốn full height */
+  min-height: 100vh;
+  padding: 30px 10px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+/* Tiêu đề đẹp và nổi bật */
+.flipbook-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  padding: 12px 24px;
+  color: #fff;
+  background: linear-gradient(90deg, #ff6b6b, #f06595, #845ef7);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  letter-spacing: 1px;
+}
+
+/* Turn.js container giữ nguyên */
 .turnjs-container {
-  display: flex; /* Bật chế độ flexbox */
-  justify-content: center; /* Căn giữa theo chiều ngang */
-  align-items: center; /* Căn giữa theo chiều dọc */
-  min-height: 100vh; /* Quan trọng: Chiếm toàn bộ chiều cao của viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .turnjs-slider{
@@ -169,3 +204,71 @@
     font-size: 14px; /* Kích thước font */
     text-align: center;
 }
+
+/* Số trang mặc định ẩn */
+#flipbook .page .page-number {
+  display: none;
+}
+
+/* Ảnh mặc định mờ đi (hoặc ẩn hẳn nếu muốn) */
+#flipbook .page img {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+/* 2. Chỉ xoay ngang TRANG LẺ KHÔNG PHẢI .hard */
+#flipbook .page.odd:not(.hard) img,
+#flipbook .page.p1:not(.hard) img,
+#flipbook .page.p3:not(.hard) img,
+#flipbook .page.p5:not(.hard) img,
+#flipbook .page.p7:not(.hard) img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+  transform-origin: center center;
+}
+
+/* Khi trang được đánh dấu là visible bằng JS */
+#flipbook .page.page-visible img {
+  opacity: 1;
+}
+
+/* 3. Giữ nguyên trang chẵn (không xoay) */
+#flipbook .page.even img {
+  transform: none !important;
+  object-fit: cover !important;
+}
+/* 4. Sửa z-index để không đè trang */
+#flipbook .page {
+  position: relative;
+  z-index: auto !important; /* bỏ ép cứng z-index */
+}
+#flipbook .page-wrapper {
+  overflow: hidden;
+}
+
+/* Turn.js sẽ tự set z-index khi lật → tránh can thiệp mạnh tay */
+
+/* 5. Số trang: chỉ hiển thị khi trang visible, luôn ở dưới giữa */
+#flipbook .page .page-number {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+  display: none; /* mặc định ẩn */
+}
+
+/* Khi Turn.js set class "page-visible" (trang hiện ra) thì hiện số */
+#flipbook .page.page-visible .page-number {
+  display: block;
+}
+

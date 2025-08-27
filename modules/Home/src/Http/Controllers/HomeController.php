@@ -20,7 +20,16 @@ class HomeController extends Controller
     public function index() {
         $pageTitle = 'Trang chủ';
 
+        $teachers = $this->teacherRepository->getAllTeacher()->get();
+        $teachersWithCourses = [];
 
+        foreach ($teachers as $teacher) {
+            $courses = $this->coursesRepository->getCoursesByTeacher($teacher->id);
+            $teachersWithCourses[] = [
+                'teacher' => $teacher,
+                'courses' => $courses
+            ];
+        }
         // Lấy tất cả loại khóa học
         $courseTypes = $this->coursesRepository->getAllTypeCourses();
 
@@ -29,6 +38,6 @@ class HomeController extends Controller
 
 
         $courseGroups = $this->coursesRepository->getCoursesGroupedByType(4);
-        return view('home::index', compact('pageTitle', 'courseTypes', 'coursesByType', 'courseGroups'));
+        return view('home::index', compact('pageTitle', 'courseTypes', 'teachersWithCourses', 'coursesByType', 'courseGroups'));
     }
 }

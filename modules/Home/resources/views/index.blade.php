@@ -41,26 +41,26 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="banner-slider">
                     <div class="banner-slider-inner">
-                        <img src="/clients/assets/slider-1.jpeg" alt="" />
+                        <img src="/clients/assets/PHP.jpg" alt="" />
                     </div>
                     <div class="banner-slider-inner">
-                        <img src="/clients/assets/slider-2.jpeg" alt="" />
+                        <img src="/clients/assets/laravel.png" alt="" />
                     </div>
                     <div class="banner-slider-inner">
-                        <img src="/clients/assets/slider-3.jpeg" alt="" />
+                        <img src="/clients/assets/react.jpg" alt="" />
                     </div>
                 </div>
             </div>
             <div class="d-none d-lg-block col-lg-3">
                 <div class="banner-right">
                     <div class="banner-right__img">
-                        <img src="/clients/assets/banner.png" alt="" />
+                        <img src="/clients/assets/laravel.png" alt="" />
                     </div>
                     <div class="banner-right__img">
-                        <img src="/clients/assets/banner.png" alt="" />
+                        <img src="/clients/assets/PHP.jpg" alt="" />
                     </div>
                     <div class="banner-right__img">
-                        <img src="/clients/assets/banner.png" alt="" />
+                        <img src="/clients/assets/react.jpg" alt="" />
                     </div>
                 </div>
             </div>
@@ -576,17 +576,42 @@
         </div>
 </div>
 
+    
+<div class="flipbook-wrapper">
+    <h2 class="flipbook-title">
+        Giảng viên giảng dạy trực tiếp các môn tại DSCons
+    </h2>
 
-<div class="turnjs-container">
-  <div id="flipbook">
-    <div class="hard"><img src="clients/assets/hoangan.jpg"></div>
-    <div><img src="clients/assets/paper1.jpg"><span class="page-number">1</span></div>
-    <div><img src="clients/assets/paper1.jpg"><span class="page-number">2</span></div>
-    <div><img src="clients/assets/paper1.jpg"><span class="page-number">3</span></div>
-    <div><img src="clients/assets/paper1.jpg"><span class="page-number">4</span></div>
-    <div class="hard"><img src="clients/assets/paper_last.jpg"></div>
-  </div>
+    <div class="turnjs-container">
+        <div id="flipbook">
+            <div class="hard"><img src="clients/assets/hoangan.jpg"></div>
+            @php $page = 1; @endphp
+            @foreach($teachersWithCourses as $item)
+                {{-- Trang lẻ: giảng viên --}}
+                <div>
+                    <img src="{{ asset($item['teacher']->image ?? '/clients/assets/react.jpg') }}">
+                    <span class="page-number">{{ $page }}</span>
+                </div>
+                @php $page++; @endphp
+
+                {{-- Trang chẵn: khóa học hoặc mặc định --}}
+                @php $course = $item['courses']->first(); @endphp
+                <div>
+                    @if($course)
+                        <img src="{{ $course->thumbnail ?? 'clients/assets/react.jpg' }}">
+                        <span class="page-number">{{ $page }}</span>
+                    @else
+                        <img src="{{ asset('clients/assets/react.jpg') }}">
+                        <span class="page-number">{{ $page }}</span>
+                    @endif
+                </div>
+                @php $page++; @endphp
+            @endforeach
+            <div class="hard"><img src="clients/assets/paper_last.jpg"></div>
+        </div>
+    </div>
 </div>
+
 
 <section class="features-circle">
   <div class="wrap">

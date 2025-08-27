@@ -34,24 +34,115 @@ function openMenu() {
 	}, 10);
 }
 
-function closeMenu() {
-	$("div.screen, .menu").removeClass("animate");
-	$("div.y").fadeIn(150);
-	$("div.burger").removeClass("open");
-	$("div.x").removeClass("rotate45").addClass("rotate30");
-	$("div.z").removeClass("rotate135").addClass("rotate150");
 
-	setTimeout(function () {
-		$("div.x").removeClass("rotate30");
-		$("div.z").removeClass("rotate150");
-	}, 50);
-	setTimeout(function () {
-		$("div.x, div.z").removeClass("collapse");
-	}, 70);
-}
-
-// course nổi bật
 $(document).ready(function() {
+
+       // preload helper
+  function preloadImages(imageUrls, callback) {
+    var loaded = 0, total = imageUrls.length;
+    if (total === 0) { callback(); return; }
+    imageUrls.forEach(function(url){
+      var img = new Image();
+      img.onload = img.onerror = function() {
+        loaded++;
+        if (loaded === total) callback();
+      };
+      img.src = url;
+    });
+  }
+
+  // lấy các src ảnh động do blade render
+  var pages = [];
+  $('#flipbook img').each(function(){
+    var src = $(this).attr('src');
+    if (src) pages.push(src);
+  });
+
+  preloadImages(pages, function(){
+
+    var flip = $('#flipbook');
+    var autoFlipInterval = null;
+    var resumeTimer = null;
+    var flipForward = true;
+    var lockUntil = 0; // timestamp (ms) : nếu Date.now() < lockUntil thì autoFlip sẽ không thực hiện
+
+    // init turn.js (giữ cấu hình cũ của bạn)
+    flip.turn({
+      width: 922,    // giữ pixel cho Turn.js
+      height: 600,
+      autoCenter: true,
+      when: {
+        start: function() {
+          var view = flip.turn('view') || [];
+          $('#flipbook .page').removeClass('page-visible');
+          view.forEach(function(p){ $('#flipbook .p' + p).addClass('page-visible'); });
+        },
+        turned: function(event, page, view) {
+          $('#flipbook .page').removeClass('page-visible');
+          view.forEach(function(p){ $('#flipbook .p' + p).addClass('page-visible'); });
+
+          // Nếu người dùng lật tay (manual), tạm dừng auto flip
+          userInteracted();
+        }
+      }
+    });
+
+    // core autoFlip: kiểm tra lock trước khi thực hiện
+    function autoFlip(){
+      if (Date.now() < lockUntil) return;       // đang lock vì user vừa tương tác
+      if (!flip.turn) return;                   // safety
+      var current = flip.turn('page');
+      var total = flip.turn('pages');
+
+      if (flipForward) {
+        if (current < total) flip.turn('next');
+        else { flipForward = false; flip.turn('previous'); }
+      } else {
+        if (current > 1) flip.turn('previous');
+        else { flipForward = true; flip.turn('next'); }
+      }
+    }
+
+    function startAutoFlip(){
+      if (autoFlipInterval) return;             // tránh tạo interval thứ hai
+      autoFlipInterval = setInterval(autoFlip, 2000);
+    }
+
+    function stopAutoFlip(){
+      if (!autoFlipInterval) return;
+      clearInterval(autoFlipInterval);
+      autoFlipInterval = null;
+    }
+
+    // khi user tương tác: khóa autoFlip trong 5s và restart sau 5s
+    function userInteracted(){
+      // đặt lock trước để tránh race: nếu autoFlip đang chạy ngay lúc này,
+      // việc autoFlip sẽ thấy lock và bail out ở lần gọi tiếp theo.
+      lockUntil = Date.now() + 5000;
+
+      // dừng interval hiện tại ngay (nếu có)
+      stopAutoFlip();
+
+      // xóa timer cũ nếu có
+      if (resumeTimer) clearTimeout(resumeTimer);
+
+      // sau 5s, bỏ lock và start lại autoFlip (nếu chưa có)
+      resumeTimer = setTimeout(function(){
+        lockUntil = 0;
+        startAutoFlip();
+      }, 5000);
+    }
+
+    // Bắt các event tương tác chung (click, kéo, chạm, cuộn, phím)
+    $(document).on('mousedown touchstart wheel keydown', userInteracted);
+
+    // Start auto flip sau khi init xong (chỉ 1 lần)
+    startAutoFlip();
+
+  }); // end preload
+
+
+    // course nổi bật
     const viewAllBtn = $('.view-all-btn');
     viewAllBtn.addClass('animate-tada');
 

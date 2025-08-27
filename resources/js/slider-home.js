@@ -9,12 +9,6 @@
 
 });
 
-  $("#flipbook").turn({
-    width: 922,
-    height: 600,
-    autoCenter: true
-  });
-
     /* Slide Feature*/
     const featureData = [
         {

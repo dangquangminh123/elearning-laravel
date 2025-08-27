@@ -21,6 +21,13 @@ class CoursesRepository extends BaseRepository implements CoursesRepositoryInter
             ->select('courses.*')->latest();
     }
 
+    public function getCoursesByTeacher($teacherId) {
+        return $this->model
+            ->where('teacher_id', $teacherId)
+            ->select('id','name','thumbnail')
+            ->get();
+    }
+
     public function getAllTypeCourses() {
         return  CourseType::all();
     }
