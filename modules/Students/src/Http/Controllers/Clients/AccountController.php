@@ -129,6 +129,7 @@ class AccountController extends Controller
 
         return view('students::clients.my-courses', compact('pageTitle', 'pageName', 'courses', 'teacher'));
     }
+    
     public function myOrders(Request $request)
     {
         $pageTitle = 'Đơn hàng của tôi';

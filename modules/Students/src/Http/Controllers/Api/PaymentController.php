@@ -49,11 +49,7 @@ class PaymentController extends Controller
         if (!empty($matches[1])) {
             $orderId = $matches[1];
             $order = $this->orderRepository->getOrder($orderId);
-            // return $order;
             if (!$order) {
-                // return response()->json([
-                //     'success' => false,
-                // ], 401);
                 return view('errors.401', [
                     'message' => 'Không tìm thấy đơn này! vui lòng thử tạo lại đơn hàng mới',
                     'pageTitle' => 'Thanh toán thất bại',
@@ -66,9 +62,6 @@ class PaymentController extends Controller
                 $diff = $now - $paymentDate;
                 $checkoutCountdown = config('checkout.checkout_countdown') * 60;
                 if ($diff > $checkoutCountdown) {
-                    // return response()->json([
-                    //     'success' => false,
-                    // ], 401);
                     return view('errors.401', [
                         'message' => 'Đơn hàng này đã quá hạn thanh toán! Vui lòng thanh toán lại',
                         'pageTitle' => 'Thanh toán thất bại',
@@ -78,9 +71,6 @@ class PaymentController extends Controller
 
             $total = $order->total - $order->discount;
             if ($total != $transferAmount) {
-                // return response()->json([
-                //     'success' => false,
-                // ], 401);
                 return view('errors.401', [
                     'message' => 'Số tiền thanh toán bị sai hoặc bạn trả tiền chưa đúng',
                     'pageTitle' => 'Thanh toán thất bại',
@@ -90,9 +80,6 @@ class PaymentController extends Controller
             // // Xử lý cập nhật trạng thái đơn hàng
             $orderStatus = $this->orderStatusRepository->getOrderStatus(1, 'is_success');
             if (!$orderStatus) {
-                // return response()->json([
-                //     'success' => false,
-                // ], 401);
                 return view('errors.401', [
                     'message' => 'Đơn hàng này đã được thanh toán hoặc không thể thanh toán!',
                     'pageTitle' => 'Thanh toán thất bại',
@@ -101,9 +88,6 @@ class PaymentController extends Controller
 
             $statusId = $orderStatus->id;
             if ($order->status_id == $statusId) {
-                // return response()->json([
-                //     'success' => false,
-                // ], 401);
                 return view('errors.401', [
                     'message' => 'Trạng thái đơn hàng đang bị lỗi hoặc đơn hàng đã bị sai !',
                     'pageTitle' => 'Thanh toán thất bại',
@@ -111,9 +95,6 @@ class PaymentController extends Controller
             }
             $data = $this->orderRepository->updateStatus($orderId, $statusId);
             if (!$data) {
-                // return response()->json([
-                //     'success' => false,
-                // ], 401);
                 return view('errors.401', [
                     'message' => 'Thông tin đơn hàng bị sai hoặc đơn hàng này đã bị lỗi!',
                     'pageTitle' => 'Thanh toán thất bại',

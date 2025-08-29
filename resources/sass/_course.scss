@@ -21,20 +21,19 @@
     padding: 0 10px;
     font-size: 0.9rem;
 }
+
 /* all-course */
 .all-course {
     margin-bottom: 40px;
 }
+
 .all-course .course {
     margin-top: 30px;
     background-color: #fff;
     border: 1px solid #d7e0e0;
 }
-.all-course .course:hover {
-    transform: translateY(-1%);
-    box-shadow: 2px 2px 18px 2px rgb(77 61 61 / 50%);
-    transition: all 0.3s ease;
-}
+
+
 .all-course h3 {
     background-color: #98c6ef;
     text-align: center;
@@ -42,9 +41,7 @@
     font-size: 1.7rem;
     text-transform: uppercase;
 }
-.all-course .banner-course {
-    // width: 50%;
-}
+
 
 .all-course .descreption-course {
     padding: 20px;

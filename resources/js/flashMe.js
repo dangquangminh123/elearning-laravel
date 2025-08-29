@@ -1,7 +1,3 @@
-/*
-* flashMe.js
-* version 1.0
-* */
 (function ($) {
     $.fn.flashMe = function (options) {
         var settings = $.extend({
@@ -26,9 +22,6 @@
                     c = settings.colors;
                 }
                 el.css("color", c);
-                if (settings.transition !== false) {
-                    el.css("transition", "color " + settings.transition + "ms linear");
-                }
             }
 
             if (settings.backgroundColors !== false) {
@@ -39,11 +32,13 @@
                 } else {
                     bc = settings.backgroundColors;
                 }
-                el.css("background-color", bc);
-                if (settings.transition !== false) {
-                    el.css("transition", "background-color " + settings.transition + "ms linear");
-                }
+                el.css("background", bc);
             }
+
+            if (settings.transition !== false) {
+                el.css("transition", "background " + settings.transition + "ms linear, color " + settings.transition + "ms linear");
+            }
+
         }, settings.interval);
     };
 }(jQuery));

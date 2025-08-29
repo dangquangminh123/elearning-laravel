@@ -14,6 +14,8 @@ use Modules\Orders\src\Events\OrderRefunded;
 use Modules\Orders\src\Listeners\SendOrderRefundedNotification;
 use Modules\Orders\src\Events\OrderPaid;
 use Modules\Orders\src\Listeners\SendOrderPaidNotification;
+use Modules\Orders\src\Events\AdminOrderCancel;
+use Modules\Orders\src\Listeners\AdminSendCancelledNotification;
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -38,6 +40,9 @@ class EventServiceProvider extends ServiceProvider
         OrderRefunded::class => [
             SendOrderRefundedNotification::class,
         ],
+        AdminOrderCancel::class => [
+            AdminSendCancelledNotification::class,
+        ]
     ];
 
     /**

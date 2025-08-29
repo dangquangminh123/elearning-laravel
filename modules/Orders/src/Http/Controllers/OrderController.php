@@ -7,16 +7,22 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
 use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
+use Modules\Students\src\Services\StudentCourseService;
 use Yajra\DataTables\Facades\DataTables;
+use Modules\Orders\src\Events\AdminOrderCancel;
+use App\Notifications\AdminOrderCancelledNotification;
 
 class OrderController extends Controller
 {
     protected $ordersRepository;
     protected $couponRepository;
-    public function __construct(OrdersRepositoryInterface $ordersRepository, CouponsRepositoryInterface $couponRepository)
+    protected $studentCourseServices;
+    public function __construct(OrdersRepositoryInterface $ordersRepository, CouponsRepositoryInterface $couponRepository, 
+    StudentCourseService $studentCourseServices)
     {
         $this->ordersRepository = $ordersRepository;
         $this->couponRepository = $couponRepository;
+        $this->studentCourseServices = $studentCourseServices;
     }
 
     public function data()
@@ -78,6 +84,16 @@ class OrderController extends Controller
                 'message' => 'Chỉnh sửa trạng thái thất bại (đơn hàng không tồn tại).'
             ], 422);
         }
+
+        if (in_array($order->status->code, ['refunded', 'cancelled_payment'])) {
+            $this->studentCourseServices->removeCoursesStudent($order->id);
+            event(new AdminOrderCancel($order)); 
+    
+            if ($order->student) {
+                $order->student->notify(new AdminOrderCancelledNotification($order));
+            }
+        }
+        
         $statusOrder = $this->ordersRepository->getStatusBadge($order);
         $paymentCompleted = optional($order->payment_complete_date)->format('d/m/Y H:i');
 

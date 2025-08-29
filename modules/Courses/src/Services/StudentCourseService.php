@@ -14,9 +14,6 @@ class StudentCourseService
         $this->orderRepository = $orderRepository;
     }
 
-    /**
-     * Gắn khoá học vào học viên khi thanh toán thành công
-     */
     public function attachCoursesToStudent(int $orderId)
     {
         $order = $this->orderRepository->getOrderWithRelationsById($orderId);

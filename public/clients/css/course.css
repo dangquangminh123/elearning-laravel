@@ -1,89 +1,255 @@
 /* sub-header */
 .sub-header {
-	background-image: url("../assets/bg-my-course.jpeg");
-	background-repeat: no-repeat;
-	background-position: right bottom;
-	background-size: cover;
+    background-image: url("../assets/bg-my-course.jpeg");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: cover;
 }
 .sub-header .sub-title {
-	color: #fff;
-	text-align: center;
-	padding: 20px 0;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
 }
 .sub-header .sub-title p {
-	font-size: 0.9rem;
-	margin-bottom: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
 }
-
 .sub-header .sub-title a {
-	color: #fff;
-	text-decoration: none;
+    color: #fff;
 }
 .sub-header .sub-title i {
-	padding: 0 10px;
-	font-size: 0.9rem;
+    padding: 0 10px;
+    font-size: 0.9rem;
 }
+
 /* all-course */
 .all-course {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
+
+.all-course .banner-course {
+    position: relative;
+}
+
 .all-course .course {
-	margin-top: 30px;
-	background-color: #fff;
-	border: 1px solid #d7e0e0;
+    margin-top: 30px;
+    background-color: #fff;
+    border: 1px solid #d7e0e0;
 }
 .all-course .course:hover {
-	transform: translateY(-1%);
-	box-shadow: 2px 2px 18px 2px rgb(77 61 61 / 50%);
-	transition: all 0.3s ease;
+    transform: translateY(-1%);
+    box-shadow: 2px 2px 18px 2px rgb(77 61 61 / 50%);
+    transition: all 0.3s ease;
 }
+
+
+.banner-course .course-tag,
+.course-tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* icon kích thước */
+.course-tag i { font-size: 1rem; line-height: 1; }
+/* gradient cho từng loại (tương thích với course_type_class) */
+.course-tag-foundation, .course-type-nen-tang {
+    background: linear-gradient(135deg, #C3272B, #C3272B);
+    color: #426666;
+}
+.course-tag-free, .course-type-mien-phi {
+    background: linear-gradient(135deg, #146654, #146654);
+    color: #f05510;
+}
+.course-tag-hot, .course-type-noi-bat {
+    background: linear-gradient(135deg, #564232, #564232);
+    color: #327A58;
+}
+.course-tag-advanced, .course-type-chuyen-sau {
+    background: linear-gradient(135deg, #6F9Bc6, #6F9Bc6);
+    color: #F3993A;
+}
+.course-tag-skill, .course-type-mo-rong {
+    background: linear-gradient(135deg, #4781C3, #4781C3);
+    color: #DE7565;
+}
+
+/* Màu cho từng loại */
+.course-tag-foundation {
+    background: linear-gradient(135deg, #C3272B, #C3272B);
+    color: #426666;
+}
+
+.course-tag-free {
+    background: linear-gradient(135deg, #146654, #146654);
+    color: #f05510;
+}
+
+.course-tag-hot {
+    background: linear-gradient(135deg, #564232, #564232);
+    color: #327A58; /* chữ phù hợp theo yêu cầu */
+}
+
+.course-tag-advanced {
+    background: linear-gradient(135deg, #6F9Bc6, #6F9Bc6);
+    color: #F3993A;
+}
+
+.course-tag-skill {
+    background: linear-gradient(135deg, #4781C3, #4781C3);
+    color: #DE7565;
+}
+
+/* Áp dụng cho phần tương thích với course_type_class */
+.course-type-nen-tang    { background: linear-gradient(135deg, #C3272B, #C3272B); color: #426666; }
+.course-type-mien-phi    { background: linear-gradient(135deg, #146654, #146654); color: #f05510; }
+.course-type-noi-bat     { background: linear-gradient(135deg, #564232, #564232); color: #327A58; }
+.course-type-chuyen-sau  { background: linear-gradient(135deg, #6F9Bc6, #6F9Bc6); color: #F3993A; }
+.course-type-mo-rong     { background: linear-gradient(135deg, #4781C3, #4781C3); color: #DE7565; }
+
+
+.banner-course img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* GHI ĐÈ HOÀN TOÀN: đảm bảo tag luôn hiển thị */
+.all-course .course .banner-course .course-tag {
+    position: absolute;   /* giữ nguyên vị trí */
+    top: 8px;             /* canh top */
+    left: 8px;            /* canh left */
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: inline-flex !important;
+    transform: none !important;
+}
+
 .all-course h3 {
-	background-color: #98c6ef;
-	text-align: center;
-	padding: 20px 0;
-	font-size: 1.7rem;
-	text-transform: uppercase;
+    background-color: #98c6ef;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.7rem;
+    text-transform: uppercase;
 }
-.all-course .banner-course {
-	width: 50%;
-}
+
+
 .all-course .descreption-course {
-	padding: 20px;
+    padding: 20px;
 }
 .all-course .descreption-top {
-	display: flex;
-	font-size: 0.6rem;
-	justify-content: space-between;
-	font-weight: 400;
+    display: flex;
+    font-size: 0.6rem;
+    justify-content: space-between;
+    font-weight: 400;
 }
 .all-course .descreption-title {
-	font-size: 1.3rem;
-	font-weight: 400;
-	margin-top: 6px;
-	margin-bottom: 20px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-top: 6px;
+    margin-bottom: 20px;
 }
 .all-course .descreption-title a {
-	color: #000;
+    color: #000;
 }
 .all-course .descreption-teacher {
-	display: flex;
-	align-items: center;
-	font-weight: 300;
+    display: flex;
+    align-items: center;
+    font-weight: 300;
 }
 .all-course .descreption-teacher img {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; 
 }
 .all-course .descreption-price {
-	font-size: 1rem;
-	margin-top: 15px;
+    font-size: 1rem;
+    margin-top: 15px;
 }
 .all-course .descreption-price span {
-	text-decoration: underline;
-	color: #1978dc;
+    text-decoration: underline;
+    color: #1978dc;
 }
 .all-course .descreption-price .sale {
-	text-decoration: line-through;
+    text-decoration: line-through;
+    color: #999; /* Màu xám nhạt cho giá gốc */
+    font-weight: 400;
+    margin-right: 0.5rem;
+}
+
+/* Giá đã sale */
+.all-course .descreption-price .new-price {
+    color: #FF5722;
+    font-weight: 600;
+}
+
+.all-course .descreption-actions {
+    display: flex;
+    gap: 0.7rem;
+    margin-top: 0.95rem;
+}
+
+.all-course .descreption-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: 0.2rem solid;
+    border-radius: 6em;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background 0.4s ease, color 0.4s ease;
+    font-weight: 500;
+}
+
+/* Nút Mua khoá học */
+.all-course .btn-buy {
+    border-color: #81ecec;
+    color: #81ecec;
+    background-color: transparent;
+}
+
+.all-course .btn-buy:hover {
+    background: linear-gradient(to right, #81ecec, #00cec9);
+    color: #fff;
+}
+
+/* Nút Thêm vào giỏ hàng */
+.all-course .btn-add-to-cart {
+    border-color: #fdcb6e;
+    color: #fdcb6e;
+    background-color: transparent;
+}
+
+.all-course .btn-add-to-cart:hover {
+    background: linear-gradient(to right, #fdcb6e, #e17055);
+    color: #fff;
+}
+
+/* Nút Học ngay */
+.btn-start-learning {
+    background-color: transparent;
+    border: 2px solid #55efc4;
+    color: #55efc4;
+    font-weight: bold;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-start-learning:hover {
+    background: linear-gradient(135deg, #55efc4, #00cec9);
+    color: #ffffff; /* đổi màu chữ khi hover */
+    border-color: #00cec9;
 }

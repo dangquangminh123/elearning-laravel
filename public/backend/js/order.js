@@ -118,7 +118,6 @@ function updateOrderStatus(orderId, statusId) {
                         if (rowIndex.length) {
                             let rowData = table.row(rowIndex[0]).data();
 
-                            // Gán giá trị mới (key phải trùng với cột trong DataTables config)
                             rowData.status = response.statusOrder;
                             rowData.payment_complete_date = response.payment_complete_date || '';
 

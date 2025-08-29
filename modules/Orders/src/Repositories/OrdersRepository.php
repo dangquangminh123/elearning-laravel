@@ -41,10 +41,19 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
             ]);
         }
         AutoCancelOrderJob::dispatch($order->id)->delay(now()->addHours(24));
-
         return $order;
     }
 
+    public function getOrderWithRelationsById($id)
+    {
+        return Order::with([
+            'student',
+            'status',
+            'detail.course',
+            'couponOrder',
+        ])->findOrFail($id);
+    }
+    
     public function getOrdersByStudent($studentId, $filters = [], $limit)
     {
 
@@ -71,16 +80,7 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
         return $this->model->with('detail')->find($orderId);
     }
 
-    public function getOrderWithRelationsById($id)
-    {
-        return Order::with([
-            'student',
-            'status',
-            'detail.course',
-            'couponOrder',
-        ])->findOrFail($id);
-    }
-
+   
     public function updatePaymentDate($orderId)
     {
         $order = $this->getOrder($orderId);
@@ -107,6 +107,7 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
             'coupon' => $coupon
         ]);
     }
+
 
     public function setPendingIfFailed($orderId)
     {
@@ -215,7 +216,6 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
 
     public function getAvailableTransitions($order)
     {
-        // Lấy map code → id
         $statusMap = OrderStatus::pluck('id', 'code')->toArray();
 
         $rules = [
@@ -238,37 +238,38 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
 
     public function changeStatus($orderId, $statusId)
     {
-        $order = $this->model->find($orderId);
-        if (!$order) return false;
+        $order = $this->getOrderWithRelationsById($orderId);
+        if (!$order) {
+            return false; 
+        }
 
         $status = OrderStatus::find($statusId);
-        if (!$status) return false;
+        if (!$status) {
+            return false;
+        }
 
-        $currentStatusCode = $order->status->code ?? null;
+        $order->status_id = $statusId;
         $newStatusCode = $status->code;
 
-        // Cập nhật status_id
-        $order->status_id = $statusId;
-        switch ($newStatusCode) {
-            case 'paid':
-                // Nếu chuyển sang đã thanh toán
-                if (!$order->payment_complete_date) {
-                    $order->payment_complete_date = now();
-                }
-                break;
+        if ($newStatusCode === 'paid' && !$order->payment_complete_date) {
+            $order->payment_complete_date = now();
+        }
 
-            case 'pending_payment':
-            case 'refunded':
-            case 'cancelled_payment':
-                // Các trạng thái này thì xóa thời gian thanh toán hoàn tất
-                $order->payment_complete_date = null;
-                break;
+        if (in_array($newStatusCode, ['refunded', 'cancelled_payment'])) {
+            $order->refunded_at = now();
+
+            foreach ($order->detail as $d) {
+                $d->update([
+                    'is_refunded' => true,
+                    'refunded_at' => now(),
+                ]);
+            }
         }
         $order->save();
 
-        // trả về order mới kèm relation
         return $this->getOrderWithRelationsById($orderId);
     }
+
 
     public function refundOrder(int $orderId): bool
     {

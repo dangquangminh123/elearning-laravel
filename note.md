@@ -96,6 +96,33 @@ ngrok http http://localhost:8080
 ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
 awaited-reindeer-strictly.ngrok-free.app
 
-1/ tình huống mới khi học viên đó đã được sở hữu khoá học đó rồi nhưng lúc chưa đăng nhập học viên lại thêm lại giỏ hàng đó vào trong giỏ hàng và tiến tới bước thanh toán thì bắt đăng nhập ! Và sau khi lại đăng nhập thành công  xong thì coi xem học viên đó đã 
-sỡ hữu khoá học (đang chuẩn bị tạo đơn hàng hay chưa)? khoá đó đã được sỡ hữu thì nên đá học viên đó về lại phần route    Route::get('/khoa-hoc', 'Clients\CoursesController@index')->name('index'); này và bắn ra thông báo rằng khoá học "lập trình frontend bla bla..." bạn đã sỡ hữu, và hãy bắt đầu học hoặc kích hoạt khoá mới! đồng thời huỷ bỏ hết session cart chứa khoá đó !  Còn nếu chưa thì mới bắt đầu tiếp         return redirect()->route('orders.confirm');
- ha
+cặp linear gradient này    'linear-gradient(135deg, #D63031, #FF7675)',
+                'linear-gradient(135deg, #C0392B, #E74C3C)' thì bạn đổi sang hệ linear gradient này #C3272B cho tôi
+                và cái text thì ['#FAD390', '#FFEAA7'] đổi sang mã màu #426666
+tiếp tục cặp này  bg: [
+                'linear-gradient(135deg, #2ECC71, #55EFC4)',
+                'linear-gradient(135deg, #00B894, #1DD1A1)'
+            ], thì đổi sang hệ linear gradient  #146654
+            và màu text này text: ['#ffffff', '#DFF9FB'] thì đổi sang mã màu #f05510
+Tiếp tục là phần     bg: [
+                'linear-gradient(135deg, #FDCB6E, #FFEAA7)',
+                'linear-gradient(135deg, #EAB543, #F8EFBA)'
+            ], này  đổi sang hệ linear gradient #564232
+   màu  text: ['#2D3436', '#1E272E'] đổi sang mã màu  #327A58
+
+Và còn phần  bg: [
+                'linear-gradient(135deg, #6C5CE7, #A29BFE)',
+                'linear-gradient(135deg, #4834D4, #686DE0)'
+            ], thì đổi sang hệ linear gradient #4781C3
+  và màu text như này           text: ['#FDCB6E', '#FFEAA7'] đổi qua màu #DE7565
+    
+    và tiếp tục phần có bg: [
+                'linear-gradient(135deg, #0984E3, #74B9FF)',
+                'linear-gradient(135deg, #0A79DF, #25CCF7)'
+            ], thì đổi sang hệ linear gradient này cho tôi #6F9Bc6
+            text: ['#DFF9FB', '#EAF0F1'] thì đổi qua màu #F3993A
+
+Cuối cùng phần này 'linear-gradient(135deg, #681414, #8B0000)', đổi sang hệ linear #F7BDCB và    colors: [
+                    '#D7CCB6',  ] thì sang #5654A2 
+
+        

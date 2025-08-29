@@ -23,19 +23,19 @@
 }
 
 /* Màu cho từng loại */
-.course-group p.course-type-nen-tang {
+.course-group p.badge-course-foundation {
     color: #D63031;
 }
-.course-group p.course-type-mien-phi {
+.course-group p.badge-course-free {
     color: #00B894;
 }
-.course-group p.course-type-noi-bat {
+.course-group p.badge-course-hot {
     color: #FDCB6E;
 }
-.course-group p.course-type-chuyen-sau {
+.course-group p.badge-course-advanced {
     color: #0984E3;
 }
-.course-group p.course-type-mo-rong {
+.course-group p.badge-course-skill {
     color: #6C5CE7;
 }
 
@@ -103,12 +103,14 @@
 	font-size: 1.7rem;
 	text-transform: uppercase;
 }
+
 .banner-course {
+	position: relative;
     width: 20em;
     height: auto;
     overflow: hidden;
     border-radius: 0.5rem;
-    flex-shrink: 0; /* nếu đặt trong flex container, tránh co lại */
+    flex-shrink: 0;
 }
 
 .banner-course img {
@@ -118,46 +120,258 @@
     object-fit: fill;
     object-position: center; /* căn giữa ảnh */
 }
+
+.banner-course .course-tag-wrap {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+.banner-course .course-tag-wrap::before {
+  content: '';
+    position: absolute;
+    top: -14px;
+    left: 14px;
+    width: 2px;
+    height: 20px;
+    background: linear-gradient(180deg, #ff7b00, #ff0000);
+    z-index: 5;
+}
+
+
+.all-course .course .banner-course .course-tag-wrap .course-tag,
+.course-tag {
+    position: absolute;
+    top: 2.4em;
+    left: -1.3em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    background: linear-gradient(135deg, #ff7b00, #ff0000); /* gradient đỏ-cam */
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transform: rotate(-60deg);
+    transform-origin: top left;
+    z-index: 10;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+    border-radius: 4px 0 0 4px;
+}
+
+.all-course .course .banner-course .course-tag-wrap .course-tag::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    /* chấm tròn cũng gradient để đồng bộ */
+    background: linear-gradient(135deg, #ff7b00, #ff0000);
+    border-radius: 50%;
+    z-index: 21;
+}
+
+/* icon kích thước */
+.all-course .course .banner-course .course-tag-wrap .course-tag i { 
+    font-size: 1rem;
+    line-height: 1;
+    margin-left: 8px;
+    background: linear-gradient(135deg, #ffe600, #ff0000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* làm icon nhận gradient */
+}
+
+/* gradient cho từng loại (tương thích với course_type_class) */
+.course-tag-foundation, .course-type-nen-tang {
+    background: linear-gradient(135deg, #C3272B, #C3272B);
+    color: #426666;
+}
+.course-tag-free, .course-type-mien-phi {
+    background: linear-gradient(135deg, #146654, #146654);
+    color: #f05510;
+}
+.course-tag-hot, .course-type-noi-bat {
+    background: linear-gradient(135deg, #564232, #564232);
+    color: #327A58;
+}
+.course-tag-advanced, .course-type-chuyen-sau {
+    background: linear-gradient(135deg, #6F9Bc6, #6F9Bc6);
+    color: #F3993A;
+}
+.course-tag-skill, .course-type-mo-rong {
+    background: linear-gradient(135deg, #4781C3, #4781C3);
+    color: #DE7565;
+}
+
+/* Màu cho từng loại */
+.course-tag-foundation {
+    background: linear-gradient(135deg, #C3272B, #C3272B);
+    color: #426666;
+}
+
+.course-tag-free {
+    background: linear-gradient(135deg, #146654, #146654);
+    color: #f05510;
+}
+
+.course-tag-hot {
+    background: linear-gradient(135deg, #564232, #564232);
+    color: #327A58; /* chữ phù hợp theo yêu cầu */
+}
+
+.course-tag-advanced {
+    background: linear-gradient(135deg, #6F9Bc6, #6F9Bc6);
+    color: #F3993A;
+}
+
+.course-tag-skill {
+    background: linear-gradient(135deg, #4781C3, #4781C3);
+    color: #DE7565;
+}
+
+
+/* Áp dụng cho phần tương thích với course_type_class */
+.course-type-nen-tang    { background: linear-gradient(135deg, #C3272B, #C3272B); color: #426666; }
+.course-type-mien-phi    { background: linear-gradient(135deg, #146654, #146654); color: #f05510; }
+.course-type-noi-bat     { background: linear-gradient(135deg, #564232, #564232); color: #327A58; }
+.course-type-chuyen-sau  { background: linear-gradient(135deg, #6F9Bc6, #6F9Bc6); color: #F3993A; }
+.course-type-mo-rong     { background: linear-gradient(135deg, #4781C3, #4781C3); color: #DE7565; }
+
+
+// .descreption-course {
+// 	padding: 20px;
+// }
+// .descreption-top {
+// 	display: flex;
+// 	font-size: 0.6rem;
+// 	justify-content: space-between;
+// 	font-weight: 400;
+// }
+// .descreption-title {
+// 	font-size: 1.3rem;
+// 	font-weight: 400;
+// 	margin-top: 6px;
+// 	margin-bottom: 20px;
+// }
+// .descreption-title a {
+// 	color: #000;
+// }
+// .descreption-teacher {
+// 	display: flex;
+// 	align-items: center;
+// 	font-weight: 300;
+// }
+// .descreption-teacher img {
+// 	width: 30px;
+// 	height: 30px;
+// 	border-radius: 50%;
+// 	margin-right: 10px;
+// }
+// .descreption-price {
+// 	font-size: 1rem;
+// 	margin-top: 15px;
+// }
+// .descreption-price span {
+// 	text-decoration: underline;
+// 	color: #1978dc;
+// }
+// .descreption-price .sale {
+// 	text-decoration: line-through;
+// }
 .descreption-course {
-	padding: 20px;
+    padding: 20px;
+    flex: 1; /* để phần text chiếm đủ không gian còn lại */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+/* ======= TOP INFO ======= */
 .descreption-top {
-	display: flex;
-	font-size: 0.6rem;
-	justify-content: space-between;
-	font-weight: 400;
+    display: flex;
+    font-size: 0.75rem; /* to hơn chút cho dễ đọc */
+    justify-content: space-between;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 6px;
 }
+
+.descreption-top p {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.descreption-top i {
+    color: #ff7b00; /* icon đồng nhất tone cam-đỏ */
+    font-size: 0.9rem;
+}
+
+/* ======= COURSE TITLE ======= */
 .descreption-title {
-	font-size: 1.3rem;
-	font-weight: 400;
-	margin-top: 6px;
-	margin-bottom: 20px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    line-height: 1.4;
 }
+
 .descreption-title a {
-	color: #000;
+    color: #222;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
 }
+
+.descreption-title a:hover {
+    color: #ff7b00; /* hover nổi bật */
+}
+
+/* ======= TEACHER INFO ======= */
 .descreption-teacher {
-	display: flex;
-	align-items: center;
-	font-weight: 300;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    color: #333;
+    margin-top: auto; /* đẩy teacher info xuống cuối card nếu cần */
 }
+
 .descreption-teacher img {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	margin-right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid #eee;
 }
+
+.descreption-teacher span {
+    font-size: 0.95rem;
+    color: #1978dc; /* màu xanh để tạo điểm nhấn */
+    font-weight: 500;
+}
+
+/* ======= PRICE ======= */
 .descreption-price {
-	font-size: 1rem;
-	margin-top: 15px;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    font-weight: 500;
+    display: flex;
+    gap: 8px;
+    align-items: baseline;
 }
+
 .descreption-price span {
-	text-decoration: underline;
-	color: #1978dc;
+    color: #ff7b00;
 }
+
 .descreption-price .sale {
-	text-decoration: line-through;
+    text-decoration: line-through;
+    color: #999; /* giá gạch bỏ nhạt hơn */
+    font-size: 0.95rem;
 }
+
+
 .free-course h3 {
 	background: #00B894; 
     color: #DFF9FB; 
@@ -165,49 +379,26 @@
 
 /* foundation-course */
 .foundation-course h3 {
-	background: #D63031; 
-    color: #FAD390;
+	background: #426666; 
+    color: #C3272B;
 }
 /* intensive-course */
 .intensive-course h3 {
-  background: #0984E3;
-    color: #DFF9FB;
+  background:  #F3993A;
+    color: #6F9Bc6;
 }
 /* featured-course */
 
 .featured-course h3 {
-	background: #FDCB6E;
-    color: #2D3436;
+	background: #327A58;
+    color:  #564232;
 }
 /* skill-extention */
 .skill-extention h3 {
-	background: #6C5CE7;
-    color: #FDCB6E;
-}
-.badge-course-foundation.badge-course {
-    background-color: #D63031;
-    color: #FAD390;
+	background:  #DE7565;
+    color: #4781C3;
 }
 
-.badge-course-advanced.badge-course {
-    background-color: #0984E3;
-    color: #DFF9FB;
-}
-
-.badge-course-hot.badge-course {
-    background-color: #FDCB6E;
-    color: #2D3436;
-}
-
-.badge-course-skill.badge-course {
-    background-color: #6C5CE7;
-    color: #FDCB6E;
-}
-
-.badge-course-free.badge-course {
-    background-color: #2ecc71;
-    color: #ffffff;
-}
 /* question */
 
 .question {

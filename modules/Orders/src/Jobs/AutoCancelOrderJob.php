@@ -1,7 +1,5 @@
 <?php
-
 namespace Modules\Orders\src\Jobs;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -11,7 +9,6 @@ use Illuminate\Support\Carbon;
 use Illuminate\Queue\SerializesModels;
 use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
 use Modules\Orders\src\Models\Order;
-
 class AutoCancelOrderJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -24,8 +21,7 @@ class AutoCancelOrderJob implements ShouldQueue
     {
         $this->orderId = $orderId;
     }
-
-     public function handle()
+    public function handle()
     {
         $order = Order::find($this->orderId);
 
@@ -33,7 +29,6 @@ class AutoCancelOrderJob implements ShouldQueue
         if (!$order) {
             return;
         }
-
         // Nếu đơn hàng đã thanh toán -> bỏ qua
         if ($order->status_id == 2) { // 2 = Đã thanh toán
             return;

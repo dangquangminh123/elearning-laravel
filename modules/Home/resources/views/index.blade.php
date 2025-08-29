@@ -346,12 +346,16 @@
 <section class="{{ course_section_class_by_name($type->name ?? null) }}">
     <div class="container padding">
         <x-course-type-badge :type="$type->name ?? null" />
-
         <div class="row">
             @forelse($coursesByType[$type->id] ?? [] as $course)
                 <div class="col-12 col-lg-6">
                     <div class="d-flex course">
                         <div class="banner-course">
+                            <span class="course-tag-wrap">
+                                <span class="course-tag {{ course_type_class($type->name) }}">
+                                    {!! course_type_icon($type->name) !!}
+                                </span>
+                            </span>
                             <img src="{{ $course->thumbnail ?? '/clients/assets/banner-course.png' }}" alt="{{ $course->name }}" />
                         </div>
                         <div class="descreption-course">
@@ -384,6 +388,11 @@
                  <div class="col-12 col-lg-6">
                     <div class="d-flex course">
                         <div class="banner-course">
+                            <span class="course-tag-wrap">
+                                <span class="course-tag badge-course-default">
+                                    <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+                                </span>
+                            </span>
                             <img src="/clients/assets/banner-course.png" alt="" />
                         </div>
                         <div class="descreption-course">
@@ -575,7 +584,6 @@
             </div>
         </div>
 </div>
-
     
 <div class="flipbook-wrapper">
     <h2 class="flipbook-title">
@@ -611,7 +619,6 @@
         </div>
     </div>
 </div>
-
 
 <section class="features-circle">
   <div class="wrap">
