@@ -491,6 +491,175 @@
     </div>
 </section>
 
+
+ <div class="container-fluid vh-100-row">
+  <div class="row g-0 h-100">
+    <!-- LEFT: carousel -->
+    <div class="col-6 left-col d-flex align-items-center justify-content-center">
+      <div id="fps" style="display:none">FPS</div>
+      <div class="carousel-container" id="carouselContainer">
+        <div class="scene" id="scene">
+          <div id="carousel">
+            <!-- sample items -->
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <figure class="carouselItem">
+              <div class="carouselItemInner">
+                <img class="student-photo" src="clients/assets/hoangan.jpg" alt="Học viên 1">
+                <div class="student-name">Nguyễn Văn A</div>
+                <i class="fa-solid fa-quote-left quote-icon"></i>
+                <div class="star-rating">★★★★★</div>
+                <div class="course-name">Khóa học: Lập trình Web</div>
+                <div class="review-text">Khóa học rất tuyệt vời, giảng viên nhiệt tình, nội dung có nhiều ví dụ thực tế và bài tập thực hành.</div>
+              </div>
+            </figure>
+            <!-- thêm nhiều item khác của bạn -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 right-col d-flex flex-column justify-content-center align-items-center text-center">
+      
+      <!-- 1. Logo -->
+      <div class="mb-4">
+        <img class="logo-img" src="clients/assets/logo.png" alt="Logo">
+      </div>
+
+      <!-- 2. Tiêu đề -->
+      <div class="section-title" style="">
+        Cảm nhận học viên về Trung tâm
+      </div>
+
+      <!-- 3. Lời mô tả -->
+      <p class="lead px-4 my-4" style="">
+        Các khóa học trực tuyến chất lượng cao, giảng viên giàu kinh nghiệm, chương trình giảng dạy hiện đại và nội dung thực tiễn.
+      </p>
+
+      <!-- 4. Thông tin nổi bật (2x2) -->
+      <div class="w-100 px-4">
+        <div class="row g-0 text-center highlight-box">
+          
+          <!-- Ô 1 -->
+          <div class="col-6">
+            <div class="info-card">
+              <div class="info-text">
+                Đội ngũ hơn<br>
+                <span class="info-number">11 NĂM</span><br>
+                kinh nghiệm thực chiến
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ô 2 -->
+          <div class="col-6">
+            <div class="info-card">
+              <div class="info-text">
+                Hơn<br>
+                <span class="info-number">50+</span><br>
+                giảng viên chất lượng
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ô 3 -->
+          <div class="col-6">
+            <div class="info-card">
+              <div class="info-text">
+                Hợp tác với<br>
+                <span class="info-number">200+</span><br>
+                doanh nghiệp lớn
+              </div>
+            </div>
+          </div>
+          
+          <!-- Ô 4 -->
+          <div class="col-6">
+            <div class="info-card">
+              <div class="info-text">
+                Vinh dự đạt<br>
+                <span class="info-number">TOP 5</span><br>
+                trung tâm trực tuyến
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 <div class="main-container">
         <h1 class="main-title">LỘ TRÌNH ĐÀO TẠO TẠI DSMART</h1>
         <img class="background-image" src="/clients/assets/line_wavy.jpg" alt="Background Line">

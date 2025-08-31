@@ -1,0 +1,211 @@
+ :root{
+      --teal: #1a948d;
+      --card-w: 300px;
+      --card-h: 360px; 
+      --accent: #f9c74f; /* vàng nhạt nổi bật */
+    }
+
+    /* --- full screen row (50/50) --- */
+    .vh-100-row { height: 100vh; overflow: hidden; }
+
+    /* left column (carousel) */
+    .left-col { background: var(--teal); color: #fff; position: relative; overflow: hidden; }
+
+/* RIGHT column */
+.right-col { 
+  background: var(--teal); 
+  color:#222; 
+  padding: 24px; 
+}
+    /* carousel container fits exactly the column and hides overflow */
+    .carousel-container {
+     position: relative;
+        width: 100%;
+        height: 100%;
+        perspective: 1200px;
+        overflow: hidden;
+        padding: 0.5em; /* giới hạn an toàn */
+        box-sizing: border-box;
+    }
+
+    /* scene holds the carousel; we will translateZ it to create depth */
+    .scene {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0; top: 0;
+      transform-style: preserve-3d;
+      will-change: transform;
+      display:block;
+      pointer-events: auto;
+    }
+
+    /* the carousel element is centered inside the scene */
+    #carousel {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* each slot around the circle */
+    .carouselItem {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      visibility: hidden; /* turned on by JS */
+      pointer-events: auto;
+    }
+
+    /* the visible card inside each slot */
+    .carouselItemInner {
+      width: var(--card-w);
+      max-width: calc(100vw * 0.45); /* responsive safety */
+      max-height: var(--card-h);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 18px;
+      background: #ffffff;
+      color: #123;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      overflow: hidden;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    /* avatar */
+    .student-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--teal);
+      background: #eee;
+      display:block;
+      margin-bottom: 10px;
+    }
+
+    .student-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 4px 0 8px 0;
+      color: #0d2b2a;
+    }
+
+    .quote-icon {
+      font-size: 20px;
+      color: var(--teal);
+      margin: 6px 0;
+    }
+
+    .star-rating {
+      color: #f0b400;
+      font-size: 16px;
+      margin: 6px 0 8px 0;
+    }
+
+    .course-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin: 6px 0;
+      color: #0d2b2a;
+    }
+
+    /* review text: clamp to 3 lines with ellipsis */
+    .review-text {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: #2b2b2b;
+      text-align: left;
+      width: 100%;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;       /* limit lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* small responsive tweaks */
+    @media (max-width: 900px) {
+      .carouselItemInner { width: 260px; padding: 14px; }
+      .student-photo { width: 80px; height: 80px; }
+    }
+
+    /* ensure carousel controls (pointer) show grab cursor */
+    .carousel-container.grabbing, .carousel-container:active { cursor: grabbing; }
+    .carousel-container { cursor: grab; }
+
+    /* optional: small fps display for dev */
+    #fps {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      z-index: 50;
+      color: #fff;
+      font-size: 13px;
+      background: rgba(0,0,0,0.15);
+      padding: 6px 8px;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+
+
+/* Logo or icon bigger */
+.logo-img {
+    max-width: 19em;
+  }
+
+/* Section title */
+.section-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  width: 70%;
+  min-height: 90px;
+  color: var(--accent);        /* chữ vàng nổi bật */
+  background: #2f2f2f;  /* xám ghi đậm */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Lead text */
+.lead {
+  font-weight: bold;
+  font-size: 1.3rem;
+  max-width: 500px;
+  color: var(--accent); 
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+}
+
+/* Highlight box */
+.highlight-box .info-card {
+  border: 2px dashed rgba(255,255,255,0.4);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 8px;
+  background: var(--card-bg);
+  transition: transform 0.3s ease;
+}
+.highlight-box .info-card:hover {
+  transform: translateY(-4px);
+}
+.highlight-box .info-text {
+  font-size: 1rem;
+  color: #2f2f2f;
+  line-height: 1.4;
+}
+.highlight-box .info-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
