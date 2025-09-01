@@ -36,8 +36,10 @@ function openMenu() {
 
 
 $(document).ready(function() {
+    var flip = $('#flipbook');
+    if (flip.length === 0) return; // Không có flipbook thì thoát ngay
 
-    // preload helper
+    var pages = [];
     function preloadImages(imageUrls, callback) {
         var loaded = 0, total = imageUrls.length;
         if (total === 0) { callback(); return; }
@@ -51,15 +53,14 @@ $(document).ready(function() {
         });
     }
 
-    // lấy các src ảnh động do blade render
-    var pages = [];
+  
     $('#flipbook img').each(function(){
         var src = $(this).attr('src');
         if (src) pages.push(src);
     });
 
-    preloadImages(pages, function(){
-        var flip = $('#flipbook');
+  preloadImages(pages, function(){
+      
         var autoFlipInterval = null;
         var resumeTimer = null;
         var flipForward = true;
@@ -185,4 +186,32 @@ $(document).ready(function() {
             $(this).find('.course-icon-container, .course-title').sparkle('destroy');
         }
     );
+});
+
+$('.partner-slider.center').slick({
+  centerMode: true,
+  centerPadding: '60px',
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 1900,
+  arrows: false,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
 });

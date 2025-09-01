@@ -1,9 +1,14 @@
 document.addEventListener('DOMContentLoaded',function(){
-  var container=document.getElementById('carouselContainer');
-  var scene=document.getElementById('scene');
-  var carousel=document.getElementById('carousel');
-  var items=carousel.querySelectorAll('.carouselItem');
-  if(!container||items.length===0)return;
+  var container = document.getElementById('carouselContainer');
+  var scene = document.getElementById('scene');
+  var carousel = document.getElementById('carousel');
+
+  if (!container || !scene || !carousel) return;
+
+  var items = carousel.querySelectorAll('.carouselItem');
+
+  if (items.length === 0) return;
+
 
   var itemCount=items.length;
   var rotationY=0,velocity=0,isDragging=false,lastX=0;

@@ -5,11 +5,12 @@ import "./turn.js";
 // import "./gsap.js";
 import "./jquery-canvas-sparkles.js";
 import "./sparkling_stars.js";
-import "./_review_us.js";
+import "./review_us.js";
 import "./flashMe.js";
 import "./slick.min.js";
 import "./slider-home.js";
 import "./home.js";
+import "./about_us.js"
 import "./progress_bar.js"
 import "./lesson.js";
 import "./course-detail.js"

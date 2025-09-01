@@ -832,31 +832,35 @@
 </section>
 
 <section class="partner">
-    <div class="container">
-        <h3>Đối tác doanh nghiệp chúng tôi đào tạo</h3>
-        <div class="row">
-            <div class="col-6 col-lg-3">
-                <div class="partner-img">
-                    <img src="/clients/assets/partner.jpeg" alt="" />
-                </div>
-            </div>
-            <div class="col-6 col-lg-3">
-                <div class="partner-img">
-                    <img src="/clients/assets/partner.jpeg" alt="" />
-                </div>
-            </div>
-            <div class="col-6 col-lg-3">
-                <div class="partner-img">
-                    <img src="/clients/assets/partner.jpeg" alt="" />
-                </div>
-            </div>
-            <div class="col-6 col-lg-3">
-                <div class="partner-img">
-                    <img src="/clients/assets/partner.jpeg" alt="" />
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <h3>Đối tác doanh nghiệp chúng tôi đào tạo</h3>
+    <div class="partner-slider center">
+      <div class="partner-img">
+        <img src="/clients/assets/partner.jpeg" alt="">
+      </div>
+      <div class="partner-img">
+        <img src="/clients/assets/laravel_partner.png" alt="">
+      </div>
+      <div class="partner-img">
+        <img src="/clients/assets/nodejs.png" alt="">
+      </div>
+    <div class="partner-img">
+        <img src="/clients/assets/php_partner.png" alt="">
+      </div>
+      <div class="partner-img">
+        <img src="/clients/assets/reactjs.png" alt="">
+      </div>
+     <div class="partner-img">
+        <img src="/clients/assets/php_partner.png" alt="">
+      </div>
+      <div class="partner-img">
+        <img src="/clients/assets/jquery_ui.png" alt="">
+      </div>
+      <div class="partner-img">
+        <img src="/clients/assets/jquery.png" alt="">
+      </div>
     </div>
+  </div>
 </section>
 
 <section class="progress-section">

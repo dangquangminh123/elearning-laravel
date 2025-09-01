@@ -96,33 +96,12 @@ ngrok http http://localhost:8080
 ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
 awaited-reindeer-strictly.ngrok-free.app
 
-cặp linear gradient này    'linear-gradient(135deg, #D63031, #FF7675)',
-                'linear-gradient(135deg, #C0392B, #E74C3C)' thì bạn đổi sang hệ linear gradient này #C3272B cho tôi
-                và cái text thì ['#FAD390', '#FFEAA7'] đổi sang mã màu #426666
-tiếp tục cặp này  bg: [
-                'linear-gradient(135deg, #2ECC71, #55EFC4)',
-                'linear-gradient(135deg, #00B894, #1DD1A1)'
-            ], thì đổi sang hệ linear gradient  #146654
-            và màu text này text: ['#ffffff', '#DFF9FB'] thì đổi sang mã màu #f05510
-Tiếp tục là phần     bg: [
-                'linear-gradient(135deg, #FDCB6E, #FFEAA7)',
-                'linear-gradient(135deg, #EAB543, #F8EFBA)'
-            ], này  đổi sang hệ linear gradient #564232
-   màu  text: ['#2D3436', '#1E272E'] đổi sang mã màu  #327A58
+animation-duration quyết định thời lượng.
 
-Và còn phần  bg: [
-                'linear-gradient(135deg, #6C5CE7, #A29BFE)',
-                'linear-gradient(135deg, #4834D4, #686DE0)'
-            ], thì đổi sang hệ linear gradient #4781C3
-  và màu text như này           text: ['#FDCB6E', '#FFEAA7'] đổi qua màu #DE7565
-    
-    và tiếp tục phần có bg: [
-                'linear-gradient(135deg, #0984E3, #74B9FF)',
-                'linear-gradient(135deg, #0A79DF, #25CCF7)'
-            ], thì đổi sang hệ linear gradient này cho tôi #6F9Bc6
-            text: ['#DFF9FB', '#EAF0F1'] thì đổi qua màu #F3993A
+animation-delay quyết định khi nào bắt đầu.
 
-Cuối cùng phần này 'linear-gradient(135deg, #681414, #8B0000)', đổi sang hệ linear #F7BDCB và    colors: [
-                    '#D7CCB6',  ] thì sang #5654A2 
+animation-iteration-count quyết định số lần lặp.
 
-        
+animation-direction quyết định hướng/đảo vs không.
+
+animation-fill-mode quyết định trạng thái giữ lại sau khi dừng.
