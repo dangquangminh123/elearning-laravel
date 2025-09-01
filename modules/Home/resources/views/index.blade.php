@@ -492,7 +492,7 @@
 </section>
 
 
- <div class="container-fluid vh-100-row">
+<div class="container-fluid vh-100-row">
   <div class="row g-0 h-100">
     <!-- LEFT: carousel -->
     <div class="col-6 left-col d-flex align-items-center justify-content-center">
@@ -619,7 +619,6 @@
             </div>
           </div>
           
-          <!-- Ô 2 -->
           <div class="col-6">
             <div class="info-card">
               <div class="info-text">
@@ -630,7 +629,6 @@
             </div>
           </div>
           
-          <!-- Ô 3 -->
           <div class="col-6">
             <div class="info-card">
               <div class="info-text">
@@ -641,7 +639,6 @@
             </div>
           </div>
           
-          <!-- Ô 4 -->
           <div class="col-6">
             <div class="info-card">
               <div class="info-text">

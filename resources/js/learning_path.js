@@ -1,0 +1,10 @@
+$(function(){
+  $('.roadmap-item').hover(
+    function(){
+      $(this).find('.roadmap-box').css('transform','translateY(-8px)');
+    },
+    function(){
+      $(this).find('.roadmap-box').css('transform','translateY(0)');
+    }
+  );
+});

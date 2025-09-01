@@ -116,16 +116,23 @@ document.addEventListener('DOMContentLoaded',function(){
     container.classList.remove('grabbing');
   }
 
-  container.addEventListener('wheel',function(e){
-    e.preventDefault();
-    var newScale=currentScale+(e.deltaY<0?0.05:-0.05);
-    newScale=Math.max(MIN_SCALE,Math.min(MAX_SCALE,newScale));
-    TweenMax.to({s:currentScale},0.4,{
-      s:newScale,ease:Power2.easeOut,
-      onUpdate:function(){ currentScale=this.target.s; applyTransforms(); }
-    });
-  },{passive:false});
+  container.addEventListener('wheel', function(e){
+  e.preventDefault();
+  var delta = (e.deltaY < 0) ? 0.05 : -0.05;
+  var newScale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, currentScale + delta));
 
+    gsap.to(scene, {
+      duration: 0.36,
+      scale: newScale,
+      ease: "power2.out",
+      onUpdate: function() {
+        currentScale = gsap.getProperty(scene, "scale"); // hoặc theo logic bạn cần
+        gsap.set(carousel, {rotationY: rotationY});
+      },
+      overwrite: "auto"
+    });
+
+  }, { passive: false });
   container.addEventListener('pointerdown',onPointerDown,{passive:true});
   window.addEventListener('pointermove',onPointerMove,{passive:true});
   window.addEventListener('pointerup',onPointerUp);

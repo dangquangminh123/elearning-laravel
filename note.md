@@ -97,11 +97,7 @@ ngrok http 80 --url=<YOUR_STATIC_DOMAIN>
 awaited-reindeer-strictly.ngrok-free.app
 
 animation-duration quyết định thời lượng.
-
 animation-delay quyết định khi nào bắt đầu.
-
 animation-iteration-count quyết định số lần lặp.
-
 animation-direction quyết định hướng/đảo vs không.
-
 animation-fill-mode quyết định trạng thái giữ lại sau khi dừng.

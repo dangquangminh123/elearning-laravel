@@ -105,59 +105,108 @@
   </section>
 </div>
 
-
+<div class="core-title text-center">
+  Giá trị cốt lõi của chúng tôi!
+</div>
 
 <div class="container my-5 tab-section">
-  <div class="row mb-3">
-    <div class="col-12">
-        <div class="tabs d-flex">
-            <button class="tab active flex-fill p-1" data-tab="tab1">
-                <i class="fa-solid fa-graduation-cap me-2"></i> Chất lượng giảng dạy
-            </button>
-            <button class="tab flex-fill p-1" data-tab="tab2">
-                <i class="fa-solid fa-laptop-code me-2"></i> Nền tảng học tập hiện đại
-            </button>
-            <button class="tab flex-fill p-1" data-tab="tab3">
-                <i class="fa-solid fa-chalkboard-teacher me-2"></i> Giảng viên chuyên nghiệp
-            </button>
-            <button class="tab flex-fill p-1" data-tab="tab4">
-                <i class="fa-solid fa-award me-2"></i> Cam kết thành tựu
-            </button>
+    <div class="row mb-3">
+      <div class="col-12">
+          <div class="tabs d-flex">
+              <button class="tab active flex-fill p-1" data-tab="tab1">
+                  <i class="fa-solid fa-graduation-cap me-2"></i> Chất lượng giảng dạy
+              </button>
+              <button class="tab flex-fill p-1" data-tab="tab2">
+                  <i class="fa-solid fa-laptop-code me-2"></i> Nền tảng học tập hiện đại
+              </button>
+              <button class="tab flex-fill p-1" data-tab="tab3">
+                  <i class="fa-solid fa-chalkboard-teacher me-2"></i> Giảng viên chuyên nghiệp
+              </button>
+              <button class="tab flex-fill p-1" data-tab="tab4">
+                  <i class="fa-solid fa-award me-2"></i> Cam kết thành tựu
+              </button>
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 tab-content p-4">
+        <div id="tab1" class="content active">
+          <h3 class="mb-3">Chất lượng giảng dạy</h3>
+          <p class="mb-3">Chúng tôi mang đến chương trình học chuẩn quốc tế, nội dung luôn được cập nhật, phương pháp giảng dạy khoa học và dễ hiểu.</p>
+          <ul class="mb-0">
+            <li>Bài giảng được biên soạn bởi chuyên gia.</li>
+            <li>Nội dung đa dạng, từ cơ bản đến nâng cao.</li>
+            <li>Tích hợp bài tập thực hành liên tục.</li>
+          </ul>
         </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-12 tab-content p-4">
-      <div id="tab1" class="content active">
-        <h3 class="mb-3">Chất lượng giảng dạy</h3>
-        <p class="mb-3">Chúng tôi mang đến chương trình học chuẩn quốc tế, nội dung luôn được cập nhật, phương pháp giảng dạy khoa học và dễ hiểu.</p>
-        <ul class="mb-0">
-          <li>Bài giảng được biên soạn bởi chuyên gia.</li>
-          <li>Nội dung đa dạng, từ cơ bản đến nâng cao.</li>
-          <li>Tích hợp bài tập thực hành liên tục.</li>
-        </ul>
-      </div>
+        <div id="tab2" class="content">
+          <h3 class="mb-3">Nền tảng học tập hiện đại</h3>
+          <p>Giao diện học trực tuyến thân thiện, học mọi lúc mọi nơi, theo dõi tiến độ và kết quả ngay trên hệ thống.</p>
+        </div>
 
-      <div id="tab2" class="content">
-        <h3 class="mb-3">Nền tảng học tập hiện đại</h3>
-        <p>Giao diện học trực tuyến thân thiện, học mọi lúc mọi nơi, theo dõi tiến độ và kết quả ngay trên hệ thống.</p>
-      </div>
+        <div id="tab3" class="content">
+          <h3 class="mb-3">Đội ngũ giảng viên chuyên nghiệp</h3>
+          <p>Được đào tạo bài bản, nhiều kinh nghiệm thực tiễn, luôn đồng hành cùng học viên trong suốt khóa học.</p>
+        </div>
 
-      <div id="tab3" class="content">
-        <h3 class="mb-3">Đội ngũ giảng viên chuyên nghiệp</h3>
-        <p>Được đào tạo bài bản, nhiều kinh nghiệm thực tiễn, luôn đồng hành cùng học viên trong suốt khóa học.</p>
-      </div>
-
-      <div id="tab4" class="content">
-        <h3 class="mb-3">Cam kết thành tựu học viên</h3>
-        <p>Chúng tôi đảm bảo chất lượng đầu ra, hỗ trợ định hướng nghề nghiệp, và cấp chứng chỉ có giá trị.</p>
+        <div id="tab4" class="content">
+          <h3 class="mb-3">Cam kết thành tựu học viên</h3>
+          <p>Chúng tôi đảm bảo chất lượng đầu ra, hỗ trợ định hướng nghề nghiệp, và cấp chứng chỉ có giá trị.</p>
+        </div>
       </div>
     </div>
+</div>
+
+<div class="container contact-section">
+    <div class="row">
+      <!-- Bên trái: Form liên hệ -->
+      <div class="col-lg-9 col-md-8">
+        <h2>Liên hệ với chúng tôi</h2>
+        <p class="subtitle">Địa chỉ email của bạn sẽ không được công khai. Các trường bắt buộc được đánh dấu *</p>
+        <form class="contact-form">
+          <input type="text" class="form-control" placeholder="Họ và tên *" required>
+          <input type="email" class="form-control" placeholder="Địa chỉ email *" required>
+          <textarea class="form-control" rows="5" placeholder="Nội dung tin nhắn *" required></textarea>
+          <button type="submit">
+            Gửi tin nhắn →
+          </button>
+        </form>
+      </div>
+
+      <!-- Bên phải: Thông tin liên hệ -->
+      <div class="col-lg-3 col-md-4">
+        <div class="info-box">
+          <div class="info-box-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div>
+            <h5>Liên hệ</h5>
+            <p>Gọi ngay: +(406) 555-0120</p>
+            <p>Email: support@example.com</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="info-box-icon">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div>
+            <h5>Giờ làm việc</h5>
+            <p>Thứ 2 - Thứ 7: 7:00 - 20:00</p>
+            <p>Chủ nhật: 8:00 - 18:00</p>
+          </div>
+        </div>
+        <div class="info-box">
+          <div class="info-box-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <h5>Văn phòng</h5>
+            <p>9c9 Trần Quốc Hoàn<br>Cầu Giấy Hà Nội</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-
-</div>
-
-
 @endsection
