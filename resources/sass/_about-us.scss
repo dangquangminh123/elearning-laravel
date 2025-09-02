@@ -343,6 +343,82 @@
   margin-bottom: 8px;
 }
 
+/* chọn DSCons */
+
+.text-orange {
+    color: #ff9900 !important;
+}
+
+.card {
+    border-radius: 2rem !important;
+    position: relative;
+    z-index: 10;
+}
+
+/* Ẩn overflow của card để các hình giọt nước không tràn ra ngoài */
+.card .row {
+    overflow: hidden;
+}
+
+/* --- Vùng CSS đã được cập nhật --- */
+.hero-image-section {
+    position: relative;
+    min-height: 400px;
+    background-color: #fff;
+}
+
+.hero-image-section img {
+    height: 35em;
+    width: 30em;
+    object-fit: contain;
+    z-index: 3;
+    position: relative;
+    padding: 10px;
+}
+
+.hero-shape-1,
+.hero-shape-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* These are behind the image */
+}
+
+.hero-shape-1 {
+    background-color: #ffead1;
+    clip-path: ellipse(7% 27% at 22% 53%);
+    transform: rotate(15deg) scale(1.4);
+    opacity: 1;
+}
+
+.hero-shape-2 {
+    background-color: #ffc470;
+    clip-path: ellipse(38% 16% at 45% 20%);
+    transform: rotate(77deg) scale(1.2);
+    opacity: 1;
+}
+
+.hero-content-section {
+    background-color: #fff;
+    position: relative;
+    z-index: 11; /* Place this on top of the shapes */
+}
+
+.item-icon {
+    background-color: #ff9900;
+    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(255, 153, 0, 0.2);
+}
+
 /* Form liên hệ*/ 
  .contact-section {
       padding: 60px 0;

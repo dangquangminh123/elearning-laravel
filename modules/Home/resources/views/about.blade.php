@@ -159,6 +159,56 @@
     </div>
 </div>
 
+<div class="container d-flex justify-content-center align-items-center py-5">
+    <div class="card p-0 border-0 rounded-4">
+        <div class="row g-0">
+            <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center position-relative hero-image-section">
+                <div class="hero-shape-1"></div>
+                <div class="hero-shape-2"></div>
+                <img src="clients/assets/hoangan.jpg" class="img-fluid rounded-start z-3" alt="DSCons student">
+            </div>
+
+            <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-5 hero-content-section">
+                <div class="mb-4">
+                    <h2 class="fw-bold display-6 text-dark">Nên học DSCons hay không</h2>
+                    <h4 class="text-orange fw-normal mt-2">Tiện lợi và hiệu quả</h4>
+                </div>
+                
+                <div class="item-list">
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="item-icon flex-shrink-0 me-3">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="item-content flex-grow-1">
+                            <h3 class="h5 fw-bold mb-1">Tiện lợi</h3>
+                            <p class="text-secondary mb-0">Học trực tuyến mọi lúc, mọi nơi, không cần đến lớp, tiết kiệm thời gian di chuyển.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start mb-4">
+                        <div class="item-icon flex-shrink-0 me-3">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="item-content flex-grow-1">
+                            <h3 class="h5 fw-bold mb-1">Hiệu quả</h3>
+                            <p class="text-secondary mb-0">Chương trình học được thiết kế tối ưu, đội ngũ giảng viên chuyên nghiệp, đảm bảo đầu ra chất lượng.</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start">
+                        <div class="item-icon flex-shrink-0 me-3">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="item-content flex-grow-1">
+                            <h3 class="h5 fw-bold mb-1">Cộng đồng</h3>
+                            <p class="text-secondary mb-0">Hỗ trợ học tập 24/7, tham gia vào cộng đồng học viên năng động, cùng nhau phát triển.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container contact-section">
     <div class="row">
       <!-- Bên trái: Form liên hệ -->

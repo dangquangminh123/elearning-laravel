@@ -61,3 +61,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+$(document).ready(function() {
+    // Thêm hiệu ứng hover cho các item
+    $('.d-flex.align-items-start').hover(
+        function() {
+            // Khi chuột vào
+            $(this).find('.item-icon').css('background-color', '#ffb74d');
+            $(this).find('h3').css('color', '#ff9900');
+        },
+        function() {
+            // Khi chuột rời đi
+            $(this).find('.item-icon').css('background-color', '#ff9900');
+            $(this).find('h3').css('color', '#333');
+        }
+    );
+});
+
