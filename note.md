@@ -101,3 +101,8 @@ animation-delay quyết định khi nào bắt đầu.
 animation-iteration-count quyết định số lần lặp.
 animation-direction quyết định hướng/đảo vs không.
 animation-fill-mode quyết định trạng thái giữ lại sau khi dừng.
+
+Keyword thì half doughnut chart, padAngle
+
+vấn đề kích thước các biểu đồ tròn không được bị che, đồng thời vấn đề hướng cong lõm theo đâu gốc quay xoay như thế nào 
+phần chia các đường tròn ra làm sao 

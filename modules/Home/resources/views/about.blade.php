@@ -165,7 +165,7 @@
             <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center position-relative hero-image-section">
                 <div class="hero-shape-1"></div>
                 <div class="hero-shape-2"></div>
-                <img src="clients/assets/hoangan.jpg" class="img-fluid rounded-start z-3" alt="DSCons student">
+                <img src="clients/assets/laravel.png" class="img-fluid rounded-start z-3" alt="DSCons student">
             </div>
 
             <div class="col-lg-6 col-12 d-flex flex-column justify-content-center p-5 hero-content-section">

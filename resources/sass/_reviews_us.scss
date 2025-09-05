@@ -5,28 +5,34 @@
     --accent: #f9c74f; /* vàng nhạt nổi bật */
 }
 
-    /* --- full screen row (50/50) --- */
-    .vh-100-row { height: 100vh; overflow: hidden; }
+.vh-100-row { 
+  height: 100vh; 
+  overflow: hidden;
+}
 
-    /* left column (carousel) */
-    .left-col { background: var(--teal); color: #fff; position: relative; overflow: hidden; }
+.left-col { 
+  // background: var(--teal); 
+  color: #fff; 
+  position: relative; 
+  overflow: hidden; 
+}
 
 /* RIGHT column */
 .right-col { 
-  background: var(--teal); 
+  // background: var(--teal); 
   color:#222; 
   padding: 24px; 
 }
     /* carousel container fits exactly the column and hides overflow */
-    .carousel-container {
-     position: relative;
-        width: 100%;
-        height: 100%;
-        perspective: 1200px;
-        overflow: hidden;
-        padding: 0.5em; /* giới hạn an toàn */
-        box-sizing: border-box;
-    }
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
+  overflow: hidden;
+  padding: 0.5em; /* giới hạn an toàn */
+  box-sizing: border-box;
+}
 
     /* scene holds the carousel; we will translateZ it to create depth */
     .scene {
