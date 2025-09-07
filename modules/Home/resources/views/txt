@@ -1,0 +1,108 @@
+   <div class="card-item">
+      <svg class="card-frame" viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#9ad959"/><stop offset="1" stop-color="#2f8e4a"/>
+          </linearGradient>
+        </defs>
+
+        <!-- notch highlight shape (translated from your 130x130 sample -> +230,+30) -->
+        <path class="notch-highlight"
+          d="M290 59 C272.8792 59 259 72.8792 259 90 V130 H260 V90 C260 73.4315 273.4315 60 290 60 H330 V59 H290 Z"
+          fill="url(#g1)" opacity="0"/>
+
+        <!-- Single compound path: outer rounded rect + inner notch (hole) - stroke will follow both -->
+        <path class="card-shape"
+          fill="var(--card-bg)"
+          stroke="var(--card-stroke)"
+          stroke-width="1.6"
+          fill-rule="evenodd"
+          d="
+            M16 0
+            H344
+            A16 16 0 0 1 360 16
+            V144
+            A16 16 0 0 1 344 160
+            H16
+            A16 16 0 0 1 0 144
+            V16
+            A16 16 0 0 1 16 0
+            Z
+
+            M260 90
+            C260 73.4315 273.4315 60 290 60
+            H360
+            V160
+            H260
+            V90
+            Z
+          "/>
+      </svg>
+
+      <div class="card-content">
+        <div class="card-title">
+          <h3>Điểm mạnh</h3>
+          <div class="icon-box"><i class="fa-solid fa-building"></i></div>
+        </div>
+        <p class="card-body">Chất lượng ổn định, cam kết mạnh mẽ về môi trường, và không ngừng đam mê.</p>
+      </div>
+
+       <div class="box">
+        <div class="bnt-more">
+          <a href="#">
+            <span>More</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- copy other cards (keeps same shape) -->
+    <div class="card-item">
+      <!-- same SVG copy -->
+      <svg class="card-frame" viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs><linearGradient id="g2" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#9ad959"/><stop offset="1" stop-color="#2f8e4a"/></linearGradient></defs>
+        <path class="notch-highlight" d="M290 59 C272.8792 59 259 72.8792 259 90 V130 H260 V90 C260 73.4315 273.4315 60 290 60 H330 V59 H290 Z" fill="url(#g2)" opacity="0"/>
+        <path class="card-shape" fill="var(--card-bg)" stroke="var(--card-stroke)" stroke-width="1.6" fill-rule="evenodd"
+          d="M16 0 H344 A16 16 0 0 1 360 16 V144 A16 16 0 0 1 344 160 H16 A16 16 0 0 1 0 144 V16 A16 16 0 0 1 16 0 Z M260 90 C260 73.4315 273.4315 60 290 60 H360 V160 H260 V90 Z"/>
+      </svg>
+
+      <div class="card-content">
+        <div class="card-title">
+          <h3>Triết lý kinh doanh</h3>
+          <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
+        </div>
+        <p class="card-body">Tinh thần, sứ mệnh và giá trị cốt lõi VINATech.</p>
+      </div>
+      <div class="box">
+        <div class="bnt-more">
+          <a href="#">
+            <span>More</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-item">
+      <svg class="card-frame" viewBox="0 0 360 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs><linearGradient id="g3" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#9ad959"/><stop offset="1" stop-color="#2f8e4a"/></linearGradient></defs>
+        <path class="notch-highlight" d="M290 59 C272.8792 59 259 72.8792 259 90 V130 H260 V90 C260 73.4315 273.4315 60 290 60 H330 V59 H290 Z" fill="url(#g3)" opacity="0"/>
+        <path class="card-shape" fill="var(--card-bg)" stroke="var(--card-stroke)" stroke-width="1.6" fill-rule="evenodd"
+          d="M16 0 H344 A16 16 0 0 1 360 16 V144 A16 16 0 0 1 344 160 H16 A16 16 0 0 1 0 144 V16 A16 16 0 0 1 16 0 Z M260 90 C260 73.4315 273.4315 60 290 60 H360 V160 H260 V90 Z"/>
+      </svg>
+
+      <div class="card-content">
+        <div class="card-title">
+          <h3>Lịch sử</h3>
+          <div class="icon-box"><i class="fa-solid fa-flag"></i></div>
+        </div>
+        <p class="card-body">Dấu mốc về những bước đi đầu tiên của VINATech. Dấu mốc về sự phát triển không ngừng.</p>
+      </div>
+
+      <div class="box">
+        <div class="bnt-more">
+          <a href="#">
+            <span>More</span>
+          </a>
+        </div>
+      </div>
+    </div>

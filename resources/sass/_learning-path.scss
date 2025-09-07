@@ -9,12 +9,10 @@
     
 .roadmap-title {
   font-weight: 800;
-  font-size: 42px; /* Tăng kích thước phông chữ */
+  font-size: 42px;
   margin-bottom: 26px;
   text-transform: uppercase;
-  text-align: center; /* Căn giữa tiêu đề */
-
-  /* Thêm linear gradient cho màu chữ */
+  text-align: center;
   background: linear-gradient(90deg, #e74c3c, #8e44ad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -26,9 +24,9 @@
 .roadmap-row {
   display: flex;
   justify-content: space-between;
-  gap: 30px; /* Giãn cách giữa các item */
+  gap: 30px;
   align-items: flex-start;
-  flex-wrap: nowrap; /* Ngăn các item xuống hàng trên màn hình lớn */
+  flex-wrap: nowrap;
 }
 
 .roadmap-item { 
@@ -47,15 +45,13 @@
   background: var(--color);
 }
 
-/* đường thẳng nối: bar (line) + arrowhead.
-   line = ::before, arrow = ::after; cả 2 cùng màu (var(--color)) */
 .roadmap-circle::before{
   content: "";
   position: absolute;
   left: 50%; transform: translateX(-50%);
   top: calc(100% + 8px);
   width: 6px;
-  height: 46px; /* chiều dài đường nối, có thể điều chỉnh */
+  height: 46px;
   background: var(--color);
   border-radius: 3px;
   z-index: 20;
@@ -71,7 +67,6 @@
   z-index: 20;
 }
 
-/* box - tất cả phần tử bên trong xếp dọc, căn giữa */
 .roadmap-box {
   margin-top: 76px;
   position: relative;

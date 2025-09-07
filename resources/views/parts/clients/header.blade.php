@@ -76,7 +76,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('home')}}">
+                        <a class="nav-link" href="{{route('recruit-ment')}}">
                             <i class="fas fa-star"></i>
                             Tuyển dụng
                         </a>

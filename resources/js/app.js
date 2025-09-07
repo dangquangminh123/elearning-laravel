@@ -11,8 +11,9 @@ import "./slick.min.js";
 import "./slider-home.js";
 import "./home.js";
 import "./about_us.js"
-import "./learning_path.js"
-import "./progress_bar.js"
+import "./learning_path.js";
+import "./recruitment.js";
+import "./progress_bar.js";
 import "./lesson.js";
 import "./course-detail.js"
 import "./accordion.js";

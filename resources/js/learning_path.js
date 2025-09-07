@@ -13,6 +13,8 @@ $(function(){
 
 
 $(function(){
+    if($("#erp-arcLayer").length === 0) return; 
+
   const SVG_NS = "http://www.w3.org/2000/svg";
   const create = tag => document.createElementNS(SVG_NS, tag);
   const cx = 550, cy = 450;

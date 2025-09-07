@@ -103,6 +103,9 @@ animation-direction quyết định hướng/đảo vs không.
 animation-fill-mode quyết định trạng thái giữ lại sau khi dừng.
 
 Keyword thì half doughnut chart, padAngle
+ô tròn segment
 
 vấn đề kích thước các biểu đồ tròn không được bị che, đồng thời vấn đề hướng cong lõm theo đâu gốc quay xoay như thế nào 
 phần chia các đường tròn ra làm sao 
+
+Cứ mỗi 1 hàng là gồm 4 item nằm ngang căn chỉnh từ 2 phía tràn ra, nghĩa là bình thường nếu số lượng item ít thì cứ căn đều vào chính giữa 2 bên và khi item nhiều ra thì căn tràn ra từ chính giữa ra 2 bên màn hình đó bạn nha! Tiếp tục mỗi item luôn có số thứ tự riêng của nó, ô số thứ tự thì chữ số màu trắng nền nó màu cam vàng nhạt và màu nền này phải được css thành hình tròn bạn nhá ! Và chữ số phải nằm chính giữa của ô tròn đó, và phần bên dưới là đầu tiên là có 1 đường sọc xanh lục bao trùm lên toàn bộ và phải được border cả 4 gốc! Tiếp tục là  có thành phần như phong bì thư vậy đó (coi cho nó chuẩn xác hình mẫu vào ) đầu tiên là  là phần sọc nếp gấp màu xanh đậm như hình ảnh phải được border tròn và dày hơn ở dưới 2 gốc trái và phải còn bên trên 2 gốc trên thì border ít hơn 2 gốc dưới nhưng nó vẫn được border tròn như 2 gốc cuối của chính item (của chính 2 gốc dưới cùng item chứ ko phải 2 gốc của lá nếp gập đó bạn nha) và trong phần nếp gấp này có tiêu đề mỗi item là 1 tiêu đề đó bạn chữ đó phải được đậm lên 1 chút và có màu được nổi trong 1 màu xanh lục này và nó phải nằm ở giữa! Và sau đó cuối cùng là các nội dung mô tả bên trong cho từng item và được chia theo dạng ul li để có dấu . Đầu từng câu đó bạn! Dùng html css jquery js thiết kế cho chuẩn vào ha
