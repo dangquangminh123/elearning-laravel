@@ -275,8 +275,7 @@
   background: url(../assets/round-arr2.png) no-repeat center;
 }
 
-
-
+// chính sách quyền lợi khi tuyển dụng giảng viên
 :root {
   --steps-gap: 24px;
   --steps-item-min-width: 240px;
@@ -289,7 +288,7 @@
   --steps-card-bg: #ffffff;
   --steps-radius: 14px;
   --steps-number-gap: 12px;
-  --steps-card-border-width: 3px;
+  --steps-card-border-width: 5px;
   --steps-fold-border-top: 1px;
   --steps-fold-border-side: 2.5px;
   --steps-fold-border-bottom: 6px;
@@ -297,20 +296,16 @@
 
 /* Tiêu đề lớn */
 .steps-main-title {
-flex: 0 0 100%;   /* chiếm 1 hàng riêng */
+  flex: 0 0 100%;
   width: 100%;
   text-align: center;
-  font-size: 40px;   /* chữ to hơn */
-  font-weight: 800;  /* đậm hơn */
+  font-size: 40px;  
+  font-weight: 800; 
   margin: 0 0 60px 0;
-
-  /* Gradient chữ */
   background: linear-gradient(135deg, #ff8c00, #ff5e62, #9b63ff, #5b8cff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-
-  /* thêm hiệu ứng bóng chữ nhẹ */
   text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
 }
 
@@ -335,20 +330,23 @@ flex: 0 0 100%;   /* chiếm 1 hàng riêng */
   max-width: 320px;
   background: var(--steps-card-bg);
   border-radius: var(--steps-radius);
-  border: var(--steps-card-border-width) solid var(--steps-border-green);
+   border: var(--steps-card-border-width) solid #7bb0ff; 
   display: flex;
   flex-direction: column;
   padding-top: calc(var(--steps-fold-height) + 18px);
   padding: 18px;
   padding-top: calc(var(--steps-fold-height) + 18px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+ box-shadow: 0 6px 16px rgba(0,0,0,0.08);
   transition: transform .18s ease, box-shadow .18s ease;
   margin-bottom: 5em; 
+ perspective: 900px;
+  -webkit-perspective: 900px;
+  overflow: visible;
 }
 .step-card:hover {
-  transform: scale(1.03); /* scale nhẹ thay vì nhảy */
-  box-shadow: 0 18px 36px rgba(0,0,0,0.12);
-  z-index: 5;
+  transform: scale(1.04);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  z-index: 3;
 }
 
 /* Số thứ tự */
@@ -362,12 +360,12 @@ flex: 0 0 100%;   /* chiếm 1 hàng riêng */
   display:flex;
   align-items:center;
   justify-content:center;
-  color: #fff;
   font-weight: 700;
   z-index: 20;
-  background: linear-gradient(180deg, #ffd98a, var(--steps-accent-orange));
-  border: 3px solid rgba(255,217,154,0.95);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  background: linear-gradient(180deg, #ffb88c, #ff6b6b);
+  border: 3px solid rgba(255,255,255,0.7);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  color: #fff;
   top: calc(-1 * var(--steps-num-size) - var(--steps-number-gap));
   font-size: 18px;
 }
@@ -385,31 +383,46 @@ flex: 0 0 100%;   /* chiếm 1 hàng riêng */
   z-index: 10;
   box-sizing: border-box;
   border-style: solid;
-  border-color: var(--steps-border-green);
   border-width: var(--steps-fold-border-top) var(--steps-fold-border-side) var(--steps-fold-border-bottom) var(--steps-fold-border-side);
   border-radius: 12px 12px 24px 24px;
-  background: var(--steps-header-dark);
   padding: 8px 14px;
   overflow: visible;
+  transform-origin: bottom center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+  background: linear-gradient(135deg, #4facfe, #00f2fe); /* xanh gradient */
+  border-color: #7bb0ff;
+  transition: transform 0.9s cubic-bezier(.25,.8,.25,1);
+}
+
+.step-card:hover .step-card-fold {
+  transform: translateY(calc(-1 * (var(--steps-fold-height) + var(--steps-card-border-width)))) rotateX(90deg);
 }
 
 /* Tiêu đề nhỏ */
 .step-card-title {
   position: relative;
   z-index: 12;
-  color: var(--steps-header-light);
   font-weight: 700;
   font-size: 16px;
   text-align: center;
   line-height: 1;
+  transition: opacity .3s ease .2s;
+  color: #fff; /* trắng nổi bật trên nền xanh */
+}
+
+.step-card:hover .step-card-title {
+  opacity: 0; 
 }
 
 /* Body */
 .step-card-body {
   margin-top: 8px;
-  color: #222;
-  font-size: 14px;
-  line-height: 1.6;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.7;
   position: relative;
   flex: 1;
   overflow-y: auto;
