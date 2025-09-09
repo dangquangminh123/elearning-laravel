@@ -235,5 +235,65 @@
   </div>
 </div>
 
+<div class="custom-wrapper">
+  <!-- TIÊU ĐỀ + MÔ TẢ -->
+  <div class="custom-header text-center">
+    <h2 class="custom-title">Chính Sách & Lộ Trình Giảng Dạy tại DSCons</h2>
+    <p class="custom-desc">
+      Tại DSCons, chúng tôi xây dựng môi trường giảng dạy chuyên nghiệp, mang lại thu nhập bền vững
+      và hỗ trợ giảng viên phát triển sự nghiệp dài lâu trong lĩnh vực đào tạo trực tuyến.
+    </p>
+  </div>
+
+  <div class="row align-items-center no-gutters">
+    <!-- LEFT -->
+    <div class="col-md-5 custom-left">
+      <div class="custom-circle-wrap">
+        <div class="custom-circle-bg">
+          <img src="clients/assets/hoangan.jpg" alt="Giảng viên" class="custom-teacher-img">
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col-md-7 custom-right">
+      <svg class="custom-curve-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"></svg>
+
+      <!-- Items -->
+      <div class="custom-item custom-item1">
+        <div class="custom-icon"><i class="fas fa-hand-holding-usd"></i></div>
+        <div class="custom-content">
+          <h3>Thu nhập ổn định</h3>
+          <p>Chính sách chia sẻ doanh thu minh bạch, giúp giảng viên yên tâm gắn bó lâu dài.</p>
+        </div>
+      </div>
+
+      <div class="custom-item custom-item2">
+        <div class="custom-icon"><i class="fas fa-route"></i></div>
+        <div class="custom-content">
+          <h3>Lộ trình phát triển</h3>
+          <p>Từ giảng viên mới → giảng viên chính → trưởng nhóm đào tạo, DSCons hỗ trợ từng bước.</p>
+        </div>
+      </div>
+
+      <div class="custom-item custom-item3">
+        <div class="custom-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="custom-content">
+          <h3>Cơ hội đào tạo</h3>
+          <p>Tham gia workshop, tập huấn kỹ năng, nâng cao chuyên môn định kỳ.</p>
+        </div>
+      </div>
+
+      <div class="custom-item custom-item4">
+        <div class="custom-icon"><i class="fas fa-users"></i></div>
+        <div class="custom-content">
+          <h3>Cộng đồng giảng viên</h3>
+          <p>Kết nối cùng hàng trăm đồng nghiệp, chia sẻ kinh nghiệm và mở rộng mối quan hệ.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 @endsection
