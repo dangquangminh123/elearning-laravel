@@ -129,58 +129,83 @@
   <h2 class="phases-title">5 Giai đoạn học tập để trở thành chiến binh Developer</h2>
 
   <div class="phases-rows">
+    <!-- Phase 1 -->
     <div class="phase-row phase-1">
-      <div class="phase-shape1">
-        <span class="phase-num">01</span>
-        <i class="phase-ico fa-solid fa-brain"></i>
+      <div class="phase-shape1-wrap">
+        <div class="phase-shape1">
+          <span class="phase-num">01</span>
+          <i class="phase-ico fa-solid fa-brain"></i>
+        </div>
       </div>
-      <div class="phase-shape2">
-        <h3 class="phase-title">Giai đoạn 1: Nền tảng tư duy</h3>
-        <p class="phase-desc">Hiểu cấu trúc dữ liệu, giải thuật, Git/GitHub, Linux cơ bản và tư duy lập trình chuẩn.</p>
-      </div>
-    </div>
-
-    <div class="phase-row phase-2">
-      <div class="phase-shape1">
-        <span class="phase-num">02</span>
-        <i class="phase-ico fa-solid fa-code"></i>
-      </div>
-      <div class="phase-shape2">
-        <h3 class="phase-title">Giai đoạn 1: Nền tảng tư duy</h3>
-        <p class="phase-desc">Hiểu cấu trúc dữ liệu, giải thuật, Git/GitHub, Linux cơ bản và tư duy lập trình chuẩn.</p>
-      </div>
-    </div>
-
-    <div class="phase-row phase-3">
-      <div class="phase-shape1">
-        <span class="phase-num">03</span>
-        <i class="phase-ico fa-solid fa-server"></i>
-      </div>
-       <div class="phase-shape2">
-        <h3 class="phase-title">Giai đoạn 1: Nền tảng tư duy</h3>
-        <p class="phase-desc">Hiểu cấu trúc dữ liệu, giải thuật, Git/GitHub, Linux cơ bản và tư duy lập trình chuẩn.</p>
-      </div>
-    </div>
-
-    <div class="phase-row phase-4">
-      <div class="phase-shape1">
-        <span class="phase-num">04</span>
-        <i class="phase-ico fa-solid fa-database"></i>
-      </div>
-       <div class="phase-shape2">
-        <h3 class="phase-title">Giai đoạn 1: Nền tảng tư duy</h3>
-        <p class="phase-desc">Hiểu cấu trúc dữ liệu, giải thuật, Git/GitHub, Linux cơ bản và tư duy lập trình chuẩn.</p>
-      </div>
-    </div>
-
-    <div class="phase-row phase-5">
-      <div class="phase-shape1">
-        <span class="phase-num">05</span>
-        <i class="phase-ico fa-solid fa-rocket"></i>
-      </div>
+      <div class="phase-shape2-wrap">
         <div class="phase-shape2">
-        <h3 class="phase-title">Giai đoạn 1: Nền tảng tư duy</h3>
-        <p class="phase-desc">Hiểu cấu trúc dữ liệu, giải thuật, Git/GitHub, Linux cơ bản và tư duy lập trình chuẩn.</p>
+          <h3 class="phase-title">Giai đoạn 1: Tư duy logic</h3>
+          <p class="phase-desc">Rèn luyện tư duy logic, cấu trúc dữ liệu, giải thuật, làm quen Git/GitHub và Linux cơ bản.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase-row phase-2">
+      <div class="phase-shape1-wrap">
+        <div class="phase-shape1">
+          <span class="phase-num">02</span>
+          <i class="phase-ico fa-solid fa-laptop-code"></i>
+        </div>
+      </div>
+      <div class="phase-shape2-wrap">
+        <div class="phase-shape2">
+          <h3 class="phase-title">Giai đoạn 2: Lập trình cơ bản</h3>
+          <p class="phase-desc">Nắm vững cú pháp, lập trình hướng đối tượng, giải bài tập và dự án mini.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase-row phase-3">
+      <div class="phase-shape1-wrap">
+        <div class="phase-shape1">
+          <span class="phase-num">03</span>
+          <i class="phase-ico fa-solid fa-server"></i>
+        </div>
+      </div>
+      <div class="phase-shape2-wrap">
+        <div class="phase-shape2">
+          <h3 class="phase-title">Giai đoạn 3: Backend & Database</h3>
+          <p class="phase-desc">Học về cơ sở dữ liệu SQL/NoSQL, xây dựng API, quản lý server và bảo mật cơ bản.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="phase-row phase-4">
+      <div class="phase-shape1-wrap">
+        <div class="phase-shape1">
+          <span class="phase-num">04</span>
+          <i class="phase-ico fa-solid fa-database"></i>
+        </div>
+      </div>
+      <div class="phase-shape2-wrap">
+        <div class="phase-shape2">
+          <h3 class="phase-title">Giai đoạn 4: Frontend nâng cao</h3>
+          <p class="phase-desc">Thành thạo React, Vue hoặc Angular, tối ưu giao diện và trải nghiệm người dùng.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phase 5 -->
+    <div class="phase-row phase-5">
+      <div class="phase-shape1-wrap">
+        <div class="phase-shape1">
+          <span class="phase-num">05</span>
+          <i class="phase-ico fa-solid fa-rocket"></i>
+        </div>
+      </div>
+      <div class="phase-shape2-wrap">
+        <div class="phase-shape2">
+          <h3 class="phase-title">Giai đoạn 5: Triển khai & Thực chiến</h3>
+          <p class="phase-desc">Triển khai dự án lên cloud, CI/CD, tối ưu hiệu năng và tham gia dự án thực tế.</p>
+        </div>
       </div>
     </div>
   </div>

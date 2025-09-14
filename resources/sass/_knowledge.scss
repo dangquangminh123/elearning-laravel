@@ -152,8 +152,6 @@ text-align: center;
     --s1h: 100px;
     --half: calc(var(--s1w) / 2);
     --overlap: 2px;
-    --shadow1: 0 10px 16px rgba(0, 0, 0, .16);
-    --shadow2: 0 6px 12px rgba(0, 0, 0, .12);
     max-width: 960px;
     margin: 40px auto;
     font-family: Arial, sans-serif;
@@ -183,29 +181,43 @@ text-align: center;
 .phase-4 { order:2; margin-left:calc(3*var(--half)); margin-right:calc(1*var(--half)); --grad:linear-gradient(135deg,#0d9488,#14b8a6);}
 .phase-5 { order:1; margin-left:calc(4*var(--half)); margin-right:0;                   --grad:linear-gradient(135deg,#16a34a,#22c55e);}
 
-.phase-shape1 {
-   width: var(--s1w);
-  height: var(--s1h);
+.phase-shape1-wrap {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* tách số bên trái, icon bên phải */
-  padding: 0 16px;
-  color: #fff;
-  filter: drop-shadow(var(--shadow1));
-
-  background: var(--grad);
-  -webkit-mask-image: url('../assets/shape1.svg');
-  mask-image: url('../assets/shape1.svg');
-  -webkit-mask-size: cover;
-  mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
+  width: var(--s1w);
+  height: var(--s1h);
+  flex-shrink: 0;
+  filter: var(--s1-shadow);  /* dùng biến shadow */
 }
 
+/* ===== định nghĩa màu bóng cho từng phase (1 lần) ===== */
+.phase-1{ --s1-shadow: drop-shadow(0 12px 18px rgba(220,38,38,.55));  --s2-shadow: drop-shadow(0 12px 20px rgba(255,120,120,.40)); }
+.phase-2{ --s1-shadow: drop-shadow(0 12px 18px rgba(219,39,119,.50)); --s2-shadow: drop-shadow(0 12px 20px rgba(255,140,190,.40)); }
+.phase-3{ --s1-shadow: drop-shadow(0 12px 18px rgba(37,99,235,.48));  --s2-shadow: drop-shadow(0 12px 20px rgba(140,180,255,.40)); }
+.phase-4{ --s1-shadow: drop-shadow(0 12px 18px rgba(13,148,136,.48)); --s2-shadow: drop-shadow(0 12px 20px rgba(100,230,210,.40)); }
+.phase-5{ --s1-shadow: drop-shadow(0 12px 18px rgba(22,163,74,.48));  --s2-shadow: drop-shadow(0 12px 20px rgba(140,240,170,.40)); }
 
+/* ===== SHAPE 1: đổ bóng TRỰC TIẾP lên element có mask ===== */
+.phase-shape1 {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: var(--grad);
+
+  -webkit-mask-image: url('../assets/shape1.svg');
+          mask-image: url('../assets/shape1.svg');
+  -webkit-mask-size: cover; mask-size: cover;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
+
+/* số & icon nổi bật trên từng màu */
+.phase-1 .phase-num,.phase-1 .phase-ico{ color:#fff59d; text-shadow:0 2px 4px rgba(200,0,0,.35); }
+.phase-2 .phase-num,.phase-2 .phase-ico{ color:#b9fbc0; text-shadow:0 2px 4px rgba(180,30,100,.35); }
+.phase-3 .phase-num,.phase-3 .phase-ico{ color:#ffd580; text-shadow:0 2px 4px rgba(20,60,160,.35); }
+.phase-4 .phase-num,.phase-4 .phase-ico{ color:#ffb3c6; text-shadow:0 2px 4px rgba(0,100,90,.35); }
+.phase-5 .phase-num,.phase-5 .phase-ico{ color:#d0a2f7; text-shadow:0 2px 4px rgba(0,100,40,.35); }
 .phase-num {
   font-size: 20px;
   font-weight: 700;
@@ -219,31 +231,37 @@ text-align: center;
   flex: 1;
 }
 
-.phase-shape2 {
+.phase-shape2-wrap {
   flex: 1;
   height: var(--s1h);
   position: relative;
+  filter: var(--s2-shadow);
+}
+
+.phase-shape2 {
+  width: 100%; height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 12px 20px;
-  filter: drop-shadow(var(--shadow2));
-
   background: #fff;
+
   -webkit-mask-image: url('../assets/shape2.svg');
-  mask-image: url('../assets/shape2.svg');
-  -webkit-mask-size: cover;
-  mask-size: cover;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
+          mask-image: url('../assets/shape2.svg');
+  -webkit-mask-size: cover; mask-size: cover;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
 }
 
+/* viền gradient */
 .phase-shape2::after {
-  content:""; position:absolute; top:0; bottom:0; right:0; width:10px;
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+  width: 10px;
   background: var(--grad);
 }
+
 .phase-shape2>* { position:relative; z-index:2; }
 
 /* nội dung riêng */
@@ -252,9 +270,11 @@ text-align: center;
   font-weight: 700;
   margin: 0 0 6px 0;
   color: #0f172a;
+  text-shadow: 0 1px 2px rgba(100,120,180,.3);
 }
 .phase-desc  { 
-   font-size: 14px;
+  font-size: 14px;
   line-height: 1.4;
-  color: #475569;
- }
+  color: #334155;
+  text-shadow: 0 1px 2px rgba(80,120,160,.25);
+}

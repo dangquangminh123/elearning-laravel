@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="banner-full">
-                <img src="/clients/assets/banner-full.jpeg" alt="" />
+                <img src="/clients/assets/banner-full.png" alt="" />
             </div>
         </div>
     </div>
