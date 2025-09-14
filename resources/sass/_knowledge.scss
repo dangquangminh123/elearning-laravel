@@ -1,0 +1,260 @@
+/* ============ Theme nội bộ ============ */
+.intro-savista{
+  --card-bg: #ffffff;
+  --card-border: #e6e9ef;
+  --shadow: 0 8px 20px rgba(16,24,40,.06);
+  --stripe-start: #0db39e;
+  --stripe-end: #34d399;
+  --title: #f26a21;          /* tiêu đề cam */
+  --text: #1e3a8a;           /* chữ mô tả */
+  --muted: #5b6070;
+  --icon-grad-a: #ff7a45;    /* icon cam → vàng */
+  --icon-grad-b: #ffb703;
+  --acc-bg: #eaf2ff;         /* nền header accordion */
+  --acc-border: #c9dafc;     /* viền header accordion */
+  max-width: 1100px;
+  margin: 15px auto;
+  padding: 0 16px 48px;
+}
+
+/* ============ Grid 2 cột, 2 hàng bằng nhau ============ */
+.intro-savista .intro-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* trái | phải */
+  grid-template-rows: 1fr 1fr;      /* 2 hàng = nhau */
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ============ Card chung ============ */
+.intro-savista .intro-card{
+  background: var(--card-bg);
+  border: 1.5px solid var(--card-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  position: relative;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+/* Sọc màu ở mép trái card */
+.intro-savista .intro-card::before{
+ content:"";
+  position:absolute;
+  left: 0;
+  top: 0;      
+  bottom: 0;  
+  width: 10px;
+  border-radius: 8px 0 0 8px;
+  background: linear-gradient(180deg, #3b82f6, #9333ea, #f43f5e);
+}
+
+/* Card phải chiếm 2 hàng */
+.intro-savista .intro-card--right{
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-items: center;
+}
+
+.intro-savista .intro-card--right .intro-acc {
+  margin-top: 18px;
+  width: 100%; /* accordion full width */
+}
+
+
+/* Icon – Title – Desc xếp dọc */
+.intro-savista .intro-card__icon{
+    font-size: 60px;
+  margin: 8px 0 16px;
+  background: linear-gradient(135deg, #f97316, #facc15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+.intro-savista .intro-card__title{
+  font-weight: 800;
+  font-size: 26px;
+  color: var(--title);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.intro-savista .intro-card__desc{
+text-align: center;
+  color: #374151;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* ============ Accordion ============ */
+.intro-savista .intro-acc{ margin-top: 14px; display:flex; flex-direction:column; gap:14px; }
+
+.intro-savista .acc-item{
+  border: 1px solid var(--acc-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.intro-savista .acc-head{
+  border: none;
+  width: 100%;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 700;
+  font-size: 15.5px;
+  background: linear-gradient(90deg, #0ea5e9, #2563eb);
+  color: #fff;
+}
+.intro-savista .acc-head .chev{
+  font-size: 18px;
+  color: #fff; 
+}
+
+.intro-savista .acc-panel{
+  display: none;
+  padding: 14px 18px 18px;
+  background: #fff;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.intro-savista .acc-panel ul{
+  margin: 0 0 0 18px;
+  padding: 0;
+}
+.intro-savista .acc-panel li{
+  margin: 6px 0;
+}
+/* ============ Responsive ============ */
+@media (max-width: 880px){
+  .intro-savista .intro-grid{
+    grid-template-columns: 1fr;   /* 1 cột */
+    grid-template-rows: auto;     /* auto cao */
+  }
+  .intro-savista .intro-card--right{
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+// Phases
+.phases-wrapper {
+    --s1w: 200px;
+    --s1h: 100px;
+    --half: calc(var(--s1w) / 2);
+    --overlap: 2px;
+    --shadow1: 0 10px 16px rgba(0, 0, 0, .16);
+    --shadow2: 0 6px 12px rgba(0, 0, 0, .12);
+    max-width: 960px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+.phases-title {
+  text-align:center; margin-bottom:36px;
+  font-size:24px; font-weight:800; color:#1e293b;
+}
+
+.phases-rows {
+  display:flex;
+  flex-direction: column;
+  padding-top: calc(-1 * var(--overlap));
+}
+
+.phase-row {
+  display:flex; align-items:stretch; position:relative;
+  height: var(--s1h);
+  margin-top: var(--overlap);
+}
+
+/* bậc thang */
+.phase-1 { order:5; margin-left:0;                   margin-right:calc(4*var(--half)); --grad:linear-gradient(135deg,#dc2626,#ef4444);}
+.phase-2 { order:4; margin-left:calc(1*var(--half)); margin-right:calc(3*var(--half)); --grad:linear-gradient(135deg,#db2777,#f472b6);}
+.phase-3 { order:3; margin-left:calc(2*var(--half)); margin-right:calc(2*var(--half)); --grad:linear-gradient(135deg,#2563eb,#60a5fa);}
+.phase-4 { order:2; margin-left:calc(3*var(--half)); margin-right:calc(1*var(--half)); --grad:linear-gradient(135deg,#0d9488,#14b8a6);}
+.phase-5 { order:1; margin-left:calc(4*var(--half)); margin-right:0;                   --grad:linear-gradient(135deg,#16a34a,#22c55e);}
+
+.phase-shape1 {
+   width: var(--s1w);
+  height: var(--s1h);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* tách số bên trái, icon bên phải */
+  padding: 0 16px;
+  color: #fff;
+  filter: drop-shadow(var(--shadow1));
+
+  background: var(--grad);
+  -webkit-mask-image: url('../assets/shape1.svg');
+  mask-image: url('../assets/shape1.svg');
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+
+.phase-num {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;       
+  flex: 1;
+}
+
+.phase-ico {
+  font-size: 22px;
+  text-align: center; 
+  flex: 1;
+}
+
+.phase-shape2 {
+  flex: 1;
+  height: var(--s1h);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px 20px;
+  filter: drop-shadow(var(--shadow2));
+
+  background: #fff;
+  -webkit-mask-image: url('../assets/shape2.svg');
+  mask-image: url('../assets/shape2.svg');
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.phase-shape2::after {
+  content:""; position:absolute; top:0; bottom:0; right:0; width:10px;
+  background: var(--grad);
+}
+.phase-shape2>* { position:relative; z-index:2; }
+
+/* nội dung riêng */
+.phase-title {
+   font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #0f172a;
+}
+.phase-desc  { 
+   font-size: 14px;
+  line-height: 1.4;
+  color: #475569;
+ }

@@ -296,4 +296,44 @@
 </div>
 
 
+<div class="core-values-container">
+  <svg class="core-values-lines"></svg>
+
+  <div class="core-values-center">
+    Tầm nhìn<br>Tuyển dụng<br>Giảng viên
+  </div>
+
+  <div class="core-values-item">
+    <span class="core-values-icon"><i class="fas fa-user-graduate"></i></span>
+    <span class="core-values-text">Chuẩn năng lực sư phạm<br>và chuyên môn vững.</span>
+  </div>
+
+  <div class="core-values-item">
+    <span class="core-values-icon"><i class="fas fa-laptop-code"></i></span>
+    <span class="core-values-text">Ứng dụng công nghệ giảng dạy<br>LMS, lớp trực tuyến hiệu quả.</span>
+  </div>
+
+  <div class="core-values-item">
+    <span class="core-values-icon"><i class="fas fa-lightbulb"></i></span>
+    <span class="core-values-text">Tư duy đổi mới phương pháp<br>Cải tiến liên tục.</span>
+  </div>
+
+  <div class="core-values-item">
+    <span class="core-values-icon"><i class="fas fa-leaf"></i></span>
+    <span class="core-values-text">Phát triển bền vững đội ngũ<br>Lộ trình, mentor–mentee rõ ràng.</span>
+  </div>
+
+  <div class="core-values-item">
+    <span class="core-values-icon"><i class="fas fa-handshake"></i></span>
+    <span class="core-values-text">Văn hoá hợp tác – gắn kết<br>Chia sẻ giáo án, dự giờ góp ý.</span>
+  </div>
+
+  <div class="core-values-item">
+    <span class="core-values-icon"><i class="fas fa-rocket"></i></span>
+    <span class="core-values-text">Định hướng tương lai giáo dục<br>Tiệm cận chuẩn quốc tế.</span>
+  </div>
+</div>
+
+
+
 @endsection

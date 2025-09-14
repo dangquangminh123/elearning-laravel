@@ -12,6 +12,7 @@ import "./slider-home.js";
 import "./home.js";
 import "./about_us.js"
 import "./learning_path.js";
+import "./knowledge.js";
 import "./recruitment.js";
 import "./progress_bar.js";
 import "./lesson.js";

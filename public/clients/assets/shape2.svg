@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="217 416 240 81">
+  <!-- Panel phải bo tròn bên trái, chiều cao 81.31 -->
+  <path d="M217.24,416c0,44.91,36.41,81.31,81.31,81.31h152.9V416h-234.21z"/>
+  <!-- Viền phải -->
+  <rect x="450.14" y="416" width="7.01" height="81.31"/>
+</svg>

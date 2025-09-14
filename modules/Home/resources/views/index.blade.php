@@ -41,26 +41,35 @@
             <div class="col-12 col-md-8 col-lg-6">
                 <div class="banner-slider">
                     <div class="banner-slider-inner">
-                        <img src="/clients/assets/PHP.jpg" alt="" />
+                        <img src="/clients/assets/slider1.png" alt="" />
                     </div>
                     <div class="banner-slider-inner">
-                        <img src="/clients/assets/laravel.png" alt="" />
+                        <img src="/clients/assets/slider2.png" alt="" />
                     </div>
                     <div class="banner-slider-inner">
-                        <img src="/clients/assets/react.jpg" alt="" />
+                        <img src="/clients/assets/slider3.png" alt="" />
+                    </div>
+                     <div class="banner-slider-inner">
+                        <img src="/clients/assets/slider4.png" alt="" />
+                    </div>
+                    <div class="banner-slider-inner">
+                        <img src="/clients/assets/slider5.png" alt="" />
+                    </div>
+                      <div class="banner-slider-inner">
+                        <img src="/clients/assets/slider6.png" alt="" />
                     </div>
                 </div>
             </div>
             <div class="d-none d-lg-block col-lg-3">
                 <div class="banner-right">
                     <div class="banner-right__img">
-                        <img src="/clients/assets/laravel.png" alt="" />
+                        <img src="/clients/assets/banner1.png" alt="" />
                     </div>
                     <div class="banner-right__img">
-                        <img src="/clients/assets/PHP.jpg" alt="" />
+                        <img src="/clients/assets/banner2.png" alt="" />
                     </div>
                     <div class="banner-right__img">
-                        <img src="/clients/assets/react.jpg" alt="" />
+                        <img src="/clients/assets/banner3.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -119,13 +128,13 @@
 
 <section class="image-section">
     <div class="image-wrapper">
-        <img src="/clients/assets/saleoff1.png" alt="Melty Cake">
+        <img src="/clients/assets/banner1.png" alt="Melty Cake">
         <div class="hover-overlay-1"></div>
         <div class="hover-overlay-2"></div>
     </div>
 
     <div class="image-wrapper">
-        <img src="/clients/assets/saleoff1.png" alt="Juicy Cup">
+        <img src="/clients/assets/banner2.png" alt="Juicy Cup">
         <div class="hover-overlay-1"></div>
         <div class="hover-overlay-2"></div>
     </div>
@@ -274,7 +283,7 @@
       <div class="hex-ring" id="hexRing">
         <div class="hex-wrap hex-center-wrap">
           <div class="hex hex-center">
-            <img src="/clients/assets/slider-2.jpeg" alt="center" />
+            <img src="/clients/assets/logo.png" alt="center" />
           </div>
         </div>
 

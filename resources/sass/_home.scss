@@ -1,24 +1,5 @@
 .padding {
-	padding: 15px;
-}
-/* banner */
-.banner .banner-left,
-.banner .slick-slider,
-.banner .banner-right__img,
-.banner .banner-full img {
-	border-radius: 10px;
-	overflow: hidden;
-}
-.banner .banner-left {
-	height: 100%;
-	padding: 15px;
-	// background-color: #fff;
-}
-.banner .banner-left .course-group p {
-	font-size: 1.1rem;
-	// color: #0095eb;
-	font-weight: bold;
-	text-transform: uppercase;
+	padding: 15px 0px;
 }
 
 /* Màu cho từng loại */
@@ -36,6 +17,24 @@
 }
 .course-group p.badge-course-skill {
     color: #6C5CE7;
+}
+
+/* banner */
+.banner .banner-left,
+.banner .slick-slider,
+.banner .banner-right__img,
+.banner .banner-full img {
+	border-radius: 10px;
+	overflow: hidden;
+}
+.banner .banner-left {
+	height: 100%;
+	padding: 15px;
+}
+.banner .banner-left .course-group p {
+	font-size: 1.1rem;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
 .banner .banner-left .course-group ul {
@@ -59,11 +58,55 @@
 }
 
 .banner .banner-right__img {
-	margin-bottom: 22px;
+	// margin-bottom: 10px;
 	box-shadow: 2px 2px 18px 2px #4d3d3d80;
 	transition: all 0.3s ease-out;
-	height: calc((100% / 3) - 14px);
 }
+
+/* đặt cùng chiều cao cho slider và cột phải */
+.banner .banner-slider,
+.banner .banner-right {
+  height: 54em;
+}
+
+/* banner-right: chia đều 4 ảnh */
+.banner .banner-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.banner .banner-right__img {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.banner .banner-right__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* slider ảnh cũng phải fit */
+.banner .banner-slider .banner-slider-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.banner .banner-slider .banner-slider-inner img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .banner .banner-right__img:hover {
 	box-shadow: 2px 2px 13px 8px #00000080;
 	transition: all 0.3s ease-in;

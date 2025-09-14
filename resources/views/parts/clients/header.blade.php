@@ -70,7 +70,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('home')}}">
+                        <a class="nav-link" href="{{route('know-ledge')}}">
                             <i class="fas fa-globe-europe"></i>
                             Kiến thức
                         </a>
