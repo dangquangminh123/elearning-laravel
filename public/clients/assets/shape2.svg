@@ -1,6 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="217 416 240 81">
-  <!-- Panel phải bo tròn bên trái, chiều cao 81.31 -->
-  <path d="M217.24,416c0,44.91,36.41,81.31,81.31,81.31h152.9V416h-234.21z"/>
-  <!-- Viền phải -->
-  <rect x="450.14" y="416" width="7.01" height="81.31"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.4.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 320 81" style="enable-background:new 0 0 320 81;" xml:space="preserve">
+<g>
+	<path d="M81,0L81,0c0,44.74-36.27,81-81,81h313.01V0H81z"/>
+	<rect x="313.01" width="6.98" height="81"/>
+</g>
 </svg>
