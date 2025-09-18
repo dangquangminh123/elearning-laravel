@@ -297,6 +297,22 @@ text-align: center;
   pointer-events:none;
 }
 
+.shape1-hover {
+  transform: scale(1.1) rotate(-2deg);
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: brightness(1.2);
+  z-index: 3;
+}
+
+/* hiệu ứng cho shape bên phải */
+.shape2-hover {
+  transform: translateX(8px) scale(1.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
+  border-radius: 8px;
+  z-index: 3;
+}
+
 /* chỉ mask */
 .phase-shape2-mask {
   position:absolute; 
@@ -409,6 +425,17 @@ text-align: center;
   --c4:#f3a61a; --c4-shadow:rgba(243,166,26,.35);
   --c5:#7b5be0; --c5-shadow:rgba(123,91,224,.35);
 
+  --t1-start:#ffdd55; --t1-end:#ff8800;   /* vàng cam trên nền xanh dương */
+  --t2-start:#33ccff; --t2-end:#0066ff;   /* xanh dương trên nền cam */
+  --t3-start:#ff66cc; --t3-end:#cc00ff;   /* hồng tím trên nền xanh lá */
+  --t4-start:#66ffcc; --t4-end:#009966;   /* xanh ngọc trên nền vàng cam */
+  --t5-start:#ff6666; --t5-end:#ff0000;   /* đỏ trên nền tím */
+
+  --c1-dark:#14b3f7;
+  --c2-dark:#f45e39;
+  --c3-dark:#65bd3f;
+  --c4-dark:#f9ab1a;
+  --c5-dark:#7c57f4;
   --eraser:#b22222;
   --tip:#1d1d1d;
 }
@@ -416,6 +443,31 @@ text-align: center;
 .ds-infographic{max-width:1200px;margin:auto;padding:40px 20px}
 .ds-infographic h1{margin:0 0 28px;text-align:center;font-weight:800}
 
+.ds-infographic .ds-title {
+  font-size: 2.5em;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 28px;
+  background: linear-gradient(135deg, #ff6a00, #ee0979, #7b5be0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.ds-infographic .ds-subtitle {
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+  text-align: center;
+  font-size: 1.2em;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #16a9dd, #ff633c, #5aa63a, #f3a61a, #7b5be0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+  font-weight: 500;
+}
 /* ===== BOARD FLEX ===== */
 .ds-board{
   position:relative;
@@ -435,7 +487,7 @@ text-align: center;
 .ds-pencil{
   position: absolute;
     z-index: 2;
-    pointer-events: none;
+  pointer-events: auto;
     width: var(--pencil-w);
     height: 54em;
     left: 50%;
@@ -453,7 +505,15 @@ text-align: center;
   -webkit-mask:url('../assets/pencil.svg') center/contain no-repeat;
           mask:url('../assets/pencil.svg') center/contain no-repeat;
 }
-.ds-pencil-shape::before{content:"";position:absolute;top:0;left:0;right:0;height:12%;background:var(--eraser)}
+.ds-pencil-shape::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0; right: 0;
+  height: 12%;
+  background: linear-gradient(135deg, #ff7b7b, #ffb6b6); /* gradient đỏ hồng sáng */
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.25); /* tạo khối */
+}
 .ds-pencil-shape::after {content:"";position:absolute;bottom:0;left:0;right:0;height:12%;background:var(--tip)}
 
 /* ===== HEAD (giữ offset bạn đã đặt) ===== */
@@ -475,25 +535,57 @@ text-align: center;
     align-items: center;
     padding: 0px 3em;
     color: #fff;
-  filter: drop-shadow(0px 6px 12px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 6px 10px var(--c));
 }
 
-.ds-head-shape::before{
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--c);
-    -webkit-mask: url(http://[::1]:5173/resources/assets/head.svg) left center / 100% 100% no-repeat;
-    mask: url(http://[::1]:5173/resources/assets/head.svg) left center / 100% 100% no-repeat;
-    z-index: -1;
+
+.ds-head-shape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  // background: linear-gradient(135deg, var(--c), rgba(0,0,0,0.6));
+  background: linear-gradient(135deg, var(--c-dark), var(--c-dark));
+  opacity: 0.75;
+  -webkit-mask: url('../assets/head.svg') left center/100% 100% no-repeat;
+          mask: url('../assets/head.svg') left center/100% 100% no-repeat;
+  z-index: -1;
+  -webkit-mask-composite: destination-over;
+          mask-composite: intersect;
 }
+
+.ds-head-shape::after {
+  content: "";
+  position: absolute;
+  inset: 2%;
+  background: var(--c);
+  opacity: 0.75;
+  -webkit-mask: url('../assets/head.svg') no-repeat left center / contain;
+          mask: url('../assets/head.svg') no-repeat left center / contain;
+  z-index: -1;
+}
+
 
 .ds-head .ds-head-shape .ds-head-icon {
     margin-right: 2em;
     font-size: 1.9em;
 }
+.ds-head .ds-head-shape .ds-head-title,
+.ds-head .ds-head-shape .ds-head-desc {
+ font-weight:500;
+}
 
-.ds-head .ds-head-shape .ds-head-texts {
+.ds-head .ds-head-shape .ds-head-icon i,
+.ds-head .ds-head-shape .ds-head-title,
+.ds-head .ds-head-shape .ds-head-desc {
+background: linear-gradient(135deg, var(--t-start), var(--t-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display:inline-block;
+ 
+}
+
+.ds-head .ds-head-shape .ds-head-texts .ds-head-title,
+.ds-head .ds-head-shape .ds-head-texts .ds-head-desc{
   font-size: 1.1em;
 }
 
@@ -503,22 +595,26 @@ text-align: center;
     z-index: 3;
     top: 0.4em;
     left: -6.2em;
-    pointer-events: none;
+    pointer-events: auto;
     width: 4em;
     height: 7em;
 }
-
 .ds-hank-shape {
-    position: absolute;
-    inset: 0;
-    background: var(--c);
-    width: 100%;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--c), var(--c) 40%, var(--c));
+   width: 100%;
     height: 100%;
-    -webkit-mask: url(http://[::1]:5173/resources/assets/hank.svg) center / 100% 100% no-repeat;
-    mask: url(http://[::1]:5173/resources/assets/hank.svg) center / 100% 100% no-repeat;
-    transform: scaleX(1.4);
-    transform-origin: center;
-    filter: drop-shadow(0px 0px 0 var(--c)) drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.45));
+  -webkit-mask: url('../assets/hank.svg') center/100% 100% no-repeat;
+          mask: url('../assets/hank.svg') center/100% 100% no-repeat;
+  transform: scaleX(1.4);
+  transform-origin: center;
+  filter: drop-shadow(0 8px 12px var(--c));
+  border: 3px solid var(--c-dark);
+  border-color: color-mix(in srgb, var(--c) 100%,  var(--c) 100%);
+  -webkit-mask-composite: destination-over;
+          mask-composite: intersect;
+  z-index: 4; /* nổi lên trên */
 }
 
 .ds-hank-shape::before{
@@ -527,11 +623,11 @@ text-align: center;
     top: 0;
     bottom: 0;
     background: var(--c);
-    -webkit-mask-image: url(http://[::1]:5173/resources/assets/hank.svg);
+    -webkit-mask-image: url('../assets/hank.svg');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     -webkit-mask-size: calc(100% + 2 * var(--hank-stroke)) 100%;
-    mask-image: url(http://[::1]:5173/resources/assets/hank.svg);
+    mask-image: url('../assets/hank.svg');
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: calc(100% + 2 * var(--hank-stroke)) 100%;
@@ -542,7 +638,7 @@ text-align: center;
 .ds-tail {
     flex: 0 0;
     position: relative;
-    top: 1em;
+    top: 0em;
     left: -14.8em;
     display: flex;
     justify-content: flex-start;
@@ -553,30 +649,104 @@ text-align: center;
 .ds-tail-shape {
     height: 110px;
     width: 19.8em;
-    display: flex
-;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 5em;
     color: #fff;
     font-weight: 800;
-    filter: drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.35));
+    filter: drop-shadow(0 6px 10px var(--c));
 }
+
 .ds-tail-shape::before {
- content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    inset: 0;
-    background: var(--c);
-    -webkit-mask: url(http://[::1]:5173/resources/assets/tail.svg) right center / 100% 100% no-repeat;
-    mask: url(http://[::1]:5173/resources/assets/tail.svg) right center / 100% 100% no-repeat;
-  
-   z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  background: linear-gradient(135deg, var(--c-dark), var(--c-dark));
+  opacity: 0.75; /* làm mờ đi để nhìn chìm */
+  -webkit-mask: url('../assets/tail.svg') right center/100% 100% no-repeat;
+          mask: url('../assets/tail.svg') right center/100% 100% no-repeat;
+  z-index: -1;
+  -webkit-mask-composite: destination-over;
+          mask-composite: intersect;
 }
+
+.ds-tail-shape::after {
+  content: "";
+  position: absolute;
+  inset: 2%;
+  background: var(--c);
+  opacity: 0.75;
+  -webkit-mask: url('../assets/tail.svg') no-repeat left center / contain;
+          mask: url('../assets/tail.svg') no-repeat left center / contain;
+  z-index: -1;
+}
+
+
+.ds-tail-shape .ds-tail-arrow i{
+  font-size: 2.5em;
+ background: linear-gradient(135deg, var(--t-start), var(--t-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display:inline-block;
+}
+
+.ds-tail-shape .ds-tail-no {
+  font-size: 2em;
+background: linear-gradient(135deg, var(--t-start), var(--t-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display:inline-block;
+  font-weight:500;
+}
+
 /* ===== GÁN MÀU THEO HÀNG ===== */
-.ds-row[data-row="1"]{ --c:var(--c1); --shadow:var(--c1-shadow); }
-.ds-row[data-row="2"]{ --c:var(--c2); --shadow:var(--c2-shadow); }
-.ds-row[data-row="3"]{ --c:var(--c3); --shadow:var(--c3-shadow); }
-.ds-row[data-row="4"]{ --c:var(--c4); --shadow:var(--c4-shadow); }
-.ds-row[data-row="5"]{ --c:var(--c5); --shadow:var(--c5-shadow); }
+.ds-row[data-row="1"]{
+  --c:var(--c1); --c-dark:var(--c1-dark);
+  --t-start:var(--t1-start); --t-end:var(--t1-end);
+}
+.ds-row[data-row="2"]{
+  --c:var(--c2); --c-dark:var(--c2-dark);
+  --t-start:var(--t2-start); --t-end:var(--t2-end);
+}
+.ds-row[data-row="3"]{
+  --c:var(--c3); --c-dark:var(--c3-dark);
+  --t-start:var(--t3-start); --t-end:var(--t3-end);
+}
+.ds-row[data-row="4"]{
+  --c:var(--c4); --c-dark:var(--c4-dark);
+  --t-start:var(--t4-start); --t-end:var(--t4-end);
+}
+.ds-row[data-row="5"]{
+  --c:var(--c5); --c-dark:var(--c5-dark);
+  --t-start:var(--t5-start); --t-end:var(--t5-end);
+}
+
+.pencil-hover {
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0% { transform: translate(-50%, 0) rotate(0deg); }
+  25% { transform: translate(-50%, 0) rotate(-3deg); }
+  50% { transform: translate(-50%, 0) rotate(3deg); }
+  75% { transform: translate(-50%, 0) rotate(-3deg); }
+  100% { transform: translate(-50%, 0) rotate(0deg); }
+}
+
+/* Hiệu ứng hover cả row */
+.row-hover {
+  transform: scale(1.03);
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 25px rgba(0,0,0,0.25);
+  border-radius: 10px;
+}
+
+/* Hiệu ứng cho từng shape */
+.shape-hover {
+  transform: scale(1.08);
+  transition: transform 0.25s ease-in-out;
+  filter: brightness(1.15);
+}
+

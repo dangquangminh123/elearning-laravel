@@ -6,7 +6,7 @@
   <div class="intro-grid">
     <!-- Trái trên -->
     <article class="intro-card">
-      <div class="intro-card__icon"><i class="fa-solid fa-lightbulb"></i></div>
+      <div class="intro-card__icon"><i class="fas fa-lightbulb"></i></div>
       <h3 class="intro-card__title">Tầm nhìn</h3>
       <p class="intro-card__desc">
         Trở thành trung tâm đào tạo lập trình trực tuyến <b>thực chiến</b> hàng đầu,
@@ -226,130 +226,124 @@
 
 
 <div class="ds-infographic">
-  <h1>Infographic 5 giai đoạn học tập</h1>
+  <h1 class="ds-title">5 phương pháp học tập hiệu quả tại Trung tâm DSCons</h1>
+  <p class="ds-subtitle">
+      Một phương pháp học tập hiệu quả giúp học viên tiết kiệm thời gian, ghi nhớ lâu hơn 
+      và ứng dụng thực tế nhanh chóng. Trung tâm <strong>DSCons</strong> mang đến lộ trình 
+      học tập thông minh với các bước khoa học, giúp bạn phát triển tư duy, rèn luyện kỹ năng 
+      và đạt được kết quả bền vững.
+    </p>
 
   <div class="ds-board">
 
-    <!-- BÚT CHÌ (đứng giữa, 1 lần) -->
     <div class="ds-pencil">
       <div class="ds-pencil-shadow"><div class="ds-pencil-shape"></div></div>
     </div>
 
-    <!-- CÁC HÀNG (FLEX theo cột trái – giữa – phải) -->
     <div class="ds-rows">
 
+
       <!-- ROW 1 -->
-      <div class="ds-row" data-row="1">
-        <div class="ds-head">
-          <div class="ds-head-shape">
-            <div class="ds-head-icon"><i class="fa-solid fa-rocket"></i></div>
-            <div class="ds-head-texts">
-              <div class="ds-head-title">Dự án cuối khoá & DevOps</div>
-              <div class="ds-head-desc">Triển khai, CI/CD, tối ưu & báo cáo</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-hank"><div class="ds-hank-shape"></div></div>
-
-        <div class="ds-tail">
-          <div class="ds-tail-shape">
-            <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
-            <span class="ds-tail-no">01</span>
-          </div>
-        </div>
+<div class="ds-row" data-row="1">
+  <div class="ds-head">
+    <div class="ds-head-shape">
+      <div class="ds-head-icon"><i class="fas fa-bullseye"></i></div>
+      <div class="ds-head-texts">
+        <div class="ds-head-title">Xác định mục tiêu</div>
+        <div class="ds-head-desc">Biết rõ bạn học để làm gì</div>
       </div>
+    </div>
+  </div>
+  <div class="ds-hank"><div class="ds-hank-shape"></div></div>
+  <div class="ds-tail">
+    <div class="ds-tail-shape">
+      <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
+      <span class="ds-tail-no">01</span>
+    </div>
+  </div>
+</div>
 
-      <!-- ROW 2 -->
-      <div class="ds-row" data-row="2">
-        <div class="ds-head">
-          <div class="ds-head-shape">
-            <div class="ds-head-icon"><i class="fa-solid fa-database"></i></div>
-            <div class="ds-head-texts">
-              <div class="ds-head-title">Backend & Database</div>
-              <div class="ds-head-desc">REST API, xác thực, SQL/NoSQL</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-hank"><div class="ds-hank-shape"></div></div>
-
-        <div class="ds-tail">
-          <div class="ds-tail-shape">
-            <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
-            <span class="ds-tail-no">02</span>
-          </div>
-        </div>
+<!-- ROW 2 -->
+<div class="ds-row" data-row="2">
+  <div class="ds-head">
+    <div class="ds-head-shape">
+      <div class="ds-head-icon"><i class="fas fa-tasks"></i></div>
+      <div class="ds-head-texts">
+        <div class="ds-head-title">Lập kế hoạch học tập</div>
+        <div class="ds-head-desc">Chia nhỏ mục tiêu thành từng bước</div>
       </div>
+    </div>
+  </div>
+  <div class="ds-hank"><div class="ds-hank-shape"></div></div>
+  <div class="ds-tail">
+    <div class="ds-tail-shape">
+      <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
+      <span class="ds-tail-no">02</span>
+    </div>
+  </div>
+</div>
 
-      <!-- ROW 3 -->
-      <div class="ds-row" data-row="3">
-        <div class="ds-head">
-          <div class="ds-head-shape">
-            <div class="ds-head-icon"><i class="fa-solid fa-code"></i></div>
-            <div class="ds-head-texts">
-              <div class="ds-head-title">Web cơ bản</div>
-              <div class="ds-head-desc">HTML, CSS, JavaScript, DOM</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-hank"><div class="ds-hank-shape"></div></div>
-
-        <div class="ds-tail">
-          <div class="ds-tail-shape">
-            <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
-            <span class="ds-tail-no">03</span>
-          </div>
-        </div>
+<!-- ROW 3 -->
+<div class="ds-row" data-row="3">
+  <div class="ds-head">
+    <div class="ds-head-shape">
+      <div class="ds-head-icon"><i class="fas fa-book-open"></i></div>
+      <div class="ds-head-texts">
+        <div class="ds-head-title">Thực hành và ôn tập</div>
+        <div class="ds-head-desc">Áp dụng ngay kiến thức vừa học</div>
       </div>
+    </div>
+  </div>
+  <div class="ds-hank"><div class="ds-hank-shape"></div></div>
+  <div class="ds-tail">
+    <div class="ds-tail-shape">
+      <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
+      <span class="ds-tail-no">03</span>
+    </div>
+  </div>
+</div>
 
-      <!-- ROW 4 -->
-      <div class="ds-row" data-row="4">
-        <div class="ds-head">
-          <div class="ds-head-shape">
-            <div class="ds-head-icon"><i class="fa-solid fa-diagram-project"></i></div>
-            <div class="ds-head-texts">
-              <div class="ds-head-title">Cấu trúc dữ liệu & Thuật toán</div>
-              <div class="ds-head-desc">Mảng, cây, sắp xếp, độ phức tạp</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-hank"><div class="ds-hank-shape"></div></div>
-
-        <div class="ds-tail">
-          <div class="ds-tail-shape">
-            <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
-            <span class="ds-tail-no">04</span>
-          </div>
-        </div>
+<!-- ROW 4 -->
+<div class="ds-row" data-row="4">
+  <div class="ds-head">
+    <div class="ds-head-shape">
+      <div class="ds-head-icon"><i class="fas fa-comments"></i></div>
+      <div class="ds-head-texts">
+        <div class="ds-head-title">Trao đổi & thảo luận</div>
+        <div class="ds-head-desc">Học cùng bạn bè, hỏi giảng viên</div>
       </div>
+    </div>
+  </div>
+  <div class="ds-hank"><div class="ds-hank-shape"></div></div>
+  <div class="ds-tail">
+    <div class="ds-tail-shape">
+      <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
+      <span class="ds-tail-no">04</span>
+    </div>
+  </div>
+</div>
 
-      <!-- ROW 5 -->
-      <div class="ds-row" data-row="5">
-        <div class="ds-head">
-          <div class="ds-head-shape">
-            <div class="ds-head-icon"><i class="fa-solid fa-brain"></i></div>
-            <div class="ds-head-texts">
-              <div class="ds-head-title">Tư duy & Lộ trình</div>
-              <div class="ds-head-desc">Mục tiêu học tập, phương pháp, mindset</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ds-hank"><div class="ds-hank-shape"></div></div>
-
-        <div class="ds-tail">
-          <div class="ds-tail-shape">
-            <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
-            <span class="ds-tail-no">05</span>
-          </div>
-        </div>
+<!-- ROW 5 -->
+<div class="ds-row" data-row="5">
+  <div class="ds-head">
+    <div class="ds-head-shape">
+      <div class="ds-head-icon"><i class="fas fa-lightbulb"></i></div>
+      <div class="ds-head-texts">
+        <div class="ds-head-title">Đánh giá & cải tiến</div>
+        <div class="ds-head-desc">Rút kinh nghiệm, nâng cấp phương pháp</div>
       </div>
-
-    </div><!-- /.ds-rows -->
-  </div><!-- /.ds-board -->
+    </div>
+  </div>
+  <div class="ds-hank"><div class="ds-hank-shape"></div></div>
+  <div class="ds-tail">
+    <div class="ds-tail-shape">
+      <span class="ds-tail-arrow"><i class="fa-solid fa-angle-left"></i></span>
+      <span class="ds-tail-no">05</span>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
 </div>
 
 @endsection
