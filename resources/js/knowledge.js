@@ -23,4 +23,18 @@ $(function(){
       $item.find('.chev').removeClass('fa-chevron-right').addClass('fa-chevron-down');
     }
   });
+  
 });
+
+(function($){
+const onReady = function(){
+// Hover đồng bộ: rê 1 item làm nổi cả hàng
+$(document).on('mouseenter','[data-row]',function(){
+const r=$(this).data('row');
+$('[data-row]').removeClass('active').filter('[data-row="'+r+'"]').addClass('active');
+}).on('mouseleave','[data-row]',function(){
+$('[data-row]').removeClass('active');
+});
+};
+$(onReady);
+})(jQuery);
