@@ -346,4 +346,32 @@
   </div>
 </div>
 
+
+<div id="km-module">
+  <div class="km-head">
+    <h2 class="km-title">TẦM QUAN TRỌNG CỦA PHƯƠNG PHÁP HỌC TẬP</h2>
+    <p class="km-sub">
+      Một phương pháp học tập hiệu quả giúp định hướng rõ ràng, quản lý thời gian,
+      ghi nhớ và ứng dụng kiến thức một cách khoa học...
+    </p>
+  </div>
+
+  <div class="km-stage">
+    <div class="km-center-wrap">
+      <div class="km-center">Phương pháp hiệu quả<br>&amp; Lợi ích kiến thức</div>
+    </div>
+
+    <!-- 8 items -->
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+    <div class="km-item"></div>
+  </div>
+</div>
+
+
 @endsection
