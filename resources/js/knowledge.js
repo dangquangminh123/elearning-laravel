@@ -79,156 +79,247 @@ $(function(){
  });
 
 $(function () {
-  const root = document.getElementById('km-module');
-  const css  = getComputedStyle(root);
+  function renderKnowledgeShapes() {
+    const rootEl = document.getElementById('km-module');
+    const cssVar = getComputedStyle(rootEl);
 
-  const S1   = parseFloat(css.getPropertyValue('--s1-size'));
-  const S2_W = parseFloat(css.getPropertyValue('--s2-w')) || 400;
-  const S2_H = parseFloat(css.getPropertyValue('--s2-h')) || 110;
-  const S2_GAP = parseFloat(css.getPropertyValue('--s2-gap')) || 6; 
+    // --- Đọc thông số từ CSS ---
+    const sizeShape1 = parseFloat(cssVar.getPropertyValue('--s1-size'));        // kích thước shape1
+    const baseWidthShape2 = parseFloat(cssVar.getPropertyValue('--s2-w')) || 400;
+    const baseHeightShape2 = parseFloat(cssVar.getPropertyValue('--s2-h')) || 110;
+    const gapShape2 = parseFloat(cssVar.getPropertyValue('--s2-gap')) || 6;
 
-  const stage  = document.querySelector('.km-stage');
-  const stRect = stage.getBoundingClientRect();
+    const stageEl = document.querySelector('.km-stage');
+    const stageRect = stageEl.getBoundingClientRect();
 
-  const sideMap = {1:'left',2:'right',3:'right',4:'right',5:'right',6:'left',7:'left',8:'left'};
+    // map vị trí left/right cho các shape2
+    const sideMap = {1:'left',2:'right',3:'right',4:'right',5:'right',6:'left',7:'left',8:'left'};
 
-  // màu nền thanh
-  const g = [
-    ["#6a5af9","#2ed3ea"], ["#1fd2ff","#3de39a"],
-    ["#ffa85c","#ff6f91"], ["#ff6ec4","#8a5cff"],
-    ["#7c4dff","#fca5a5"], ["#00c2ff","#647dee"],
-    ["#ff8f70","#ff3d54"], ["#47e891","#1fbfff"]
-  ];
-  // màu icon (khác nền)
-  const gIcons = [
-    ["#ff5f6d","#ffc371"], ["#36d1dc","#5b86e5"],
-    ["#f7971e","#ffd200"], ["#00c6ff","#0072ff"],
-    ["#ff9a9e","#fad0c4"], ["#a18cd1","#fbc2eb"],
-    ["#11998e","#38ef7d"], ["#fdc830","#f37335"]
-  ];
-  const faList = [
-    "fa-compass","fa-clock","fa-brain","fa-puzzle-piece",
-    "fa-lightbulb","fa-chart-line","fa-people-group","fa-bullseye"
-  ];
-  const darken=(hex,p)=>{
-    let c=hex.replace('#',''); if(c.length===3) c=c.split('').map(x=>x+x).join('');
-    let r=parseInt(c.substr(0,2),16),g=parseInt(c.substr(2,2),16),b=parseInt(c.substr(4,2),16);
-    r=Math.max(0,Math.round(r*(100-p)/100));
-    g=Math.max(0,Math.round(g*(100-p)/100));
-    b=Math.max(0,Math.round(b*(100-p)/100));
-    return `rgba(${r},${g},${b},0.65)`;
-  };
+    // màu shape2
+    const colorShape2 = [
+      ["#6a5af9","#2ed3ea"], ["#1fd2ff","#3de39a"],
+      ["#ffa85c","#ff6f91"], ["#ff6ec4","#8a5cff"],
+      ["#7c4dff","#fca5a5"], ["#00c2ff","#647dee"],
+      ["#ff8f70","#ff3d54"], ["#47e891","#1fbfff"]
+    ];
+    
+    // màu chữ trong shape2 
+   const textGradients = [
+      "linear-gradient(135deg,#ffffff,#ffe082)",
+      "linear-gradient(135deg,#ffffff,#ff80ab)", 
+      "linear-gradient(135deg,#ffffff,#40c4ff)", 
+      "linear-gradient(135deg,#ffffff,#b2ff59)", 
+      "linear-gradient(135deg,#ffffff,#ffeb3b)", 
+      "linear-gradient(135deg,#ffffff,#ff7043)", 
+      "linear-gradient(135deg,#ffffff,#82b1ff)", 
+      "linear-gradient(135deg,#ffffff,#f48fb1)"  
+    ];
 
-  // SHAPE1
-  const shape1Paths = [
-    "M87.34,52.78C71.9,32.52,57.7,22.32,49.59,17.37c-2.12-1.29-6.18-3.65-11.85-5.6c0,0-15.86-5.42-34.27,0.89c-0.38,0.13-2.3,0.79-3.05,2.13c0.39-0.78,1.06-1.44,1.93-1.8L26.43,2.88C45.19-5,66.78,3.83,74.66,22.59L87.34,52.78z",
-    "M85.29,57.81L30.78,80.7c-1.96,0.82-4.21-0.1-5.03-2.05L0.3,18.03c-0.05-0.11-0.09-0.22-0.12-0.33c-0.03-0.09-0.06-0.18-0.07-0.27c-0.02-0.07-0.03-0.14-0.05-0.21c-0.02-0.1-0.03-0.2-0.05-0.3c0,0-0.01-0.1-0.01-0.26c0-0.06,0-0.14,0.01-0.22c0.01-0.08,0.01-0.17,0.02-0.26c0.01-0.12,0.03-0.23,0.05-0.35c0.02-0.16,0.06-0.33,0.12-0.5c0.02-0.06,0.03-0.11,0.06-0.17c0.01-0.02,0.02-0.04,0.02-0.06C0.3,15.06,0.31,15.03,0.33,15c0.02-0.07,0.06-0.14,0.09-0.2c0.75-1.34,2.66-2,3.05-2.13c18.4-6.31,34.27-0.89,34.27-0.89c5.68,1.94,9.74,4.31,11.85,5.6c8.11,4.95,22.31,15.15,37.75,35.41C88.17,54.74,87.24,56.98,85.29,57.81z"
-  ];
+    const textShadows = [
+      "2px 2px 4px rgba(70,50,120,0.6)",  
+      "2px 2px 4px rgba(0,100,80,0.6)",   
+      "2px 2px 4px rgba(200,80,0,0.6)",   
+      "2px 2px 4px rgba(100,0,150,0.6)",  
+      "2px 2px 4px rgba(50,0,120,0.6)",   
+      "2px 2px 4px rgba(0,60,130,0.6)",   
+      "2px 2px 4px rgba(120,0,0,0.6)",    
+      "2px 2px 4px rgba(0,90,40,0.6)"    
+    ];
 
-  $('.km-item').each(function(i){
-    const idx = i+1, colors=g[i], border=darken(colors[0],25);
-    const tilt = [-18,-8,2,10,18,12,4,-6][i];
-    const ang  = -135 + 45*i;
-    const gradId = `grad${idx}`;
+    // màu icon
+    const colorIcons = [
+      ["#ff5f6d","#ffc371"], ["#36d1dc","#5b86e5"],
+      ["#f7971e","#ffd200"], ["#00c6ff","#0072ff"],
+      ["#ff9a9e","#fad0c4"], ["#a18cd1","#fbc2eb"],
+      ["#11998e","#38ef7d"], ["#fdc830","#f37335"]
+    ];
+    const faIcons = [
+      "fa-compass","fa-clock","fa-brain","fa-puzzle-piece",
+      "fa-lightbulb","fa-chart-line","fa-people-group","fa-bullseye"
+    ];
 
-    const s1 = `
-      <div class="km-orbit" style="transform:rotate(${ang}deg);">
-        <div class="km-s1-box"
-             style="transform:translateX(${S1/1.3 }px) rotate(${tilt}deg); filter:drop-shadow(0 8px 14px ${border});">
-          <svg class="km-s1-svg" viewBox="0 0 87.64 81">
+    function darkenColor(hexColor, percent) {
+      let hex = hexColor.replace('#', '');
+      if (hex.length === 3) {
+        hex = hex.split('').map(ch => ch + ch).join('');
+      }
+
+      let red   = parseInt(hex.substr(0, 2), 16);
+      let green = parseInt(hex.substr(2, 2), 16);
+      let blue  = parseInt(hex.substr(4, 2), 16);
+
+      red   = Math.max(0, Math.round(red   * (100 - percent) / 100));
+      green = Math.max(0, Math.round(green * (100 - percent) / 100));
+      blue  = Math.max(0, Math.round(blue  * (100 - percent) / 100));
+
+      return `rgba(${red},${green},${blue},0.65)`;
+    }
+
+    function getRotateBox(idx) {
+      if (idx >= 1 && idx <= 4) {
+        return 120 + (idx - 1) * 10;
+      }
+      const mirror = {5:2, 6:1, 7:4, 8:3};
+      return 120 + (mirror[idx] - 1) * 10;
+    }
+
+    // Paths cho shape1
+    const shape1ViewBox = "0 0 1978.66 2296.06";
+    const shape2Content = [
+      "Định hướng",
+      "Quản lý thời gian",
+      "Rèn luyện tư duy",
+      "Giải quyết vấn đề",
+      "Khơi dậy ý tưởng",
+      "Theo dõi tiến bộ",
+      "Học nhóm",
+      "Đạt mục tiêu"
+    ];
+    const shape1Paths = [
+      // path 1
+      "M1978.66,242.85l-177.97,433.9c-246.93-180.19-539.77-318.74-879.62-361.81 c-161.88-20.82-360.15-22.82-589.91,23.39L959.64,75.61C1314.72-72.75,1707.78,4.65,1978.66,242.85z",
+      // path 2
+      "M1389.61,1646.21c-132.05,60.12-239.85,134.67-328.32,216.81c-1.43,1.31-2.79,2.62-4.22,3.94l-0.29,0.29 c-10.44,9.58-20.25,19.17-30.12,28.98c-117.96,118.24-206.66,254.51-266.09,399.85l-89.84-214.58l-19.74-47l-285.26-682.54 L184.7,918.89L0,476.83l331.12-138.55c229.76-46.2,427.97-44.21,589.91-23.39c339.84,43.07,632.69,181.62,879.62,361.81 l-280.75,683.91l-19.45,47.29l-88.41,215.38C1404.67,1631.03,1397.14,1638.62,1389.61,1646.21z"
+    ];
+
+    // render shape1
+    $('.km-item').each(function(i){
+      const idx = i+1, colors=colorShape2[i], border=darkenColor(colors[0],25);
+      // const tilt = [-18,-8,2,10,18,12,4,-6][i];
+      const ang  = -135 + 45 * i;
+      const rotateBox = getRotateBox(idx);
+      const gradId = `grad${idx}`;
+
+      const s1 = `
+        <div class="km-orbit" style="transform:rotate(${ang}deg);">
+          <div class="km-s1-box" data-idx="${idx}"
+               style="transform:translateX(${sizeShape1/2.2}px) rotate(${rotateBox}deg); filter:drop-shadow(0 8px 14px ${border});">
+            <svg class="km-s1-svg" viewBox="${shape1ViewBox}">
+              <defs>
+                <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="${colors[0]}"/>
+                  <stop offset="100%" stop-color="${colors[1]}"/>
+                </linearGradient>
+              </defs>
+              <path d="${shape1Paths[0]}" fill="url(#${gradId})" stroke="${border}" stroke-width="2"/>
+              <path d="${shape1Paths[1]}" fill="url(#${gradId})" stroke="${border}" stroke-width="1" opacity="0.6"/>
+            </svg>
+            <i class="km-s1-ico fa-solid ${faIcons[i]}"
+               style="--ico-g1:${colorIcons[i][0]}; --ico-g2:${colorIcons[i][1]};"></i>
+          </div>
+        </div>`;
+      $(this).html(s1);
+    });
+
+    // đo vị trí S1 để căn shape2
+    const items = [];
+    $('.km-item').each(function(i){
+      const idx = i+1;
+      const side = sideMap[idx];
+      const s1   = $(this).find('.km-s1-box')[0];
+      const rect = s1.getBoundingClientRect();
+      const midY = (rect.top + rect.bottom)/2 - stageRect.top;
+      const joinXViewport = (side==='left' ? rect.right + gapShape2 : rect.left - gapShape2);
+      const joinX = joinXViewport - stageRect.left;
+      items.push({idx, side, midY, joinX});
+
+    });
+
+    // path cho shape2
+    function buildPathShape2(width,height,side){
+      const radius = height/2, smooth = 0.45;
+      if(side==='left'){
+        return `M${width},${height} H${radius} C${radius*smooth},${height} 0,${height-radius*smooth} 0,${height/2}
+                C0,${radius*smooth} ${radius*smooth},0 ${radius},0 H${width} V${height} Z`;
+      }else{
+        return `M0,0 H${width-radius} C${width-radius*smooth},0 ${width},${radius*smooth} ${width},${height/2}
+                C${width},${height-radius*smooth} ${width-radius*smooth},${height} ${width-radius},${height} H0 Z`;
+      }
+    }
+
+    const centerY = stageRect.height / 2;
+    const rowGap = baseHeightShape2 + 24; 
+    const rowIndexOf = idx => ({1:0, 2:0, 3:1, 8:1, 4:2, 7:2, 5:3, 6:3}[idx]);
+
+    items.forEach(item=>{
+      const {idx, side, midY} = item;
+      const extraWidth = [1,2,5,6].includes(idx) ? 80 : 0;
+      const widthShape2 = baseWidthShape2 + extraWidth;
+      const heightShape2 = baseHeightShape2;
+
+      // --- vị trí left/right ---
+      let posAttr, posVal;
+      if([2,3,4,5].includes(idx)){   
+        posAttr = "right"; posVal = 97;
+        if([3,4].includes(idx)) posVal = 95; 
+      } else {                    
+        posAttr = "left"; posVal = 97;
+        if([7,8].includes(idx)) posVal = 95;
+      }
+
+      // --- top theo cặp ---
+      const row = rowIndexOf(idx); 
+      const top = centerY + (row - 1.5) * rowGap - heightShape2/2;
+
+      const gradId=`gradS2_${idx}`;
+      const border  = darkenColor(colorShape2[idx-1][0],35);
+      const numSize = heightShape2 * 0.81;
+
+      const html = `
+        <div class="km-s2-box ${side}" data-idx="${idx}" 
+            style="${posAttr}:${posVal}px; top:${top}px; width:${widthShape2}px; height:${heightShape2}px;">
+          <svg class="km-s2-svg" viewBox="0 0 ${widthShape2} ${heightShape2}">
             <defs>
-              <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="${colors[0]}"/>
-                <stop offset="100%" stop-color="${colors[1]}"/>
+              <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="${colorShape2[idx-1][0]}" stop-opacity="0.2"/>
+                <stop offset="30%" stop-color="${colorShape2[idx-1][0]}" stop-opacity="0.7"/>
+                <stop offset="100%" stop-color="${colorShape2[idx-1][1]}" stop-opacity="1"/>
               </linearGradient>
             </defs>
-            <path d="${shape1Paths[0]}" fill="url(#${gradId})" stroke="${border}" stroke-width="2"/>
-            <path d="${shape1Paths[1]}" fill="url(#${gradId})" stroke="${border}" stroke-width="1" opacity="0.6"/>
+            <path d="${buildPathShape2(widthShape2,heightShape2,side)}" 
+                  fill="url(#${gradId})" stroke="${border}" stroke-width="2"/>
           </svg>
-          <i class="km-s1-ico fa-solid ${faList[i]}"
-             style="transform:rotate(${-(ang)}deg); --ico-g1:${gIcons[i][0]}; --ico-g2:${gIcons[i][1]};"></i>
-        </div>
-      </div>`;
-    $(this).html(s1);
-  });
+          <div class="km-s2-num ${side}" 
+               style="width:${numSize}px;height:${numSize}px;">
+            <span class="number_shape">${String(idx).padStart(2,'0')}</span>
+          </div>
+          <div class="km-s2-text"
+              style="background:${textGradients[idx-1]};
+                      -webkit-background-clip:text;
+                      -webkit-text-fill-color:transparent;
+                      text-shadow:${textShadows[idx-1]};">
+            ${shape2Content[idx-1]}
+          </div>
+        </div>`;
+      $('.km-stage').append(html);
+    });
 
-  // đo vị trí S1 (để S2 bám đúng mép thật của S1)
-  const items = [];
-  $('.km-item').each(function(i){
-    const idx = i+1;
-    const side = sideMap[idx];
-    const s1   = $(this).find('.km-s1-box')[0];
-    const r    = s1.getBoundingClientRect();
-    const midY = (r.top + r.bottom)/2 - stRect.top;
-    const joinXViewport = (side==='left' ? r.right + S2_GAP : r.left - S2_GAP);
-    const joinX = joinXViewport - stRect.left; // về hệ tọa độ của stage
-    items.push({idx, side, midY, joinX});
-  });
+    // hover shape1 -> kích hoạt shape2
+    $('.km-stage').on('mouseenter', '.km-s1-box', function(){
+      const idx = $(this).data('idx');
+      $(this).addClass('active');
+      $(`.km-s2-box[data-idx="${idx}"]`).addClass('active');
+    }).on('mouseleave', '.km-s1-box', function(){
+      const idx = $(this).data('idx');
+      $(this).removeClass('active');
+      $(`.km-s2-box[data-idx="${idx}"]`).removeClass('active');
+    });
 
-  // path 1 đầu tròn – 1 đầu vuông
-  function s2Path(W,H,side){
-    const r = H/2, k = 0.45; // k làm tròn mềm
-    if(side==='left'){
-      return `M${W},${H} H${r} C${r*k},${H} 0,${H-r*k} 0,${H/2}
-              C0,${r*k} ${r*k},0 ${r},0 H${W} V${H} Z`;
-    }else{
-      return `M0,0 H${W-r} C${W-r*k},0 ${W},${r*k} ${W},${H/2}
-              C${W},${H-r*k} ${W-r*k},${H} ${W-r},${H} H0 Z`;
-    }
+    // hover shape2
+    $('.km-stage').on('mouseenter', '.km-s2-box', function(){
+      const idx = $(this).data('idx');
+      $(this).addClass('active');
+      $(`.km-s1-box[data-idx="${idx}"]`).addClass('active');
+    }).on('mouseleave', '.km-s2-box', function(){
+      const idx = $(this).data('idx');
+      $(this).removeClass('active');
+      $(`.km-s1-box[data-idx="${idx}"]`).removeClass('active');
+    });
+
+
   }
 
-  const pairMap = {
-    "1": [1,2],
-    "2": [3,8],
-    "3": [4,7],
-    "4": [5,6]
-  };
-
-  // tạm lưu top theo cặp
-  const pairTop = {};
-  
-  items.forEach(x=>{
-    const {idx, side, midY, joinX} = x;
-    const extra = [1,2,5,6].includes(idx) ? 80 : 0;
-    const W = S2_W + extra, H = S2_H;
-
-    // --- LEFT / RIGHT ---
-    let posAttr, posVal;
-    if([2,3,4,5].includes(idx)){   
-      posAttr = "right";
-      posVal  = 97;              
-      if([3,4].includes(idx)) posVal = 97 - 2; 
-    } else {                    
-      posAttr = "left";
-      posVal  = 97;
-      if([7,8].includes(idx)) posVal = 97 - 2;
-    }
-
-    // --- TOP theo cặp ---
-    const pairKey = Object.keys(pairMap).find(k => pairMap[k].includes(idx));
-    if(!pairTop[pairKey]) pairTop[pairKey] = midY - H/2;
-    const top = pairTop[pairKey];
-
-    const gradId=`gradS2_${idx}`;
-    const border  = darken(g[idx-1][0],35);
-    const bubble  = darken(g[idx-1][0],45);
-
-    const html = `
-       <div class="km-s2-box ${side}" 
-        style="${posAttr}:${posVal}px; top:${top}px; width:${W}px; height:${H}px;">
-      <svg class="km-s2-svg" viewBox="0 0 ${W} ${H}">
-        <defs>
-          <linearGradient id="${gradId}" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="${g[idx-1][0]}"/>
-            <stop offset="100%" stop-color="${g[idx-1][1]}"/>
-          </linearGradient>
-        </defs>
-        <path d="${s2Path(W,H,side)}" fill="url(#${gradId})" stroke="${border}" stroke-width="2"/>
-      </svg>
-      <div class="km-s2-num ${side}" style="--h:${H}px; background:${bubble};">
-        ${String(idx).padStart(2,'0')}
-      </div>
-    </div>`;
-    $('.km-stage').append(html);
-  });
+  // --- Gọi hàm render ---
+  renderKnowledgeShapes();
 });
+

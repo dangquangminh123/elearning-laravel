@@ -358,7 +358,12 @@
 
   <div class="km-stage">
     <div class="km-center-wrap">
-      <div class="km-center">Phương pháp hiệu quả<br>&amp; Lợi ích kiến thức</div>
+      <div class="km-center">
+        Phương pháp học tập hiệu quả không chỉ giúp bạn đạt được kết quả cao trong học tập
+        mà còn rèn luyện tư duy logic, khả năng quản lý thời gian và nâng cao sự tự tin.
+        Khi áp dụng đúng cách, kiến thức sẽ trở nên dễ nhớ hơn, dễ áp dụng vào thực tế
+        và tạo động lực học tập lâu dài để phát triển bản thân
+      </div>
     </div>
 
     <!-- 8 items -->
