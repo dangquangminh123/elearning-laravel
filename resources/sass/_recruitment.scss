@@ -211,9 +211,9 @@
   border: 1px solid rgba(76, 156, 46, 0.6);
 }
 
-.box:hover::before {
-  background: url(../assets/round-box2_on.png) no-repeat center;
-}
+//.box:hover::before {
+//  background: rgba(76, 156, 46, 0.15) url(../assets/round-box2_on.svg) no-repeat center;
+//}
 
 .box:hover .bnt-more a::before {
   opacity: 1;
@@ -234,7 +234,7 @@
   bottom: -1px;
   width: 130px;
   height: 130px;
-  background: url(../assets/round-box2.png) no-repeat center;
+  background: url(../assets/round-box2.svg) no-repeat center;
 }
 
 .bnt-more {
@@ -243,6 +243,8 @@
   bottom: 15px;
   z-index: 3;
   background: #fff;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .bnt-more a {
@@ -272,7 +274,7 @@
   text-indent: -9999em;
   width: 70px;
   height: 70px;
-  background: url(../assets/round-arr2.png) no-repeat center;
+  background: url(../assets/round-arr2.svg) no-repeat center;
 }
 
 // chính sách quyền lợi khi tuyển dụng giảng viên

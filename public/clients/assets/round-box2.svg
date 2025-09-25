@@ -1,8 +1,16 @@
-<svg width="130" height="130" viewBox="0 0 130 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M30 60C30 43.4315 43.4315 30 60 30H130V130H30V60Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M60 29C42.8792 29 29 42.8792 29 60V100H30V60C30 43.4315 43.4315 30 60 30H100V29H60Z" fill="#4C9C2E" fill-opacity="0.2"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M100 30L130 30L130 -1.90735e-06C130 16.5685 116.569 30 100 30Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M0 130L30 130L30 100C30 116.569 16.5685 130 0 130Z" fill="white"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M29 107.71C29.6524 105.25 30 102.665 30 100L29 100C29 116.016 16.0163 129 -1.81993e-06 129L-1.90735e-06 130C2.66548 130 5.24977 129.652 7.71 129C18.0823 126.25 26.2496 118.082 29 107.71Z" fill="#4C9C2E" fill-opacity="0.2"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M129 7.71C129.652 5.24977 130 2.66548 130 -1.90735e-06L129 -1.99477e-06C129 16.0163 116.016 29 100 29L100 30C102.665 30 105.25 29.6524 107.71 29C118.082 26.2496 126.25 18.0823 129 7.71Z" fill="#4C9C2E" fill-opacity="0.2"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 130 130" style="enable-background:new 0 0 130 130;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FEF9F4;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#4C9C2E;fill-opacity:0.2;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FEF9F4;}
+</style>
+<path class="st0" d="M30,60c0-16.6,13.4-30,30-30h70v100H30V60z"/>
+<path class="st1" d="M60,29c-17.1,0-31,13.9-31,31v40h1V60c0-16.6,13.4-30,30-30h40v-1H60z"/>
+<path class="st2" d="M100,30h30V0C130,16.6,116.6,30,100,30z"/>
+<path class="st2" d="M0,130h30v-30C30,116.6,16.6,130,0,130z"/>
+<path class="st1" d="M29,107.7c0.7-2.5,1-5,1-7.7h-1c0,16-13,29-29,29l0,1c2.7,0,5.2-0.3,7.7-1C18.1,126.2,26.2,118.1,29,107.7z"/>
+<path class="st1" d="M129,7.7c0.7-2.5,1-5,1-7.7l-1,0c0,16-13,29-29,29v1c2.7,0,5.2-0.3,7.7-1C118.1,26.2,126.2,18.1,129,7.7z"/>
 </svg>
