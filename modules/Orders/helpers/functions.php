@@ -38,6 +38,18 @@ if (!function_exists('format_currency')) {
     }
 }
 
+if (!function_exists('render_status_badge')) {
+    function render_status_badge($status)
+    {
+        $name  = $status['name'] ?? '(Không rõ)';
+        $color = $status['color'] ?? '#6c757d'; 
+
+        return '<span class="badge bg-' . e($color) . '">' 
+                . e($name) . 
+               '</span>';
+    }
+}
+
 
 
 if (!function_exists('format_discount_value')) {

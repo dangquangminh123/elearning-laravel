@@ -14,7 +14,7 @@ interface CouponsRepositoryInterface extends RepositoryInterface
     public function createCouponCourse($coupon, $data = []);
     public function getAllCoupons();
     public function deleteCouponRelations($coupon);
-
+    public function deleteCouponUsageByOrderId($orderId);
     public function getStudentsCoupon($coupon);
     public function getCourseCoupon($coupon);
     public function couponUsage($couponCode, $orderId);

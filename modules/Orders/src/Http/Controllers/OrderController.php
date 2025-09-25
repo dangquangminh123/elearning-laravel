@@ -58,7 +58,10 @@ class OrderController extends Controller
                 $info = get_coupon_discount_info($order->id);
                 return format_currency($order->total - $info['amount']);
             })
-            ->addColumn('status', fn($order) => $this->ordersRepository->getStatusBadge($order))
+            ->addColumn('status', function ($order) {
+                $status = $this->ordersRepository->getStatusBadge($order);
+                return render_status_badge($status);
+            })
             ->addColumn('payment_date', fn($order) => $order->payment_date ? Carbon::parse($order->payment_date)->format('d/m/Y H:i') : '-')
             ->addColumn('payment_complete_date',  fn($order) => $order->payment_complete_date ? Carbon::parse($order->payment_complete_date)->format('d/m/Y H:i') : 'chưa thanh toán')
             ->addColumn('refunded_at',  fn($order) => $order->refunded_at ? Carbon::parse($order->refunded_at)->format('d/m/Y H:i') : 'không')
@@ -68,7 +71,6 @@ class OrderController extends Controller
 
     public function index() {
         $pageTitle = 'Quản lý đơn hàng';
-        // $users = $this->coursesRepository->getAllCourses();
         return view('orders::index', compact('pageTitle'));
     }
 

@@ -53,6 +53,17 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
             'couponOrder',
         ])->findOrFail($id);
     }
+
+    public function getCourseIdsByOrderId($orderId)
+    {
+        $order = $this->getOrderWithRelationsById($orderId);
+        return $order->detail
+            ->pluck('course_id')
+            ->filter()   
+            ->unique()   
+            ->values()
+            ->toArray();
+    }
     
     public function getOrdersByStudent($studentId, $filters = [], $limit)
     {
@@ -206,12 +217,12 @@ class OrdersRepository extends BaseRepository implements OrdersRepositoryInterfa
     {
         return $this->model->with(['couponOrder'])->findOrFail($id);
     }
-
     public function getStatusBadge($order)
     {
-        $name = $order->status?->name ?? '(Không rõ)';
-        $color = $order->status?->color ?? '#6c757d'; // mặc định màu xám
-        return '<span class="badge bg-' . $color . '">' . $name . '</span>';
+        return [
+            'name'  => $order->status?->name,
+            'color' => $order->status?->color,
+        ];
     }
 
     public function getAvailableTransitions($order)

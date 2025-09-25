@@ -46,9 +46,6 @@ class OrderStatusSeeder extends Seeder
                 'is_success' => false,
             ]
         ];
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        // OrderStatus::truncate();
-        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         OrderStatus::insert($data);
     }
 }

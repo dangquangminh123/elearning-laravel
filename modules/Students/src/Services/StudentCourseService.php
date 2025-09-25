@@ -3,15 +3,17 @@
 namespace Modules\Students\src\Services;
 
 use Modules\Orders\src\Repositories\OrdersRepositoryInterface;
+use Modules\Coupons\src\Repositories\CouponsRepositoryInterface;
 use Illuminate\Support\Facades\DB;
-
 class StudentCourseService
 {
     protected $orderRepository;
+    protected $couponRepository;
 
-    public function __construct(OrdersRepositoryInterface $orderRepository)
+    public function __construct(OrdersRepositoryInterface $orderRepository, CouponsRepositoryInterface $couponRepository)
     {
         $this->orderRepository = $orderRepository;
+        $this->couponRepository = $couponRepository;
     }
 
     public function attachCoursesToStudent(int $orderId)
@@ -51,16 +53,16 @@ class StudentCourseService
         $student = $order->student;
         if (!$student) return;
 
-        foreach ($order->detail as $d) {
-            if ($d->course_id) {
-                $student->courses()->detach($d->course_id);
-            }
+         // Lấy mảng course_id từ repository
+        $courseIds = $this->orderRepository->getCourseIdsByOrderId($orderId);
+
+        if (!empty($courseIds)) {
+            $student->courses()->detach($courseIds);
         }
 
          // 2. Xoá toàn bộ dữ liệu trong bảng coupons_usage
-        DB::table('coupons_usage')
-            ->where('order_id', $orderId)
-            ->delete();
+        $this->couponRepository->deleteCouponUsageByOrderId($orderId);
+
     }
 
 }

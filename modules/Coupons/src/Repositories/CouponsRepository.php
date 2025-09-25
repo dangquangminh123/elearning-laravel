@@ -70,9 +70,7 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
         }
         return false;
     }
-   
-
-   public function deleteCouponRelations($coupon)
+     public function deleteCouponRelations($coupon)
     {
         try {
             $coupon->students()->detach();
@@ -84,6 +82,37 @@ class CouponsRepository extends BaseRepository implements CouponsRepositoryInter
             return false;
         }
     }
+
+    public function getCouponIdsByOrderId($orderId)
+    {
+        return $this->model
+            ->whereHas('usages', function ($q) use ($orderId) {
+                $q->where('order_id', $orderId);
+            })
+            ->pluck('id')
+            ->toArray();
+    }
+
+    public function deleteCouponUsageByOrderId($orderId)
+    {
+        try {
+            $couponIds = $this->getCouponIdsByOrderId($orderId);
+
+            if (!empty($couponIds)) {
+                $this->model
+                    ->whereIn('id', $couponIds)
+                    ->get()
+                    ->each(function ($coupon) use ($orderId) {
+                        $coupon->usages()->detach($orderId);
+                    });
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+   
 
     public function couponUsage($couponCode, $orderId)
     {
