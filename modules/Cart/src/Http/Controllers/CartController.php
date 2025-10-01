@@ -65,7 +65,7 @@ class CartController extends Controller
     }
     
     public function list() {
-        $pageTitle = 'Giỏ hàng';
+        $pageTitle = __('cart::messages.titlepage');
         $cart = session()->get('cart', []);
         return view('cart::lists', compact('pageTitle', 'cart'));
     }

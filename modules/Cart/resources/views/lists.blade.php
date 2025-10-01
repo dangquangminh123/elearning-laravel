@@ -9,11 +9,11 @@
         <table class="table table-bordered table-striped align-middle">
             <thead class="table-dark">
                 <tr>
-                    <th>Tên Khóa Học</th>
-                    <th>Hình Ảnh</th>
-                    <th>Giảng Viên</th>
-                    <th>Giá Tiền</th>
-                    <th>Thao Tác</th>
+                    <th>{{ __('cart::messages.name_course') }}</th>
+                    <th>{{ __('cart::messages.images_course')}}</th>
+                    <th>{{ __('cart::messages.teacher')}}</th>
+                    <th>{{ __('cart::messages.price_course')}}</th>
+                    <th>{{ __('cart::messages.action')}}</th>
                 </tr>
             </thead>
             <tbody class="cart_course">
@@ -36,34 +36,33 @@
                     </tr>
                 @endforeach
 
-                {{-- Hàng tổng cộng --}}
                 <tr class="cart-summary">
-                    <td colspan="3" class="fw-bold">Tổng cộng:</td>
+                    <td colspan="3" class="fw-bold">{{ __('cart::messages.total_cart')}}:</td>
                     <td class="fw-bold total-price">{{ number_format($total).'đ' }}</td>
                     <td class="fw-bold text-danger text-end">
                         
                         <form action="" id="clear-cart-form" method="POST" class="d-inline ms-3">
                             @csrf
-                            <button type="submit" class="btn btn-warning btn-sm">Xoá tất cả</button>
+                            <button type="submit" class="btn btn-warning btn-sm">{{ __('cart::messages.delete_cart_all')}}</button>
                         </form>
                     </td>
                 </tr>
             </tbody>
         </table>
         @else
-            <div class="alert alert-info">Giỏ hàng của bạn đang trống.</div>
+            <div class="alert alert-info">{{ __('cart::messages.empty_cart')}}</div>
         @endif
 
         {{-- Button --}}
         <div class="d-flex justify-content-between mt-3">
             <a href="{{ route('courses.index') }}" class="btn btn-outline-primary">
-                 Tiếp tục mua khoá học
+                 {{ __('cart::messages.continue_buy')}}
             </a>
 
             <form id="proceed-form" action="{{ route('orders.proceed') }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-success">
-                    Tiếp tục thanh toán →
+                    {{ __('cart::messages.process_payment')}} <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </form>
         </div>

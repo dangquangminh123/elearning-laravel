@@ -110,26 +110,53 @@
       .recruit-title{ font-size:28px; }
     }
 
-
-// Phần lợi ích giảng viên
-
 :root{
-    --green-1:#66c26b;
-  --green-2:#2f8e4a;
-  --card-bg:#f3faf3;
-  --card-stroke:#dfeee0;
-  --card-rw:360px;
-  --card-rh:160px;
-  --notch-gap:35px; /* điều chỉnh vị trí arrow/cut nếu cần */
+   --grad-1: linear-gradient(135deg, #4facfe, #00f2fe); /* xanh dương nhạt -> xanh ngọc */
+  --grad-2: linear-gradient(135deg, #667eea, #764ba2); /* tím xanh */
+  --grad-3: linear-gradient(135deg, #ff9a9e, #fad0c4); /* hồng pastel */
+  --grad-4: linear-gradient(135deg, #43e97b, #38f9d7); /* xanh lá ngọc */
+
+  --card-rw: 360px;
+  --card-rh: 160px;
 }
+
 .vin-section{
   width:100%;max-width:1200px;margin:0 auto;padding:20px 12px;display:flex;gap:40px;align-items:flex-start;
   font-family:Inter,Arial,sans-serif;
 }
 .vin-left{ flex:0 0 46%; }
-.lead-icon{ width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:28px;color:#fff;background:linear-gradient(135deg,#8fd06f,#2f8e4a);box-shadow:0 8px 20px rgba(47,142,74,0.12);
-  margin-bottom:16px;}
+.lead-icon{ 
+  width:76px;
+  height:76px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:#fff;
+  background:linear-gradient(135deg,#8fd06f,#2f8e4a);box-shadow:0 8px 20px rgba(47,142,74,0.12);
+  margin-bottom:16px;
+}
+
+.lead-title {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #ff512f, #dd2476); /* đỏ tím */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 4px 6px rgba(0,0,0,0.25);
+}
+
+.lead-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #00b09b, #96c93d); /* xanh lá ngọc */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+}
+
 .vin-left h1{ font-size:52px;margin:0 0 14px;line-height:1;font-weight:800; }
 .vin-left p{ margin:0;color:#666;line-height:1.6;max-width:560px; }
 
@@ -138,62 +165,90 @@
 
 /* card */
 .card-item{ position:relative; width:var(--card-rw); height:var(--card-rh); overflow:visible; }
-.card-frame{ position:absolute; left:0; top:0; width:100%; height:100%; z-index:1; pointer-events:none; }
-
-/* notch highlight (drawn BEFORE shape so it shows through hole) */
-.card-frame .notch-highlight{ opacity:0; transition: opacity .18s ease, transform .18s ease; transform-origin:center; }
 
 /* content */
-.card-content{ position:relative; z-index:2; padding:20px;
+.card-content{ 
+  position:relative;
+  z-index:2; 
+  padding:20px;
   padding-right: calc(var(--notch-gap) + 8px);
   padding-bottom: calc(var(--notch-gap) + 8px);
 }
 .card-title{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
-.card-title h3{ margin:0; font-size:18px; color:#123b12; font-weight:700; }
+
 .icon-box{ width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;
   background:rgba(255,255,255,0.95); color:var(--green-2); font-size:18px; border:1px solid rgba(0,0,0,0.04);
   box-shadow:0 4px 12px rgba(10,10,10,0.03); flex:0 0 auto; }
+
 .card-body{ margin:0;color:#444;font-size:14px;line-height:1.6; }
 
-/* arrow button */
-
-.box:hover {
-  background: rgba(76, 156, 46, 0.15);
-  border: 1px solid rgba(76, 156, 46, 0.6);
+/* ===== THEME per-card ===== */
+.theme-1{
+  --card-grad: var(--grad-1);
+  --content-base: linear-gradient(135deg, #ffd86f, #fc6262);   /* cam -> san hô */
+  --content-hover: linear-gradient(135deg, #00f2fe, #4facfe);
+  --more-grad: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+.theme-2{
+  --card-grad: var(--grad-2);
+  --content-base: linear-gradient(135deg, #7bf1a8, #2bd2ff);   /* mint -> aqua */
+  --content-hover: linear-gradient(135deg, #764ba2, #667eea);  /* tím đậm */
+  --more-grad: linear-gradient(135deg, #667eea, #764ba2);
+}
+.theme-3{
+  --card-grad: var(--grad-3);
+  --content-base: linear-gradient(135deg, #36d1dc, #5b86e5);   /* cyan -> blue */
+  --content-hover: linear-gradient(135deg, #ff9a9e, #fad0c4);  /* hồng đậm */
+  --more-grad: linear-gradient(135deg, #ff9a9e, #fad0c4);
+}
+.theme-4{
+  --card-grad: var(--grad-4);
+  --content-base: linear-gradient(135deg, #f6d365, #fda085);   /* vàng cam ấm */
+  --content-hover: linear-gradient(135deg, #38f9d7, #43e97b);  /* xanh ngọc đậm */
+  --more-grad: linear-gradient(135deg, #43e97b, #38f9d7);
 }
 
-.box:hover::before {
-  background: url(../assets/round-box2_on.svg) no-repeat center;
-}
-
-.box:hover .bnt-more a::before {
-  opacity: 1;
-}
-
-.box:hover .bnt-more span {
-  filter: brightness(0)invert(1);
-}
+/* nền từng card */
+.box.theme-1,
+.box.theme-2,
+.box.theme-3,
+.box.theme-4{ background: var(--card-grad); }
 
 
-/* stroke & notch highlight on hover */
-.card-item:hover .card-frame path.card-shape,
-.card-item.is-hover .card-frame path.card-shape{
-  stroke: var(--green-2); stroke-width:1.9;
-}
-.card-item:hover .card-frame .notch-highlight,
-.card-item.is-hover .card-frame .notch-highlight{
-  opacity: 0.18; transform: scale(1.02);
+.box[class*="theme-"]:hover {
+  background: inherit;
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.15);
+  border-color: rgba(255,255,255,.35);
 }
 
-/* responsive */
-@media (max-width:900px){
-  .vin-section{ flex-direction:column; gap:24px; }
-  .vin-left{ width:100%; }
-  .vin-right{ width:100%; grid-template-columns:1fr; }
-  .card-item{ width:100%; height:160px; }
-  .corner-arrow{ right:20px; bottom:20px; }
-  .card-content{ padding-right: calc(var(--notch-gap) + 8px); }
+/* Text & icon gradient theo từng card */
+.gtext {
+   display: inline-block;
+  position: relative;
+  z-index: 3; /* luôn trên cùng */
+  background: var(--content-base); /* màu base */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background .3s ease;
 }
+
+.gradient-text {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.icon-gradient {
+ display: inline-block;
+  position: relative;
+  z-index: 3; /* luôn trên cùng */
+  background: var(--content-base); /* màu base */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background .3s ease;
+}
+
 
 .box {
   width: 100%;
@@ -202,39 +257,44 @@
   transition: all 0.4s;
   position: relative;
   border-radius: 30px;
-  background: rgba(76, 156, 46, 0.05);
+  color: #fff;
   border: 1px solid rgba(76, 156, 46, 0.2);
+  overflow: hidden;
+  padding: 10px;
 }
 
-.box:hover {
-  background: rgba(76, 156, 46, 0.15);
-  border: 1px solid rgba(76, 156, 46, 0.6);
+.box .icon-box {
+  width: 52px; 
+  height: 52px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  background: transparent;
+   position: relative;
+  z-index: 3;
+  border: 1px solid rgba(255,255,255,.25);
+  color: inherit;
 }
 
-//.box:hover::before {
-//  background: rgba(76, 156, 46, 0.15) url(../assets/round-box2_on.svg) no-repeat center;
-//}
-
-.box:hover .bnt-more a::before {
-  opacity: 1;
+.box h3 {
+  margin: 0; font-size: 20px; font-weight: 700; color: #fff;
 }
-
-.box:hover .bnt-more span {
-  filter: brightness(0)invert(1);
+.box p {
+  margin: 0; font-size: 14px; color: #f1f1f1; line-height: 1.6;
 }
-
 
 .box::before {
-  transition: all 0.4s;
   content: "";
   display: block;
-  z-index: 2;
   position: absolute;
   right: -1px;
   bottom: -1px;
   width: 130px;
   height: 130px;
   background: url(../assets/round-box2.svg) no-repeat center;
+  background-size: contain;
+  z-index: 0;
+   transition: all 0.4s;
 }
 
 .bnt-more {
@@ -257,24 +317,79 @@
 .bnt-more a::before {
   position: absolute;
   content: "";
+  inset:0;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background: radial-gradient(circle, rgba(103, 153, 64, 1) 100%, rgba(194, 213, 0, 1) 100%);
+  border-radius: 50%;
   z-index: 0;
   opacity: 0;
-  transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease;
 }
 
+.theme-1 .bnt-more a::before{ background: var(--more-grad); }
+.theme-2 .bnt-more a::before{ background: var(--more-grad); }
+.theme-3 .bnt-more a::before{ background: var(--more-grad); }
+.theme-4 .bnt-more a::before{ background: var(--more-grad); }
+
 .bnt-more span {
-  transition: filter 0.3s ease-in-out;
+  transition: filter 0.3s ease;
   display: block;
   overflow: hidden;
   text-indent: -9999em;
   width: 70px;
   height: 70px;
   background: url(../assets/round-arr2.svg) no-repeat center;
+}
+
+.box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+  background: var(--card-grad);
+  border: 1px solid rgba(76, 156, 46, 0.6);
+}
+
+.box:hover .bnt-more a::before {
+  opacity: 1;
+}
+
+.box:hover .bnt-more span {
+  filter: brightness(0)invert(1);
+}
+/* arrow button */
+
+.box:hover {
+  background: inherit;
+  border: 1px solid rgba(76, 156, 46, 0.6);
+}
+
+.box:hover .gtext,
+.box:hover .icon-gradient {
+   background: var(--content-hover); /* màu hover */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.box:hover::before {
+  background: url(../assets/round-box2_on.svg) no-repeat center;
+    background-size: contain;
+}
+
+.theme-1:hover .bnt-more a::before { background: linear-gradient(135deg, #4facfe, #00f2fe); opacity:1; }
+.theme-2:hover .bnt-more a::before { background: linear-gradient(135deg, #667eea, #764ba2); opacity:1; }
+.theme-3:hover .bnt-more a::before { background: linear-gradient(135deg, #ff9a9e, #fad0c4); opacity:1; }
+.theme-4:hover .bnt-more a::before { background: linear-gradient(135deg, #43e97b, #38f9d7); opacity:1; }
+
+
+/* responsive */
+@media (max-width:900px){
+  .vin-section{ flex-direction:column; gap:24px; }
+  .vin-left{ width:100%; }
+  .vin-right{ width:100%; grid-template-columns:1fr; }
+  .card-item{ width:100%; height:160px; }
+  .corner-arrow{ right:20px; bottom:20px; }
+  .card-content{ padding-right: calc(var(--notch-gap) + 8px); }
 }
 
 // chính sách quyền lợi khi tuyển dụng giảng viên

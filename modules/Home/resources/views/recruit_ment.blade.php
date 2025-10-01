@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<section class="vin-section">
+{{-- <section class="vin-section">
   <div class="vin-left">
     <div class="lead-icon"><i class="fa-solid fa-gear"></i></div>
     <h1>Không ngừng nỗ lực!<br>Chinh phục đỉnh cao!</h1>
@@ -97,7 +97,6 @@
 
   <div class="vin-right">
 
-    <!-- 1 card (copy 4 lần nếu cần) -->
      <div class="card-item box">
       <div class="card-content">
         <div class="card-title">
@@ -149,8 +148,98 @@
           </a>
         </div>
     </div>
+
+    <div class="card-item box">
+      <div class="card-content">
+        <div class="card-title">
+          <h3>Mạng lưới toàn cầu</h3>
+          <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
+        </div>
+        <p class="card-body">Những bước chân của VINATech trải dài khắp thế giới.</p>
+      </div>
+
+   
+        <div class="bnt-more">
+          <a href="#">
+            <span>More</span>
+          </a>
+        </div>
+    </div>
+  </div>
+</section> --}}
+
+<section class="vin-section">
+  <div class="vin-left">
+    <div class="lead-icon" style="background:var(--grad-1)">
+      <i class="fa-solid fa-users"></i>
+    </div>
+    <h1 class="lead-title">Đồng hành cùng sự nghiệp giáo dục!</h1>
+    <p class="lead-desc">Trung tâm trực tuyến DSCon luôn chào đón nhân tài và giảng viên xuất sắc để cùng phát triển – mang tri thức đến gần hơn với mọi người.</p>
+  </div>
+
+  <div class="vin-right">
+
+    <!-- Cơ hội nghề nghiệp -->
+    <div class="card-item box theme-1">
+      <div class="card-content">
+        <div class="card-title">
+          <h3 class="gtext">Cơ hội nghề nghiệp</h3>
+          <div class="icon-box"><i class="fa-solid fa-briefcase icon-gradient"></i></div>
+        </div>
+        <p class="card-body gtext">Gia nhập đội ngũ với nhiều vị trí hấp dẫn trong môi trường năng động.</p>
+      </div>
+      <div class="bnt-more">
+        <a href="#"><span>More</span></a>
+      </div>
+    </div>
+
+    <!-- Đội ngũ giảng viên -->
+    <div class="card-item box theme-2">
+      <div class="card-content">
+        <div class="card-title">
+          <h3 class="gtext">Đội ngũ giảng viên</h3>
+          <div class="icon-box"><i class="fa-solid fa-chalkboard-user icon-gradient"></i></div>
+        </div>
+        <p class="card-body gtext">Những giảng viên tận tâm, giàu kinh nghiệm và truyền cảm hứng.</p>
+      </div>
+      <div class="bnt-more">
+        <a href="#"><span>More</span></a>
+      </div>
+    </div>
+
+    <!-- Chương trình đào tạo -->
+    <div class="card-item box theme-3">
+      <div class="card-content">
+        <div class="card-title">
+          <h3 class="gtext">Chương trình đào tạo</h3>
+          <div class="icon-box"><i class="fa-solid fa-graduation-cap icon-gradient"></i></div>
+        </div>
+        <p class="card-body gtext">Phát triển kỹ năng toàn diện, nâng cao chuyên môn cho giảng viên & học viên.</p>
+      </div>
+      <div class="bnt-more">
+        <a href="#"><span>More</span></a>
+      </div>
+    </div>
+
+    <!-- Cộng đồng học tập -->
+    <div class="card-item box theme-4">
+      <div class="card-content">
+        <div class="card-title">
+          <h3 class="gtext">Cộng đồng học tập</h3>
+          <div class="icon-box"><i class="fa-solid fa-people-group icon-gradient"></i></div>
+        </div>
+        <p class="card-body gtext">Nơi kết nối, chia sẻ và hợp tác giữa giảng viên, học viên và chuyên gia.</p>
+      </div>
+      <div class="bnt-more">
+        <a href="#"><span>More</span></a>
+      </div>
+    </div>
+
   </div>
 </section>
+
+
+
 
 <div class="steps-wrap" id="stepsWrap">
   <h2 class="steps-main-title">Chính sách và Quy trình Tuyển dụng Giảng viên</h2>

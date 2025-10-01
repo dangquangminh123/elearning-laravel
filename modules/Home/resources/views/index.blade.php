@@ -3,7 +3,7 @@
 
 @section('content')
 
-
+{{-- Banner --}}
 <section class="banner">
     <div class="container padding">
         <div class="row">
@@ -80,6 +80,7 @@
     </div>
 </section>
 
+{{-- icons services --}}
 <section class="ft-services-section">
   <div class="ft-services-container">
 
@@ -126,6 +127,7 @@
   </div>
 </section>
 
+{{-- Banner gallery sale off --}}
 <section class="image-section">
     <div class="image-wrapper">
         <img src="/clients/assets/banner1.png" alt="Melty Cake">
@@ -140,6 +142,7 @@
     </div>
 </section>
 
+{{-- Services us --}}
 <div class="container py-5">
     <header class="text-center mb-5">
             <p class="service-subtitle">CHÚNG TÔI LÀM GÌ?</p>
@@ -224,6 +227,7 @@
     </section>
 </div>
 
+{{-- Course promotion --}}
 <div class="row g-0">
             <div class="col-12 col-lg-5 p-0 d-flex justify-content-center">
                 <div class="promo-card">
@@ -241,7 +245,7 @@
                     <div class="course-list">
                         <div class="course-item">
                             <div class="course-icon-container">
-                                <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon Laravel" class="course-thumb">
+                                <img src="{{ asset('/clients/assets/avatar.png') }}" alt="Icon Laravel" class="course-thumb">
                             </div>
                             <div class="course-details">
                                 <h3 class="course-title sparkling">Lập Trình Web với Laravel</h3>
@@ -251,7 +255,7 @@
 
                         <div class="course-item">
                             <div class="course-icon-container">
-                                <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon React" class="course-thumb">
+                                <img src="{{ asset('/clients/assets/avatar.png') }}" alt="Icon React" class="course-thumb">
                             </div>
                             <div class="course-details">
                                 <h3 class="course-title sparkling">Phát Triển Ứng Dụng với React</h3>
@@ -261,7 +265,7 @@
                         
                         <div class="course-item">
                             <div class="course-icon-container">
-                                <img src="{{ asset('/clients/assets/slider-1.jpeg') }}" alt="Icon Node.js" class="course-thumb">
+                                <img src="{{ asset('/clients/assets/avatar.png') }}" alt="Icon Node.js" class="course-thumb">
                             </div>
                             <div class="course-details">
                                 <h3 class="course-title sparkling">Phát Triển Backend với Node.js</h3>
@@ -277,13 +281,14 @@
             </div>
 </div>
 
+{{-- overview academy HEXAGON --}}
 <section class="features-hero">
   <div class="wrap">
     <div class="hex-left">
       <div class="hex-ring" id="hexRing">
         <div class="hex-wrap hex-center-wrap">
           <div class="hex hex-center">
-            <img src="/clients/assets/logo.png" alt="center" />
+            <img src="/clients/assets/avatar.png" alt="center" />
           </div>
         </div>
 
@@ -351,6 +356,7 @@
   </div>
 </section>
 
+{{-- List course and types --}}
 @foreach($courseTypes as $type)
 <section class="{{ course_section_class_by_name($type->name ?? null) }}">
     <div class="container padding">
@@ -432,6 +438,7 @@
 </section>
 @endforeach
 
+{{-- Why choose Us --}}
 <section class="question">
     <div class="container padding">
         <h3>vì sao nên học tại dscons</h3>
@@ -500,7 +507,7 @@
     </div>
 </section>
 
-
+{{-- Reviews us Academy --}}
 <div class="container-fluid vh-100-row">
   <div class="row g-0 h-100">
     <!-- LEFT: carousel -->
@@ -665,7 +672,7 @@
   </div>
 </div>
 
-
+{{-- Roading map training --}}
 <div class="main-container">
         <h1 class="main-title">LỘ TRÌNH ĐÀO TẠO TẠI DSMART</h1>
         <img class="background-image" src="/clients/assets/line_wavy.jpg" alt="Background Line">
@@ -760,6 +767,7 @@
         </div>
 </div>
     
+{{-- Teacher overview --}}
 <div class="flipbook-wrapper">
     <h2 class="flipbook-title">
         Giảng viên giảng dạy trực tiếp các môn tại DSCons
@@ -795,6 +803,7 @@
     </div>
 </div>
 
+{{-- programme circle --}}
 <section class="features-circle">
   <div class="wrap">
     <div class="circle-left">
@@ -837,6 +846,7 @@
   </div>
 </section>
 
+{{-- partner us --}}
 <section class="partner">
   <div class="container">
     <h3>Đối tác doanh nghiệp chúng tôi đào tạo</h3>
@@ -869,6 +879,7 @@
   </div>
 </section>
 
+{{-- statistical --}}
 <section class="progress-section">
     <div class="wrap">
         <div class="stat-item" data-percent="20" data-color="blue">
@@ -921,6 +932,44 @@
         </div>
     </div>
 </section>
+
+{{-- bse block --}}
+<div class="bse">
+  <div class="wrap">
+    <section class="copy">
+      <p class="eyebrow">Liên hệ ngay</p>
+      <h1 class="headline txt-grad-title">LIÊN HỆ TRỰC TIẾP VỚI CHÚNG TÔI</h1>
+      <h3 class="subhead txt-grad-sub">Để được tư vấn miễn phí</h3>
+      <p class="para txt-grad-body">
+        Chúng tôi sẵn sàng hỗ trợ bạn tìm hiểu về các khóa học, dịch vụ và chương trình khuyến mãi của trung tâm.  
+        Đội ngũ tư vấn sẽ giải đáp mọi thắc mắc và đưa ra lộ trình học tập phù hợp nhất.
+      </p>
+    </section>
+
+    <section class="visual">
+      <div class="tree">
+        <div class="drop-top">
+          <div class="drop-shape">
+            <span class="drop-icon"><i class="fa-solid fa-headset"></i></span>
+          </div>
+        </div>
+
+        <div class="rows">
+          <div class="bse-row"></div>
+          <div class="bse-row"></div>
+          <div class="bse-row"></div>
+          <div class="bse-row"></div>
+        </div>
+
+        <div class="phone-wire">
+          <div class="phone-glow"></div>
+          <div class="phone"></div>
+          <div class="wire"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
 <section class="about-us">
     <div class="container">

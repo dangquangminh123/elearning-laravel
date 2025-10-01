@@ -25,8 +25,8 @@ class CoursesController extends Controller {
     }
     
     public function index(StudentCourseAccessService $accessService) {
-        $pageTitle = 'Khóa học';
-        $pageName = 'Khóa học';
+        $pageTitle = __('courses::messages.titlePage');
+        $pageName = __('courses::messages.titlePage');
         $courses = $this->coursesRepository->getCourses(config('paginate.limit'));
         $hasAccessList = [];
 
@@ -44,8 +44,8 @@ class CoursesController extends Controller {
         $course = $this->coursesRepository->getCourseActive($slug);
         if (!$course) {
             return view('errors.404', [
-                'message' => 'Khoá học bạn học có thể đã bị xóa hoặc không tồn tại.',
-                'pageTitle' => 'Không tìm thấy',
+                'message' => __('courses::messages.courseNotExits'),
+                'pageTitle' => __('courses::messages.notFound'),
             ]);
         }
         $pageTitle = $course->name;
@@ -63,14 +63,14 @@ class CoursesController extends Controller {
         $course = $this->coursesRepository->getCourseActive($slug);
         if (!$course) {
             return view('errors.404', [
-                'message' => 'Khoá học bạn yêu cầu có thể đã bị xóa hoặc không tồn tại.',
-                'pageTitle' => 'Không tìm thấy',
+                'message' => __('courses::messages.courseNotExits'),
+                'pageTitle' => __('courses::messages.notFound'),
             ]);
         }
 
         $lessonGroups = $this->lessonRepository->getLessonsGroup($course->id);
        
-        $firstLesson = $lessonGroups->first()['lessons']->first(); // Phần bài học con đầu tiên để hiển thị
+        $firstLesson = $lessonGroups->first()['lessons']->first();
 
 
         $pageTitle = 'Học - ' . $course->name;
@@ -108,7 +108,7 @@ class CoursesController extends Controller {
         $lesson = $this->lessonRepository->findLessonWithVideo($lessonId);
 
         if (!$lesson->video) {
-            abort(404, 'Không tìm thấy video cho bài học này.');
+            abort(404, __('courses::messages.lessonNotfound'));
         }
 
         return VideoStreamer::streamFile(public_path($lesson->video->url));
