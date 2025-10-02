@@ -36,268 +36,244 @@ function openMenu() {
 
 
 $(document).ready(function() {
-    // flip book teacher overview
-    var flip = $('#flipbook');
-    if (flip.length === 0) return; // Không có flipbook thì thoát ngay
+  const App = {
+    // --- Flipbook ---
+    initFlipbook() {
+      const flip = $('#flipbook');
+      if (!flip.length) return;
 
-    var pages = [];
-    function preloadImages(imageUrls, callback) {
-        var loaded = 0, total = imageUrls.length;
-        if (total === 0) { callback(); return; }
-        imageUrls.forEach(function(url){
-        var img = new Image();
-        img.onload = img.onerror = function() {
-            loaded++;
-            if (loaded === total) callback();
-        };
-        img.src = url;
-        });
-    }
-
-  
-    $('#flipbook img').each(function(){
-        var src = $(this).attr('src');
+      let pages = [];
+      $('#flipbook img').each(function() {
+        const src = $(this).attr('src');
         if (src) pages.push(src);
-    });
+      });
 
-    preloadImages(pages, function(){
-        
-          var autoFlipInterval = null;
-          var resumeTimer = null;
-          var flipForward = true;
-          var lockUntil = 0; // timestamp (ms) : nếu Date.now() < lockUntil thì autoFlip sẽ không thực hiện
-          flip.turn({
-              autoCenter: true,
-              when: {
-                  start: function() {
-                  var view = flip.turn('view') || [];
-                  $('#flipbook .page').removeClass('page-visible');
-                  view.forEach(function(p){ $('#flipbook .p' + p).addClass('page-visible'); });
-                  },
-                  turned: function(event, page, view) {
-                  $('#flipbook .page').removeClass('page-visible');
-                  view.forEach(function(p){ $('#flipbook .p' + p).addClass('page-visible'); });
+      const preloadImages = (urls, cb) => {
+        let loaded = 0, total = urls.length;
+        if (total === 0) return cb();
+        urls.forEach(url => {
+          const img = new Image();
+          img.onload = img.onerror = () => {
+            loaded++;
+            if (loaded === total) cb();
+          };
+          img.src = url;
+        });
+      };
 
-                  // Nếu người dùng lật tay (manual), tạm dừng auto flip
-                  userInteracted();
-                  }
-              }
-          });
-      function autoFlip(){
-        if (Date.now() < lockUntil) return;       // đang lock vì user vừa tương tác
-        if (!flip.turn) return;                   // safety
-        var current = flip.turn('page');
-        var total = flip.turn('pages');
+      preloadImages(pages, () => {
+        let autoFlipInterval = null;
+        let resumeTimer = null;
+        let flipForward = true;
+        let lockUntil = 0;
 
-        if (flipForward) {
-          if (current < total) flip.turn('next');
-          else { flipForward = false; flip.turn('previous'); }
-        } else {
-          if (current > 1) flip.turn('previous');
-          else { flipForward = true; flip.turn('next'); }
+        flip.turn({
+          autoCenter: true,
+          when: {
+            start: function() {
+              const view = flip.turn('view') || [];
+              $('#flipbook .page').removeClass('page-visible');
+              view.forEach(p => $('#flipbook .p' + p).addClass('page-visible'));
+            },
+            turned: function(event, page, view) {
+              $('#flipbook .page').removeClass('page-visible');
+              view.forEach(p => $('#flipbook .p' + p).addClass('page-visible'));
+              userInteracted();
+            }
+          }
+        });
+
+        function autoFlip() {
+          if (Date.now() < lockUntil) return;
+          if (!flip.turn) return;
+          const current = flip.turn('page');
+          const total = flip.turn('pages');
+          if (flipForward) {
+            if (current < total) flip.turn('next');
+            else { flipForward = false; flip.turn('previous'); }
+          } else {
+            if (current > 1) flip.turn('previous');
+            else { flipForward = true; flip.turn('next'); }
+          }
         }
-      }
 
-      function startAutoFlip(){
-        if (autoFlipInterval) return;             // tránh tạo interval thứ hai
-        autoFlipInterval = setInterval(autoFlip, 3000);
-      }
+        function startAutoFlip() {
+          if (!autoFlipInterval) autoFlipInterval = setInterval(autoFlip, 3000);
+        }
 
-      function stopAutoFlip(){
-        if (!autoFlipInterval) return;
-        clearInterval(autoFlipInterval);
-        autoFlipInterval = null;
-      }
+        function stopAutoFlip() {
+          if (autoFlipInterval) {
+            clearInterval(autoFlipInterval);
+            autoFlipInterval = null;
+          }
+        }
 
-      // khi user tương tác: khóa autoFlip trong 5s và restart sau 5s
-      function userInteracted(){
-        lockUntil = Date.now() + 5000;
+        function userInteracted() {
+          lockUntil = Date.now() + 5000;
+          stopAutoFlip();
+          if (resumeTimer) clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(() => {
+            lockUntil = 0;
+            startAutoFlip();
+          }, 5000);
+        }
 
-        // dừng interval hiện tại ngay (nếu có)
-        stopAutoFlip();
+        $(document).on('mousedown touchstart wheel keydown', userInteracted);
+        startAutoFlip();
+      });
+    },
 
-        // xóa timer cũ nếu có
-        if (resumeTimer) clearTimeout(resumeTimer);
+    // --- View All Btn ---
+    initViewAllBtn() {
+      const btn = $('.view-all-btn');
+      if (!btn.length) return;
+      btn.addClass('animate-tada');
+      setTimeout(() => btn.removeClass('animate-tada'), 20000);
+    },
 
-        // sau 5s, bỏ lock và start lại autoFlip (nếu chưa có)
-        resumeTimer = setTimeout(function(){
-          lockUntil = 0;
-          startAutoFlip();
-        }, 5000);
-      }
-
-      $(document).on('mousedown touchstart wheel keydown', userInteracted);
-      startAutoFlip();
-
-    }); 
-
-
-    // course nổi bật
-    const viewAllBtn = $('.view-all-btn');
-    viewAllBtn.addClass('animate-tada');
-
-    // Sau 20 giây, xóa class để dừng animation
-    setTimeout(function() {
-          viewAllBtn.removeClass('animate-tada');
-    }, 20000);
-
-	// Hiệu ứng lấp lánh cho hình ảnh lớn khi di chuột vào promo-card
-    $('.promo-card').hover(
-        function() {
+    // --- Sparkle Effects ---
+    initSparkleEffects() {
+      if ($('.promo-card').length) {
+        $('.promo-card').hover(
+          function() {
             $(this).sparkle({
-                count: 50,
-                color: ["#12CBC4","#EE5A24", "#FFC312", "#EA2027", "#D980FA", "#0652DD"],
-                overlap: 50,
-				minSize: 10,
-				maxSize: 20,
-				direction: "both",
+              count: 50,
+              color: ["#12CBC4","#EE5A24","#FFC312","#EA2027","#D980FA","#0652DD"],
+              overlap: 50, minSize: 10, maxSize: 20, direction: "both"
             });
-        },
-        function() {
-            // Loại bỏ sparkles khi di chuột ra
-            $(this).sparkle('destroy');
-        }
-    );
+          },
+          function() { $(this).sparkle('destroy'); }
+        );
+      }
 
-	 $('.small-heading').hover(
-        function() {
+      if ($('.small-heading').length) {
+        $('.small-heading').hover(
+          function() {
             $(this).sparkle({
-                count: 50,
-                color: ["#12CBC4","#EE5A24", "#FFC312", "#EA2027", "#D980FA", "#0652DD"],
-                overlap: 50,
-				minSize: 5,
-				direction: "both",
+              count: 50,
+              color: ["#12CBC4","#EE5A24","#FFC312","#EA2027","#D980FA","#0652DD"],
+              overlap: 50, minSize: 5, direction: "both"
             });
-        },
-        function() {
-            $(this).sparkle('destroy');
-        }
-    );
-
-    // flash me type course
-    $('.course-item').hover(
-        function() {
-            $(this).find('.course-icon-container, .course-title').sparkle({
-                count: 20,
-                color: '#EE5A24',
-                overlap: 20,
-				minSize: 5,
-            });
-        },
-        function() {
-            $(this).find('.course-icon-container, .course-title').sparkle('destroy');
-        }
-    );
-
-    // bse block
-    const labels = [
-      "Tư vấn khóa học PHP & Laravel",
-      "Tư vấn khóa học ReactJS",
-      "Tư vấn dịch vụ học trực tuyến",
-      "Hỗ trợ đăng ký tài khoản",
-      "Chương trình khuyến mãi",
-      "Học thử miễn phí",
-      "Lộ trình học tập cá nhân",
-      "Hỗ trợ kỹ thuật 24/7"
-    ];
-
-    const classes = [
-      "leaf--elearn","leaf--bank","leaf--ticket","leaf--insure",
-      "leaf--24h","leaf--cyber","leaf--stock","leaf--biz"
-    ];
-
-    const icons = [
-      "fa-solid fa-code", 
-      "fa-brands fa-react", 
-      "fa-solid fa-laptop", 
-      "fa-solid fa-user-plus",
-      "fa-solid fa-gift", 
-      "fa-solid fa-graduation-cap", 
-      "fa-solid fa-road", 
-      "fa-solid fa-headset"
-    ];
-
-
-  const $rows = $(".bse .rows .bse-row");
-
-  for (let r = 0; r < 4; r++) {
-    const iL = r * 2, iR = r * 2 + 1;
-     const wL = labels[iL].length * 12 + 220;
-      const wR = labels[iR].length * 12 + 220;
-
-    const left = `
-      <div class="leaf left ${classes[iL]}">
-        <span class="leaf-glow"></span>
-        <span class="leaf-shape"></span>
-        <span class="leaf-overlay"></span>
-        <div class="leaf__content">
-          <span class="leaf-icon"><i class="${icons[iL]}"></i></span>
-          <span class="leaf-label">${labels[iL]}</span>
-        </div>
-      </div>`;
-
-    const right = `
-      <div class="leaf right ${classes[iR]}">
-        <span class="leaf-glow"></span>
-        <span class="leaf-shape"></span>
-        <span class="leaf-overlay"></span>
-        <div class="leaf__content">
-          <span class="leaf-icon"><i class="${icons[iL]}"></i></span>
-          <span class="leaf-label">${labels[iL]}</span>
-        </div>
-      </div>`;
-
-  //  const left = `
-  //   <div class="leaf left ${classes[iL]}" style="--leafW:${wL}px">
-  //     <span class="leaf-glow"></span>
-  //     <span class="leaf-shape"></span>
-  //     <span class="leaf-overlay"></span>
-  //     <div class="leaf__content">
-  //       <span class="leaf-icon"><i class="${icons[iL]}"></i></span>
-  //       <span class="leaf-label">${labels[iL]}</span>
-  //     </div>
-  //   </div>`;
-
-  // const right = `
-  //   <div class="leaf right ${classes[iR]}" style="--leafW:${wR}px">
-  //     <span class="leaf-glow"></span>
-  //     <span class="leaf-shape"></span>
-  //     <span class="leaf-overlay"></span>
-  //     <div class="leaf__content">
-  //       <span class="leaf-icon"><i class="${icons[iR]}"></i></span>
-  //       <span class="leaf-label">${labels[iR]}</span>
-  //     </div>
-  //   </div>`;
-
-    $rows.eq(r).append(left).append(right);
-  }
-});
-
-
-$('.partner-slider.center').slick({
-  centerMode: true,
-  centerPadding: '60px',
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 1900,
-  arrows: false,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 2
+          },
+          function() { $(this).sparkle('destroy'); }
+        );
       }
     },
-    {
-      breakpoint: 480,
-      settings: {
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
+
+    // --- Course Sparkle ---
+    initCourseSparkle() {
+      if (!$('.course-item').length) return;
+      $('.course-item').hover(
+        function() {
+          $(this).find('.course-icon-container, .course-title').sparkle({
+            count: 20, color: '#EE5A24', overlap: 20, minSize: 5
+          });
+        },
+        function() {
+          $(this).find('.course-icon-container, .course-title').sparkle('destroy');
+        }
+      );
+    },
+
+    // --- BSE Block ---
+    initBseBlock() {
+      if (!$('.bse .rows').length) return;
+
+      const labels = [
+        "Tư vấn khóa học ReactJS","Tư vấn khóa học PHP & Laravel",
+        "Hỗ trợ đăng ký tài khoản","Tư vấn dịch vụ học trực tuyến",
+        "Học thử miễn phí","Chương trình khuyến mãi",
+        "Hỗ trợ kỹ thuật 24/7","Lộ trình học tập cá nhân"
+      ];
+      const classes = ["leaf--elearn","leaf--bank","leaf--ticket","leaf--insure","leaf--24h","leaf--cyber","leaf--stock","leaf--biz"];
+      const icons   = ["fa-brands fa-react","fa-solid fa-code","fa-solid fa-user-plus","fa-solid fa-laptop","fa-solid fa-graduation-cap","fa-solid fa-gift","fa-solid fa-headset","fa-solid fa-road"];
+
+      const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+      const wordCount = t => (t||"").trim().split(/\s+/).filter(Boolean).length;
+      const sizeFromWords = lbl => wordCount(lbl)<2?"small":(wordCount(lbl)<5?"medium":"large");
+
+      function dimsFor(label) {
+        const size = sizeFromWords(label);
+        const len  = (label || "").length;
+        let wBase, h;
+        if (size === "small") { wBase = 340; h = 200; }
+        else if (size === "medium") { wBase = 370; h = 210; }
+        else { wBase = 400; h = 230; }
+        const extra = size==="large"?0:clamp((len-12)*4, 0, 60);
+        const w = clamp(wBase + extra, 350, 400);
+        h = clamp(h, 200, 230);
+        return { w, h };
       }
+
+      const offsetFor = (size, side) => side==="left"
+        ? (size==="small"?"left:13%;":"left:1%;")
+        : (size==="small"?"right:12%;":"right:0.8%;");
+
+      function makeLeaf(side, klass, icon, label){
+        const { w, h } = dimsFor(label);
+        const offset = offsetFor(sizeFromWords(label), side);
+        return `
+          <div class="leaf ${side} ${klass}" style="--leafW:${w}px; --leafH:${h}px; ${offset}">
+            <span class="leaf-glow"></span>
+            <span class="leaf-shape"></span>
+            <div class="leaf__content">
+              <span class="leaf-icon"><i class="${icon}"></i></span>
+              <span class="leaf-label">${label}</span>
+            </div>
+          </div>`;
+      }
+
+      const $rows = $(".bse .rows .bse-row");
+      for (let r = 0; r < 4; r++) {
+        $rows.eq(r)
+          .append(makeLeaf("left", classes[r*2], icons[r*2], labels[r*2]))
+          .append(makeLeaf("right", classes[r*2+1], icons[r*2+1], labels[r*2+1]));
+      }
+
+      function playBubblesAnimation() {
+        $(".phone").addClass("ringing");
+        $(".tree").addClass("floating");
+        $(".wire").addClass("floating");
+        setTimeout(() => {
+          $(".phone").removeClass("ringing");
+          $(".tree").removeClass("floating");
+          $(".wire").removeClass("floating");
+        }, 5000);
+        setTimeout(playBubblesAnimation, 6000);
+      }
+      playBubblesAnimation();
+    },
+
+    // --- Partner Slider ---
+    initPartnerSlider() {
+      if (!$('.partner-slider.center').length) return;
+      $('.partner-slider.center').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1900,
+        arrows: false,
+        responsive: [
+          { breakpoint: 768, settings: { centerMode: true, centerPadding: '40px', slidesToShow: 2 }},
+          { breakpoint: 480, settings: { centerMode: true, centerPadding: '40px', slidesToShow: 1 }}
+        ]
+      });
+    },
+
+    // --- Init all ---
+    init() {
+      this.initFlipbook();
+      this.initViewAllBtn();
+      this.initSparkleEffects();
+      this.initCourseSparkle();
+      this.initBseBlock();
+      this.initPartnerSlider();
     }
-  ]
+  };
+
+  // Run all
+  App.init();
 });
+

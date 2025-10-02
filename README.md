@@ -1,66 +1,188 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+ý tưởng dự án là tính chất đặc trưng mà dự án trung tâm chúng tôi giảng dạy manglại cho học viên
+Tôi có 4 SVG đặt cùng thư mục:
+- bong.svg        → bóng đèn (hiển thị bên trái).
+- thanhsoc.svg    → THANH SỌC CHÍNH (ribbon chính, sắc nét) là nền chứa số + caption.
+- socmo.svg       → MẢNH NỐI, dùng cho cả “đầu nối bên trái” (.head-left) và “đuôi nối dưới-bên phải” (.tail-right).
+- thanhngang.svg  → THANH NGANG PHỤ, nối liền phía bên phải của thanh chính, tạo kéo dài (.bar-extend).
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+👉 Mục tiêu: Sinh ra **index.html, styles.css, app.js (jQuery)** với bố cục và hiệu ứng y hình mẫu (ảnh Powerpoint ideas).
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 1. Bố cục (layout)
+- Nền trang: `#f3f3f3`.
+- Căn giữa khối chính: max-width ~1200px, dùng **flex** (không grid, không float).
+- 2 cột:
+  - Trái: bóng đèn (`bong.svg`).
+  - Phải: `<ul class="steps">` chứa 4 `<li class="step">` xếp dọc.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2. Cấu trúc HTML mỗi step
+Mỗi `<li class="step">` có dạng:
 
-## Learning Laravel
+```html
+<li class="step">
+  <div class="head-left">
+    <img src="socmo.svg" alt="" />
+  </div>
+  <div class="bar">
+    <span class="step-no">01</span>
+    <div class="step-text">
+      <h3 class="step-title">Caption 1</h3>
+      <p class="step-desc">This is an editable slide with all your needs</p>
+    </div>
+    <img class="bar-extend" src="thanhngang.svg" alt="" />
+  </div>
+  <div class="tail-right">
+    <img src="socmo.svg" alt="" />
+  </div>
+</li>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Màu sắc
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Áp dụng đồng nhất cho .bar, .bar-extend, .tail-right của từng step:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Step 1: #0E8F57 (xanh lá)
 
-## Laravel Sponsors
+Step 2: #8F2334 (đỏ rượu)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Step 3: #2C3E50 (xanh navy)
 
-### Premium Partners
+Step 4: #C06B06 (cam)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Text mặc định: chữ trắng (#fff), có thể thêm gradient khi hover.
+4. Quy tắc che phủ (Occlusion)
 
-## Contributing
+Head-left:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Step #1: hiển thị rõ ràng.
 
-## Code of Conduct
+Step #2: bị bar của #1 che một phần bên trái.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Step #3: bị bar của #2 che.
 
-## Security Vulnerabilities
+Step #4: bị bar của #3 che.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Tail-right:
 
-## License
+Step #1: bị bar của #2 che một phần.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Step #2: bị bar của #3 che.
+
+Step #3: bị bar của #4 che.
+
+Step #4: hiển thị đầy đủ (không bị che).
+
+Bar-extend: luôn nối liền mạch với .bar, dài khoảng 1/3–1/2 chiều bar.
+
+Z-index:
+
+bar #1 = 40, bar #2 = 30, bar #3 = 20, bar #4 = 10.
+
+head-left và tail-right mỗi step nằm dưới bar của step ngay sau.
+
+Nội dung text (.step-title, .step-desc, .step-no) luôn có z-index cao nhất, không bị shape che.
+
+5. Typography
+
+Tiêu đề trang: <h1>Powerpoint ideas</h1> – Arial, 28px, bold, căn trái.
+
+Trong bar:
+
+.step-no: font bold, 18–20px, canh trái, có letter-spacing nhẹ.
+
+.step-title: bold 16–18px, màu trắng hoặc gradient.
+
+.step-desc: font 13–14px, màu trắng nhạt.
+
+6. Kích thước & căn chỉnh
+
+Step cao ~78–82px, cách nhau 18–22px.
+
+Head-left: thò ra trái 8–12px.
+
+Bar-extend: dài thêm 35–50% so với bar.
+
+Tail-right: lệch phải + xuống 8–12px.
+
+Nội dung text: padding-left ~70px (để nhường chỗ số)
+
+---
+
+7. Hiệu ứng hover
+
+Hover .step: thêm class .active.
+
+Khi active:
+
+bar, bar-extend, tail-right sáng hơn (brightness +15%).
+
+Thêm drop-shadow rõ hơn (shadow lớn hơn, blur hơn).
+
+step-title và step-desc đổi màu gradient (linear-gradient, text-shadow sáng).
+
+Nội dung text không bị che bởi shape.
+
+---
+
+## 8. Data API + jQuery
+
+HTML đã chứa sẵn số, caption, desc → không để trong data-*.
+
+Có thể thêm data-color để đổi màu shape.
+
+jQuery trong $(function(){}):
+
+Đọc data-color để set --step-color.
+
+Set z-index cho từng step.
+
+Hover: toggle .active.
+
+Click: alert("Bạn đã click Step {no}").
+---
+
+
+## 9. Responsive
+
+≤768px:
+
+2 cột gộp thành 1 (bóng đèn trên, steps dưới).
+
+Step cao ~64px, font giảm 1–2pt.
+
+Vẫn giữ đúng occlusion head-left và tail-right.
+
+
+## 10. Bàn giao
+- File: index.html, styles.css, app.js.
+- Không dùng framework ngoài jQuery.
+- Code phải clean, semantic, có role/aria cho accessibility.
+
+👉 Yêu cầu: Code sinh ra **giống hệt ảnh mẫu**, kể cả vị trí head-left bị che, bar-extend ăn khớp, tail-right thò đúng chỗ, drop-shadow mềm mại, màu sắc chuẩn hex.
+
+
+Công thức rút ra (cho mọi shape):
+
+Khung cha (wrap) có width/height đúng shape.
+
+Layer dưới cùng: path/svg fill gradient, stroke.
+
+Layer trung: viền/stroke hoặc glow (pseudo).
+
+Layer trên cùng: content (icon/text) → gradient chữ, không mask.
+
+Drop-shadow ở wrap để bóng theo shape.
+
+Hover:
+
+đổi gradient fill,
+
+đổi shadow (màu + cường độ),
+
+text đổi gradient hoặc sáng hơn,
+
+có thể scale/translate để nổi khối.
+
+JS link: hover shape A → đồng thời bật class ở shape B.

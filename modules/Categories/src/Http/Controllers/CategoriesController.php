@@ -17,7 +17,7 @@ class CategoriesController extends Controller
     }
 
     public function index() {
-        $pageTitle = 'Quản lý danh mục';
+        $pageTitle = __('categories::messages.manager.categories');
         // $categories = $this->categoryRepository->getTreeCategories()->toArray();
         return view('categories::lists', compact('pageTitle'));
     }
@@ -46,9 +46,9 @@ class CategoriesController extends Controller
                 $result[] = [
                     'id' => $category['id'],
                     'name' => $nameWithPrefix,
-                    'link' => '<a target="_blank" href="' . route('admin.categories.detail', $category['id']) . '" class="btn btn-info">Xem</a>',
-                    'edit' => '<a href="' . route('admin.categories.edit', $category['id']) . '" class="btn btn-warning">Sửa</a>',
-                    'delete' => '<a href="' . route('admin.categories.delete', $category['id']) . '" class="btn btn-danger delete-action">Xoá</a>',
+                    'link' => '<a target="_blank" href="' . route('admin.categories.detail', $category['id']) . '" class="btn btn-info">'.__('categories::messages.watch').'</a>',
+                    'edit' => '<a href="' . route('admin.categories.edit', $category['id']) . '" class="btn btn-warning">'.__('categories::messages.edit').'</a>',
+                    'delete' => '<a href="' . route('admin.categories.delete', $category['id']) . '" class="btn btn-danger delete-action">'.__('categories::messages.delete').'</a>',
                     'created_at' => Carbon::parse($category['created_at'])->format('d/m/Y H:i:s'),
                 ];
             }
@@ -72,7 +72,7 @@ class CategoriesController extends Controller
 
     public function edit($id) {
         $category = $this->categoryRepository->find($id);
-        $pageTitle = 'Cập nhập danh mục';
+        $pageTitle = __('categories::messages.update.categories');
 
         if(!$category) {
             abort(404);
@@ -96,7 +96,7 @@ class CategoriesController extends Controller
    
 
      public function create() {
-        $pageTitle = 'Thêm mới danh mục';
+        $pageTitle = __('categories::messages.add.categories');
 
         $categories = $this->categoryRepository->getAllCategories();
         return view('categories::add', compact('pageTitle', 'categories'));

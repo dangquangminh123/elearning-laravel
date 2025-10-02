@@ -937,7 +937,7 @@
 <div class="bse">
   <div class="wrap">
     <section class="copy">
-      <p class="eyebrow">Liên hệ ngay</p>
+      <p class="eyebrow txt-grad-eyebrow">Thông tin liên hệ & hỗ trợ học viên</p>
       <h1 class="headline txt-grad-title">LIÊN HỆ TRỰC TIẾP VỚI CHÚNG TÔI</h1>
       <h3 class="subhead txt-grad-sub">Để được tư vấn miễn phí</h3>
       <p class="para txt-grad-body">
@@ -948,19 +948,19 @@
 
     <section class="visual">
       <div class="tree">
-        <div class="drop-top">
-          <div class="drop-shape">
-            <span class="drop-icon"><i class="fa-solid fa-headset"></i></span>
+
+          <div class="drop-top">
+            <div class="drop-shape">
+              <span class="drop-icon"><i class="fa-solid fa-headset"></i></span>
+            </div>
           </div>
-        </div>
 
-        <div class="rows">
-          <div class="bse-row"></div>
-          <div class="bse-row"></div>
-          <div class="bse-row"></div>
-          <div class="bse-row"></div>
-        </div>
-
+          <div class="rows">
+            <div class="bse-row"></div>
+            <div class="bse-row"></div>
+            <div class="bse-row"></div>
+            <div class="bse-row"></div>
+          </div>
         <div class="phone-wire">
           <div class="phone-glow"></div>
           <div class="phone"></div>

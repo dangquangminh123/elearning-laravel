@@ -9,20 +9,20 @@
     <table id="datatables" class="table table-bordered">
         <thead>
             <tr>
-                <th>Tên</th>
-                <th>Link</th>
-                <th>Thời gian</th>
-                <th style="width: 5%;">Sửa</th>
-                <th style="width: 5%;">Xoá</th>
+                <th>{{ __('categories::messages.name') }}</th>
+                <th>{{ __('categories::messages.link') }}</th>
+                <th>{{ __('categories::messages.duration') }}</th>
+                <th style="width: 5%;">{{ __('categories::messages.edit') }}</th>
+                <th style="width: 5%;">{{ __('categories::messages.delete') }}</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>Tên</th>
-                <th>Link</th>
-                <th>Thời gian</th>
-                <th>Sửa</th>
-                <th>Xoá</th>
+                <th>{{ __('categories::messages.name') }}</th>
+                <th>{{ __('categories::messages.link') }}</th>
+                <th>{{ __('categories::messages.duration') }}</th>
+                <th>{{ __('categories::messages.edit') }}</th>
+                <th>{{ __('categories::messages.delete') }}</th>
             </tr>
         </tfoot>
         <tbody>
