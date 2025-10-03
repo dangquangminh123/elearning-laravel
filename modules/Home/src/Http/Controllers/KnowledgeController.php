@@ -20,7 +20,7 @@ class KnowledgeController extends Controller
         $this->teacherRepository = $teacherRepository;
     }
     public function index() {
-        $pageTitle = 'Kiến thức lập trình';
+        $pageTitle = __('home::messages.knowledge_page');
 
         return view('home::knowledge', compact('pageTitle'));
     }

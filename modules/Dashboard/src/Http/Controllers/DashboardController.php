@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller {
     public function index() {
-         $pageTitle = 'trang tổng quan';
+         $pageTitle = __('home::messages.dashboard_page');
        return view('dashboard::dashboard', compact('pageTitle'));
     }
 

@@ -8,9 +8,9 @@
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Tên</label>
+                    <label for="">{{ __('courses::messages.name') }}</label>
                     <input type="text" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}} title"
-                        placeholder="Tên..." name="name" id="" value="{{old('name') ?? $course->name}}" />
+                        placeholder="{{ __('courses::messages.name') }}..." name="name" id="" value="{{old('name') ?? $course->name}}" />
                     @error('name')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -21,9 +21,9 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Slug</label>
+                    <label for="">{{ __('courses::messages.slug') }}</label>
                     <input type="text" class="form-control {{$errors->has('slug') ? 'is-invalid' : ''}} slug"
-                        placeholder="Slug..." name="slug" id="" value="{{old('slug') ?? $course->slug }}" />
+                        placeholder="{{ __('courses::messages.slug') }}..." name="slug" id="" value="{{old('slug') ?? $course->slug }}" />
                     @error('slug')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -34,9 +34,9 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Nhóm</label>
+                    <label for="">{{ __('courses::messages.group') }}</label>
                     <select name="teacher_id" id="" class="form-select {{$errors->has('teacher_id') ? 'is-invalid' : ''}}">
-                        <option value="0" {{old('')}}>Chọn giảng viên</option>
+                        <option value="0" {{old('')}}>{{ __('courses::messages.choose_a_lecturer') }}</option>
                        @if($teacher) 
                             @foreach($teacher as $item)
                                 <option value="{{$item->id}}"
@@ -55,9 +55,9 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Mã khoá học</label>
+                    <label for="">{{ __('courses::messages.course_code') }}</label>
                     <input type="text"  name="code" class="form-control {{$errors->has('code') ? 'is-invalid' : ''}}"
-                        placeholder="Mã khoá học..." name="code" id="" value="{{old('code') ?? $course->code}}"/>
+                        placeholder="{{ __('courses::messages.course_code') }}..." name="code" id="" value="{{old('code') ?? $course->code}}"/>
                     @error('code')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -68,9 +68,9 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Giá khoá học</label>
+                    <label for="">{{ __('courses::messages.course_price') }}</label>
                     <input type="number"  name="price" class="form-control {{$errors->has('price') ? 'is-invalid' : ''}}"
-                        placeholder="Giá khoá học..." name="price" id="" value="{{old('price') ?? $course->price}}"/>
+                        placeholder="{{ __('courses::messages.course_price') }}..." name="price" id="" value="{{old('price') ?? $course->price}}"/>
                     @error('price')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -81,9 +81,9 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Giá khuyến mãi</label>
+                    <label for="">{{ __('courses::messages.promotional_price') }}</label>
                     <input type="number"  name="sale_price" class="form-control {{$errors->has('sale_price') ? 'is-invalid' : ''}}"
-                        placeholder="Giá khuyến mãi..." name="sale_price" id="" value="{{old('sale_price') ?? $course->sale_price}}"/>
+                        placeholder="{{ __('courses::messages.promotional_price') }}..." name="sale_price" id="" value="{{old('sale_price') ?? $course->sale_price}}"/>
                     @error('sale_price')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -94,10 +94,10 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Tài liệu đính kèm</label>
+                    <label for="">{{ __('courses::messages.attached_documents') }}</label>
                     <select name="is_document" id="" class="form-select {{$errors->has('is_document') ? 'is-invalid' : ''}}">
-                        <option value="0" {{old('is_document') == 0 || $course->is_document  == 0 ? 'selected' : false}}>Không</option>
-                        <option value="1" {{old('is_document') == 1 || $course->is_document  == 1? 'selected' : false}}>Có</option>
+                        <option value="0" {{old('is_document') == 0 || $course->is_document  == 0 ? 'selected' : false}}>{{ __('courses::messages.No') }}</option>
+                        <option value="1" {{old('is_document') == 1 || $course->is_document  == 1? 'selected' : false}}>{{ __('courses::messages.Yes') }}</option>
                     </select>
                     @error('is_document')
                         <div class="invalid-feedback">
@@ -109,10 +109,10 @@
 
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Trạng thái</label>
+                    <label for="">{{ __('courses::messages.status_course') }}</label>
                      <select name="status" id="" class="form-select {{$errors->has('status') ? 'is-invalid' : ''}}">
-                        <option value="0" {{old('status') == 0 || $course->status  == 0 ? 'selected' : false}}>Chưa diễn ra</option>
-                        <option value="1" {{old('status') == 1 || $course->status  == 1 ? 'selected' : false}}>Đã diễn ra</option>
+                        <option value="0" {{old('status') == 0 || $course->status  == 0 ? 'selected' : false}}>{{ __('courses::messages.courses_not_yet') }}</option>
+                        <option value="1" {{old('status') == 1 || $course->status  == 1 ? 'selected' : false}}>{{ __('courses::messages.courses_taken_place') }}</option>
                     </select>
                     @error('status')
                         <div class="invalid-feedback">
@@ -124,8 +124,8 @@
 
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="">Thông tin hỗ trợ khoá học</label>
-                    <textarea name="supports" id="" class="form-control {{$errors->has('supports') ? 'is-invalid' : ''}}" placeholder="thông tin hỗ trợ khoá học...">{{ old('supports') ?? $course->supports }}</textarea>
+                    <label for="">{{ __('courses::messages.course_support_infomation') }}</label>
+                    <textarea name="supports" id="" class="form-control {{$errors->has('supports') ? 'is-invalid' : ''}}" placeholder="{{ __('courses::messages.course_support_infomation') }}...">{{ old('supports') ?? $course->supports }}</textarea>
                     @error('supports')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -136,8 +136,8 @@
 
             <div class="col-12">
                 <div class="mb-3">
-                    <label for="">Nội dung</label>
-                    <textarea name="detail" id="" class="form-control ckeditor {{$errors->has('detail') ? 'is-invalid' : ''}}" placeholder="Nội dung...">{{ old('detail') ?? $course->detail}}</textarea>
+                    <label for="">{{ __('courses::messages.intension') }}</label>
+                    <textarea name="detail" id="" class="form-control ckeditor {{$errors->has('detail') ? 'is-invalid' : ''}}" placeholder="{{ __('courses::messages.intension') }}...">{{ old('detail') ?? $course->detail}}</textarea>
                     @error('detail')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -148,7 +148,7 @@
 
              <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Chuyên mục</label>
+                    <label for="">{{ __('courses::messages.category_course') }}</label>
                     <div class="list-categories">
                         {{
                             getCategoriesCheckbox($categories, old('categories') ?? $categoryIds)
@@ -165,7 +165,7 @@
 
              <div class="col-6">
                 <div class="mb-3">
-                    <label for="">Loại khoá học</label>
+                    <label for="">{{ __('courses::messages.course_type') }}</label>
                      <select name="type_id" id="type_id" class="form-control" class="form-select {{$errors->has('type_id') ? 'is-invalid' : ''}}">
                         @foreach($types as $type)
                             <option value="{{ $type->id }}"  {{ $course->type_id == $type->id ? 'selected' : '' }}>
@@ -185,10 +185,10 @@
                 <div class="mb-3">
                    <div class="row {{$errors->has('thumbnail') ? 'align-items-center' : 'align-items-end' }}">
                         <div class="col-lg-7">
-                            <label for="">Ảnh đại diện</label>
+                            <label for="">{{ __('courses::messages.thumbnail') }}</label>
                             <input type="text" name="thumbnail" id="thumbnail"
                             class="form-control {{$errors->has('thumbnail') ? 'is-invalid' : ''}}"
-                            placeholder="Ảnh đại diện..." value="{{old('thumbnail') ?? $course->thumbnail }}">
+                            placeholder="{{ __('courses::messages.thumbnail') }}..." value="{{old('thumbnail') ?? $course->thumbnail }}">
                             @error('thumbnail')
                                 <div class="invalid-feedback">
                                     {{$message}}
@@ -197,7 +197,7 @@
                         </div>
                         <div class="col-lg-2">
                             <button type="button" class="btn btn-primary" id="lfm" data-input="thumbnail" data-preview="holder">
-                                Chọn ảnh
+                                 {{ __('courses::messages.select_photo') }}
                             </button>
                         </div>
                         <div class="col-lg-3">
@@ -212,8 +212,8 @@
             </div>
 
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Lưu lại</button>
-                <a href="{{route('admin.courses.index')}}" class="btn btn-danger">Huỷ</a>
+                <button type="submit" class="btn btn-primary">{{ __('courses::messages.save_course') }}</button>
+                <a href="{{route('admin.courses.index')}}" class="btn btn-danger">{{ __('courses::messages.cancel_course') }}</a>
             </div>
         </div>
         @csrf

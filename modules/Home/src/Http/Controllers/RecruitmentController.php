@@ -20,7 +20,7 @@ class RecruitmentController extends Controller
         $this->teacherRepository = $teacherRepository;
     }
     public function index() {
-        $pageTitle = 'Tuyển dụng';
+        $pageTitle = __('home::messages.recruitment_page');
 
         return view('home::recruit_ment', compact('pageTitle'));
     }

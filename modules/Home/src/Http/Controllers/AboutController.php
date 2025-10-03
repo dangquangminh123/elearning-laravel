@@ -21,7 +21,7 @@ class AboutController extends Controller
     }
 
     public function index() {
-        $pageTitle = 'Về chúng tôi';
+        $pageTitle = __('home::messages.about_page');
 
         return view('home::about', compact('pageTitle'));
     }

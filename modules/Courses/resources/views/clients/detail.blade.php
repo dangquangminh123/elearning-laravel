@@ -10,25 +10,25 @@
                     <ul>
                         <li>
                             <a href="#information">
-                                <i class="fa-solid fa-file"></i> Thông tin chung
+                                <i class="fa-solid fa-file"></i> {{ __('courses::messages.general_info') }}
                             </a>
                         </li>
                         <li>
                             <a href="#curriculum">
                                 <i class="fa-solid fa-book"></i>
-                                Giáo trình
+                               {{ __('courses::messages.textbooks') }}
                             </a>
                         </li>
                         <li>
                             <a href="#author">
                                 <i class="fa-solid fa-user"></i>
-                                Giảng viên
+                                {{ __('courses::messages.teacher_course') }}
                             </a>
                         </li>
                         <li>
                             <a href="#evaluate">
                                 <i class="fa-solid fa-comment"></i>
-                                Đánh giá
+                                {{ __('courses::messages.rating_course') }}
                             </a>
                         </li>
                     </ul>
@@ -43,12 +43,12 @@
                     <div class="accordion-top px-2">
                         <p>
                             <i class="fa-solid fa-book me-1"></i>
-                            Gồm: {{getLessonCount($course)->module}} phần - {{getLessonCount($course)->lessons}} bài
-                            giảng
+                            {{ __('courses::messages.including') }}: {{getLessonCount($course)->module}} {{ __('courses::messages.part') }} - {{getLessonCount($course)->lessons}}
+                            {{ __('courses::messages.courses_lesson') }}
                         </p>
                         <p>
                             <i class="fa-solid fa-clock me-1"></i>
-                            Thời lượng {{getHour($course->durations)}}
+                            {{ __('courses::messages.duration') }} {{getHour($course->durations)}}
                         </p>
                     </div>
                     @include('courses::clients.lesson')
@@ -60,7 +60,7 @@
                             <img src="{{$course->teacher->image}}" alt="" class="rounded-circle" style="width: 80px;">
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <p>Giảng viên</p>
+                            <p>{{ __('courses::messages.teacher_course') }}</p>
                             <h4 class="mt-2"><a
                                     href="/giang-vien/{{$course->teacher->slug}}">{{$course->teacher->name}}</a></h4>
                         </div>
@@ -74,7 +74,7 @@
                 @endif
 
                 <div class="course-video mb-4" id="evaluate">
-                    <h2 class="fs-4">Học viên đánh giá</h2>
+                    <h2 class="fs-4">{{ __('courses::messages.student_evaluation') }}</h2>
                 </div>
             </div>
             <div class="col-12 col-lg-3">
@@ -94,33 +94,33 @@
                         </p>
                         <p class="bookmark">
                             <i class="fa-solid fa-bookmark"></i>
-                            Mã Khóa Học: {{$course->code}}
+                            {{ __('courses::messages.course_code') }} {{$course->code}}
                         </p>
                         <p class="techer">
                             <i class="fa-solid fa-user"></i>
-                            Giảng viên: {{$course->teacher->name.' - '.$course->teacher->exp}} năm kinh nghiệm
+                            {{ __('courses::messages.teacher_course') }} {{$course->teacher->name.' - '.$course->teacher->exp}} {{ __('courses::messages.years_of_experience') }}
                         </p>
                         <p class="clock">
                             <i class="fa-solid fa-clock"></i>
-                            Thời lượng: {{getHour($course->durations)}} học
+                            {{ __('courses::messages.duration') }}: {{getHour($course->durations)}}   {{ __('courses::messages.learn') }}
                         </p>
                         <p>
                             <i class="fa-brands fa-hire-a-helper"></i>
-                            Hỗ trợ: {{$course->supports}}
+                            {{ __('courses::messages.support') }} {{$course->supports}}
                         </p>
                         <p>
                             <i class="fa-brands fa-hire-a-helper"></i>
-                            Tài liệu đính kèm: {{$course->is_document ? 'Có': 'Không'}}
+                            {{ __('courses::messages.attached_documents') }} {{$course->is_document ?  __('courses::messages.Yes') : __('courses::messages.No') }}
                         </p>
                         @php
-                            $buttonText = 'Đặt mua khoá học';
+                            $buttonText =  __('courses::messages.order_the_course') ;
                             $buttonClass = 'payment';
 
                             if ($courseStatus === 'owned') {
-                                $buttonText = 'Vào học ngay';
+                                $buttonText = __('courses::messages.learn_now');
                                 $buttonClass = 'go-learn';
                             } elseif ($courseStatus === 'not_owned') {
-                                $buttonText = 'Kích hoạt khoá học này';
+                                $buttonText = __('courses::messages.activate_this_course');
                                 $buttonClass = 'activate-course';
                             }
                         @endphp

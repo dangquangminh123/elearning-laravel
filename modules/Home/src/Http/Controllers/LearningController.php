@@ -20,7 +20,7 @@ class LearningController extends Controller
         $this->teacherRepository = $teacherRepository;
     }
     public function index() {
-        $pageTitle = 'Lộ trình giảng dạy';
+        $pageTitle = __('home::messages.Learning_page');
 
         return view('home::learning_path', compact('pageTitle'));
     }

@@ -7,5 +7,5 @@ return [
     'update.failure' => 'Cập nhập bài giảng thất bại',
     'delete.success' => 'Xoá bài giảng thành công',
     'delete.failure' => 'Xoá bài giảng thất bại',
-
+    'lesson' => 'Bài học',
 ];

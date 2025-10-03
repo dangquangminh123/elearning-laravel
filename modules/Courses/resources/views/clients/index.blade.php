@@ -22,7 +22,7 @@
                         <div class="descreption-top">
                             <p><i class="fa-solid fa-clock"></i> {{getHour($course->durations)}} học</p>
                             <p><i class="fa-solid fa-video"></i> {{getLessonCount($course)->module}}
-                                phần/{{getLessonCount($course)->lessons}} bài</p>
+                                {{ __('courses::messages.part') }}/{{getLessonCount($course)->lessons}} {{ __('courses::messages.courses_lesson') }}</p>
                             <p><i class="fa-solid fa-eye"></i> {{$course->view ? number_format($course->view): 0}}</p>
                         </div>
                         <h5 class="descreption-title">
@@ -51,22 +51,22 @@
 
                                 @if ($hasAccess)
                                     <a href="{{ route('courses.learn', ['slug' => $course->slug]) }}" class="btn btn-start-learning">
-                                        Học ngay
+                                        {{ __('courses::messages.learn_now') }}
                                     </a>
                                 @else
-                                    <a href="#" class="btn btn-buy">Mua khoá học</a>
+                                    <a href="#" class="btn btn-buy">{{ __('courses::messages.order_the_course') }}</a>
                                     <form method="POST">
                                         @csrf
                                         <input type="hidden" name="course_id" value="{{ $course->id }}">
-                                        <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                                        <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">{{ __('courses::messages.add_to_cart') }}</button>
                                     </form>
                                 @endif
                             @else
-                                <a href="#" class="btn btn-buy">Mua khoá học</a>
+                                <a href="#" class="btn btn-buy">{{ __('courses::messages.order_the_course') }}</a>
                                 <form method="POST">
                                     @csrf
                                     <input type="hidden" name="course_id" value="{{ $course->id }}">
-                                    <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">Thêm giỏ hàng</button>
+                                    <button type="submit" class="btn btn-add-to-cart" data-id="{{ $course->id }}">{{ __('courses::messages.add_to_cart') }}</button>
                                 </form>
                             @endauth
                         </div>

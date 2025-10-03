@@ -7,7 +7,7 @@
             <div class="align-items-start">
                 <i class="fa-brands fa-youtube me-2"></i>
                 <a class="text-dark"
-                    href="{{route('lesson.index', $item->slug)}}">{{"Bài ".(++$index).": ".$item->name}}</a>
+                    href="{{route('lesson.index', $item->slug)}}">{{__('courses::messages.try_it_out') . ' ' .(++$index). ' : ' .$item->name}}</a>
             </div>
         </div>
         @endforeach

@@ -73,7 +73,7 @@ class CoursesController extends Controller {
         $firstLesson = $lessonGroups->first()['lessons']->first();
 
 
-        $pageTitle = 'Học - ' . $course->name;
+        $pageTitle = __('courses::messages.learn') . $course->name;
         $pageName = $course->name;
 
         return view('courses::clients.learn', [
@@ -108,7 +108,10 @@ class CoursesController extends Controller {
         $lesson = $this->lessonRepository->findLessonWithVideo($lessonId);
 
         if (!$lesson->video) {
-            abort(404, __('courses::messages.lessonNotfound'));
+              return view('errors.404', [
+                'message' => __('courses::messages.lessonNotfound'),
+                'pageTitle' => __('courses::messages.notFound'),
+            ]);
         }
 
         return VideoStreamer::streamFile(public_path($lesson->video->url));

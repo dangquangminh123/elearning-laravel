@@ -18,7 +18,7 @@ class HomeController extends Controller
         $this->teacherRepository = $teacherRepository;
     }
     public function index() {
-        $pageTitle = 'Trang chủ';
+        $pageTitle = __('home::messages.home_page');
 
         $teachers = $this->teacherRepository->getAllTeacher()->get();
         $teachersWithCourses = [];

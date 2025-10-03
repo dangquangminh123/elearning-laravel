@@ -29,13 +29,13 @@ class CoursesController extends Controller
         $courses = $this->coursesRepository->getAllCourses();
         return DataTables::of($courses)
             ->addColumn('lessons', function($course) {
-                return '<a href="'.route('admin.lessons.index', $course).'" class="btn btn-primary btm-sm">Bài giảng</a>';
+                return '<a href="'.route('admin.lessons.index', $course).'" class="btn btn-primary btm-sm">'.__('courses::messages.courses_lesson').'</a>';
             })
             ->addColumn('edit', function($course) {
-                return '<a href="'.route('admin.courses.edit', $course).'" class="btn btn-warning btm-sm">Sửa</a>';
+                return '<a href="'.route('admin.courses.edit', $course).'" class="btn btn-warning btm-sm">'.__('courses::messages.courses_edit').'</a>';
             })
             ->addColumn('delete', function($course) {
-                return '<a href="'.route('admin.courses.delete', $course).'" class="btn btn-danger btm-sm delete-action">Xoá</a>';
+                return '<a href="'.route('admin.courses.delete', $course).'" class="btn btn-danger btm-sm delete-action">'.__('courses::messages.courses_delete').'</a>';
             })
             ->editColumn('code', function($course) {
                 return '<span class="badge bg-danger">'.$course->code.'</span>';
@@ -44,10 +44,10 @@ class CoursesController extends Controller
                 return Carbon::parse($course->created_at)->format('d/m/Y H:i:s');
             })
             ->editColumn('status', function ($course) {
-                return $course->status == 1 ? '<span class="btn btn-success">Đã diễn ra</span>' : '<span class="btn btn-warning">Chưa diễn ra</span>';
+                return $course->status == 1 ? '<span class="btn btn-success">'.__('courses::messages.courses_taken_place').'</span>' : '<span class="btn btn-warning">'.__('courses::messages.courses_not_yet').'</span>';
             })
             ->addColumn('type_name', function($course) {
-                return format_course_type($course->type->name ?? 'Không có loại');
+                return format_course_type($course->type->name ?? __('courses::messages.courses_no_type'));
             })
             ->editColumn('price', function ($course) {
                 if($course->price) {
@@ -57,7 +57,7 @@ class CoursesController extends Controller
                         $price = number_format($course->price).'đ';
                     }
                 }else {
-                    $price = 'Miễn phí';
+                    $price = __('courses::messages.free_price');
                 }
                 return $price;
             })
@@ -65,12 +65,12 @@ class CoursesController extends Controller
         ->toJson();
     }
     public function index() {
-        $pageTitle = 'Quản lý khoá học';
+        $pageTitle = __('courses::messages.manager_courses');
         return view('courses::lists', compact('pageTitle'));
     }
 
     public function create() {
-        $pageTitle = 'Thêm mới khoá học';
+        $pageTitle = __('courses::messages.add_courses_page');
         $teacher = $this->teacherRepository->getAllTeacher()->get();
         $types = $this->coursesRepository->getAllTypeCourses();
         $categories = $this->categoriesRepository->getAllCategories();
@@ -102,7 +102,7 @@ class CoursesController extends Controller
         $types = $this->coursesRepository->getAllTypeCourses();
         $teacher = $this->teacherRepository->getAllTeacher()->get();
 
-        $pageTitle = 'Cập nhập khoá học';
+        $pageTitle = __('courses::messages.edit_courses_page');
 
         if(!$course) {
             abort(404);
